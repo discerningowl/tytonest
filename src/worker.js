@@ -22,7 +22,7 @@ function getHTML() {
   <title>TytoNest &mdash; Where Barn Owls Come Home</title>
   <meta name="description" content="TytoNest is a community for barn owl enthusiasts. Discover the quiet beauty of Tyto alba through field notes, seasonal observations, and a shared love of these extraordinary creatures.">
   <style>
-${getCSS()}
+` + getCSS() + `
   </style>
 </head>
 <body>
@@ -260,7 +260,7 @@ ${getCSS()}
 }
 
 function getCSS() {
-  return \`
+  return `
 /**
  * TytoNest Design System
  * Color Palette: Barn Owl (Tyto alba) inspired
@@ -1106,5 +1106,5 @@ img { max-width: 100%; height: auto; }
     margin-bottom: var(--space-8);
   }
 }
-\`;
+`;
 }
