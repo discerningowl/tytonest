@@ -165,10 +165,13 @@ a:hover { color: var(--color-amber); }
 .nav-link.active { color: var(--color-amber); }
 
 /* Footer */
-.site-footer { background-color: var(--color-twilight); padding: var(--space-10) 0 var(--space-6); color: var(--color-warm-gray); }
-.footer-content { display: flex; justify-content: space-between; padding-bottom: var(--space-8); border-bottom: 1px solid rgba(196, 168, 130, 0.15); margin-bottom: var(--space-6); }
+.site-footer { background-color: var(--color-brown); padding: var(--space-10) 0 var(--space-6); color: var(--color-cream); }
+.site-footer a { color: var(--color-amber-light); }
+.site-footer a:hover { color: var(--color-cream); }
+.footer-tagline { color: var(--color-tan); }
+.footer-content { display: flex; justify-content: space-between; padding-bottom: var(--space-8); border-bottom: 1px solid rgba(245, 240, 232, 0.2); margin-bottom: var(--space-6); }
 .footer-links { display: flex; gap: var(--space-6); }
-.footer-bottom p { font-size: var(--text-sm); text-align: center; opacity: 0.7; }
+.footer-bottom p { font-size: var(--text-sm); text-align: center; color: var(--color-tan); }
 
 /* ============================================
    4. FEATURE COMPONENTS (INDEX)
