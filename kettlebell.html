@@ -4,88 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kettlebell Program — TytoNest</title>
+  <meta name="description" content="A 20-week progressive kettlebell program. Three training days covering power, balance, and mobility with a 5-phase progression ladder.">
+  <meta property="og:title" content="Kettlebell Program — TytoNest">
+  <meta property="og:description" content="A 20-week progressive kettlebell program. Three training days covering power, balance, and mobility.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tytonest.xyz/kettlebell.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kettlebell Program — TytoNest">
+  <meta name="twitter:description" content="A 20-week progressive kettlebell program covering power, balance, and mobility.">
   <link rel="stylesheet" href="style.css">
-  <style>
-    .workout-container { padding: var(--space-8) 0; }
-    .tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-6) 0; }
-    .tab { 
-      padding: var(--space-2) var(--space-4); cursor: pointer; background: var(--color-gray-100); 
-      border: 1px solid var(--color-gray-200); font-family: var(--font-heading);
-      font-weight: var(--font-semibold); border-radius: var(--radius-md); 
-      transition: all var(--transition-base); color: var(--color-text-light);
-    }
-    .tab.active { background: var(--color-brown); color: var(--color-cream); border-color: var(--color-brown); }
-    .panel { display: none; animation: fadeIn 0.3s ease-in; }
-    .panel.active { display: block; }
-    
-    /* Table Styling */
-    .overflow { overflow-x: auto; margin-bottom: var(--space-8); border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
-    table { width: 100%; border-collapse: collapse; font-size: 0.825rem; background: var(--color-surface); }
-    th { background: var(--color-twilight); color: var(--color-cream); padding: var(--space-3); text-align: left; min-width: 110px; }
-    td { padding: var(--space-3); border-bottom: 1px solid var(--color-border); line-height: 1.4; }
-    tr:nth-child(even) td { background: var(--color-gray-50); }
-    td:first-child { font-weight: 600; background: var(--color-gray-100) !important; color: var(--color-brown); min-width: 160px; }
-    
-    /* Description Styling */
-    .ex-header { font-family: var(--font-heading); font-size: var(--text-lg); color: var(--color-brown); margin-bottom: var(--space-3); border-bottom: 2px solid var(--color-gray-200); padding-bottom: 4px; }
-    .ex-list { margin-bottom: var(--space-6); }
-    .ex-row { display: flex; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
-    .ex-name { font-weight: 600; min-width: 180px; color: var(--color-brown); font-family: var(--font-heading); font-size: var(--text-sm); }
-    .ex-desc { color: var(--color-text-light); font-size: var(--text-sm); line-height: 1.5; }
-    
-    /* Badges */
-    .w { display: inline-block; background: var(--color-gray-500); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: var(--radius-sm); margin-right: 4px; font-family: var(--font-mono); font-weight: bold; }
-    .w.heavy { background: var(--color-brown); }
-    .w.bw { background: var(--color-amber-dark); }
-    
-    /* Progression Blocks */
-    .blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4); margin-top: var(--space-6); }
-    .block { background: var(--color-surface); border: 1px solid var(--color-border); border-left: 4px solid var(--color-amber); padding: var(--space-4); border-radius: var(--radius-md); }
-    .block strong { color: var(--color-brown); display: block; margin-bottom: 4px; }
-    .note { background: var(--color-cream); border-left: 4px solid var(--color-brown); padding: var(--space-4); margin-top: var(--space-8); font-style: italic; color: var(--color-gray-700); font-size: var(--text-sm); }
-    
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-    @media (max-width: 600px) { .ex-row { flex-direction: column; gap: 4px; } .ex-name { min-width: auto; } }
-  </style>
+  <script defer src="components.js"></script>
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="container">
-      <nav class="nav-bar">
-        <a href="index.html" class="logo">
-          <svg class="logo-icon" viewBox="0 0 40 40"><circle cx="20" cy="18" r="16" fill="var(--color-cream)" stroke="var(--color-brown)" stroke-width="1.5"/><circle cx="14" cy="16" r="2" fill="var(--color-amber)"/><circle cx="26" cy="16" r="2" fill="var(--color-amber)"/><path d="M18 21 L20 24 L22 21" stroke="var(--color-brown)" fill="var(--color-tan)"/></svg>
-          <span class="logo-text">TytoNest</span>
-        </a>
-        <div class="nav-links">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="#" class="nav-link" style="color: var(--color-amber)">Kettlebell</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+  <div id="site-header"></div>
 
   <main class="container workout-container">
     <section class="section-header" style="text-align: left; margin-left: 0;">
       <h1 class="hero-title" style="font-size: var(--text-4xl);">Kettlebell Program</h1>
-      <p class="section-lead">Tyto Alba• Starting March 8, 2026 • 30–35 min KB -> 30 min cardio</p>
+      <p class="section-lead">Tyto Alba &bull; Starting March 8, 2026 &bull; 30&ndash;35 min KB &rarr; 30 min cardio</p>
     </section>
 
     <div class="tabs">
-      <button class="tab active" onclick="show('overview',this)">Overview</button>
-      <button class="tab" onclick="show('day1',this)">Day 1 — Power</button>
-      <button class="tab" onclick="show('day2',this)">Day 2 — Balance</button>
-      <button class="tab" onclick="show('day3',this)">Day 3 — Mobility</button>
-      <button class="tab" onclick="show('prog',this)">Progression</button>
+      <button class="tab active" data-panel="overview">Overview</button>
+      <button class="tab" data-panel="day1">Day 1 — Power</button>
+      <button class="tab" data-panel="day2">Day 2 — Balance</button>
+      <button class="tab" data-panel="day3">Day 3 — Mobility</button>
+      <button class="tab" data-panel="prog">Progression</button>
     </div>
 
     <!-- OVERVIEW -->
     <div id="overview" class="panel active">
       <h2 class="card-title">Program Overview</h2>
       <p>Progression follows two levers: <strong>reps first, then weight.</strong> Fill the top of the rep range across all rounds before moving up. The Turkish Get-Up is form-gated — never load-gated.</p>
-      
+
       <div class="note" style="margin-top: 1.5rem;">
-        <strong>Weight ladder:</strong> 20# → 35# → 45#
+        <strong>Weight ladder:</strong> 20# &rarr; 35# &rarr; 45#
       </div>
 
       <h3 style="margin-top: 2rem;">Key Principles</h3>
@@ -100,9 +54,8 @@
 
     <!-- DAY 1 -->
     <div id="day1" class="panel">
-      <h2 class="card-title">Day 1 — Power & Lower Body</h2>
-      
-      <!-- Table First -->
+      <h2 class="card-title">Day 1 — Power &amp; Lower Body</h2>
+
       <div class="overflow">
         <table>
           <thead><tr><th>Exercise</th><th>Wks 1–4<br>Foundation</th><th>Wks 5–8<br>Build</th><th>Wks 9–12<br>Progress</th><th>Wks 13–16<br>Challenge</th><th>Wks 17–20<br>Peak</th></tr></thead>
@@ -116,7 +69,6 @@
         </table>
       </div>
 
-      <!-- Descriptions Second -->
       <div class="ex-header">Exercise Details</div>
       <div class="ex-list">
         <div class="ex-row"><span class="ex-name">KB Swings (2H)</span><span class="ex-desc">Both hands on handle, explosive hip hinge, bell to chest/eye height.</span></div>
@@ -129,8 +81,8 @@
 
     <!-- DAY 2 -->
     <div id="day2" class="panel">
-      <h2 class="card-title">Day 2 — Balance & Core</h2>
-      
+      <h2 class="card-title">Day 2 — Balance &amp; Core</h2>
+
       <div class="overflow">
         <table>
           <thead><tr><th>Exercise</th><th>Wks 1–4<br>Foundation</th><th>Wks 5–8<br>Build</th><th>Wks 9–12<br>Progress</th><th>Wks 13–16<br>Challenge</th><th>Wks 17–20<br>Peak</th></tr></thead>
@@ -156,8 +108,8 @@
 
     <!-- DAY 3 -->
     <div id="day3" class="panel">
-      <h2 class="card-title">Day 3 — Mobility & Upper Body</h2>
-      
+      <h2 class="card-title">Day 3 — Mobility &amp; Upper Body</h2>
+
       <div class="overflow">
         <table>
           <thead><tr><th>Exercise</th><th>Wks 1–4<br>Foundation</th><th>Wks 5–8<br>Build</th><th>Wks 9–12<br>Progress</th><th>Wks 13–16<br>Challenge</th><th>Wks 17–20<br>Peak</th></tr></thead>
@@ -187,23 +139,23 @@
       <div class="blocks">
         <div class="block">
           <strong>Wks 1–4 · Foundation</strong>
-          <p style="font-size: 0.85rem; color: var(--color-text-light);">Build movement patterns. Stay at the lower end of rep ranges. Focus on form over speed. Lisinopril is establishing full efficacy — monitor for dizziness post-set.</p>
+          <p>Build movement patterns. Stay at the lower end of rep ranges. Focus on form over speed. Lisinopril is establishing full efficacy — monitor for dizziness post-set.</p>
         </div>
         <div class="block">
           <strong>Wks 5–8 · Build</strong>
-          <p style="font-size: 0.85rem; color: var(--color-text-light);">Reps increase across all exercises. Circuits should feel harder. BP should be stabilizing — a great time for a doctor check-in.</p>
+          <p>Reps increase across all exercises. Circuits should feel harder. BP should be stabilizing — a great time for a doctor check-in.</p>
         </div>
         <div class="block">
           <strong>Wks 9–12 · Progress</strong>
-          <p style="font-size: 0.85rem; color: var(--color-text-light);">Add a 4th round across all days. Meaningful volume jump — expect some fatigue in week 9. Stay consistent with hydration.</p>
+          <p>Add a 4th round across all days. Meaningful volume jump — expect some fatigue in week 9. Stay consistent with hydration.</p>
         </div>
         <div class="block">
           <strong>Wks 13–16 · Challenge</strong>
-          <p style="font-size: 0.85rem; color: var(--color-text-light);">First weight increases on primary moves (35# → 45#). Drop to 3 rounds if needed when moving up. Visceral fat loss typically accelerates here.</p>
+          <p>First weight increases on primary moves (35# &rarr; 45#). Drop to 3 rounds if needed when moving up. Visceral fat loss typically accelerates here.</p>
         </div>
         <div class="block">
           <strong>Wks 17–20 · Peak</strong>
-          <p style="font-size: 0.85rem; color: var(--color-text-light);">Highest volume and load of the program. Consider a doctor reassessment — BP medication review may be appropriate given weight loss progress.</p>
+          <p>Highest volume and load of the program. Consider a doctor reassessment — BP medication review may be appropriate given weight loss progress.</p>
         </div>
       </div>
       <div class="note">
@@ -212,32 +164,7 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <span class="logo-text">TytoNest</span>
-          <p class="footer-tagline">Training for the long flight.</p>
-        </div>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="index.html#field-notes">Field Notes</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 TytoNest. Made with patience and a love of the process.</p>
-      </div>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
 
-  <script>
-    function show(id, btn) {
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      btn.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
 </body>
 </html>
