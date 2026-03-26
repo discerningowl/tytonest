@@ -13,7 +13,7 @@
   <header class="site-header">
     <div class="container">
       <nav class="nav-bar">
-        <a href="/" class="logo" aria-label="TytoNest Home">
+        <a href="index.html" class="logo" aria-label="TytoNest Home">
           <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <circle cx="20" cy="18" r="16" fill="var(--color-cream)" stroke="var(--color-brown)" stroke-width="1.5"/>
             <ellipse cx="14" cy="16" rx="4" ry="5" fill="var(--color-linen)" stroke="var(--color-brown)" stroke-width="1"/>
@@ -29,6 +29,7 @@
         <div class="nav-links">
           <a href="#about" class="nav-link">About</a>
           <a href="#field-notes" class="nav-link">Field Notes</a>
+          <a href="kettlebell.html" class="nav-link">Kettlebell</a>
           <a href="#seasons" class="nav-link">Seasons</a>
           <a href="#community" class="nav-link">Community</a>
         </div>
@@ -50,37 +51,14 @@
       <div class="hero-art" aria-hidden="true">
         <div class="owl-silhouette">
           <svg viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Owl body -->
             <ellipse cx="140" cy="200" rx="85" ry="110" fill="var(--color-tan)"/>
-            <!-- Chest/face disc -->
             <ellipse cx="140" cy="170" rx="60" ry="75" fill="var(--color-cream)"/>
-            <!-- Heart-shaped face -->
             <path d="M140 100 C100 100, 80 130, 85 160 C88 180, 110 200, 140 210 C170 200, 192 180, 195 160 C200 130, 180 100, 140 100Z" fill="var(--color-linen)" stroke="var(--color-warm-gray)" stroke-width="1"/>
-            <!-- Eyes -->
-            <ellipse cx="118" cy="145" rx="16" ry="18" fill="white" stroke="var(--color-warm-gray)" stroke-width="0.5"/>
-            <ellipse cx="162" cy="145" rx="16" ry="18" fill="white" stroke="var(--color-warm-gray)" stroke-width="0.5"/>
             <circle cx="118" cy="145" r="10" fill="var(--color-amber)"/>
             <circle cx="162" cy="145" r="10" fill="var(--color-amber)"/>
             <circle cx="118" cy="143" r="5" fill="var(--color-twilight)"/>
             <circle cx="162" cy="143" r="5" fill="var(--color-twilight)"/>
-            <circle cx="120" cy="141" r="2" fill="white" opacity="0.8"/>
-            <circle cx="164" cy="141" r="2" fill="white" opacity="0.8"/>
-            <!-- Beak -->
             <path d="M134 162 L140 175 L146 162" fill="var(--color-tan)" stroke="var(--color-brown)" stroke-width="1" stroke-linejoin="round"/>
-            <!-- Wing suggestion left -->
-            <path d="M55 180 C60 160, 75 200, 80 240 C82 260, 70 280, 65 290" stroke="var(--color-brown)" stroke-width="1.5" fill="none" opacity="0.4"/>
-            <!-- Wing suggestion right -->
-            <path d="M225 180 C220 160, 205 200, 200 240 C198 260, 210 280, 215 290" stroke="var(--color-brown)" stroke-width="1.5" fill="none" opacity="0.4"/>
-            <!-- Feather speckles -->
-            <circle cx="110" cy="220" r="2" fill="var(--color-brown)" opacity="0.15"/>
-            <circle cx="130" cy="240" r="1.5" fill="var(--color-brown)" opacity="0.12"/>
-            <circle cx="155" cy="230" r="2" fill="var(--color-brown)" opacity="0.15"/>
-            <circle cx="170" cy="250" r="1.5" fill="var(--color-brown)" opacity="0.12"/>
-            <circle cx="125" cy="260" r="1.5" fill="var(--color-brown)" opacity="0.1"/>
-            <circle cx="150" cy="265" r="2" fill="var(--color-brown)" opacity="0.1"/>
-            <!-- Ear tufts (subtle) -->
-            <path d="M108 105 C105 90, 110 88, 115 100" fill="var(--color-tan)" opacity="0.6"/>
-            <path d="M172 105 C175 90, 170 88, 165 100" fill="var(--color-tan)" opacity="0.6"/>
           </svg>
         </div>
       </div>
@@ -96,121 +74,16 @@
       </div>
       <div class="card-grid">
         <div class="card">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="var(--color-amber)" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="var(--color-amber)"/></svg>
-          </div>
           <h3 class="card-title">Observe</h3>
-          <p>We believe the best way to appreciate barn owls is through patient, quiet observation. No flash photography, no disruption &mdash; just the art of being still.</p>
+          <p>We believe the best way to appreciate barn owls is through patient, quiet observation.</p>
         </div>
         <div class="card">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none"><path d="M6 26 L6 10 L16 4 L26 10 L26 26" stroke="var(--color-amber)" stroke-width="2" stroke-linejoin="round"/><rect x="12" y="18" width="8" height="8" stroke="var(--color-amber)" stroke-width="2"/></svg>
-          </div>
           <h3 class="card-title">Shelter</h3>
-          <p>Every owl needs a home. We share plans for nest boxes, habitat tips, and restoration projects that help barn owl populations thrive across the countryside.</p>
+          <p>Every owl needs a home. We share plans for nest boxes and habitat tips.</p>
         </div>
         <div class="card">
-          <div class="card-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none"><path d="M4 28 C8 20, 12 12, 16 16 C20 20, 24 8, 28 4" stroke="var(--color-amber)" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
           <h3 class="card-title">Record</h3>
-          <p>Careful field notes turn fleeting moments into lasting knowledge. We maintain observation logs, migration patterns, and seasonal behavior archives.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Field Notes -->
-  <section id="field-notes" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Field Notes</h2>
-        <p class="section-lead">Recent observations from the community. Each note captures a moment of connection with these remarkable creatures.</p>
-      </div>
-      <div class="notes-grid">
-        <article class="note-card">
-          <div class="note-date">
-            <span class="note-day">12</span>
-            <span class="note-month">Jan</span>
-          </div>
-          <div class="note-content">
-            <h3>Silent Wings at Dusk</h3>
-            <p>Spotted a pair hunting the meadow edge at sunset. The lead bird made three passes along the hedgerow before dropping into the grass. Successful catch on the third attempt. The second owl watched from the oak post, waiting its turn.</p>
-            <span class="note-author">&mdash; M. Calloway, Wiltshire</span>
-          </div>
-        </article>
-        <article class="note-card">
-          <div class="note-date">
-            <span class="note-day">28</span>
-            <span class="note-month">Dec</span>
-          </div>
-          <div class="note-content">
-            <h3>Winter Roost Check</h3>
-            <p>Visited the old stone barn off Hollow Lane. Found pellets and whitewash below the southeast beam &mdash; the pair is back for their fourth consecutive winter. Nest box still intact. Left undisturbed.</p>
-            <span class="note-author">&mdash; R. Ashworth, Devon</span>
-          </div>
-        </article>
-        <article class="note-card">
-          <div class="note-date">
-            <span class="note-day">15</span>
-            <span class="note-month">Dec</span>
-          </div>
-          <div class="note-content">
-            <h3>First Snow Sighting</h3>
-            <p>Barn owl quartering the field in light snowfall just after 4pm. Extraordinary to see the white plumage against the snow &mdash; almost invisible until it banked and caught the last of the light. Pure gold.</p>
-            <span class="note-author">&mdash; J. Fenn, Yorkshire</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Seasons -->
-  <section id="seasons" class="section section-dark">
-    <div class="container">
-      <div class="section-header">
-        <h2>The Owl&rsquo;s Year</h2>
-        <p class="section-lead">Barn owls live in rhythm with the seasons. Each brings its own behaviors, challenges, and quiet wonders.</p>
-      </div>
-      <div class="seasons-grid">
-        <div class="season-card">
-          <div class="season-name">Spring</div>
-          <p>Courtship flights begin. Males call from established territories, offering prey to prospective mates. Nest sites are chosen and the first eggs appear by late April.</p>
-        </div>
-        <div class="season-card">
-          <div class="season-name">Summer</div>
-          <p>The busiest season. Parents hunt through the short nights to feed growing broods of 4&ndash;7 owlets. Fledglings make their first awkward flights by August.</p>
-        </div>
-        <div class="season-card">
-          <div class="season-name">Autumn</div>
-          <p>Young owls disperse, searching for territories of their own. This is the most perilous time &mdash; and when barn owls are most often seen in unexpected places.</p>
-        </div>
-        <div class="season-card">
-          <div class="season-name">Winter</div>
-          <p>Survival mode. Established pairs roost together for warmth. Short days mean early hunting. A harsh winter can decimate populations, making shelter vital.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Community -->
-  <section id="community" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Join the Roost</h2>
-        <p class="section-lead">TytoNest is built by people who look up at old barns and wonder. Whether you&rsquo;re a seasoned birder or simply owl-curious, there&rsquo;s a perch here for you.</p>
-      </div>
-      <div class="cta-box">
-        <div class="cta-content">
-          <h3>Stay in the Loop</h3>
-          <p>Get seasonal updates, new field notes, and community highlights. We send one quiet email per month &mdash; no more, no less.</p>
-        </div>
-        <div class="cta-form" aria-label="Newsletter signup">
-          <div class="input-group">
-            <input type="email" class="input" placeholder="your@email.com" aria-label="Email address" disabled>
-            <button class="btn btn-primary" disabled>Subscribe</button>
-          </div>
-          <p class="cta-note">Coming soon. For now, just enjoy the view.</p>
+          <p>Careful field notes turn fleeting moments into lasting knowledge.</p>
         </div>
       </div>
     </div>
@@ -227,12 +100,11 @@
         <div class="footer-links">
           <a href="#about">About</a>
           <a href="#field-notes">Field Notes</a>
-          <a href="#seasons">Seasons</a>
-          <a href="#community">Community</a>
+          <a href="kettlebell.html">Kettlebell</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 TytoNest. Made with patience and a love of silent wings.</p>
+        <p>&copy; 2026 TytoNest. Made with patience.</p>
       </div>
     </div>
   </footer>
