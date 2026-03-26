@@ -163,6 +163,8 @@ a:hover { color: var(--color-amber); }
 .nav-link { padding: var(--space-2) var(--space-3); font-family: var(--font-heading); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-light); }
 .nav-link:hover { color: var(--color-brown); background: var(--color-gray-100); border-radius: var(--radius-md); }
 .nav-link.active { color: var(--color-amber); }
+.nav-link--page { color: var(--color-brown); font-weight: var(--font-semibold); }
+.nav-sep { display: inline-block; width: 1px; height: 1.1em; background: var(--color-gray-300); margin: 0 var(--space-1); vertical-align: middle; }
 
 /* Footer */
 .site-footer { background-color: var(--color-brown); padding: var(--space-10) 0 var(--space-6); color: var(--color-cream); }
