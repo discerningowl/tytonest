@@ -180,7 +180,7 @@ a:hover { color: var(--color-amber); }
    ============================================ */
 
 /* Hero */
-.hero { padding: var(--space-16) 0 var(--space-20); }
+.hero { padding: var(--space-16) 0 5rem; }
 .hero > .container { display: flex; align-items: center; gap: var(--space-12); }
 .hero-title { font-size: var(--text-5xl); margin-bottom: var(--space-6); }
 .hero-subtitle { font-size: var(--text-lg); margin-bottom: var(--space-8); max-width: 520px; }
