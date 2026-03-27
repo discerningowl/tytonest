@@ -248,21 +248,20 @@
 
       var phases = ['Wks 1-4 Foundation', 'Wks 5-8 Build', 'Wks 9-12 Progress', 'Wks 13-16 Challenge', 'Wks 17-20 Peak'];
 
-      var rows = [['Day', 'Exercise', 'Phase', 'Prescription']];
+      var rows = [];
 
-      days.forEach(function (day) {
+      days.forEach(function (day, di) {
+        if (di > 0) rows.push([]);
+        rows.push([day.label]);
+        rows.push(['Exercise'].concat(phases));
         var table = document.querySelector('#' + day.id + ' table');
         if (!table) return;
-        var bodyRows = table.querySelectorAll('tbody tr');
-        bodyRows.forEach(function (tr) {
+        table.querySelectorAll('tbody tr').forEach(function (tr) {
           var cells = tr.querySelectorAll('td');
           if (cells.length < 2) return;
-          var exercise = cells[0].textContent.trim();
-          for (var i = 1; i < cells.length; i++) {
-            var phase = phases[i - 1] || ('Phase ' + i);
-            var prescription = cells[i].textContent.trim();
-            rows.push([day.label, exercise, phase, prescription]);
-          }
+          var row = [cells[0].textContent.trim()];
+          for (var i = 1; i < cells.length; i++) row.push(cells[i].textContent.trim());
+          rows.push(row);
         });
       });
 
