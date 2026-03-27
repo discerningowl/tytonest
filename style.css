@@ -213,8 +213,8 @@ a:hover { color: var(--color-amber); }
   transition: all var(--transition-base); color: var(--color-text-light);
 }
 .tab.active { background: var(--color-brown); color: var(--color-cream); border-color: var(--color-brown); }
-.tab--export { margin-left: auto; background: var(--color-amber); color: var(--color-twilight); border-color: var(--color-amber); }
-.tab--export:hover { filter: brightness(0.92); }
+.tab--export { margin-left: auto; background: var(--color-twilight); color: var(--color-cream); border-color: var(--color-twilight); }
+.tab--export:hover { background: var(--color-twilight-light); border-color: var(--color-twilight-light); }
 .panel { display: none; animation: fadeIn 0.3s ease-in; }
 .panel.active { display: block; }
 
