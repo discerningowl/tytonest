@@ -194,11 +194,7 @@ a:hover { color: var(--color-amber); }
 .note-card { display: flex; gap: var(--space-6); background: var(--color-surface); border-radius: var(--radius-xl); padding: var(--space-6); border: 1px solid var(--color-border); }
 .note-date { flex: 0 0 56px; background: var(--color-cream); border-radius: var(--radius-lg); text-align: center; padding: var(--space-3); }
 
-/* CTA Box */
-.cta-box { display: flex; align-items: center; gap: var(--space-10); background: var(--color-cream); padding: var(--space-10); border-radius: var(--radius-2xl); border: 1px solid var(--color-border); }
-.input { padding: var(--space-3) var(--space-4); border: 2px solid var(--color-border); border-radius: var(--radius-lg); width: 100%; }
-
-/* ============================================
+/*============================================
    5. WORKOUT TRACKER COMPONENTS
    ============================================ */
 
