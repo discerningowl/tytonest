@@ -56,6 +56,8 @@
       <button class="tab" data-panel="day2">Day 2 — Balance</button>
       <button class="tab" data-panel="day3">Day 3 — Mobility</button>
       <button class="tab" data-panel="prog">Progression</button>
+      <button class="tab" data-panel="quick15">Quick 15</button>
+      <button class="tab tab--export" id="exportCsvBtn" type="button" aria-label="Export workouts to CSV">Export CSV</button>
     </div>
 
     <!-- OVERVIEW -->
@@ -86,7 +88,7 @@
           <thead><tr><th>Exercise</th><th>Wks 1–4<br>Foundation</th><th>Wks 5–8<br>Build</th><th>Wks 9–12<br>Progress</th><th>Wks 13–16<br>Challenge</th><th>Wks 17–20<br>Peak</th></tr></thead>
           <tbody>
             <tr><td>KB Swings (2H)</td><td><span class="w">35#</span> 15 reps · 3 sets</td><td><span class="w">35#</span> 18 reps · 3 sets</td><td><span class="w">35#</span> 20 reps · 4 sets</td><td><span class="w heavy">45#</span> 15 reps · 4 sets</td><td><span class="w heavy">45#</span> 18 reps · 4 sets</td></tr>
-            <tr><td>KB Snatches</td><td><span class="w">20#</span> 5/arm · 3 sets</td><td><span class="w">20#</span> 6/arm · 3 sets</td><td><span class="w">20#</span> 8/arm · 3 sets</td><td><span class="w">20#</span> 10/arm · 4 sets</td><td><span class="w">20#</span> 12/arm · 4 sets</td></tr>
+            <tr><td>KB Snatches</td><td><span class="w">20#</span> 10/arm · 3 sets</td><td><span class="w">20#</span> 12/arm · 3 sets</td><td><span class="w">20#</span> 14/arm · 3 sets</td><td><span class="w">20#</span> 16/arm · 4 sets</td><td><span class="w">20#</span> 18/arm · 4 sets</td></tr>
             <tr><td>Goblet Squats</td><td><span class="w">35#</span> 10 reps · 3 sets</td><td><span class="w">35#</span> 12 reps · 3 sets</td><td><span class="w">35#</span> 12 reps · 4 sets</td><td><span class="w heavy">45#</span> 10 reps · 4 sets</td><td><span class="w heavy">45#</span> 12 reps · 4 sets</td></tr>
             <tr><td>KB Push-Ups</td><td><span class="w bw">BW</span> 8 reps · 3 sets</td><td><span class="w bw">BW</span> 10 reps · 3 sets</td><td><span class="w bw">BW</span> 12 reps · 4 sets</td><td><span class="w bw">BW</span> 15 reps · 4 sets</td><td><span class="w bw">BW</span> 15 reps · 4 sets</td></tr>
             <tr><td>Russian Twists</td><td><span class="w">20#</span> 20 reps · 3 sets</td><td><span class="w">20#</span> 24 reps · 3 sets</td><td><span class="w">20#</span> 24 reps · 4 sets</td><td><span class="w">35#</span> 20 reps · 4 sets</td><td><span class="w">35#</span> 24 reps · 4 sets</td></tr>
@@ -187,6 +189,34 @@
         <strong>Weight jump note:</strong> If 45# feels too large a jump on any exercise, stay at 35# for one additional block. The Turkish Get-Up weight increase is always form-gated — never load-gated.
       </div>
     </div>
+
+    <!-- QUICK 15 -->
+    <div id="quick15" class="panel">
+      <h2 class="card-title">Quick 15 — Full Body Circuit</h2>
+      <p>3 exercises &bull; 3 rounds &bull; 12 reps each &bull; Rest 30–45 sec between exercises.</p>
+
+      <div class="blocks" style="margin-top: 1.5rem;">
+        <div class="block">
+          <strong>1 &mdash; KB Swings (2H)</strong>
+          <p><span class="w">35#</span> &nbsp;12 reps</p>
+          <p style="color: var(--color-text-light); font-size: var(--text-sm); margin-top: 0.5rem;">Explosive hip hinge, bell to chest height. Reset grip between reps if needed.</p>
+        </div>
+        <div class="block">
+          <strong>2 &mdash; Goblet Squat</strong>
+          <p><span class="w">35#</span> &nbsp;12 reps</p>
+          <p style="color: var(--color-text-light); font-size: var(--text-sm); margin-top: 0.5rem;">Hold bell at chest, squat to parallel, elbows inside knees at the bottom.</p>
+        </div>
+        <div class="block">
+          <strong>3 &mdash; KB Snatch</strong>
+          <p><span class="w">20#</span> &nbsp;12/arm</p>
+          <p style="color: var(--color-text-light); font-size: var(--text-sm); margin-top: 0.5rem;">Ground to overhead lockout, punch under at the top. Complete all reps one arm then switch.</p>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top: 1.5rem;">
+        <strong>Total work:</strong> 3 rounds &times; (12 + 12 + 24) reps = 144 reps. Keep transitions tight and you'll finish in 12–15 minutes.
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -208,5 +238,51 @@
     </div>
   </footer>
 
+  <script>
+    document.getElementById('exportCsvBtn').addEventListener('click', function () {
+      var days = [
+        { id: 'day1', label: 'Day 1 - Power & Lower Body' },
+        { id: 'day2', label: 'Day 2 - Balance & Core' },
+        { id: 'day3', label: 'Day 3 - Mobility & Upper Body' }
+      ];
+
+      var phases = ['Wks 1-4 Foundation', 'Wks 5-8 Build', 'Wks 9-12 Progress', 'Wks 13-16 Challenge', 'Wks 17-20 Peak'];
+
+      var rows = [['Day', 'Exercise', 'Phase', 'Prescription']];
+
+      days.forEach(function (day) {
+        var table = document.querySelector('#' + day.id + ' table');
+        if (!table) return;
+        var bodyRows = table.querySelectorAll('tbody tr');
+        bodyRows.forEach(function (tr) {
+          var cells = tr.querySelectorAll('td');
+          if (cells.length < 2) return;
+          var exercise = cells[0].textContent.trim();
+          for (var i = 1; i < cells.length; i++) {
+            var phase = phases[i - 1] || ('Phase ' + i);
+            var prescription = cells[i].textContent.trim();
+            rows.push([day.label, exercise, phase, prescription]);
+          }
+        });
+      });
+
+      var csv = rows.map(function (r) {
+        return r.map(function (cell) {
+          var s = cell.replace(/"/g, '""');
+          return /[",\n]/.test(s) ? '"' + s + '"' : s;
+        }).join(',');
+      }).join('\r\n');
+
+      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'kettlebell-program.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  </script>
 </body>
 </html>
