@@ -9,9 +9,11 @@
   <meta property="og:description" content="A 20-week progressive kettlebell program. Three training days covering power, balance, and mobility.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tytonest.xyz/kettlebell.html">
+  <link rel="canonical" href="https://tytonest.xyz/kettlebell.html">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Kettlebell Program — TytoNest">
   <meta name="twitter:description" content="A 20-week progressive kettlebell program covering power, balance, and mobility.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
   <script defer src="components.js"></script>
 </head>
@@ -238,50 +240,5 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById('exportCsvBtn').addEventListener('click', function () {
-      var days = [
-        { id: 'day1', label: 'Day 1 - Power & Lower Body' },
-        { id: 'day2', label: 'Day 2 - Balance & Core' },
-        { id: 'day3', label: 'Day 3 - Mobility & Upper Body' }
-      ];
-
-      var phases = ['Wks 1-4 Foundation', 'Wks 5-8 Build', 'Wks 9-12 Progress', 'Wks 13-16 Challenge', 'Wks 17-20 Peak'];
-
-      var rows = [];
-
-      days.forEach(function (day, di) {
-        if (di > 0) rows.push([]);
-        rows.push([day.label]);
-        rows.push(['Exercise'].concat(phases));
-        var table = document.querySelector('#' + day.id + ' table');
-        if (!table) return;
-        table.querySelectorAll('tbody tr').forEach(function (tr) {
-          var cells = tr.querySelectorAll('td');
-          if (cells.length < 2) return;
-          var row = [cells[0].textContent.trim()];
-          for (var i = 1; i < cells.length; i++) row.push(cells[i].textContent.trim());
-          rows.push(row);
-        });
-      });
-
-      var csv = rows.map(function (r) {
-        return r.map(function (cell) {
-          var s = cell.replace(/"/g, '""');
-          return /[",\n]/.test(s) ? '"' + s + '"' : s;
-        }).join(',');
-      }).join('\r\n');
-
-      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = 'kettlebell-program.csv';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
-  </script>
 </body>
 </html>
