@@ -1,7 +1,36 @@
 (function () {
   'use strict';
 
-  // Tab switcher for pages that include .tab[data-panel] / .panel components.
+  // ── Fragment includes ────────────────────────────────────────────────────────
+  // Fetches header.html / footer.html and replaces the placeholder elements.
+  // The active nav link is set based on the current page after header loads.
+
+  function loadFragment(id, url, onLoad) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    fetch(url)
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        el.outerHTML = html;
+        if (onLoad) onLoad();
+      })
+      .catch(function () {}); // fail silently; page still renders without include
+  }
+
+  function setActiveNav() {
+    var page = window.location.pathname.split('/').pop();
+    if (page === 'kettlebell.html') {
+      var link = document.querySelector('[data-nav="training"]');
+      if (link) link.classList.add('active');
+    }
+  }
+
+  loadFragment('site-header', 'header.html', setActiveNav);
+  loadFragment('site-footer', 'footer.html');
+
+  // ── Tab switcher ─────────────────────────────────────────────────────────────
+  // Handles .tab[data-panel] / .panel components.
+
   document.addEventListener('click', function (e) {
     var tab = e.target.closest('.tab[data-panel]');
     if (!tab) return;
@@ -15,7 +44,9 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // CSV export for kettlebell workout tables.
+  // ── CSV export ───────────────────────────────────────────────────────────────
+  // Exports the three workout day tables to a structured CSV file.
+
   var exportBtn = document.getElementById('exportCsvBtn');
   if (exportBtn) {
     exportBtn.addEventListener('click', function () {
