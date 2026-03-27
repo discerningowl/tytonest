@@ -56,6 +56,7 @@
       <button class="tab" data-panel="day2">Day 2 — Balance</button>
       <button class="tab" data-panel="day3">Day 3 — Mobility</button>
       <button class="tab" data-panel="prog">Progression</button>
+      <button class="tab tab--export" id="exportCsvBtn" type="button" aria-label="Export workouts to CSV">Export CSV</button>
     </div>
 
     <!-- OVERVIEW -->
@@ -208,5 +209,51 @@
     </div>
   </footer>
 
+  <script>
+    document.getElementById('exportCsvBtn').addEventListener('click', function () {
+      var days = [
+        { id: 'day1', label: 'Day 1 - Power & Lower Body' },
+        { id: 'day2', label: 'Day 2 - Balance & Core' },
+        { id: 'day3', label: 'Day 3 - Mobility & Upper Body' }
+      ];
+
+      var phases = ['Wks 1-4 Foundation', 'Wks 5-8 Build', 'Wks 9-12 Progress', 'Wks 13-16 Challenge', 'Wks 17-20 Peak'];
+
+      var rows = [['Day', 'Exercise', 'Phase', 'Prescription']];
+
+      days.forEach(function (day) {
+        var table = document.querySelector('#' + day.id + ' table');
+        if (!table) return;
+        var bodyRows = table.querySelectorAll('tbody tr');
+        bodyRows.forEach(function (tr) {
+          var cells = tr.querySelectorAll('td');
+          if (cells.length < 2) return;
+          var exercise = cells[0].textContent.trim();
+          for (var i = 1; i < cells.length; i++) {
+            var phase = phases[i - 1] || ('Phase ' + i);
+            var prescription = cells[i].textContent.trim();
+            rows.push([day.label, exercise, phase, prescription]);
+          }
+        });
+      });
+
+      var csv = rows.map(function (r) {
+        return r.map(function (cell) {
+          var s = cell.replace(/"/g, '""');
+          return /[",\n]/.test(s) ? '"' + s + '"' : s;
+        }).join(',');
+      }).join('\r\n');
+
+      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'kettlebell-program.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  </script>
 </body>
 </html>
