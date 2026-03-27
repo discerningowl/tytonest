@@ -75,12 +75,11 @@
 
       var csv = rows.map(function (r) {
         return r.map(function (cell) {
-          var s = cell.replace(/"/g, '""');
-          return /[",\n]/.test(s) ? '"' + s + '"' : s;
+          return '"' + cell.replace(/"/g, '""') + '"';
         }).join(',');
       }).join('\r\n');
 
-      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      var blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
       var url = URL.createObjectURL(blob);
       var a = document.createElement('a');
       a.href = url;
