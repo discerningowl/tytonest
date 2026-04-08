@@ -166,6 +166,19 @@ a:hover { color: var(--color-amber); }
 .nav-link--page { color: var(--color-brown); font-weight: var(--font-semibold); }
 .nav-sep { display: inline-block; width: 1px; height: 1.1em; background: var(--color-gray-300); margin: 0 var(--space-1); vertical-align: middle; }
 
+/* Hamburger toggle */
+.nav-toggle {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  background: none; border: none; cursor: pointer;
+  padding: var(--space-2); border-radius: var(--radius-md);
+}
+.nav-toggle:hover { background: var(--color-gray-100); }
+.nav-toggle-bar {
+  display: block; width: 22px; height: 2px;
+  background: var(--color-brown); border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base), background var(--transition-base);
+}
+
 /* Footer */
 .site-footer { background-color: var(--color-cream); border-top: 1px solid var(--color-border); padding: var(--space-10) 0 var(--space-6); color: var(--color-text); }
 .site-footer a { color: var(--color-brown); }
@@ -262,6 +275,36 @@ a:hover { color: var(--color-amber); }
   h3 { font-size: var(--text-lg); }
   .nav-links { display: none; }
   .ex-row { flex-direction: column; gap: 4px; }
+
+  /* Hamburger button */
+  .nav-toggle { display: flex; }
+
+  /* Mobile nav open state */
+  .nav-bar.nav-open .nav-links {
+    display: flex; flex-direction: column; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(250, 247, 242, 0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-2) var(--space-4);
+    box-shadow: var(--shadow-md); z-index: 99;
+  }
+  .nav-bar.nav-open .nav-link {
+    padding: var(--space-3) var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav-bar.nav-open .nav-link:last-child { border-bottom: none; }
+  .nav-bar.nav-open .nav-sep { display: none; }
+
+  /* X icon when open */
+  .nav-bar.nav-open .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-bar.nav-open .nav-toggle-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-bar.nav-open .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Kettlebell tabs: scroll horizontally instead of wrapping */
+  .tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: var(--space-2); scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { white-space: nowrap; flex-shrink: 0; }
+  .tab--export { margin-left: 0; }
 }
 
 @keyframes fadeIn { 

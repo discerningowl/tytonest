@@ -25,7 +25,45 @@
     }
   }
 
-  loadFragment('site-header', 'header.html', setActiveNav);
+  function initHamburger() {
+    var toggle = document.querySelector('.nav-toggle');
+    if (!toggle) return;
+    var nav = document.querySelector('.nav-bar');
+
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    });
+
+    // Close when a nav link is clicked
+    var navLinks = document.querySelector('.nav-links');
+    if (navLinks) {
+      navLinks.addEventListener('click', function (e) {
+        if (e.target.closest('.nav-link')) {
+          nav.classList.remove('nav-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open navigation');
+        }
+      });
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('nav-open') && !nav.contains(e.target)) {
+        nav.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation');
+      }
+    });
+  }
+
+  function onHeaderLoad() {
+    setActiveNav();
+    initHamburger();
+  }
+
+  loadFragment('site-header', 'header.html', onHeaderLoad);
   loadFragment('site-footer', 'footer.html');
 
   // ── Tab switcher ─────────────────────────────────────────────────────────────
