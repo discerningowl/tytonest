@@ -9,7 +9,7 @@ All Phase I–III content, website refactor, scoring, and housekeeping tasks are
 
 ### What was completed across all sessions
 
-- [x] Phase I benchmark + all Phase II pillar deep dives (ZTNA, SSE, SD-WAN, AIOps, Sovereignty, Emerging)
+- [x] Benchmark + all Vendor Deep Dive pillar docs (ZTNA, SSE, SD-WAN, AIOps, Sovereignty, Emerging)
 - [x] Full hostable website — shared CSS/JS, TOC sidebar, all 8 HTML pages
 - [x] scores.json — Big Five across all 5 pillars, all criteria, fully scored with evidence notes
 - [x] scores.json — Emerging vendors (Aryaka, Graphiant, Nile, Island) added in-scope only
@@ -17,11 +17,13 @@ All Phase I–III content, website refactor, scoring, and housekeeping tasks are
   - Graphiant: SD-WAN (all 8 criteria)
   - Nile: ZTNA (all 9 criteria, null where not applicable)
   - Island: ZTNA (all 9 criteria, null where not applicable)
-- [x] Phase III scorecard — renderPage() implemented with Chart.js radar, weighted master table, per-pillar ranking bars, and vendor summary cards
-- [x] CLAUDE.md document table updated — all Phase II and Phase III status flipped to ✅ Complete
-- [x] Island Enterprise Browser added to sase_phase2f_emerging.html
-- [x] Enterprise Browser criterion added to sase_phase2a_ztna.html
-- [x] RBI criterion added to sase_phase1_benchmark.html and sase_phase2b_sse.html
+- [x] Scorecard — renderPage() implemented with Chart.js radar, weighted master table, per-pillar ranking bars, and vendor summary cards
+- [x] CLAUDE.md document table updated — all Vendor Deep Dive and Scorecard status flipped to ✅ Complete
+- [x] Island Enterprise Browser added to sase_emerging.html
+- [x] Enterprise Browser criterion added to sase_ztna.html
+- [x] RBI criterion added to sase_benchmark.html and sase_sse.html
+- [x] All filenames de-phased: sase_phase1_benchmark → sase_benchmark, sase_phase2a_ztna → sase_ztna, etc.
+- [x] All internal nav hrefs, header pills, footer meta, and body cross-references updated to remove phase labels
 
 ---
 
@@ -35,5 +37,5 @@ All Phase I–III content, website refactor, scoring, and housekeeping tasks are
 - Palo Alto scope = Prisma Access + Strata Cloud Manager (SCM) only
 - DLP = vendor philosophy framing, not hierarchy ranking
 - Zscaler = verify before asserting; ZIA/ZPA are separate products
-- Island = full Chromium fork (not extension); full profile in phase2f, callout in phase2a
+- Island = full Chromium fork (not extension); full profile in sase_emerging.html, callout in sase_ztna.html
 - Emerging vendor scoring = in-scope pillars only; cross-pillar totals not computed for emerging vendors

@@ -13,8 +13,8 @@
   <div class="edge-header__top">
     <span class="edge-header__brand">EDGE SOLUTIONS</span>
     <div class="edge-header__pills">
-      <span class="edge-pill">PHASE I</span>
-      <span class="edge-pill edge-pill--secondary">BENCHMARK</span>
+      <span class="edge-pill">BENCHMARK</span>
+      <span class="edge-pill edge-pill--secondary">COMPONENT ANALYSIS</span>
       <span class="edge-pill edge-pill--phase">2026</span>
     </div>
   </div>
@@ -22,14 +22,14 @@
   <p class="edge-header__subtitle">Defining Best-in-Class for ZTNA, SSE, SD-WAN, AIOps &amp; Sovereignty · Research Series · Q2 2026</p>
 </header>
 <nav class="doc-nav">
-  <a href="sase_phase1_benchmark.html" class="active">Phase I: Benchmark</a><span class="doc-nav__sep">›</span>
-  <a href="sase_phase2a_ztna.html">II-A: ZTNA</a><span class="doc-nav__sep">›</span>
-  <a href="sase_phase2b_sse.html">II-B: SSE</a><span class="doc-nav__sep">›</span>
-  <a href="sase_phase2c_sdwan.html">II-C: SD-WAN</a><span class="doc-nav__sep">›</span>
-  <a href="sase_phase2d_aiops.html">II-D: AIOps</a><span class="doc-nav__sep">›</span>
-  <a href="sase_phase2e_sovereignty.html">II-E: Sovereignty</a><span class="doc-nav__sep">›</span>
-  <a href="sase_phase2f_emerging.html">II-F: Emerging</a><span class="doc-nav__sep">›</span>
-  <a href="sase_phase3_scorecard.html">Phase III: Scorecard</a>
+  <a href="sase_benchmark.html" class="active">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="sase_emerging.html">Emerging</a><span class="doc-nav__sep">›</span>
+  <a href="sase_scorecard.html">Scorecard</a>
 </nav>
 <div class="page-body">
 <main>
@@ -39,7 +39,7 @@
   <div class="edge-callout">
     <div class="edge-callout__accent"></div>
     <div>
-      <strong>What this document is:</strong> The evaluation rubric for the Edge Solutions SASE Vendor Research Series. It defines what "best-in-class" looks like across five pillars — ZTNA, SSE (SWG / CASB / FWaaS / DLP / SSL / RBI / GenAI), SD-WAN, AIOps, and Sovereignty-by-Design — before any vendor is scored. Every vendor deep dive in Phase II will be measured against these criteria. Read this first; reference it throughout.
+      <strong>What this document is:</strong> The evaluation rubric for the Edge Solutions SASE Vendor Research Series. It defines what "best-in-class" looks like across five pillars — ZTNA, SSE (SWG / CASB / FWaaS / DLP / SSL / RBI / GenAI), SD-WAN, AIOps, and Sovereignty-by-Design — before any vendor is scored. Every vendor deep dive in the <strong>Vendor Deep Dives</strong> section will be measured against these criteria. Read this first; reference it throughout.
     </div>
   </div>
   <div class="edge-grid-4 mt-20">
@@ -349,7 +349,7 @@
   <div class="edge-callout mt-20">
     <div class="edge-callout__accent"></div>
     <div>
-      <strong>DLP Is Not One Thing — Vendor Philosophy Determines Fit:</strong> Each vendor implements DLP from a different design center. There is no universal "best" — the right choice depends on what data problem you are actually solving. The Phase II pillar deep dives will map each vendor's DLP approach to specific use cases.
+      <strong>DLP Is Not One Thing — Vendor Philosophy Determines Fit:</strong> Each vendor implements DLP from a different design center. There is no universal "best" — the right choice depends on what data problem you are actually solving. The DLP Deep Dive will map each vendor's DLP approach to specific use cases.
     </div>
   </div>
   <div class="edge-grid-2 mt-20">
@@ -359,7 +359,7 @@
     </div>
     <div class="criterion-block">
       <div class="criterion-block__label">Zscaler — Proxy-Enforced DLP</div>
-      <p>DLP is enforced inline through the ZIA proxy for internet traffic and ZPA for private app access. Strong for web and cloud channel coverage. Architecture note: ZIA and ZPA are distinct products that share policy through integration rather than a native unified engine — worth validating in the Phase II SSE deep dive. <strong>Best fit:</strong> Organizations prioritizing ZTNA architecture and digital experience monitoring where DLP is a compliance requirement rather than a primary differentiator.</p>
+      <p>DLP is enforced inline through the ZIA proxy for internet traffic and ZPA for private app access. Strong for web and cloud channel coverage. Architecture note: ZIA and ZPA are distinct products that share policy through integration rather than a native unified engine — worth validating in the <a href="sase_sse.html">SSE deep dive</a>. <strong>Best fit:</strong> Organizations prioritizing ZTNA architecture and digital experience monitoring where DLP is a compliance requirement rather than a primary differentiator.</p>
     </div>
     <div class="criterion-block">
       <div class="criterion-block__label">Palo Alto (Prisma + SCM) — Threat-First DLP</div>
@@ -463,7 +463,7 @@
   <div class="edge-callout--warning edge-callout mt-20">
     <div class="edge-callout__accent" style="background:#D4A017;"></div>
     <div>
-      <strong>2026 Watch Area — Generative AI Exfiltration:</strong> The fastest-growing DLP gap in 2026 is sensitive data flowing into public LLM prompts. Netskope leads here with inline prompt inspection tied to their unified DLP engine. Zscaler has added GenAI app controls within ZIA, but enforcement is at the application category level rather than content-aware inspection — a meaningful gap for regulated industries. This capability is absent in most stitched or commodity SSE offerings and will be a scored criterion in the Phase II-B SSE deep dive.
+      <strong>2026 Watch Area — Generative AI Exfiltration:</strong> The fastest-growing DLP gap in 2026 is sensitive data flowing into public LLM prompts. Netskope leads here with inline prompt inspection tied to their unified DLP engine. Zscaler has added GenAI app controls within ZIA, but enforcement is at the application category level rather than content-aware inspection — a meaningful gap for regulated industries. This capability is absent in most stitched or commodity SSE offerings and will be a scored criterion in the <a href="sase_sse.html">SSE deep dive</a>.
     </div>
   </div>
 </section>
@@ -725,7 +725,7 @@
 <div id="scoring" class="edge-dark-section">
   <div style="max-width:1100px; margin:0 auto;">
     <h2>Master Scoring Rubric</h2>
-    <p>Each vendor in Phase II will be scored against these criteria on a 1–5 scale. Scores are maintained in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> and rendered dynamically in each pillar document and the Phase III Master Scorecard.</p>
+    <p>Each vendor in Phase II will be scored against these criteria on a 1–5 scale. Scores are maintained in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> and rendered dynamically in each pillar document and the <a href="sase_scorecard.html">Master Scorecard</a>.</p>
   </div>
 </div>
 
@@ -782,7 +782,7 @@
 
 <section class="edge-section">
   <h2 class="section-heading">Three Archetypes, Three Weighting Profiles</h2>
-  <p>The same vendor can be the right answer for one organization and the wrong answer for another, depending on what they value most. Phase II vendor scores will be filtered through each of these three personas.</p>
+  <p>The same vendor can be the right answer for one organization and the wrong answer for another, depending on what they value most. Vendor scores will be filtered through each of these three personas.</p>
   <div class="edge-grid-3 mt-20">
     <div class="edge-card">
       <div class="edge-card__accent"></div>
@@ -845,7 +845,7 @@
   <div class="edge-callout mt-20">
     <div class="edge-callout__accent"></div>
     <div>
-      <strong>Note on Emerging Vendors:</strong> Aryaka, Graphiant, Nile, and Island will be evaluated in Phase II-F. Aryaka competes on Pillars 3+4 (SD-WAN + managed ops). Graphiant competes on Pillar 3 only (private connectivity). Nile competes on a new category: Zero Trust campus LAN, which extends ZTNA principles inward to the physical building. Island is a full Chromium fork enterprise browser enforcing Zero Trust policy at the browser layer — distinct from proxy-side inspection. None are wholesale SASE replacements. Full analysis in Phase II-F.
+      <strong>Note on Emerging Vendors:</strong> Aryaka, Graphiant, Nile, and Island will be evaluated in the <a href="sase_emerging.html">Emerging Vendors</a> section. Aryaka competes on Pillars 3+4 (SD-WAN + managed ops). Graphiant competes on Pillar 3 only (private connectivity). Nile competes on a new category: Zero Trust campus LAN, which extends ZTNA principles inward to the physical building. Island is a full Chromium fork enterprise browser enforcing Zero Trust policy at the browser layer — distinct from proxy-side inspection. None are wholesale SASE replacements. Full analysis in <a href="sase_emerging.html" style="color:var(--light-blue); font-size:12px;">Emerging Vendors</a>.
     </div>
   </div>
 </section>
@@ -853,18 +853,18 @@
 <section class="edge-dark-section">
   <div style="max-width:1100px; margin:0 auto;">
     <h2>What Comes Next</h2>
-    <p>This document is the evaluation rubric. Phase II applies it — organized by pillar, not by vendor, so every comparison is apples-to-apples across the Big Five.</p>
+    <p>This document is the evaluation rubric. The Benchmark applies it — organized by pillar, not by vendor, so every comparison is apples-to-apples across the Big Five.</p>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; position:relative; z-index:1;">
       <div style="background:var(--teal-dark); border:1px solid var(--teal-light); border-radius:4px; padding:14px 16px;">
         <div style="color:var(--lime); font-family:var(--font-heading); font-weight:700; font-size:11px; letter-spacing:1px; margin-bottom:8px;">PHASE II — PILLAR DEEP DIVES</div>
         <ul style="padding-left:16px; list-style:disc;">
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-A</strong> — ZTNA: All Big Five scored on remote access, device posture, enterprise browser</li>
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-B</strong> — SSE: SWG, CASB, FWaaS, DLP, SSL Decryption, RBI, and AI/GenAI Protection compared across vendors</li>
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-C</strong> — SD-WAN: Backbone, path steering, branch edge architecture</li>
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-D</strong> — AIOps: Automation, UEBA, root cause analysis, policy authoring</li>
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-E</strong> — Sovereignty: Data residency, certifications, encryption key control</li>
-          <li style="color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-F</strong> — Emerging Vendors: Aryaka, Graphiant, Nile, Island — scoped to their relevant pillars</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_ztna.html" style="color:var(--white);">ZTNA</a></strong> — All Big Five scored on remote access, device posture, enterprise browser</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_sse.html" style="color:var(--white);">SSE</a></strong> — SWG, CASB, FWaaS, DLP, SSL Decryption, RBI, and AI/GenAI Protection compared across vendors</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_sdwan.html" style="color:var(--white);">SD-WAN</a></strong> — Backbone, path steering, branch edge architecture</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_aiops.html" style="color:var(--white);">AIOps</a></strong> — Automation, UEBA, root cause analysis, policy authoring</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_sovereignty.html" style="color:var(--white);">Sovereignty</a></strong> — Data residency, certifications, encryption key control</li>
+          <li style="color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_emerging.html" style="color:var(--white);">Emerging Vendors</a></strong> — Aryaka, Graphiant, Nile, Island — scoped to their relevant pillars</li>
         </ul>
       </div>
       <div style="background:var(--teal-dark); border:1px solid var(--teal-light); border-radius:4px; padding:14px 16px;">
@@ -876,7 +876,7 @@
           <li style="color:var(--light-blue); font-size:12px;">Recommendations by use case and organizational profile</li>
         </ul>
         <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--teal-light);">
-          <p style="color:var(--light-blue2); font-size:11px;">Scores updated in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> once — reflected in all pillar docs and Phase III automatically.</p>
+          <p style="color:var(--light-blue2); font-size:11px;">Scores updated in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> once — reflected in all pillar docs and the <a href="sase_scorecard.html" style="color:var(--lime);">Scorecard</a> automatically.</p>
         </div>
       </div>
     </div>
@@ -891,7 +891,7 @@
 <footer class="edge-footer">
   <span class="edge-footer__brand">Edge Solutions</span>
   <div class="edge-footer__meta">
-    SASE Vendor Research Series · Phase I · Q2 2026<br>
+    SASE Vendor Research Series · Benchmark · Q2 2026<br>
     Working Document — Internal Use &amp; Client Distribution
   </div>
 </footer>

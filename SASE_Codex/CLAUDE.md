@@ -21,14 +21,14 @@ Edge Solutions SASE Vendor Research Series — **SASE Codex**. Goal: produce a f
 
 | File | Title | Status |
 |------|-------|--------|
-| `sase_phase1_benchmark.html` | Component Benchmark 2026 | ✅ Complete |
-| `sase_phase2a_ztna.html` | ZTNA Deep Dive — Big Five | ✅ Complete |
-| `sase_phase2b_sse.html` | SSE Deep Dive — Big Five | ✅ Complete |
-| `sase_phase2c_sdwan.html` | SD-WAN Deep Dive — Big Five | ✅ Complete |
-| `sase_phase2d_aiops.html` | AIOps Deep Dive — Big Five | ✅ Complete |
-| `sase_phase2e_sovereignty.html` | Sovereignty Deep Dive — Big Five | ✅ Complete |
-| `sase_phase2f_emerging.html` | Emerging Vendors — Aryaka, Graphiant, Nile, Island | ✅ Complete |
-| `sase_phase3_scorecard.html` | Master Scorecard & Persona Fit Matrix | ✅ Complete |
+| `sase_benchmark.html` | Component Benchmark 2026 | ✅ Complete |
+| `sase_ztna.html` | ZTNA Deep Dive — Big Five | ✅ Complete |
+| `sase_sse.html` | SSE Deep Dive — Big Five | ✅ Complete |
+| `sase_sdwan.html` | SD-WAN Deep Dive — Big Five | ✅ Complete |
+| `sase_aiops.html` | AIOps Deep Dive — Big Five | ✅ Complete |
+| `sase_sovereignty.html` | Sovereignty Deep Dive — Big Five | ✅ Complete |
+| `sase_emerging.html` | Emerging Vendors — Aryaka, Graphiant, Nile, Island | ✅ Complete |
+| `sase_scorecard.html` | Master Scorecard & Persona Fit Matrix | ✅ Complete |
 | `scores.json` | Vendor × Criterion Score Data | ✅ Complete — Big Five all pillars + Emerging in-scope |
 
 ---
@@ -40,12 +40,12 @@ Edge Solutions SASE Vendor Research Series — **SASE Codex**. Goal: produce a f
 **Rationale:** Readers want to know "who wins on DLP" not "tell me everything about Zscaler." Pillar-first forces apples-to-apples comparison and surfaces vendor strengths/gaps more clearly.
 
 ### Big Five vs. Emerging Vendors
-**Decision:** Big Five (Palo Alto, Cato, Netskope, Cloudflare, Zscaler) are the primary subjects of all Phase II pillar docs. Emerging vendors (Aryaka, Graphiant, Nile) get their own dedicated document (`sase_phase2f_emerging.html`).
-**Rationale:** Emerging vendors compete on narrower scope and shouldn't dilute the primary comparison. They get a brief callout in relevant pillar docs with a pointer to their dedicated doc. Full analysis lives in `sase_phase2f_emerging.html`.
+**Decision:** Big Five (Palo Alto, Cato, Netskope, Cloudflare, Zscaler) are the primary subjects of all Vendor Deep Dive pillar docs. Emerging vendors (Aryaka, Graphiant, Nile) get their own dedicated document (`sase_emerging.html`).
+**Rationale:** Emerging vendors compete on narrower scope and shouldn't dilute the primary comparison. They get a brief callout in relevant pillar docs with a pointer to their dedicated doc. Full analysis lives in `sase_emerging.html`.
 
 ### Scored Tables in Both Places
-**Decision:** Each pillar deep dive includes a vendor scoring table. Phase III Master Scorecard also includes full consolidated scoring. Both are rendered dynamically from `scores.json`.
-**Rationale:** Pillar docs need at-a-glance scores for readers who read only one section. Phase III synthesizes everything. Scores maintained once, displayed in multiple places.
+**Decision:** Each pillar deep dive includes a vendor scoring table. The Master Scorecard also includes full consolidated scoring. Both are rendered dynamically from `scores.json`.
+**Rationale:** Pillar docs need at-a-glance scores for readers who read only one section. The Scorecard synthesizes everything. Scores maintained once, displayed in multiple places.
 
 ---
 
@@ -91,7 +91,7 @@ fetch('scores.json')
   .then(r => r.json())
   .then(data => renderScoringTable(data.pillars.ztna));
 ```
-Each pillar doc fetches only its relevant pillar section. Phase III fetches the full file and builds the consolidated matrix.
+Each pillar doc fetches only its relevant pillar section. The Scorecard fetches the full file and builds the consolidated matrix.
 
 ---
 
@@ -103,7 +103,7 @@ Each pillar doc fetches only its relevant pillar section. Phase III fetches the 
 
 ### Zscaler
 **Caution flag:** Zscaler's product naming and architecture has shifted across releases. Do not make confident claims without verification. Flag uncertainty explicitly in the deep dive.
-**Known architecture note:** ZIA (internet access) and ZPA (private access) are distinct products. They share policy through integration — not a native unified engine. Confirm current state in Phase II-B (SSE) and Phase II-A (ZTNA) before scoring.
+**Known architecture note:** ZIA (internet access) and ZPA (private access) are distinct products. They share policy through integration — not a native unified engine. Confirm current state in the SSE deep dive (`sase_sse.html`) and ZTNA deep dive (`sase_ztna.html`) before scoring.
 **Primary identity:** Identity-first proxy / ZTNA + Digital Experience Monitoring (ZDX). DLP is a compliance capability, not the core design philosophy.
 
 ### Cato Networks
@@ -127,7 +127,7 @@ Each pillar doc fetches only its relevant pillar section. Phase III fetches the 
 
 ### Island
 **Scope:** Enterprise Browser. Enforces Zero Trust policy at the browser layer — session isolation, DLP, clipboard control, screenshot prevention, and SaaS access governance without a proxy in the path. Distinct from browser extensions (full Chromium fork). Competes in the ZTNA pillar as a last-mile enforcement point for managed and unmanaged devices.
-**Placement:** Full analysis in `sase_phase2f_emerging.html`. Callout in `sase_phase2a_ztna.html` under Enterprise Browser criterion.
+**Placement:** Full analysis in `sase_emerging.html`. Callout in `sase_ztna.html` under Enterprise Browser criterion.
 
 ---
 
@@ -144,17 +144,17 @@ Each pillar doc fetches only its relevant pillar section. Phase III fetches the 
 ### Enterprise Browser
 **Decision:** Added to ZTNA pillar as a distinct criterion from Agentless Access.
 **Rationale:** Enterprise browsers (Island, Talon/Palo Alto, Chrome Enterprise) enforce policy at the browser layer — architecturally different from proxy-side agentless access. Changes the inspection scope conversation for managed devices. Fast-moving category in 2026.
-**Scoring scope:** Score separately for (1) native enterprise browser and (2) browser extension/plugin. Some vendors (Palo Alto via Prisma Access Browser) offer a full browser; others offer lightweight extensions. Island is scored in `sase_phase2f_emerging.html` as a standalone emerging vendor.
+**Scoring scope:** Score separately for (1) native enterprise browser and (2) browser extension/plugin. Some vendors (Palo Alto via Prisma Access Browser) offer a full browser; others offer lightweight extensions. Island is scored in `sase_emerging.html` as a standalone emerging vendor.
 
 ### RBI (Remote Browser Isolation)
 **Decision:** RBI is a distinct SSE criterion — do not collapse it into SWG.
-**Placement:** Added to Phase I benchmark (`sase_phase1_benchmark.html`) under the SSE pillar. Scored as its own criterion in `sase_phase2b_sse.html`.
+**Placement:** Added to the Benchmark (`sase_benchmark.html`) under the SSE pillar. Scored as its own criterion in `sase_sse.html`.
 **Two rendering models to cover:** (1) pixel-push (server renders, streams pixels to client — high fidelity, higher latency) and (2) DOM reconstruction (server fetches, client reconstructs sanitized DOM — lower latency, some fidelity trade-offs).
 **Benchmark criteria:** rendering fidelity, latency overhead, unmanaged device / clientless support, integration with SWG policy engine.
 **Vendor split:** Zscaler (native), Cloudflare (native), Menlo Security (RBI-first vendor, not in Big Five), Palo Alto (via third-party integration — confirm current state). Cato and Netskope TBD — research before scoring.
 
 ### Emerging Vendors in Pillar Docs
-**Decision:** Emerging vendors get a brief callout in relevant pillar docs (not a full scored row) with a pointer to `sase_phase2f_emerging.html` for full analysis.
+**Decision:** Emerging vendors get a brief callout in relevant pillar docs (not a full scored row) with a pointer to `sase_emerging.html` for full analysis.
 
 ---
 
@@ -169,17 +169,26 @@ Each pillar doc fetches only its relevant pillar section. Phase III fetches the 
 - `scores.json` fetched by all pillar pages from root
 - **Left-side TOC:** Every page includes a fixed sidebar TOC. Implementation lives in `assets/js/toc.js` + `assets/css/toc.css`. TOC auto-generates from `<h2>`/`<h3>` headings via JS — no manual per-page markup. Active section highlighted via IntersectionObserver. Collapsible on mobile.
 
-### Canonical Page Header Standard
-All pages use the Phase II-A header as the reference implementation. Do not deviate.
+### Radar Chart Sizing (sase_scorecard.html)
+Do NOT use Chart.js `responsive`/`maintainAspectRatio`/`aspectRatio` options to control chart dimensions — they are unreliable when the chart renders after a `fetch()` resolves.
+
+The correct approach:
+- Canvas lives inside `.radar-canvas-wrapper` (position:relative, height:0, padding-bottom:%)
+- Canvas is `position:absolute; width:100%; height:100%` inside that wrapper
+- Chart.js runs `responsive:true, maintainAspectRatio:false` and fills whatever CSS gives it
+- Aspect ratio is controlled entirely by `padding-bottom` percentages in CSS media queries
+- Current ratios: ≥1200px → 55% · 900–1199px → 58% · 600–899px → 62% · <600px → 70%
+- Do NOT add `layout.padding` to the Chart.js config — it shrinks the radar web without shrinking the canvas, making the chart look tiny.
+All pages use the `sase_ztna.html` header as the reference implementation. Do not deviate.
 
 **Structure (top row — right-aligned pills):**
 ```html
-<span class="edge-pill">PHASE X</span>
+<span class="edge-pill">DOCUMENT TYPE</span>
 <span class="edge-pill edge-pill--secondary">DESCRIPTOR LABEL</span>
 <span class="edge-pill edge-pill--phase">2026</span>
 ```
-- **Pill 1 (lime):** Phase label — `PHASE I`, `PHASE II-A`, `PHASE III`, etc.
-- **Pill 2 (gray/secondary):** Page type — `BENCHMARK`, `TECHNICAL DEEP DIVE`, `SCORECARD`, etc.
+- **Pill 1 (lime):** Document type — `BENCHMARK`, `ZTNA`, `SSE`, `SD-WAN`, `AIOPS`, `SOVEREIGNTY`, `EMERGING`, `SCORECARD`
+- **Pill 2 (gray/secondary):** Page type — `COMPONENT ANALYSIS`, `TECHNICAL DEEP DIVE`, `MASTER SCORECARD`, `EMERGING VENDORS`, etc.
 - **Pill 3 (teal-dark + lime border):** Always `2026`. Class: `edge-pill edge-pill--phase`.
 
 **Brand string:** `EDGE SOLUTIONS` — all caps, always.

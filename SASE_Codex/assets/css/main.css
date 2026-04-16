@@ -434,9 +434,29 @@ h3.sub-heading {
 .compete-table tbody tr:nth-child(odd)  td { background: var(--white); }
 .compete-table tbody tr:nth-child(even) td { background: var(--off-white); }
 
-/* Radar chart container (Phase III) */
-#radar-container { background: var(--white); border: 1.5px solid var(--teal); border-radius: 4px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
-canvas#radarChart { display: block; margin: 0 auto; }
+/* Radar chart container */
+#radar-container { background: var(--white); border: 1.5px solid var(--teal); border-radius: 4px; padding: 28px 32px 20px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+
+/* Padding-bottom trick: height = % of width, giving us a CSS-driven aspect ratio.
+   Chart.js runs maintainAspectRatio:false and fills whatever this wrapper gives it.
+   Media queries adjust the ratio per breakpoint — no JS resize handler needed. */
+.radar-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 55%; /* wide desktop: ~1.82:1 */
+}
+.radar-canvas-wrapper canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+@media (max-width: 1199px) { .radar-canvas-wrapper { padding-bottom: 58%; } } /* ~1.72:1 */
+@media (max-width: 899px)  { .radar-canvas-wrapper { padding-bottom: 62%; } } /* ~1.61:1 */
+@media (max-width: 599px)  { .radar-canvas-wrapper { padding-bottom: 70%; } } /* ~1.43:1 */
+
+canvas#radarChart { display: block; }
 
 /* ============================================================
    VENDOR BLOCKS (Phase II deep dives)
