@@ -122,20 +122,11 @@ function renderScoringTable(pillar, vendors, containerId) {
    Falls back to window.FALLBACK_DATA if fetch fails.
    ============================================================ */
 (function loadScores() {
-  // Resolve path to scores.json relative to this script's location
-  // Script lives at assets/js/main.js → scores.json is two levels up
-  const scripts = document.querySelectorAll('script[src]');
-  let base = '../../';
-  scripts.forEach(function(s) {
-    if (s.src && s.src.includes('assets/js/main.js')) {
-      // Build relative path from page to scores.json
-      const parts = s.src.split('/');
-      parts.splice(-3); // remove assets/js/main.js
-      base = parts.join('/') + '/';
-    }
-  });
-
-  const scoresUrl = base + 'scores.json';
+  // Derive scores.json path from the current page URL — works regardless
+  // of how scripts are loaded (Cloudflare Rocket Loader, async, defer, etc.)
+  var pathname = window.location.pathname;                        // e.g. /SASE_Codex/sase_scorecard.html
+  var dir      = pathname.substring(0, pathname.lastIndexOf('/') + 1); // e.g. /SASE_Codex/
+  var scoresUrl = dir + 'scores.json';                           // e.g. /SASE_Codex/scores.json
 
   fetch(scoresUrl)
     .then(function(r) {
