@@ -1,0 +1,9 @@
+# SASE Codex — clean URL rewrites (200 = serve file, keep URL as-is)
+/SASE_Codex/sase_benchmark    /SASE_Codex/sase_benchmark.html    200
+/SASE_Codex/sase_ztna         /SASE_Codex/sase_ztna.html         200
+/SASE_Codex/sase_sse          /SASE_Codex/sase_sse.html          200
+/SASE_Codex/sase_sdwan        /SASE_Codex/sase_sdwan.html        200
+/SASE_Codex/sase_aiops        /SASE_Codex/sase_aiops.html        200
+/SASE_Codex/sase_sovereignty  /SASE_Codex/sase_sovereignty.html  200
+/SASE_Codex/sase_emerging     /SASE_Codex/sase_emerging.html     200
+/SASE_Codex/sase_scorecard    /SASE_Codex/sase_scorecard.html    200
