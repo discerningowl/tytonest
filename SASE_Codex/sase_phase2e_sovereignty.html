@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sovereignty Deep Dive — Big Five — Edge Solutions</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/toc.css">
+</head>
+<body class="has-toc">
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">PHASE II-E</span>
+      <span class="edge-pill edge-pill--secondary">TECHNICAL DEEP DIVE</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Sovereignty Deep Dive — Big Five</h1>
+    <p class="edge-header__subtitle">Data Residency · PoP Isolation · Regulatory Certifications · Encryption Key Sovereignty · SASE Vendor Research Series — Prepared by Edge Solutions</p>
+  </div>
+</header>
+<nav class="doc-nav">
+  <a href="sase_phase1_benchmark.html">Phase I: Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2a_ztna.html">II-A: ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2b_sse.html">II-B: SSE</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2c_sdwan.html">II-C: SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2d_aiops.html">II-D: AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2e_sovereignty.html" class="active">II-E: Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2f_emerging.html">II-F: Emerging</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase3_scorecard.html">Phase III: Scorecard</a>
+</nav>
+<div class="page-body">
+<main>
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Netskope leads Sovereignty across all six criteria — purpose-built data residency architecture, PoP-level isolation, FedRAMP High authorization, BYOK+HYOK encryption key sovereignty, and granular log residency controls are the strongest combination in the Big Five. Zscaler and Palo Alto are co-equal in second, with FedRAMP High (both) and broad regulated-market PoP coverage. The critical gap is Cato: no FedRAMP, no BSI C5, no IRAP, and no BYOK — Cato is not the right choice for any government, defense, or highly regulated enterprise buyer in 2026. Cloudflare holds strong certifications (FedRAMP Moderate, BSI C5, IRAP) and its Data Localization Suite is architecturally sound for GDPR, but dedicated sovereign PoP options are narrower than Netskope or Zscaler.</p>
+  </div>
+  <div class="feynman-box">
+
+    <h3>Sovereignty-by-Design: The difference between "compliant" and "architected for compliance"</h3>
+    <p>Every SASE vendor says they support data residency. The question is whether that support is a contractual promise layered on top of a global architecture — or whether the architecture was designed to keep data within borders by default.</p>
+    <p>The practical difference: in a sovereignty-by-design architecture, French user traffic is processed in French PoPs, logs are stored in France, and metadata never leaves the EU — not because a contract says so, but because the network topology makes cross-border processing architecturally impossible. In a sovereignty-by-contract architecture, the vendor promises not to move the data, but the infrastructure could, and you're auditing a promise rather than verifying a technical constraint.</p>
+    <p>In 2026, three regulatory frameworks are driving SASE sovereignty requirements: <strong>GDPR</strong> (EU metadata residency + transfer controls), <strong>DORA</strong> (EU financial services ICT risk management, full effect 2025), and <strong>EU AI Act</strong> (data used for AI/ML training must be documented with audit evidence). This pillar evaluates how each vendor handles these requirements architecturally — not just contractually.</p>
+  </div>
+  <h2 class="section-heading">Criteria at a Glance</h2>
+  <hr class="edge-rule">
+  <div class="edge-grid-3" style="margin-bottom:28px;">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill">CRITICAL ×3</span><h3 class="edge-card__title">Data Architecture</h3><ul><li>Regional Data Plane Isolation</li><li>Sovereign Cloud PoP Options</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill">HIGH ×2</span><h3 class="edge-card__title">Compliance &amp; Control</h3><ul><li>Regulatory Certifications</li><li>Customer-Controlled Encryption Keys</li><li>Log Residency Controls</li></ul></div></div>
+    <div class="edge-card edge-card--supplemental"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill edge-pill--secondary">MEDIUM ×1</span><h3 class="edge-card__title">AI Data Governance</h3><ul><li>AI/ML Training Data Isolation</li></ul><p style="margin-top:8px;">Growing exposure under EU AI Act (2026 full effect) — vendors using customer traffic data for model training without audit evidence face increasing compliance risk.</p></div></div>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Regulatory Certification Matrix</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:14px;font-size:13.5px;">Current certifications as of Q1 2026. Verify with vendors prior to procurement — certifications have annual renewal cycles and scope may vary by product/region.</p>
+  <table class="reg-matrix">
+    <thead>
+      <tr><th>Certification</th><th>Palo Alto</th><th>Cato</th><th>Netskope</th><th>Cloudflare</th><th>Zscaler</th><th>Scope Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>SOC 2 Type II</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>All vendors; verify current report date</td></tr>
+      <tr><td>ISO 27001</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>All vendors</td></tr>
+      <tr><td>FedRAMP</td><td class="cert-partial">Moderate</td><td class="cert-no">✗</td><td class="cert-yes">High</td><td class="cert-partial">Moderate</td><td class="cert-yes">High</td><td>High = DOD/IC eligible; Moderate = civilian agencies only</td></tr>
+      <tr><td>BSI C5 (Germany)</td><td class="cert-yes">✓</td><td class="cert-no">✗</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>Required for German regulated entities</td></tr>
+      <tr><td>IRAP (Australia)</td><td class="cert-yes">✓</td><td class="cert-no">✗</td><td class="cert-yes">Protected</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>Protected level = Australian government eligible</td></tr>
+      <tr><td>CSA STAR</td><td class="cert-yes">Level 2</td><td class="cert-no">✗</td><td class="cert-yes">Level 2</td><td class="cert-yes">✓</td><td class="cert-yes">Level 2</td><td>Level 2 = third-party audit</td></tr>
+      <tr><td>PCI DSS</td><td class="cert-yes">✓</td><td class="cert-partial">Partial</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>Verify scope for inline DLP use cases</td></tr>
+      <tr><td>HIPAA BAA</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>BAA available; verify which products are in scope</td></tr>
+      <tr><td>StateRAMP</td><td class="cert-yes">✓</td><td class="cert-no">✗</td><td class="cert-partial">In progress</td><td class="cert-partial">In progress</td><td class="cert-yes">✓</td><td>US state/local government</td></tr>
+    </tbody>
+  </table>
+  <div class="edge-callout edge-callout--warning" style="margin-top:14px;">
+    <div class="edge-callout__accent"></div>
+    <div><strong>Cato certification gap is procurement-disqualifying for regulated markets:</strong> No FedRAMP, no BSI C5, no IRAP, no CSA STAR as of Q1 2026. For US government, German regulated, Australian government, or any buyer with encryption key sovereignty requirements, Cato cannot be positioned as a primary SASE platform without compliance risk. A roadmap commitment is not a certification.</div>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Vendor Deep Dives</h2>
+  <hr class="edge-rule">
+
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Netskope — Sovereignty-by-Design Leader</h2><span class="arch-tag">STRONGEST SOVEREIGNTY POSTURE IN THE BIG FIVE</span></div>
+    <div class="vendor-body">
+      <p>Netskope's sovereignty story starts with architecture: NewEdge was designed for PoP-level tenant isolation from the beginning, not retrofitted onto a global CDN. Netskope can offer contractual plus architectural data residency — not just a promise that data stays in the EU, but a network topology that makes cross-border processing impossible for customers with regional pinning enabled.</p>
+      <div class="vendor-subhead">Regional Data Plane Isolation + BYOK/HYOK</div>
+      <p>Per-tenant, per-PoP data plane isolation is supported. A tenant with EU residency requirements processes all traffic at EU-based NewEdge PoPs — no session metadata, no DLP results, no log data crosses to non-EU infrastructure. Isolation is enforced at the network routing layer. Netskope is the only Big Five vendor offering both BYOK and HYOK as generally available capabilities — HYOK means the vendor cannot decrypt customer data even during a law enforcement request. This is the gold standard for sovereignty-sensitive deployments and what German BaFin, French ACPR, and Dutch DNB guidance increasingly expects.</p>
+      <div class="vendor-subhead">FedRAMP High + IRAP Protected</div>
+      <p>FedRAMP High authorization covers DOD and intelligence community workloads — the highest US government authorization level. IRAP Protected covers Australian government classified workloads. These are the two hardest authorizations to obtain and the most meaningful for government-adjacent enterprise buyers.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Only vendor with BYOK + HYOK available. PoP-level isolation is architectural, not contractual-only. FedRAMP High + IRAP Protected. Best log residency granularity (per-log-type, per-tenant). ML training data isolation with SOC2 audit evidence. Best for EU regulated and US government buyers.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>NewEdge PoP count (75+) smaller than Cloudflare (330+) — emerging market coverage less dense. Dedicated private PoP for small regulated entities requires custom engagement. FedRAMP High configurations are premium-priced.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Zscaler — FedRAMP High + Private Cloud</h2><span class="arch-tag">GOVERNMENT-GRADE CERTIFICATIONS · PRIVATE CLOUD OPTION</span></div>
+    <div class="vendor-body">
+      <p>Zscaler's sovereignty story is anchored by FedRAMP High (ZIA + ZPA for Government) and the Zscaler Private Cloud (ZPC) offering for customers requiring fully dedicated, tenant-isolated infrastructure. ZPC is the clearest "sovereignty-by-architecture" option in the Zscaler portfolio: dedicated cloud instance, no shared infrastructure with other tenants. For US federal agencies and defense contractors, Zscaler's FedRAMP posture is the most battle-tested in the Big Five.</p>
+      <div class="vendor-subhead">Regional Isolation + BYOK</div>
+      <p>Tenants can pin processing to US, EU, or APAC regional clouds. For strictest residency requirements, ZPC provides fully isolated infrastructure. Standard multi-tenant ZEN nodes process traffic from multiple tenants on shared infrastructure with policy-and-segmentation isolation — ZPC resolves this at significant cost. BYOK via HSM integration is supported; HYOK is available in ZPC deployments. Log residency is configurable by region; per-log-type granularity available in regulated configurations.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>FedRAMP High (ZIA + ZPA) most battle-tested US government SASE authorization. ZPC provides dedicated infrastructure for strictest isolation. Strong regulated-market PoP coverage. BSI C5, IRAP, CSA STAR Level 2. BYOK available with audit trail.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Standard multi-tenant architecture uses shared ZEN nodes — ZPC required for physical isolation at significant cost. HYOK outside ZPC is more limited than Netskope. Log residency granularity less detailed than Netskope. ZIA/ZPA as separate products complicates sovereignty attestation across both.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Palo Alto Networks — Broadest Certification Portfolio</h2><span class="arch-tag">MOST CERTIFICATIONS · HYBRID NGFW + CLOUD COVERAGE</span></div>
+    <div class="vendor-body">
+      <p>Palo Alto holds the broadest certification portfolio in the Big Five: SOC2 Type II, ISO 27001, FedRAMP Moderate, BSI C5, IRAP, CSA STAR Level 2, StateRAMP, PCI DSS. The unique angle is hybrid scope: SCM means the same sovereignty controls that apply to Prisma Access cloud workloads extend to physical NGFW deployments — organizations with on-prem infrastructure in regulated environments get a unified sovereignty posture across cloud and hardware, which no other Big Five vendor provides.</p>
+      <div class="vendor-subhead">Hybrid Sovereignty Advantage</div>
+      <p>For organizations with a mixed estate — some workloads in cloud SASE, some on physical NGFWs in regulated data centers — SCM + Prisma Access provides sovereignty controls across both environments from a single management plane. A GDPR-compliant policy applies to both Prisma Access cloud traffic AND on-prem NGFW traffic for EU-based users. This hybrid scope is architecturally unique and the correct answer for financial services firms that will never fully migrate away from on-prem infrastructure.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Broadest certification count. StateRAMP for US state/local government. Unique hybrid sovereignty across cloud + physical NGFW via SCM. BSI C5 + IRAP + CSA STAR. Best for organizations with on-prem NGFW estate under sovereignty requirements.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>FedRAMP Moderate only (not High) — DOD/IC workloads require Netskope or Zscaler. Regional isolation requires explicit configuration (not default-isolated). BYOK less granular than Netskope HYOK. Log residency controls less granular than Netskope.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Cloudflare — Data Localization Suite + GDPR Leader</h2><span class="arch-tag">STRONGEST GDPR POSTURE · FedRAMP MODERATE · BEST PoP DENSITY</span></div>
+    <div class="vendor-body">
+      <p>Cloudflare's sovereignty story is strongest for GDPR and European data localization. The Data Localization Suite (DLS) allows customers to configure which PoPs can process their traffic and restricts metadata from leaving the defined region. With 330+ PoPs globally, Cloudflare has the most dense coverage in regulated markets — regional isolation doesn't degrade performance the way it can with sparser networks.</p>
+      <div class="vendor-subhead">Data Localization Suite + Certifications</div>
+      <p>Cloudflare DLS allows customers to designate a "Customer Metadata Boundary" that prevents request metadata, log data, and traffic analytics from leaving the specified region — architecturally enforced via regional PoP routing. FedRAMP Moderate (not High — excludes DOD/IC), BSI C5, IRAP, SOC2 Type II, ISO 27001, HIPAA BAA. BYOK for data-at-rest encryption. HYOK not fully available across all Zero Trust components as of Q1 2026.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best PoP density in regulated markets — regional isolation doesn't create performance penalty. Data Localization Suite is architecturally enforced for GDPR. BSI C5 + IRAP. Best for EU-regulated multi-national organizations with strict GDPR requirements.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>FedRAMP Moderate only (not High). HYOK not fully available. Dedicated sovereign PoP options narrower than Netskope or Zscaler Private Cloud. Log residency per-log-type granularity requires multiple Logpush configurations.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Cato Networks — Significant Sovereignty Gaps</h2><span class="arch-tag">NOT RECOMMENDED FOR REGULATED / GOVERNMENT BUYERS</span></div>
+    <div class="vendor-body">
+      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>Procurement Warning:</strong> Cato does not hold FedRAMP, BSI C5, IRAP, or CSA STAR certifications as of Q1 2026. No BYOK is generally available. For any procurement requiring these certifications, Cato is not a viable option regardless of its strengths in other pillars.</div></div>
+      <p>Cato's sovereignty posture reflects its focus on operational simplicity and SMB/mid-market SASE rather than regulated enterprise and government markets. SOC2 Type II and ISO 27001 are in place. PCI DSS and HIPAA BAA are available. Beyond this, the certification portfolio has significant gaps.</p>
+      <div class="vendor-subhead">Data Residency + Encryption Limitations</div>
+      <p>Cato supports regional log storage as a tenant selection. Full PoP-level data plane isolation with auditable metadata boundaries is not a shipped capability — Cato's single-pass architecture processes traffic across PoPs to optimize performance, which is architecturally at odds with "traffic never leaves France" requirements. BYOK is not generally available as of Q1 2026 — the most significant sovereignty gap in the Cato platform for any customer whose regulator requires customer-managed encryption keys.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>SOC2 Type II, ISO 27001 in place. HIPAA BAA available. ML training data isolation contractually committed. Best SASE for non-regulated mid-market where sovereignty is not the primary driver — Cato's other pillar strengths are not undermined by these gaps for that buyer.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No FedRAMP. No BSI C5. No IRAP. No CSA STAR. No BYOK. Limited PoP-level isolation. Not viable for US government, German regulated, Australian government, or any buyer with encryption key sovereignty requirements. Roadmap commits are not certifications.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Vendor Scoring — Sovereignty Pillar</h2>
+  <hr class="edge-rule">
+  <div id="score-container"><p class="score-loading">Loading scores from scores.json…</p></div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Persona Fit — Sovereignty Pillar</h2>
+  <hr class="edge-rule">
+  <table class="persona-table">
+    <thead><tr><th>Persona</th><th>Profile</th><th>Primary Sovereignty Need</th><th>Best Fit</th><th>Rationale</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lean IT</strong></td><td>SMB/mid-market, standard compliance (PCI, HIPAA), not government or defense</td><td>SOC2, ISO 27001, HIPAA BAA — standard enterprise compliance</td><td><span class="winner-tag">CATO</span></td><td>For non-regulated mid-market buyers without FedRAMP/BSI/IRAP requirements, Cato's SOC2 + ISO 27001 + HIPAA BAA is adequate. Cato's other pillar strengths are the right trade-off when sovereignty requirements are standard.</td></tr>
+      <tr><td><strong>Global Security Ops</strong></td><td>US Federal, DOD contractor, or defense-adjacent enterprise</td><td>FedRAMP High, dedicated infrastructure option, BYOK</td><td><span class="winner-tag">NETSKOPE / ZSCALER</span></td><td>Both hold FedRAMP High. Netskope wins on BYOK+HYOK and architectural PoP-level isolation. Zscaler wins on Private Cloud option and the most battle-tested FedRAMP deployment history. Selection depends on whether SSE or ZTNA is the primary pillar driver.</td></tr>
+      <tr><td><strong>Data-First / Regulated</strong></td><td>EU financial services, healthcare (GDPR + DORA), German/Australian regulated entities</td><td>PoP-level isolation, BYOK+HYOK, BSI C5/IRAP, log residency granularity</td><td><span class="winner-tag">NETSKOPE</span></td><td>Only vendor with architectural (not contractual-only) PoP-level isolation, BYOK+HYOK, FedRAMP High + IRAP Protected, and per-log-type log residency controls. For DORA Article 28+ ICT third-party risk documentation, Netskope's audit evidence capability is the most complete.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="edge-dark-section">
+  <div style="max-width:1020px;margin:0 auto;">
+    <h2>Sovereignty in 2026: Three Regulatory Drivers</h2>
+    <p><strong style="color:var(--lime);">1. DORA is now in full effect.</strong> EU financial services entities must document ICT third-party risk with contractual provisions, exit plans, and incident reporting requirements. SASE vendors that provide structured DORA Article 28 compliance documentation — audit rights, concentration risk disclosure, incident notification SLAs — will win financial services deals over those that can't. Netskope's DORA readiness documentation is the most complete in the Big Five as of Q1 2026.</p>
+    <p><strong style="color:var(--lime);">2. The EU AI Act's data governance requirements are hitting SASE.</strong> AI Act Article 10 requires that training data for AI/ML systems be subject to data governance practices. If a SASE vendor uses customer traffic data to train shared ML models without contractual prohibition and audit evidence, EU-based customers face Article 10 compliance exposure. Contractual opt-out alone is not sufficient — audit evidence of isolation controls is required. Only Netskope provides SOC2-audited ML training data isolation as of Q1 2026.</p>
+    <p><strong style="color:var(--lime);">3. Encryption key sovereignty is becoming a contract requirement, not a feature.</strong> German BaFin, French ACPR, and Dutch DNB guidance on cloud security increasingly references HYOK as the expected standard for sensitive data processing. "The cloud provider cannot decrypt" is the regulatory expectation, not "the cloud provider won't decrypt." Netskope's HYOK addresses this directly. The remaining Big Five vendors have no current response to this requirement outside ZPC deployments (Zscaler).</p>
+  </div>
+</div>
+</main>
+</div><!-- /.page-body -->
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Vendor Research Series · Phase II-E · Sovereignty Deep Dive · 2026</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+
+<script>
+window.FALLBACK_VENDORS = [{"id":"palo_alto","name":"Palo Alto Networks","product":"Prisma Access + SCM","tier":"big_five","arch_type":"stitched"},{"id":"cato","name":"Cato Networks","product":"Cato SASE Cloud","tier":"big_five","arch_type":"single_pass"},{"id":"netskope","name":"Netskope","product":"Netskope One","tier":"big_five","arch_type":"single_pass"},{"id":"cloudflare","name":"Cloudflare","product":"Cloudflare One","tier":"big_five","arch_type":"single_pass"},{"id":"zscaler","name":"Zscaler","product":"ZIA + ZPA + ZDX","tier":"big_five","arch_type":"integrated"}];
+window.FALLBACK_PILLAR  = {"criteria":[{"label":"Regional Data Plane Isolation","weight":"critical","scale":"1=No residency controls · 3=Tenant-level isolation · 5=PoP-level isolation, no cross-region metadata replication, auditable","scores":{"palo_alto":{"score":4,"note":"Prisma Access supports regional data plane pinning with explicit configuration. Cross-region metadata controls available but not isolation-by-default."},"cato":{"score":3,"note":"Cato supports regional log storage options. Full PoP-level isolation with auditable metadata boundaries is not yet a shipped capability."},"netskope":{"score":5,"note":"NewEdge supports PoP-level tenant isolation with contractual prohibitions on cross-region metadata replication. Auditable via compliance dashboards."},"cloudflare":{"score":4,"note":"Regional Services and Data Localization Suite restrict data processing to specific regions. Strong GDPR regulatory posture."},"zscaler":{"score":4,"note":"Data residency controls via regional cloud selection and Private Cloud options. Metadata isolation available via ZPC and contractual commitments."}}},{"label":"Sovereign Cloud PoP Options","weight":"critical","scale":"1=US/EU regions only · 3=Major regulated markets · 5=All regulated markets + private/dedicated PoP option","scores":{"palo_alto":{"score":4,"note":"Available in US, EU, Asia-Pacific, and key regulated markets (Saudi Arabia, UAE, India). Dedicated tenant deployments for FedRAMP."},"cato":{"score":3,"note":"PoPs in most major markets. Dedicated sovereign/private PoP options limited vs. larger vendors. Custom engagement required."},"netskope":{"score":5,"note":"NewEdge covers all major regulated markets including EU, US GovCloud, Australia, Japan, UAE, India, Brazil with dedicated sovereign PoP options."},"cloudflare":{"score":4,"note":"330+ PoPs cover nearly every regulated market. Cloudflare for Government and EU data localization available. Dedicated private PoPs more limited."},"zscaler":{"score":4,"note":"ZEN nodes in all major regulated markets. Zscaler Private Cloud (ZPC) available for highly regulated customers. FedRAMP authorized."}}},{"label":"Regulatory Certifications","weight":"high","scale":"1=SOC2 only · 3=SOC2 + ISO27001 + one regional cert · 5=SOC2, ISO27001, FedRAMP, C5, IRAP, CSA STAR — current","scores":{"palo_alto":{"score":5,"note":"SOC2 Type II, ISO 27001, FedRAMP Moderate, BSI C5, IRAP, CSA STAR Level 2, StateRAMP. Broadest certification portfolio in the Big Five."},"cato":{"score":3,"note":"SOC2 Type II and ISO 27001. FedRAMP not achieved. BSI C5 and IRAP not certified. Notable gap for government/regulated markets."},"netskope":{"score":5,"note":"SOC2 Type II, ISO 27001, FedRAMP High, BSI C5, IRAP (Protected), CSA STAR Level 2. Strongest FedRAMP posture (High vs. others' Moderate)."},"cloudflare":{"score":5,"note":"SOC2 Type II, ISO 27001, FedRAMP Moderate, BSI C5, IRAP, CSA STAR, HIPAA BAA. Broad coverage reflecting global infrastructure maturity."},"zscaler":{"score":5,"note":"SOC2 Type II, ISO 27001, FedRAMP High (ZIA + ZPA for Government), BSI C5, IRAP, CSA STAR Level 2, PCI DSS. Strongest FedRAMP alongside Netskope."}}},{"label":"Customer-Controlled Encryption Keys","weight":"high","scale":"1=Vendor-managed only · 3=BYOK available · 5=BYOK + HYOK + on-demand key rotation + audit trail","scores":{"palo_alto":{"score":4,"note":"BYOK via customer HSM integration for data at rest. HYOK available in select deployment models. Key rotation and audit trail supported."},"cato":{"score":2,"note":"Cato uses Cato-managed encryption. BYOK is not currently a generally available capability. Notable gap for regulated industries."},"netskope":{"score":5,"note":"BYOK and HYOK via AWS KMS, Azure Key Vault, and HSM integration. On-demand key rotation and full audit trail. Best-in-class key sovereignty."},"cloudflare":{"score":4,"note":"Keyless SSL and BYOK for data-at-rest in R2 and Zero Trust. HYOK not fully available across all Zero Trust components."},"zscaler":{"score":4,"note":"BYOK for data-at-rest encryption via HSM integration. HYOK available in Private Cloud. Key rotation with audit trail available in ZIA."}}},{"label":"Log Residency Controls","weight":"high","scale":"1=No log residency control · 3=Regional log storage option · 5=Granular per-tenant, per-log-type residency controls","scores":{"palo_alto":{"score":4,"note":"Regional log storage with EU, US, APAC options. Per-log-type residency controls available in SCM. Cross-region replication can be disabled."},"cato":{"score":3,"note":"Regional log storage choices (EU vs. US). Per-log-type granular residency controls more limited than Netskope or Zscaler."},"netskope":{"score":5,"note":"Granular per-tenant log residency — specify storage region per log type (web, CASB, DLP, ZTNA). Audit evidence available in console."},"cloudflare":{"score":4,"note":"Logpush routes logs to customer-controlled storage in preferred region. Per-log-type granularity requires multiple Logpush jobs."},"zscaler":{"score":4,"note":"Log data residency configurable by region (US, EU, APAC). Private Cloud allows fully dedicated log infrastructure. Per-log-type selection available."}}},{"label":"AI/ML Training Data Isolation","weight":"medium","scale":"1=No opt-out · 3=Contractual opt-out · 5=Contractual prohibition + audit evidence available","scores":{"palo_alto":{"score":4,"note":"Contractually commits customer telemetry not used for shared AI model training. Enterprise agreements include ML isolation clauses with audit rights."},"cato":{"score":4,"note":"Contractually prohibits use of customer traffic data for training shared ML models. Audit evidence available on request for enterprise customers."},"netskope":{"score":5,"note":"Contractual prohibition of customer data for ML training with SOC2 audit evidence. DLP classification data explicitly excluded from shared model training."},"cloudflare":{"score":4,"note":"Contractually commits customer data processed through Cloudflare One not used for AI/ML training. Audit documentation available."},"zscaler":{"score":4,"note":"Customer agreements include ML training data isolation commitments. Audit evidence available in ZIA Trust Center."}}}]};
+window.renderPage = function(data) {
+  var vendors = (data.vendors || window.FALLBACK_VENDORS).filter(function(v) { return v.tier === 'big_five'; });
+  var pillar = (data.pillars && data.pillars.sovereignty) || window.FALLBACK_PILLAR;
+  renderScoringTable(pillar, vendors, 'score-container');
+};
+</script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/toc.js"></script>
+</body>
+</html>

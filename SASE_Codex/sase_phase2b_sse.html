@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSE Deep Dive — Big Five — Edge Solutions</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/toc.css">
+</head>
+<body class="has-toc">
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">PHASE II-B</span>
+      <span class="edge-pill edge-pill--secondary">TECHNICAL DEEP DIVE</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">SSE Deep Dive — The Big Five</h1>
+    <p class="edge-header__subtitle">Security Service Edge · SWG · CASB · FWaaS · DLP · TLS Inspection · 2026 Vendor Comparison — Prepared by Edge Solutions</p>
+  </div>
+</header>
+<nav class="doc-nav">
+  <a href="sase_phase1_benchmark.html">Phase I: Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2a_ztna.html">II-A: ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2b_sse.html" class="active">II-B: SSE</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2c_sdwan.html">II-C: SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2d_aiops.html">II-D: AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2e_sovereignty.html">II-E: Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2f_emerging.html">II-F: Emerging</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase3_scorecard.html">Phase III: Scorecard</a>
+</nav>
+<div class="page-body">
+<main>
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Netskope is the SSE pillar leader for data-centric organizations — its ML-based DLP, unified inline + API CASB, and GenAI data protection capability are the market reference in 2026. Palo Alto Networks is the leader for threat-centric security: App-ID, WildFire, Unit 42 threat intelligence, and the deepest TLS inspection policy controls combine to make Prisma Access the strongest SSE for organizations where threat prevention is the primary mandate.</p>
+    <p>Zscaler is the strongest overall SSE for organizations that want mature, proxy-architected internet security with exceptional Shadow IT discovery and SaaS visibility. Cato is best for organizations that need operationally simple SSE that doesn't require a dedicated security team. Cloudflare's SSE is maturing rapidly and wins on performance, but DLP and CASB depth still trail the top three.</p>
+    <p><strong>Critical architecture distinction:</strong> "Single-Pass vs. Stitched" determines DLP quality. In a single-pass engine (Netskope, Cato, Cloudflare), traffic is decrypted once and inspected by all engines simultaneously. In a stitched architecture (Palo Alto), traffic passes through coordinated but separate engines — potential inspection gaps at engine seams.</p>
+  </div>
+  <div class="feynman-box">
+    <h3>SSE: Three security jobs that have to happen as one operation</h3>
+    <p>Imagine every email, web page, and file upload your employees make passes through a security checkpoint. That checkpoint has three jobs: (1) a web filter that checks where people are going and whether it's safe (SWG), (2) a data inspector that reads everything for sensitive information and stops exfiltration (DLP), and (3) a SaaS watchdog that monitors what employees do inside cloud apps like Salesforce or OneDrive (CASB). SSE is what happens when you put all three of those checkpoints in the cloud and run all traffic through them as one operation.</p>
+    <p>The architectural fight is about whether these three functions run as one engine or three engines coordinated together. The "single-pass" vendors run one decryption operation that feeds all three inspectors simultaneously — faster and no inspection gaps. The "stitched" vendors coordinate multiple inspection engines — more flexible, deeper per-engine capability, but the seams between engines create potential blind spots.</p>
+  </div>
+  <h2 class="section-heading">DLP Philosophy — Not a Ranking, a Design Choice</h2>
+  <hr class="edge-rule">
+  <p style="font-size:13px;margin-bottom:16px;">DLP is not uniformly "best" in any vendor — it reflects a philosophy about what the security problem fundamentally is. Match philosophy to your data risk model, not the feature count.</p>
+  <table class="edge-table">
+    <thead>
+      <tr>
+        <th style="min-width:110px;">Vendor</th>
+        <th style="min-width:130px;">DLP Philosophy</th>
+        <th>Core Approach</th>
+        <th style="min-width:200px;">Best Fit</th>
+        <th style="min-width:90px; text-align:center;">Depth</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong style="color:var(--v-netskope);">Netskope</strong></td>
+        <td><span class="dlp-philosophy-badge">Data-Centric</span></td>
+        <td>Data movement is the threat. ML classification + EDM + OCR + document fingerprinting. Every transaction is a data event first. Single-pass unified DLP across web, SaaS, and private apps.</td>
+        <td>Financial services, legal, life sciences — anywhere data classification accuracy is the primary mandate.</td>
+        <td style="text-align:center;"><span class="dlp-depth-badge dlp-depth--5">★★★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--v-palo);">Palo Alto</strong></td>
+        <td><span class="dlp-philosophy-badge">Threat-Centric</span></td>
+        <td>Malicious actors are the threat. Deep threat prevention (WildFire, Unit 42) with DLP applied across verified threat context. Enterprise DLP covers ML + EDM + OCR but is a separate SKU.</td>
+        <td>Organizations where threat prevention is the anchor requirement and DLP is part of a broader security posture.</td>
+        <td style="text-align:center;"><span class="dlp-depth-badge dlp-depth--4">★★★★☆</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--v-zscaler);">Zscaler</strong></td>
+        <td><span class="dlp-philosophy-badge">Proxy-Enforced</span></td>
+        <td>Internet access is the risk surface. DLP applied at the internet gateway (ZIA) for web and SaaS traffic. Strong for exfiltration via web channels. ZIA + ZPA inspection requires chaining.</td>
+        <td>Organizations prioritizing ZTNA architecture and internet security where DLP is compliance-driven rather than a primary differentiator.</td>
+        <td style="text-align:center;"><span class="dlp-depth-badge dlp-depth--4">★★★★☆</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--v-cato);">Cato</strong></td>
+        <td><span class="dlp-philosophy-badge">Operational</span></td>
+        <td>Compliance is the goal. DLP to meet regulatory requirements without overwhelming IT teams. Pre-built classifiers for common data types. No EDM or document fingerprinting. Breadth over depth.</td>
+        <td>Mid-market and lean IT teams where operational simplicity and consolidated networking + security outweigh DLP customization needs.</td>
+        <td style="text-align:center;"><span class="dlp-depth-badge dlp-depth--3">★★★☆☆</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--v-cloudflare);">Cloudflare</strong></td>
+        <td><span class="dlp-philosophy-badge">Edge-Enforced</span></td>
+        <td>Performance + security at the edge. DLP applied at the nearest of 330+ PoPs — lowest inspection latency globally. Classification depth growing rapidly but trails the top three vendors in 2026.</td>
+        <td>Latency-sensitive global deployments and technically capable teams comfortable building on a developer-extensible platform.</td>
+        <td style="text-align:center;"><span class="dlp-depth-badge dlp-depth--3">★★★☆☆</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="section-heading" style="margin-top:32px;">Criteria at a Glance</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:18px;font-size:13.5px;">Ten criteria evaluated. Five weighted <strong>Critical ×3</strong>, four <strong>High ×2</strong>, one <strong>Medium ×1</strong>.</p>
+  <div class="edge-grid-3" style="margin-bottom:28px;">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill">CRITICAL ×3</span><h3 class="edge-card__title">Data &amp; Inspection Core</h3><ul><li>Unified DLP Policy Engine</li><li>ML-Based Data Classification</li><li>TLS Inspection at Scale</li><li>SSL Decryption Architecture</li><li>CASB — Inline + API Dual Mode</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill">HIGH ×2</span><h3 class="edge-card__title">Advanced Security</h3><ul><li>Remote Browser Isolation (RBI)</li><li>AI/GenAI Data Protection</li><li>Shadow IT Discovery</li><li>IPS Threat Intelligence</li></ul></div></div>
+    <div class="edge-card edge-card--supplemental"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill edge-pill--secondary">MEDIUM ×1</span><h3 class="edge-card__title">Network Security</h3><ul><li>FWaaS App Awareness</li></ul><p style="margin-top:8px;">L7 application identification for non-proxy traffic — the network security complement to proxy-based SSE.</p></div></div>
+  </div>
+</div>
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Vendor Deep Dives</h2>
+  <hr class="edge-rule">
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Netskope — Netskope One (Intelligent SSE)</h2><span class="arch-tag">SINGLE-PASS / DATA-CENTRIC</span></div>
+    <div class="vendor-body">
+      <p>Netskope was architected from the start around data, not threats. The NewEdge network runs a single-pass inspection engine where DLP, CASB, and threat detection all operate on the same decrypted stream simultaneously. The DLP depth is the reference point in the industry: 1,000+ pre-built classifiers, ML-based classification that understands document context, EDM for exact record matching, OCR for images, and document fingerprinting that persists across format conversion.</p>
+      <div class="vendor-subhead">CASB Architecture</div>
+      <p>Netskope's CASB operates in both inline and API mode with a shared policy engine and data store. Inline CASB applies policies in real time; API-mode reaches into SaaS apps to scan data at rest, remediate oversharing, and enforce collaboration policies. Both modes share the same DLP fingerprints — a file flagged inline is also flagged when found at rest via API scan.</p>
+      <div class="vendor-subhead">GenAI Data Protection</div>
+      <p>In 2026, Netskope's inline GenAI protection is the market leader: prompt and response inspection with full ML DLP classification applied to LLM sessions, per-model controls (block code uploads to public models while allowing queries), and real-time coaching when users submit risky content.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best-in-class ML DLP — industry reference. Native dual-mode CASB with shared policy engine. 60,000+ app Cloud Confidence Index. GenAI prompt/response DLP — market leader. Native RBI with DOM reconstruction + DLP inline. UEBA integrated with data access policies.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Threat intelligence less deep than Palo Alto Unit 42. SD-WAN (NSG) maturity still evolving. IPS depth trails Palo Alto. Licensing complexity for full platform access.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Palo Alto Networks — Prisma Access + Enterprise DLP + Strata Cloud Manager</h2><span class="arch-tag">STITCHED / THREAT-FIRST</span></div>
+    <div class="vendor-body">
+      <p>Prisma Access SSE is the cloud delivery mechanism for Palo Alto's NGFW security stack. The architecture is "stitched" — App-ID, URL filtering, threat prevention (WildFire), and Enterprise DLP are coordinated inspection engines managed through Strata Cloud Manager. Where this architecture wins is threat prevention depth: App-ID identifies 4,000+ applications with evasion-resistant L7 identification. WildFire sandbox provides real-time file analysis with sub-5-minute verdict updates shared across all Palo Alto customers.</p>
+      <div class="vendor-subhead">Enterprise DLP</div>
+      <p>Palo Alto Enterprise DLP covers ML classification, EDM, OCR, and an extensive pre-built classifier library for regulated data types. The shared policy model means DLP policies apply consistently across Prisma Access, Cortex XDR, and physical NGFWs — a cross-environment consistency that Netskope can't match since Netskope doesn't manage physical firewalls.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Unit 42 + WildFire — best threat intelligence of any SASE vendor. App-ID — 4,000+ evasion-resistant application signatures. Enterprise DLP — ML + EDM + OCR coverage. SCM bridges cloud SSE + physical NGFW — unique convergence. Best SSL decryption policy controls with CA management.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Stitched architecture — potential inspection gaps at engine seams. CASB API mode less mature than Netskope. Higher operational complexity — requires trained staff. Enterprise DLP is a separate SKU — licensing complexity.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Zscaler — Zscaler Internet Access (ZIA)</h2><span class="arch-tag">PROXY-FIRST / INTERNET SECURITY</span></div>
+    <div class="vendor-body">
+      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>Scope Note:</strong> ZIA is the primary SSE product. ZPA (ZTNA) is a separate product that integrates with ZIA for policy. This analysis focuses on ZIA for SWG, CASB, DLP, and FWaaS. Verify current integration depth before making architectural claims to clients.</div></div>
+      <p>ZIA is a cloud-native proxy designed for internet security. Every internet-bound connection is routed through a ZIA PoP where it is decrypted, inspected, and either allowed or blocked. The Cloud App Control is ZIA's standout capability: a catalog of 30,000+ applications with per-activity controls (allow upload to Box, block download from personal OneDrive). This granularity is unmatched except by Netskope's activity-level controls.</p>
+      <div class="vendor-subhead">DLP</div>
+      <p>Zscaler DLP covers ML + EDM + OCR + pre-built classifiers. The Cloud DLP engine is competent and covers all major regulated data types. It is not the market reference but is operationally solid for most compliance use cases. Integration between ZIA DLP and ZPA for private app traffic requires chaining — they share policy configuration but inspection happens in separate planes.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>30,000+ app catalog — largest Shadow IT discovery. Per-activity SaaS controls — granular app governance. ZIA inline TLS 1.3 inspection at massive scale. Mature cloud proxy — 10+ years operational track record. AI Security — inline GenAI app controls.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>ZIA + ZPA separate products — unified inspection requires chaining. DLP depth below Netskope for complex classification. No private backbone — full public internet dependency. CASB API mode present but less integrated than Netskope.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Cato Networks — Cato SASE Cloud (Unified SSE)</h2><span class="arch-tag">SINGLE-PASS / OPERATIONAL-FIRST</span></div>
+    <div class="vendor-body">
+      <p>Cato's SSE is inseparable from its SASE platform. The same single-pass engine that handles SD-WAN routing also performs SWG, CASB, DLP, IPS, and FWaaS in one unified operation. This is the purest expression of single-vendor SASE, and it creates the lowest operational overhead of any vendor in this comparison. The trade-off is depth: Cato DLP is adequate for most compliance scenarios but not the tool for organizations building sophisticated data classification programs.</p>
+      <div class="vendor-subhead">IPS and Threat Prevention</div>
+      <p>Cato Research Labs provides regular threat intelligence updates. The IPS is applied inline via the single-pass engine — no additional hop. Cato XDR integration means IPS events correlate with user behavior and network anomalies automatically. Threat prevention is solid without being exceptional — appropriate for most enterprise use cases.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>True single-pass — zero inspection gaps between engines. Lowest operational complexity of any SSE vendor. SSE + SD-WAN + ZTNA share one policy plane. IPS inline — no additional latency hop.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DLP classification depth below Netskope and Palo Alto. CASB API mode less developed. Shadow IT app catalog smaller (5,000 vs 30,000+). GenAI data protection category-level only in 2026.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Cloudflare — Cloudflare One (Gateway + CASB + DLP)</h2><span class="arch-tag">EDGE-NATIVE / PERFORMANCE-FIRST</span></div>
+    <div class="vendor-body">
+      <p>Cloudflare Gateway is SSE built directly on the world's most widely distributed network. TLS inspection, DNS filtering, and HTTP policies execute at the nearest of 330+ PoPs — the inspection hop adds near-zero latency in most geographies. The honest assessment: Cloudflare's SSE security depth (DLP classification richness, CASB API coverage) trails the top three vendors, but capabilities are improving rapidly. Organizations optimizing for latency-sensitive SSE at global scale should evaluate Cloudflare seriously.</p>
+      <div class="vendor-subhead">RBI Advantage</div>
+      <p>Cloudflare Browser Isolation is a genuine differentiator — built natively on the edge network with minimal latency penalty. The integration with Cloudflare Access allows browser isolation to be triggered by access policy, not just SWG category rules.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>330+ PoP SSE inspection — lowest latency globally. Native RBI — minimal latency impact. Full TLS 1.3 at CDN-grade scale. Network-derived threat intelligence (20% internet traffic visibility). Best developer-extensible SSE platform.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DLP classification depth materially below Netskope and Palo Alto. CASB API mode earlier stage. FWaaS custom signatures limited. Shadow IT app catalog smaller than Zscaler/Netskope.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="edge-section" style="padding-top:0;">
+  <div class="edge-callout"><div class="edge-callout__accent"></div><div><strong>Emerging Vendor Note: Aryaka (Managed SSE)</strong> — Aryaka's managed SASE offering includes SSE capabilities, but its differentiation is in the managed delivery model rather than SSE depth. For organizations wanting a managed-service approach where SSE policy management is handled by the vendor, Aryaka is worth evaluating. Full analysis in <a href="sase_phase2f_emerging.html" style="color:var(--teal);">Phase II-F: Emerging Vendors</a>.</div></div>
+</div>
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Vendor Scoring — SSE Pillar</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:14px;font-size:13px;">Scores loaded from <code>scores.json</code>. Scale: 1=Poor/Missing · 3=Adequate · 5=Best-in-Class. Weight multipliers: Critical ×3 · High ×2 · Medium ×1.</p>
+  <div id="score-container"><p class="score-loading">Loading scores from scores.json…</p></div>
+</div>
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Persona Fit — SSE Pillar</h2>
+  <hr class="edge-rule">
+  <p>SSE vendor selection is more use-case-dependent than any other pillar. The "best" SSE is the one whose security philosophy matches your primary threat model.</p>
+  <table class="persona-table" style="margin-top:16px;">
+    <thead><tr><th>Persona</th><th>Profile</th><th>Primary SSE Need</th><th>Best Fit</th><th>Rationale</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lean IT / SMB</strong></td><td>Compliance-driven · Operational simplicity primary · No dedicated security team</td><td>SSE that works without a DLP specialist; adequate coverage for standard compliance requirements</td><td><span class="winner-tag">CATO</span></td><td>SSE is included in the base SASE license. One console. Adequate DLP for most compliance requirements. No need for a DLP specialist. Cloudflare is a credible alternative for technically capable lean teams.</td></tr>
+      <tr><td><strong>Data-Sensitive / Regulated</strong></td><td>Healthcare, Finance, Legal · DLP is the primary mandate</td><td>ML DLP depth, dual-mode CASB, GenAI data protection, unified policy engine</td><td><span class="winner-tag">NETSKOPE</span></td><td>The ML DLP depth, EDM, OCR, and dual-mode CASB are purpose-built for this use case. Zscaler is the credible alternative if inline internet security is the primary use case and DLP is compliance-driven rather than sophisticated.</td></tr>
+      <tr><td><strong>Security-First / Threat-Focused</strong></td><td>Dedicated SecOps · APT defense · Existing Palo Alto ecosystem</td><td>Threat prevention depth, WildFire sandbox, App-ID, NGFW policy continuity</td><td><span class="winner-tag">PALO ALTO</span></td><td>Unit 42 threat intelligence, WildFire sandbox, App-ID, and the SCM bridge to physical NGFWs make Prisma Access the strongest SSE for threat-centric security programs.</td></tr>
+    </tbody>
+  </table>
+  <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Shadow IT exception:</strong> For organizations where SaaS visibility and per-activity app governance is the primary SSE driver, <strong>Zscaler ZIA</strong> wins regardless of persona — the 30,000+ app catalog with risk scoring and one-click policy creation is unmatched in the Big Five.</div></div>
+</div>
+<div class="edge-dark-section">
+  <div style="max-width:1020px;margin:0 auto;">
+    <h2>SSE in 2026: Three Defining Shifts</h2>
+    <p><strong style="color:var(--lime);">1. GenAI exfiltration is the fastest-growing DLP gap.</strong> Sensitive data flowing into public LLM prompts is now the leading uncontrolled data exfiltration vector in most enterprises. Netskope leads with inline prompt inspection tied to its unified DLP engine. Zscaler enforces at the app category level — a meaningful gap for regulated industries. Vendors without content-aware prompt inspection will lose SSE deals in financial services and healthcare.</p>
+    <p><strong style="color:var(--lime);">2. SSL decryption architecture is being scrutinized as a first-class capability.</strong> Where and how decryption happens matters as much as whether it happens. PoP-local decryption with full policy controls and CA tooling is the 2026 standard — centralized decryption engines create bottlenecks and single points of failure that buyers are identifying during PoC. All Big Five vendors now offer PoP-local decryption; the differentiator is policy depth and CA deployment tooling.</p>
+    <p><strong style="color:var(--lime);">3. RBI integration depth — not availability — is the competitive differentiator.</strong> Every Big Five vendor now offers Remote Browser Isolation. The question is whether RBI shares a policy engine with SWG. Best-in-class: a single SWG rule that says "isolate all uncategorized sites" automatically routes traffic through RBI. In stitched architectures, RBI and SWG are separate policies that must be manually kept in sync — gaps mean isolation can be bypassed.</p>
+  </div>
+</div>
+</main>
+</div><!-- /.page-body -->
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Vendor Research Series · Phase II-B · SSE Deep Dive · 2026</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+<script>
+window.FALLBACK_VENDORS = [{"id":"palo_alto","name":"Palo Alto Networks","product":"Prisma Access + SCM","tier":"big_five","arch_type":"stitched"},{"id":"cato","name":"Cato Networks","product":"Cato SASE Cloud","tier":"big_five","arch_type":"single_pass"},{"id":"netskope","name":"Netskope","product":"Netskope One","tier":"big_five","arch_type":"single_pass"},{"id":"cloudflare","name":"Cloudflare","product":"Cloudflare One","tier":"big_five","arch_type":"single_pass"},{"id":"zscaler","name":"Zscaler","product":"ZIA + ZPA + ZDX","tier":"big_five","arch_type":"integrated"}];
+window.FALLBACK_PILLAR = {"criteria":[{"label":"Unified DLP Policy Engine","weight":"critical","scale":"1=Siloed DLP per product · 3=Shared policy, separate engines · 5=Single-pass unified DLP across all channels","scores":{"palo_alto":{"score":4,"note":"Enterprise DLP applies shared policies via SCM. Single-pass within PoP but CASB API-mode uses separate engine."},"cato":{"score":4,"note":"Single-pass architecture applies DLP in one pass across SWG, inline CASB, and SD-WAN traffic."},"netskope":{"score":5,"note":"Unified DLP enforces consistent policies across SWG (inline), CASB (inline+API), and email in single-pass. Industry reference."},"cloudflare":{"score":3,"note":"Gateway DLP covers SWG and inline CASB with unified rules. CASB API mode has partial policy sync."},"zscaler":{"score":4,"note":"ZIA provides unified DLP across SWG and inline CASB. CASB API-mode shares definitions but enforces separately."}}},{"label":"ML-Based Data Classification","weight":"critical","scale":"1=Regex only · 3=ML + regex hybrid · 5=ML + EDM + OCR + document fingerprinting","scores":{"palo_alto":{"score":5,"note":"Enterprise DLP uses ML classifiers, EDM, OCR, and document fingerprinting. WildFire adds malware correlation."},"cato":{"score":3,"note":"Cato DLP supports regex and some predefined ML classifiers. EDM and document fingerprinting not yet available."},"netskope":{"score":5,"note":"1,000+ pre-built ML classifiers, EDM, OCR, document fingerprinting, and file sequence detection. Industry reference."},"cloudflare":{"score":3,"note":"Regex patterns and growing ML detection profiles (PII, PCI, credentials). EDM and document fingerprinting not available."},"zscaler":{"score":4,"note":"ZIA DLP includes ML classifiers, EDM, and indexed document matching (IDM). OCR available. Strong but trails Netskope."}}},{"label":"TLS Inspection at Scale","weight":"critical","scale":"1=No TLS decryption · 3=Partial TLS support · 5=Full TLS 1.3, no performance cliff at scale","scores":{"palo_alto":{"score":5,"note":"TLS 1.3 at scale on hardware-accelerated PoPs. No throughput cliff. Full CA tooling and audit trail in SCM."},"cato":{"score":5,"note":"Full TLS 1.3 inline on private backbone PoPs. Single-pass means TLS decryption bundled with all security engines."},"netskope":{"score":5,"note":"Full TLS 1.3 at all NewEdge PoPs. Purpose-built inline proxy with no throughput degradation at enterprise volumes."},"cloudflare":{"score":5,"note":"TLS 1.3 at all 330+ PoPs built on internet-scale proxy infrastructure. Enterprise SSE TLS is small fraction of capacity."},"zscaler":{"score":5,"note":"ZIA designed from inception as a TLS proxy. Full TLS 1.3 with per-policy bypass controls. No throughput cliff at scale."}}},{"label":"SSL Decryption Architecture","weight":"critical","scale":"1=Centralized/backhauled · 3=PoP-local, limited policy · 5=PoP-local, full policy + CA tooling + audit trail","scores":{"palo_alto":{"score":5,"note":"SSL decryption at nearest Prisma Access PoP. SCM provides full decryption policy, CA deployment, bypass rules."},"cato":{"score":5,"note":"TLS inspection at nearest Cato PoP. Full CA tooling, bypass rules, and per-policy controls in CMA."},"netskope":{"score":5,"note":"PoP-local SSL decryption on NewEdge. Full CA management, per-domain bypass, and audit trail of decrypted sessions."},"cloudflare":{"score":5,"note":"SSL decryption at nearest Cloudflare PoP. Full CA management, per-app bypass rules, and audit logging available."},"zscaler":{"score":5,"note":"ZIA performs SSL inspection at nearest ZEN. Per-policy decryption controls, bypass lists, custom CA, full audit log."}}},{"label":"CASB — Inline + API Dual Mode","weight":"critical","scale":"1=API-only · 3=Inline-only · 5=Inline + API with unified policy and shared data store","scores":{"palo_alto":{"score":4,"note":"SSPM provides API-mode CASB. Inline CASB via proxy supported. Policy coordinated via SCM but separate engines."},"cato":{"score":4,"note":"Inline CASB via single-pass proxy and API-mode for M365/Google/Salesforce. API CASB module newer with narrower coverage."},"netskope":{"score":5,"note":"Inline and API modes with unified policy engine and shared DLP fingerprints. Industry reference for dual-mode CASB."},"cloudflare":{"score":3,"note":"CASB primarily API-mode for M365/Google/GitHub. Inline via Gateway. Unified policy across both modes not yet achieved."},"zscaler":{"score":4,"note":"ZIA inline CASB. API-mode for SaaS. Policy definitions shared at rule level but enforcement engines separate."}}},{"label":"Remote Browser Isolation (RBI)","weight":"high","scale":"1=None · 3=Third-party bolt-on · 5=Native RBI with pixel-rendering or DOM reconstruction","scores":{"palo_alto":{"score":4,"note":"Prisma RBI integrated 2024 as native capability. DOM isolation mode. Policy managed in SCM."},"cato":{"score":3,"note":"Cato RBI available as add-on. CMA console integration available but not as deeply native as other SSE capabilities."},"netskope":{"score":4,"note":"Native RBI with pixel-rendering isolation. Integrated with CASB and DLP policies for consistent enforcement."},"cloudflare":{"score":5,"note":"Browser Isolation (NVR) is native Cloudflare service with no pixel streaming and no latency cliff. Integrated with Gateway."},"zscaler":{"score":4,"note":"Cloud Browser Isolation (ZCBI) is native ZIA capability using pixel-streaming. Available in Business bundles."}}},{"label":"AI/GenAI Data Protection","weight":"high","scale":"1=None · 3=Block by app category · 5=Inline prompt inspection with DLP classification","scores":{"palo_alto":{"score":5,"note":"AI Access Security provides inline inspection of GenAI prompts and responses with DLP classification per AI app."},"cato":{"score":4,"note":"Single-pass inspection applies DLP rules to GenAI app traffic inline. Per-app control for ChatGPT, Copilot, etc."},"netskope":{"score":5,"note":"Inline DLP applied to GenAI app traffic with prompt-level classification. 500+ AI tools catalogued. Market leader."},"cloudflare":{"score":3,"note":"Gateway allows blocking GenAI app categories. Inline prompt inspection with DLP classification in early availability."},"zscaler":{"score":4,"note":"ZIA AI/ML App Control with inline DLP for GenAI sessions. Prompt-level analysis and user feedback available."}}},{"label":"Shadow IT Discovery","weight":"high","scale":"1=None · 3=Discovery with basic risk scores · 5=Auto-discovery of 30k+ apps, one-click policy","scores":{"palo_alto":{"score":4,"note":"App-ID identifies thousands of applications. SSPM adds managed app visibility. One-click workflow less streamlined."},"cato":{"score":4,"note":"~5,000 app catalog with risk scoring and one-click app control from CMA discovery view."},"netskope":{"score":4,"note":"59,000+ cloud apps with rich risk attributes in the Cloud Confidence Index. Policy creation from discovery available."},"cloudflare":{"score":3,"note":"App Control with categories and risk scoring. Smaller catalog (~2,000 apps). Shadow IT workflow less developed."},"zscaler":{"score":5,"note":"30,000+ app catalog with risk scoring (1-100) and one-click policy creation. Best-in-class Shadow IT tooling."}}},{"label":"IPS Threat Intelligence","weight":"high","scale":"1=Static signatures · 3=Regular feed updates · 5=Real-time feeds <1hr, MITRE ATT&CK, cross-customer sharing","scores":{"palo_alto":{"score":5,"note":"WildFire + Unit 42 with MITRE ATT&CK-tagged detections. Sub-5-minute signature propagation across all customers."},"cato":{"score":4,"note":"Cato Research Labs near-real-time IPS signatures with cross-customer telemetry sharing and MITRE tagging."},"netskope":{"score":4,"note":"Integrates with CrowdStrike, Cisco Talos feeds. Threat Research team provides cloud-native IOCs with MITRE mapping."},"cloudflare":{"score":4,"note":"Passive DNS and internet-scale traffic visibility. MITRE ATT&CK available. Cross-customer sharing inherent in platform."},"zscaler":{"score":4,"note":"ThreatLabZ team provides signatures with MITRE tagging. Real-time cross-customer sharing. Competitive update cadence."}}},{"label":"FWaaS — App Awareness","weight":"medium","scale":"1=Port/protocol only · 3=L7 app ID for common apps · 5=Full L7 with custom signatures, evasion-resistant","scores":{"palo_alto":{"score":5,"note":"App-ID: 5,000+ signatures, evasion-resistant, streaming inspection, custom App-ID creation. Clearest competitive moat."},"cato":{"score":4,"note":"FWaaS L7 app awareness for ~3,500 apps with category-based and custom app policies. Slightly narrower than PA App-ID."},"netskope":{"score":3,"note":"L7 app awareness primarily via SWG/proxy layer. Custom signatures limited. FWaaS not a Netskope design center."},"cloudflare":{"score":4,"note":"L7 application control with DNS, HTTP, and network-layer policies. App category and custom policies supported."},"zscaler":{"score":4,"note":"Cloud-native FWaaS with L7 app awareness for thousands of apps. Custom app policies functional. Sufficient for most use cases."}}}]};
+
+window.renderPage = function(data) {
+  var vendors = (data.vendors || window.FALLBACK_VENDORS).filter(function(v) { return v.tier === 'big_five'; });
+  var pillar = (data.pillars && data.pillars.sse) || window.FALLBACK_PILLAR;
+  renderScoringTable(pillar, vendors, 'score-container');
+};
+</script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/toc.js"></script>
+</body>
+</html>

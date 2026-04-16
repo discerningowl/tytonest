@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Scorecard &amp; Persona Fit Matrix — Edge Solutions</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/toc.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <style>
+    /* ── Pillar rank bars ───────────────────────────────────── */
+    .pillar-rank-block { margin-bottom: 28px; }
+    .pillar-rank-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .pillar-rank-title {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 13px; color: var(--teal);
+    }
+    .vendor-rank-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 5px;
+    }
+    .vendor-rank-row .v-label {
+      font-family: var(--font-heading); font-size: 11px; font-weight: 700;
+      width: 140px; flex-shrink: 0; color: var(--slate);
+    }
+    .vendor-rank-row .bar-bg {
+      flex: 1; background: var(--light-gray); border-radius: 3px; height: 14px;
+    }
+    .vendor-rank-row .bar-fill { height: 14px; border-radius: 3px; }
+    .vendor-rank-row .pct-label {
+      font-family: var(--font-heading); font-weight: 700; font-size: 12px;
+      min-width: 42px; text-align: right; color: var(--slate);
+    }
+    /* ── Vendor summary cards ────────────────────────────────── */
+    .v-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 16px;
+    }
+    .v-summary-card {
+      background: var(--white); border-radius: 4px;
+      border: 1.5px solid var(--light-blue);
+      overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    }
+    .v-summary-card__hdr { padding: 12px 14px; font-family: var(--font-heading); }
+    .v-summary-card__name  { font-weight: 700; font-size: 13px; color: var(--white); }
+    .v-summary-card__sub   { font-size: 10px; color: rgba(255,255,255,.75); margin-top: 2px; }
+    .v-summary-card__body  { padding: 12px 14px; }
+    .v-summary-card__arch  {
+      font-family: var(--font-heading); font-size: 10px; color: var(--light-blue2);
+      letter-spacing: .5px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .v-mini-bars { display: grid; gap: 5px; }
+    .v-mini-row  { display: flex; align-items: center; gap: 6px; }
+    .v-mini-row .lbl      { font-size: 10px; font-family: var(--font-heading); flex: 1; color: var(--slate); }
+    .v-mini-row .mini-bg  { width: 60px; background: var(--light-gray); border-radius: 2px; height: 5px; }
+    .v-mini-row .mini-fill{ height: 5px; border-radius: 2px; }
+    .v-mini-row .mini-pct { font-family: var(--font-heading); font-weight: 700; font-size: 10px; min-width: 30px; text-align: right; }
+    /* ── Emerging vendor note strip ─────────────────────────── */
+    .emerging-scope-note {
+      background: var(--off-white); border: 1px solid var(--light-blue);
+      border-radius: 3px; padding: 8px 12px;
+      font-size: 11px; color: var(--light-blue2);
+      font-family: var(--font-heading); margin-top: 6px;
+    }
+  </style>
+</head>
+<body class="has-toc">
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">PHASE III</span>
+      <span class="edge-pill edge-pill--secondary">MASTER SCORECARD</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Master Scorecard &amp; Persona Fit Matrix</h1>
+    <p class="edge-header__subtitle">Consolidated Vendor Scoring · All Five Pillars · Architectural Fit Analysis · SASE Vendor Research Series — Prepared by Edge Solutions</p>
+  </div>
+</header>
+<nav class="doc-nav">
+  <a href="sase_phase1_benchmark.html">Phase I: Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2a_ztna.html">II-A: ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2b_sse.html">II-B: SSE</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2c_sdwan.html">II-C: SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2d_aiops.html">II-D: AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2e_sovereignty.html">II-E: Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2f_emerging.html">II-F: Emerging</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase3_scorecard.html" class="active">Phase III: Scorecard</a>
+</nav>
+<div class="page-body">
+<main>
+
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front — Synthesis</div>
+    <p><strong style="color:var(--lime);">No single vendor dominates all five pillars.</strong> This is the central finding of the 2026 SASE Big Five analysis. The right vendor is determined by which pillars are critical to a given organization's architecture and which operational model — single-vendor convergence vs. best-of-breed integration — the team can actually sustain.</p>
+    <p><strong style="color:var(--lime);">Pillar leaders:</strong> Cato owns SD-WAN. Netskope owns SSE + Sovereignty. Palo Alto leads ZTNA and AIOps. Zscaler is the most balanced ZTNA + SSE platform for enterprises that can absorb ZIA/ZPA complexity. Cloudflare wins on global performance and GenAI protection but trails on SD-WAN and AIOps maturity.</p>
+    <p><strong style="color:var(--lime);">Architecture type still matters most.</strong> Single-pass vendors (Cato, Netskope, Cloudflare) have an inherent operational simplicity advantage. Stitched/integrated vendors (Palo Alto, Zscaler) trade integration tax for depth and ecosystem breadth. The correct choice depends on team size, existing investments, and whether security depth or operational simplicity is the governing constraint.</p>
+  </div>
+  <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px;padding:14px 20px;background:var(--white);border:1px solid var(--light-blue);border-radius:4px;align-items:center;">
+    <span style="font-family:var(--font-heading);font-size:11px;color:var(--light-blue2);letter-spacing:.5px;">VENDOR KEY:</span>
+    <span class="v-chip v-palo"><span class="v-dot"></span>Palo Alto</span>
+    <span class="v-chip v-cato"><span class="v-dot"></span>Cato</span>
+    <span class="v-chip v-netskope"><span class="v-dot"></span>Netskope</span>
+    <span class="v-chip v-cloudflare"><span class="v-dot"></span>Cloudflare</span>
+    <span class="v-chip v-zscaler"><span class="v-dot"></span>Zscaler</span>
+    <span style="font-size:11px;color:var(--light-blue2);font-family:var(--font-heading);margin-left:8px;">EMERGING:</span>
+    <span style="font-family:var(--font-heading);font-size:11px;color:var(--slate);">Aryaka · Graphiant · Nile · Island (in-scope pillars only)</span>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Pillar Performance Radar</h2>
+  <hr class="edge-rule">
+  <div id="radar-container" style="background:var(--white);border:1.5px solid var(--teal);border-radius:4px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.08);">
+    <canvas id="radarChart" style="display:block;margin:0 auto;max-width:640px;max-height:400px;"></canvas>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:14px;">
+      <span class="v-chip v-palo"><span class="v-dot"></span>Palo Alto</span>
+      <span class="v-chip v-cato"><span class="v-dot"></span>Cato</span>
+      <span class="v-chip v-netskope"><span class="v-dot"></span>Netskope</span>
+      <span class="v-chip v-cloudflare"><span class="v-dot"></span>Cloudflare</span>
+      <span class="v-chip v-zscaler"><span class="v-dot"></span>Zscaler</span>
+    </div>
+    <p style="font-size:11px;color:var(--light-blue2);text-align:center;margin-top:8px;">Big Five only · Scores = pillar weighted % (score × weight multiplier, normalized to 100%) · Source: scores.json</p>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Consolidated Weighted Score Table</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:16px;font-size:13px;">Big Five across all pillars. Weight: Critical ×3 · High ×2 · Medium ×1. Pillar score = vendor weighted points ÷ max possible × 100. Emerging vendors shown in-scope only; cross-pillar totals not computed.</p>
+  <div id="master-table-container" style="overflow-x:auto;">
+    <p style="color:var(--light-blue2);padding:20px;text-align:center;">Loading scores…</p>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Per-Pillar Vendor Rankings</h2>
+  <hr class="edge-rule">
+  <div id="pillar-bars-container">
+    <p style="color:var(--light-blue2);padding:20px;text-align:center;">Loading…</p>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Vendor Executive Profiles</h2>
+  <hr class="edge-rule">
+  <div id="vendor-cards-container" class="v-cards-grid">
+    <p style="color:var(--light-blue2);padding:20px;text-align:center;">Loading…</p>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Persona Fit Matrix</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:16px;font-size:13.5px;">Vendor fit is not universal. The matrix below maps five distinct buyer personas to primary and secondary vendor recommendations, with the architectural rationale.</p>
+  <table class="persona-table">
+    <thead>
+      <tr><th style="min-width:130px;">Persona</th><th style="min-width:180px;">Profile</th><th>Primary Needs (Ranked)</th><th style="min-width:110px;">Primary Fit</th><th style="min-width:110px;">Strong Alt</th><th>Decision Rationale</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--light-blue2);">SMB–Mid-market</span></td>
+        <td>Small security team (1–5 people), limited vendor management capacity, operational simplicity is the governing constraint</td>
+        <td><ol style="padding-left:16px;font-size:12.5px;"><li>Single-vendor, one console</li><li>Fast deployment (ZTP)</li><li>No integration engineering</li></ol></td>
+        <td><span class="winner-tag winner-primary">CATO</span></td>
+        <td><span class="winner-tag winner-alt">CLOUDFLARE</span></td>
+        <td style="font-size:12.5px;">Cato's single-pass architecture eliminates the integration tax entirely. ZTNA, SSE, SD-WAN, and AIOps are all one stack, one console, one support call. Cloudflare is the alt for cloud-native/no-branch environments where SD-WAN is not needed.</td>
+      </tr>
+      <tr>
+        <td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--light-blue2);">Large Enterprise</span></td>
+        <td>Dedicated SOC (10+ staff), existing NGFW estate, threat-prevention depth is the governing constraint, hybrid on-prem + cloud</td>
+        <td><ol style="padding-left:16px;font-size:12.5px;"><li>Threat intelligence depth</li><li>Hybrid policy unified management</li><li>SIEM/SOAR integration</li></ol></td>
+        <td><span class="winner-tag winner-primary">PALO ALTO</span></td>
+        <td><span class="winner-tag winner-alt">ZSCALER</span></td>
+        <td style="font-size:12.5px;">Palo Alto's WildFire + App-ID + SCM is the only platform that manages physical NGFW estate and cloud SSE/ZTNA from a unified policy plane. Zscaler is the alt for organizations wanting to separate physical firewall management from their cloud SSE stack.</td>
+      </tr>
+      <tr>
+        <td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--light-blue2);">Finance · Healthcare · Legal</span></td>
+        <td>Data classification governs all policy, GDPR/HIPAA/PCI compliance obligations, DLP is a board-level concern</td>
+        <td><ol style="padding-left:16px;font-size:12.5px;"><li>ML DLP + CASB dual-mode</li><li>GenAI data protection</li><li>Sovereignty &amp; log residency</li></ol></td>
+        <td><span class="winner-tag winner-primary">NETSKOPE</span></td>
+        <td><span class="winner-tag winner-alt">PALO ALTO</span></td>
+        <td style="font-size:12.5px;">Netskope's data-centric architecture — DLP fused with ZTNA access grants, inline + API CASB, sovereign PoP design — is built from the ground up for regulated data. Palo Alto is the alt where threat prevention and regulatory compliance must coexist with existing NGFW investment.</td>
+      </tr>
+      <tr>
+        <td><strong>Global Performance</strong><br><span style="font-size:11px;color:var(--light-blue2);">Distributed / APAC-heavy</span></td>
+        <td>Users distributed across 30+ countries, latency to SASE PoP is a first-class SLA, developer/API-heavy workloads, cloud-native</td>
+        <td><ol style="padding-left:16px;font-size:12.5px;"><li>Global PoP density / latency</li><li>Developer API access</li><li>Agentless / BYOD coverage</li></ol></td>
+        <td><span class="winner-tag winner-primary">CLOUDFLARE</span></td>
+        <td><span class="winner-tag winner-alt">CATO</span></td>
+        <td style="font-size:12.5px;">Cloudflare's 330+ PoP network is unmatched for global latency. Developer-native API, Terraform-deployable, zero-install agentless ZTNA. Cato is the alt for organizations also needing SD-WAN branch connectivity with SLA-backed private backbone performance.</td>
+      </tr>
+      <tr>
+        <td><strong>Enterprise ZT Transformation</strong><br><span style="font-size:11px;color:var(--light-blue2);">Strategic ZT Program</span></td>
+        <td>Multi-year Zero Trust program, replacing VPN + perimeter firewall simultaneously, needs mature per-app segmentation and DEM</td>
+        <td><ol style="padding-left:16px;font-size:12.5px;"><li>Per-app segmentation maturity</li><li>DEM for user adoption tracking</li><li>Identity risk integration</li></ol></td>
+        <td><span class="winner-tag winner-primary">ZSCALER</span></td>
+        <td><span class="winner-tag winner-alt">PALO ALTO</span></td>
+        <td style="font-size:12.5px;">ZPA inside-out architecture is the most mature per-app ZTNA. ZDX provides user experience telemetry critical for managing organizational change during VPN replacement. Palo Alto is the alt where the organization also has significant branch/WAN infrastructure requiring unified management.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Emerging vendor complement:</strong> None of the Big Five address campus/LAN Zero Trust (Nile), managed SASE for global connectivity (Aryaka), tunnel-free private WAN (Graphiant), or browser-layer enforcement without TLS decryption (Island). For organizations with requirements in these areas, emerging vendor deployment alongside a Big Five platform is the recommended architecture. See <a href="sase_phase2f_emerging.html" style="color:var(--teal);">Phase II-F</a>.</div></div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Architecture Decision Guide</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:20px;font-size:13.5px;">The biggest SASE decision is not vendor selection — it's architecture type. This table maps tradeoffs between single-pass native convergence and stitched/integrated architectures.</p>
+  <div style="overflow-x:auto;">
+    <table class="persona-table">
+      <thead>
+        <tr><th>Dimension</th><th>Single-Pass Native<br><span style="font-weight:400;font-size:10px;">Cato · Netskope · Cloudflare</span></th><th>Stitched / Integrated<br><span style="font-weight:400;font-size:10px;">Palo Alto · Zscaler</span></th><th>Governing Question</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Inspection quality</strong></td><td>Traffic decrypted once; all engines see same stream simultaneously. No inspection seams between SWG, DLP, CASB.</td><td>Separate engines inspect in sequence. Policy order determines what each engine sees. Potential gaps at engine boundaries.</td><td>Does your DLP need to catch content that SWG also processes, without risk of miss at the seam?</td></tr>
+        <tr><td><strong>Operational complexity</strong></td><td>One policy engine, one console, one support relationship. Changes propagate automatically to other components.</td><td>Coordinated policy across multiple products via integration layer. Changes may require updates in multiple places. Higher ops ceiling.</td><td>How large is the security engineering team? Can they manage multi-product integration sustainably?</td></tr>
+        <tr><td><strong>Capability depth</strong></td><td>Each component designed to work as part of the whole. May not be best-in-class individually.</td><td>Each component can be best-in-class in its domain (Palo Alto IPS, Zscaler ZPA segmentation). Integration enables depth per layer.</td><td>Is the primary requirement overall platform depth, or deep capability in specific domains?</td></tr>
+        <tr><td><strong>Hybrid on-prem management</strong></td><td>Cloud-native stack. On-prem legacy security managed separately with no native policy bridge.</td><td>Palo Alto SCM bridges on-prem NGFW and cloud SASE in one policy plane. Zscaler is cloud-only — no physical NGFW bridge.</td><td>Do on-prem NGFWs need to coexist with SASE under a unified policy for the foreseeable future?</td></tr>
+        <tr><td><strong>SD-WAN integration</strong></td><td>Cato: native SD-WAN is the same stack. Netskope/Cloudflare: SD-WAN is adjacently integrated or partial.</td><td>Palo Alto: SASE SD-WAN via acquired technology (CloudGenix). Zscaler: no native SD-WAN — relies on partner ecosystem.</td><td>Is SD-WAN branch connectivity a requirement, or is the deployment cloud/remote-user only?</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="edge-dark-section">
+  <div style="max-width:1020px;margin:0 auto;">
+    <h2>2026 SASE Market: Four Macro Conclusions</h2>
+    <p><strong style="color:var(--lime);">1. The "single-vendor SASE" narrative is maturing, not converging.</strong> Cato proves the single-vendor model works operationally. But Palo Alto and Zscaler's integrated platforms continue to win large enterprises because depth matters more than simplicity at scale. The market will remain bifurcated between simplicity buyers and depth buyers through at least 2028.</p>
+    <p><strong style="color:var(--lime);">2. GenAI data protection is the new DLP frontier and is already a purchasing criterion.</strong> Organizations that deployed SASE in 2022–2024 are discovering their DLP policies don't cover AI prompt data. In 2026, GenAI app protection has become a first-round RFP question. Netskope and Cloudflare are the current leaders; Palo Alto and Zscaler are actively closing the gap.</p>
+    <p><strong style="color:var(--lime);">3. Sovereignty-by-design is the 2026 enterprise procurement gate for EMEA and APAC.</strong> Data residency and PoP-level isolation are no longer optional for EU-regulated industries. Netskope's sovereign PoP architecture and Cloudflare's regional data plane isolation are the most advanced. Cato's sovereignty story is the weakest in the Big Five — a material gap for EMEA-heavy organizations.</p>
+    <p><strong style="color:var(--lime);">4. The campus edge is the gap no Big Five vendor fills.</strong> As Zero Trust matures, the physical campus network is the last perimeter still operating on implicit trust. Nile's Zero Trust NaaS fills this gap. For organizations with ZT as a strategic program (not just remote access), Nile + any Big Five SASE is the 2026 architectural answer. Watch for Big Five acquisition activity in this space through 2026–2027.</p>
+  </div>
+</div>
+
+</main>
+</div>
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Vendor Research Series · Phase III · Master Scorecard · 2026</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/toc.js"></script>
+<script>
+/* ============================================================
+   Phase III — renderPage()
+   Called by main.js after scores.json is fetched.
+   Renders: radar chart, master table, pillar bars, vendor cards.
+   ============================================================ */
+
+/* Vendor color map (matches CSS vars) */
+var V_COLORS = {
+  palo_alto:  '#E74C3C',
+  cato:       '#2E86AB',
+  netskope:   '#8E44AD',
+  cloudflare: '#E67E22',
+  zscaler:    '#1A7A4A'
+};
+
+var PILLAR_COLORS = {
+  ztna:        '#1A7A4A',
+  sse:         '#2E86AB',
+  sdwan:       '#E67E22',
+  aiops:       '#8E44AD',
+  sovereignty: '#C0392B'
+};
+
+var WEIGHT_MULT = { critical: 3, high: 2, medium: 1 };
+
+/* ----------------------------------------------------------
+   computePillarScore(pillar, vendorId)
+   Returns { weighted, maxWeighted, pct } for one vendor/pillar.
+   Null scores are skipped (not counted in denominator either).
+   ---------------------------------------------------------- */
+function computePillarScore(pillar, vendorId) {
+  var weighted = 0, maxWeighted = 0;
+  (pillar.criteria || []).forEach(function(c) {
+    var sd = c.scores && c.scores[vendorId];
+    if (!sd || sd.score === null || sd.score === undefined) return;
+    var m = WEIGHT_MULT[c.weight] || 1;
+    weighted    += sd.score * m;
+    maxWeighted += 5 * m;
+  });
+  return {
+    weighted:    weighted,
+    maxWeighted: maxWeighted,
+    pct: maxWeighted > 0 ? Math.round(weighted / maxWeighted * 100) : null
+  };
+}
+
+/* ----------------------------------------------------------
+   computeOverallScore(data, vendorId)
+   Sums across all five pillars. Used for master table total row.
+   ---------------------------------------------------------- */
+function computeOverallScore(data, vendorId) {
+  var totalW = 0, totalMax = 0;
+  Object.keys(data.pillars).forEach(function(pk) {
+    var r = computePillarScore(data.pillars[pk], vendorId);
+    totalW   += r.weighted;
+    totalMax += r.maxWeighted;
+  });
+  return totalMax > 0 ? Math.round(totalW / totalMax * 100) : null;
+}
+
+/* ----------------------------------------------------------
+   renderRadar(data, bigFiveVendors)
+   ---------------------------------------------------------- */
+function renderRadar(data, bigFiveVendors) {
+  var pillarKeys   = Object.keys(data.pillars);
+  var pillarLabels = pillarKeys.map(function(k) { return data.pillars[k].label; });
+
+  var datasets = bigFiveVendors.map(function(v) {
+    var scores = pillarKeys.map(function(pk) {
+      return computePillarScore(data.pillars[pk], v.id).pct || 0;
+    });
+    var hex = V_COLORS[v.id] || '#999';
+    return {
+      label: v.name.replace('Palo Alto Networks', 'Palo Alto'),
+      data: scores,
+      borderColor: hex,
+      backgroundColor: hex + '22',
+      pointBackgroundColor: hex,
+      pointRadius: 4,
+      borderWidth: 2
+    };
+  });
+
+  var ctx = document.getElementById('radarChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'radar',
+    data: { labels: pillarLabels, datasets: datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        r: {
+          min: 0, max: 100,
+          ticks: { stepSize: 20, font: { size: 10 }, color: '#889CAF' },
+          grid:  { color: '#A9B8C8' },
+          pointLabels: { font: { size: 11, family: 'Heebo, Calibri, sans-serif' }, color: '#44546A' },
+          angleLines: { color: '#A9B8C8' }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) { return ctx.dataset.label + ': ' + ctx.parsed.r + '%'; }
+          }
+        }
+      }
+    }
+  });
+}
+
+/* ----------------------------------------------------------
+   renderMasterTable(data, bigFiveVendors)
+   ---------------------------------------------------------- */
+function renderMasterTable(data, bigFiveVendors) {
+  var el = document.getElementById('master-table-container');
+  var pillarKeys = Object.keys(data.pillars);
+
+  var html = '<table class="master-table"><thead><tr>';
+  html += '<th>Pillar</th>';
+  bigFiveVendors.forEach(function(v) {
+    html += '<th class="vcol">' + v.name.replace('Palo Alto Networks', 'Palo Alto') + '</th>';
+  });
+  html += '</tr></thead><tbody>';
+
+  pillarKeys.forEach(function(pk) {
+    var pillar = data.pillars[pk];
+    var color  = PILLAR_COLORS[pk] || '#44546A';
+
+    /* Pillar group header row */
+    html += '<tr class="pillar-group-header"><td colspan="' + (bigFiveVendors.length + 1) + '">';
+    html += '<span class="pillar-badge" style="background:' + color + ';">' + pillar.label.toUpperCase() + '</span>';
+    html += '</td></tr>';
+
+    /* Criteria rows */
+    (pillar.criteria || []).forEach(function(c) {
+      html += '<tr><td>' + c.label + ' ' + weightBadge(c.weight) + '</td>';
+      bigFiveVendors.forEach(function(v) {
+        var sd    = c.scores && c.scores[v.id];
+        var score = sd ? sd.score : null;
+        html += '<td class="score-cell">' + scoreBadge(score) + '</td>';
+      });
+      html += '</tr>';
+    });
+
+    /* Pillar subtotal row */
+    html += '<tr style="background:var(--off-white)!important;"><td style="font-family:var(--font-heading);font-weight:700;font-size:11px;color:var(--teal);padding:6px 14px;">PILLAR SCORE</td>';
+    bigFiveVendors.forEach(function(v) {
+      var r   = computePillarScore(pillar, v.id);
+      var pct = r.pct !== null ? r.pct : '–';
+      html += '<td class="score-cell" style="font-family:var(--font-heading);font-weight:700;font-size:13px;color:' + (V_COLORS[v.id] || '#44546A') + ';">' + pct + (typeof pct === 'number' ? '%' : '') + '</td>';
+    });
+    html += '</tr>';
+  });
+
+  /* Overall total row */
+  html += '<tr class="total-row"><td>OVERALL WEIGHTED SCORE</td>';
+  bigFiveVendors.forEach(function(v) {
+    var pct = computeOverallScore(data, v.id);
+    html += '<td class="score-cell">' + (pct !== null ? pct + '%' : '–') + '</td>';
+  });
+  html += '</tr>';
+
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+/* ----------------------------------------------------------
+   renderPillarBars(data, allVendors)
+   Shows Big Five + in-scope emerging vendors per pillar.
+   ---------------------------------------------------------- */
+function renderPillarBars(data, allVendors) {
+  var el = document.getElementById('pillar-bars-container');
+  var pillarKeys = Object.keys(data.pillars);
+
+  /* Pillar scope map for emerging vendors */
+  var emergingScope = {
+    aryaka:    ['sdwan', 'aiops'],
+    graphiant: ['sdwan'],
+    nile:      ['ztna'],
+    island:    ['ztna']
+  };
+
+  var html = '';
+  pillarKeys.forEach(function(pk) {
+    var pillar = data.pillars[pk];
+    var color  = PILLAR_COLORS[pk] || '#44546A';
+
+    /* Build vendor list for this pillar: Big Five always, emerging if in scope */
+    var pillarVendors = allVendors.filter(function(v) {
+      if (v.tier === 'big_five') return true;
+      var scope = emergingScope[v.id] || [];
+      return scope.indexOf(pk) !== -1;
+    });
+
+    /* Compute and sort */
+    var rows = pillarVendors.map(function(v) {
+      var r = computePillarScore(pillar, v.id);
+      return { vendor: v, pct: r.pct };
+    }).filter(function(r) { return r.pct !== null; })
+      .sort(function(a, b) { return b.pct - a.pct; });
+
+    html += '<div class="pillar-rank-block">';
+    html += '<div class="pillar-rank-header">';
+    html += '<span class="pillar-badge" style="background:' + color + ';">' + pk.toUpperCase() + '</span>';
+    html += '<span class="pillar-rank-title">' + pillar.label + '</span>';
+    html += '</div>';
+
+    rows.forEach(function(r) {
+      var isEmerging = r.vendor.tier === 'emerging';
+      var vcolor = isEmerging ? '#889CAF' : (V_COLORS[r.vendor.id] || '#889CAF');
+      var displayName = r.vendor.name.replace('Palo Alto Networks', 'Palo Alto');
+      if (isEmerging) displayName += ' ✦';
+      html += '<div class="vendor-rank-row">';
+      html += '<span class="v-label">' + displayName + '</span>';
+      html += '<div class="bar-bg"><div class="bar-fill" style="width:' + r.pct + '%;background:' + vcolor + ';"></div></div>';
+      html += '<span class="pct-label">' + r.pct + '%</span>';
+      html += '</div>';
+    });
+
+    html += '<div style="font-size:10px;color:var(--light-blue2);margin-top:4px;">✦ Emerging vendor — in-scope pillar only</div>';
+    html += '</div>';
+  });
+
+  el.innerHTML = html;
+}
+
+/* ----------------------------------------------------------
+   renderVendorCards(data, bigFiveVendors)
+   ---------------------------------------------------------- */
+function renderVendorCards(data, bigFiveVendors) {
+  var el = document.getElementById('vendor-cards-container');
+  var pillarKeys = Object.keys(data.pillars);
+
+  /* Arch type → readable label */
+  var archLabels = {
+    single_pass: 'Single-Pass Native',
+    stitched:    'Stitched / Integrated',
+    integrated:  'Integrated (ZIA + ZPA)'
+  };
+
+  /* Vendor blurbs */
+  var blurbs = {
+    palo_alto:  'Best-in-class App-ID + WildFire threat intel. SCM unifies on-prem NGFW and cloud SASE in one policy plane. The only Big Five vendor managing physical firewall estate and cloud SSE together.',
+    cato:       'Reference implementation of single-vendor SASE. Private backbone, ZTP, and a single CMA console for SD-WAN + SSE + ZTNA + AIOps. Best operational simplicity and SD-WAN performance.',
+    netskope:   'Data-centric architecture. Industry-leading DLP (ML + EDM + OCR), best-in-class dual-mode CASB, and sovereign PoP design. Built for regulated industries and data-first security programs.',
+    cloudflare: '330+ PoPs — best global latency and agentless ZTNA. Developer-native, Terraform-deployable. Best GenAI data protection story in the Big Five. SD-WAN and AIOps are the relative gaps.',
+    zscaler:    'Most mature inside-out ZTNA (ZPA). Best DEM (ZDX). Strongest ZT transformation story for VPN-replacement programs. ZIA/ZPA complexity requires dedicated ops team.'
+  };
+
+  var html = '';
+  bigFiveVendors.forEach(function(v) {
+    var vcolor = V_COLORS[v.id] || '#44546A';
+
+    /* Pillar score mini-bars */
+    var miniBarHtml = pillarKeys.map(function(pk) {
+      var r     = computePillarScore(data.pillars[pk], v.id);
+      var pct   = r.pct !== null ? r.pct : 0;
+      var label = pk.toUpperCase();
+      var pc    = PILLAR_COLORS[pk] || '#44546A';
+      return '<div class="v-mini-row">' +
+        '<span class="lbl">' + label + '</span>' +
+        '<div class="mini-bg"><div class="mini-fill" style="width:' + pct + '%;background:' + pc + ';"></div></div>' +
+        '<span class="mini-pct" style="color:' + pc + ';">' + (r.pct !== null ? r.pct + '%' : '–') + '</span>' +
+        '</div>';
+    }).join('');
+
+    var overall = computeOverallScore(data, v.id);
+
+    html += '<div class="v-summary-card">';
+    html += '<div class="v-summary-card__hdr" style="background:' + vcolor + ';">';
+    html += '<div class="v-summary-card__name">' + v.name.replace('Palo Alto Networks', 'Palo Alto Networks') + '</div>';
+    html += '<div class="v-summary-card__sub">' + v.product + '</div>';
+    html += '</div>';
+    html += '<div class="v-summary-card__body">';
+    html += '<div class="v-summary-card__arch">' + (archLabels[v.arch_type] || v.arch_type) + '</div>';
+    html += '<p style="font-size:12px;line-height:1.5;margin-bottom:10px;color:var(--slate);">' + (blurbs[v.id] || '') + '</p>';
+    html += '<div class="v-mini-bars">' + miniBarHtml + '</div>';
+    html += '<div style="margin-top:10px;font-family:var(--font-heading);font-size:12px;font-weight:700;color:' + vcolor + ';">Overall: ' + (overall !== null ? overall + '%' : '–') + '</div>';
+    html += '</div></div>';
+  });
+
+  el.innerHTML = html;
+}
+
+/* ----------------------------------------------------------
+   window.renderPage — called by main.js after fetch
+   ---------------------------------------------------------- */
+window.renderPage = function(data) {
+  var bigFive   = (data.vendors || []).filter(function(v) { return v.tier === 'big_five'; });
+  var allVendors = data.vendors || [];
+
+  renderRadar(data, bigFive);
+  renderMasterTable(data, bigFive);
+  renderPillarBars(data, allVendors);
+  renderVendorCards(data, bigFive);
+};
+</script>
+</body>
+</html>

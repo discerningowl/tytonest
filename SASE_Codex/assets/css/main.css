@@ -1,0 +1,634 @@
+/*
+ * SASE Codex — Edge Solutions
+ * Shared Stylesheet · main.css
+ * All pages link to this file. Per-page <style> blocks for truly page-specific rules only.
+ */
+
+/* ============================================================
+   GOOGLE FONTS — loaded here so HTML files don't need the link
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES — Edge Solutions Brand
+   ============================================================ */
+:root {
+  --teal:        #39617A;
+  --teal-dark:   #2A4D61;
+  --teal-light:  #4A7A95;
+  --lime:        #C3D82D;
+  --lime-dark:   #A8BC28;
+  --slate:       #44546A;
+  --light-blue:  #A9B8C8;
+  --light-blue2: #889CAF;
+  --white:       #FFFFFF;
+  --off-white:   #F4F6F8;
+  --light-gray:  #E7E6E6;
+  --font-heading: 'Heebo', 'Calibri', sans-serif;
+  --font-body:    'Roboto', 'Calibri', sans-serif;
+
+  /* Vendor color palette (Phase III scorecard) */
+  --v-palo:      #E74C3C;
+  --v-cato:      #2E86AB;
+  --v-netskope:  #8E44AD;
+  --v-cloudflare:#E67E22;
+  --v-zscaler:   #1A7A4A;
+
+  /* Pillar badge colors */
+  --pb-ztna:        #1A7A4A;
+  --pb-sse:         #2E86AB;
+  --pb-sdwan:       #E67E22;
+  --pb-aiops:       #8E44AD;
+  --pb-sovereignty: #C0392B;
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ============================================================
+   BASE
+   ============================================================ */
+body {
+  font-family: var(--font-body);
+  background: var(--off-white);
+  color: var(--slate);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* When TOC sidebar is present, body shifts right */
+body.has-toc {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body.has-toc .page-body {
+  display: flex;
+  flex: 1;
+}
+body.has-toc main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.edge-header {
+  background: var(--teal);
+  padding: 18px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.edge-header__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.edge-header__brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+.edge-header__pills {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.edge-header__bottom { margin-top: 4px; }
+.edge-header__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--white);
+  line-height: 1.2;
+}
+.edge-header__subtitle {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--light-blue);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   PILLS / BADGES
+   ============================================================ */
+.edge-pill {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--slate);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.edge-pill--secondary { background: var(--light-blue2); color: var(--white); }
+.edge-pill--phase     { background: var(--teal-dark); color: var(--lime); border: 1px solid var(--lime); }
+
+/* Score badges (circular) */
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--white);
+}
+.score-5    { background: #1A7A4A; }
+.score-4    { background: #2E86AB; }
+.score-3    { background: #E67E22; }
+.score-2    { background: #C0392B; }
+.score-1    { background: #7F0000; }
+.score-null { background: var(--light-blue2); font-size: 10px; }
+
+/* Weight badges */
+.weight-badge {
+  font-size: 10px;
+  font-family: var(--font-heading);
+  padding: 2px 6px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-top: 3px;
+}
+.weight-critical { background: #C0392B; color: var(--white); }
+.weight-high     { background: #E67E22; color: var(--white); }
+.weight-medium   { background: #F1C40F; color: var(--slate); }
+
+/* Pillar tags */
+.pillar-tag { display: inline-block; padding: 3px 10px; border-radius: 2px; font-family: var(--font-heading); font-weight: 700; font-size: 10px; letter-spacing: .8px; }
+.pillar-ztna        { background: var(--pb-ztna);        color: var(--white); }
+.pillar-sse         { background: var(--pb-sse);         color: var(--white); }
+.pillar-sdwan       { background: var(--pb-sdwan);       color: var(--white); }
+.pillar-aiops       { background: var(--pb-aiops);       color: var(--white); }
+.pillar-sovereignty { background: var(--pb-sovereignty); color: var(--white); }
+
+/* Phase III pillar badge (alternate class name from scorecard) */
+.pillar-badge { display: inline-block; font-family: var(--font-heading); font-weight: 700; font-size: 10px; padding: 2px 8px; border-radius: 2px; letter-spacing: .5px; color: var(--white); }
+.pb-ztna        { background: var(--pb-ztna); }
+.pb-sse         { background: var(--pb-sse); }
+.pb-sdwan       { background: var(--pb-sdwan); }
+.pb-aiops       { background: var(--pb-aiops); }
+.pb-sovereignty { background: var(--pb-sovereignty); }
+
+/* Winner / persona tags */
+.winner-tag     { display: inline-block; padding: 2px 8px; border-radius: 2px; font-family: var(--font-heading); font-weight: 700; font-size: 10px; letter-spacing: .5px; margin: 2px 2px 2px 0; }
+.winner-primary { background: var(--lime); color: var(--slate); }
+.winner-alt     { background: var(--light-blue); color: var(--slate); }
+
+/* Vendor color chips (Phase III) */
+.v-chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-heading); font-weight: 700; font-size: 11px; }
+.v-dot  { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.v-palo .v-dot       { background: var(--v-palo); }
+.v-cato .v-dot       { background: var(--v-cato); }
+.v-netskope .v-dot   { background: var(--v-netskope); }
+.v-cloudflare .v-dot { background: var(--v-cloudflare); }
+.v-zscaler .v-dot    { background: var(--v-zscaler); }
+
+/* ============================================================
+   DOC NAV (top breadcrumb bar)
+   ============================================================ */
+.doc-nav {
+  background: var(--teal-dark);
+  padding: 10px 40px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--lime);
+  align-items: center;
+}
+.doc-nav a {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--light-blue);
+  text-decoration: none;
+  letter-spacing: .5px;
+}
+.doc-nav a:hover,
+.doc-nav a.active { color: var(--lime); }
+.doc-nav__sep { color: var(--light-blue2); font-size: 11px; }
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.edge-section {
+  padding: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.edge-section--wide { padding: 40px; max-width: 100%; }
+.edge-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.edge-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.edge-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.edge-rule   { height: 3px; background: var(--lime); border: none; margin: 8px 0 20px; }
+
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
+.section-heading,
+h2.section-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--teal);
+  margin-bottom: 4px;
+  margin-top: 32px;
+}
+.section-heading:first-child { margin-top: 0; }
+h3.sub-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.edge-card {
+  background: var(--white);
+  border: 1.5px solid var(--teal);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.edge-card__accent     { height: 4px; background: var(--lime); }
+.edge-card__body       { padding: 16px 20px; }
+.edge-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--teal);
+  margin: 8px 0 6px;
+}
+.edge-card--supplemental { border-color: var(--light-blue); }
+.edge-card--supplemental .edge-card__accent { background: var(--light-blue2); }
+.edge-card p,
+.edge-card li { font-size: 13px; line-height: 1.55; }
+.edge-card ul  { padding-left: 18px; margin-top: 6px; }
+.edge-card li  { margin-bottom: 4px; }
+
+/* Mini-card (inside vendor grids) */
+.mini-card { background: var(--off-white); border: 1px solid var(--light-blue); border-radius: 3px; padding: 12px 14px; }
+.mini-card h4 { font-family: var(--font-heading); font-weight: 700; font-size: 11px; color: var(--teal); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 6px; }
+.mini-card p  { font-size: 12.5px; line-height: 1.5; color: var(--slate); }
+
+/* Vendor summary cards (Phase III) */
+.vendor-summary-card { background: var(--white); border-radius: 4px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.08); border: 1.5px solid var(--light-blue); }
+.vendor-summary-card__header { padding: 14px 16px; color: var(--white); font-family: var(--font-heading); }
+.vendor-summary-card__name   { font-weight: 700; font-size: 15px; }
+.vendor-summary-card__product { font-size: 10px; opacity: .8; margin-top: 2px; letter-spacing: .3px; }
+.vendor-summary-card__body   { padding: 14px 16px; }
+.vendor-summary-card__body p { font-size: 12.5px; line-height: 1.5; margin-bottom: 8px; }
+.vendor-summary-card__scores { display: grid; gap: 4px; margin-top: 10px; }
+.mini-score-row { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.mini-score-row .label  { flex: 1; color: var(--slate); font-family: var(--font-heading); }
+.mini-score-row .bar-bg { width: 80px; background: var(--light-gray); border-radius: 2px; height: 6px; }
+.mini-score-row .bar-fill { height: 6px; border-radius: 2px; }
+.mini-score-row .pct    { font-family: var(--font-heading); font-weight: 700; font-size: 11px; min-width: 30px; text-align: right; }
+
+/* ============================================================
+   CALLOUTS
+   ============================================================ */
+.edge-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #F0F7E8;
+  border: 1px solid var(--lime);
+  border-radius: 3px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: var(--slate);
+  margin: 14px 0;
+}
+.edge-callout__accent {
+  width: 4px;
+  min-height: 28px;
+  background: var(--lime);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.edge-callout--warning { background: #FEF5E7; border-color: #E67E22; }
+.edge-callout--warning .edge-callout__accent { background: #E67E22; }
+
+/* BLUF box */
+.bluf-box {
+  background: var(--teal-dark);
+  border-left: 5px solid var(--lime);
+  padding: 18px 24px;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 32px;
+}
+.bluf-box__label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--lime);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.bluf-box p { font-size: 14px; line-height: 1.65; color: var(--white); margin-bottom: 8px; }
+.bluf-box p:last-child { margin-bottom: 0; }
+
+/* Feynman box */
+.feynman-box {
+  background: var(--white);
+  border: 1.5px solid var(--light-blue);
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.feynman-box__label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--light-blue2);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.feynman-box h3 { font-family: var(--font-heading); font-size: 15px; color: var(--teal); margin-bottom: 8px; }
+.feynman-box p  { font-size: 13.5px; margin-bottom: 8px; }
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+.edge-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  margin-top: 12px;
+}
+.edge-table th {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--white);
+  padding: 10px 12px;
+  text-align: left;
+  background: var(--teal);
+}
+.edge-table th.vendor-col { background: var(--slate); text-align: center; min-width: 110px; }
+.edge-table td {
+  padding: 8px 12px;
+  border: .5px solid var(--light-blue);
+  color: var(--slate);
+  vertical-align: top;
+}
+.edge-table tbody tr:nth-child(odd)  td:first-child     { background: #D4E6F1; }
+.edge-table tbody tr:nth-child(even) td:first-child     { background: #E2EFF7; }
+.edge-table tbody tr:nth-child(odd)  td:not(:first-child) { background: var(--white); }
+.edge-table tbody tr:nth-child(even) td:not(:first-child) { background: #EBF3F8; }
+.score-cell { text-align: center; }
+.criterion-label { font-weight: 500; }
+.criterion-scale { font-size: 11px; color: var(--light-blue2); margin-top: 2px; }
+.score-note { font-size: 11px; color: var(--slate); margin-top: 4px; line-height: 1.4; text-align: left; }
+
+/* Master table (Phase III) */
+.master-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.master-table th { font-family: var(--font-heading); font-weight: 700; font-size: 11px; color: var(--white); padding: 10px 14px; text-align: left; background: var(--teal); }
+.master-table th.vcol { background: var(--slate); text-align: center; min-width: 120px; }
+.master-table td { padding: 8px 14px; border: .5px solid var(--light-blue); vertical-align: middle; }
+.master-table tbody tr:nth-child(odd)  td:first-child     { background: #D4E6F1; }
+.master-table tbody tr:nth-child(even) td:first-child     { background: #E2EFF7; }
+.master-table tbody tr:nth-child(odd)  td:not(:first-child) { background: var(--white); }
+.master-table tbody tr:nth-child(even) td:not(:first-child) { background: #EBF3F8; }
+.master-table .total-row td { background: var(--teal-dark) !important; color: var(--white); font-family: var(--font-heading); font-weight: 700; }
+.master-table .pillar-group-header td { background: var(--teal) !important; color: var(--white); font-family: var(--font-heading); font-weight: 700; font-size: 11px; letter-spacing: .5px; text-transform: uppercase; padding: 6px 14px; }
+
+/* Score bar (Phase III) */
+.score-bar-wrap  { display: flex; align-items: center; gap: 8px; }
+.score-bar-bg    { flex: 1; background: var(--light-gray); border-radius: 2px; height: 8px; min-width: 60px; }
+.score-bar-fill  { height: 8px; border-radius: 2px; }
+.score-pct       { font-family: var(--font-heading); font-weight: 700; font-size: 12px; min-width: 36px; text-align: right; }
+
+/* Persona table */
+.persona-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.persona-table th { background: var(--teal); color: var(--white); font-family: var(--font-heading); font-size: 11px; padding: 9px 14px; text-align: left; }
+.persona-table td { padding: 10px 14px; border: .5px solid var(--light-blue); vertical-align: top; }
+.persona-table tbody tr:nth-child(odd)  td { background: var(--white); }
+.persona-table tbody tr:nth-child(even) td { background: var(--off-white); }
+
+/* Competition table (emerging vendors) */
+.compete-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 10px; }
+.compete-table th { background: var(--teal); color: var(--white); font-family: var(--font-heading); font-size: 11px; padding: 8px 12px; text-align: left; }
+.compete-table td { padding: 8px 12px; border: .5px solid var(--light-blue); vertical-align: top; }
+.compete-table tbody tr:nth-child(odd)  td { background: var(--white); }
+.compete-table tbody tr:nth-child(even) td { background: var(--off-white); }
+
+/* Radar chart container (Phase III) */
+#radar-container { background: var(--white); border: 1.5px solid var(--teal); border-radius: 4px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+canvas#radarChart { display: block; margin: 0 auto; }
+
+/* ============================================================
+   VENDOR BLOCKS (Phase II deep dives)
+   ============================================================ */
+.vendor-section  { margin-bottom: 36px; }
+.vendor-header   { background: var(--teal); padding: 14px 20px; border-radius: 4px 4px 0 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+.vendor-header h2 { font-family: var(--font-heading); font-weight: 700; font-size: 16px; color: var(--white); }
+.vendor-header .arch-tag { font-size: 10px; color: var(--lime); font-family: var(--font-heading); letter-spacing: .8px; }
+.vendor-body { background: var(--white); border: 1.5px solid var(--teal); border-top: none; border-radius: 0 0 4px 4px; padding: 20px 24px; }
+.vendor-body p { margin-bottom: 10px; font-size: 13.5px; }
+.vendor-body p:last-child { margin-bottom: 0; }
+.vendor-subhead {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin: 16px 0 4px;
+  border-left: 3px solid var(--lime);
+  padding-left: 8px;
+}
+.vendor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.strength-dot { color: var(--lime-dark); }
+.watch-dot    { color: #C0392B; }
+
+/* Emerging vendor header variant */
+.vendor-header-emerging {
+  background: var(--teal-dark);
+  padding: 16px 24px;
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1.5px solid var(--lime);
+  border-bottom: none;
+}
+.vendor-header-emerging h2 { font-family: var(--font-heading); font-weight: 700; font-size: 18px; color: var(--white); }
+.vendor-header-emerging .tagline { font-size: 12px; color: var(--lime); font-family: var(--font-body); margin-top: 4px; font-style: italic; }
+.vendor-header-emerging .scope-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+/* ============================================================
+   DARK SECTIONS
+   ============================================================ */
+.edge-dark-section {
+  background: var(--teal);
+  color: var(--white);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.edge-dark-section h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.edge-dark-section h2::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--lime);
+  margin-top: 8px;
+  margin-bottom: 18px;
+}
+.edge-dark-section p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(255,255,255,.88);
+  max-width: 960px;
+  margin-bottom: 12px;
+}
+.edge-dark-section li { color: var(--light-blue); font-size: 13px; line-height: 1.7; }
+.edge-dark-section::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 2px solid rgba(74,122,149,.35);
+  pointer-events: none;
+}
+
+/* Pillar hero (Phase I) */
+.pillar-hero {
+  background: var(--teal-dark);
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-top: 4px solid var(--lime);
+}
+.pillar-hero__icon { width: 52px; height: 52px; background: var(--lime); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.pillar-hero__title { font-family: var(--font-heading); font-weight: 700; font-size: 22px; color: var(--white); }
+.pillar-hero__sub   { font-size: 12px; color: var(--light-blue); margin-top: 3px; }
+
+/* Stats */
+.edge-stat             { text-align: center; padding: 12px; }
+.edge-stat__number     { font-family: var(--font-heading); font-weight: 700; font-size: 32px; color: var(--lime); }
+.edge-stat__label      { font-size: 11px; color: var(--light-blue); letter-spacing: .5px; margin-top: 3px; }
+
+/* Criterion blocks (Phase I) */
+.criterion-block { background: var(--white); border-left: 4px solid var(--lime); border-radius: 0 4px 4px 0; padding: 14px 18px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+.criterion-block__label { font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--teal); margin-bottom: 4px; }
+.criterion-block p { font-size: 13px; line-height: 1.6; }
+
+/* Tags */
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tag { background: var(--off-white); border: 1px solid var(--light-blue); color: var(--slate); font-size: 11px; font-family: var(--font-heading); padding: 2px 8px; border-radius: 2px; }
+
+/* Score loading indicator */
+.score-loading { color: var(--light-blue2); font-size: 13px; padding: 20px; text-align: center; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.edge-footer {
+  background: var(--teal);
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.edge-footer__brand { font-family: var(--font-heading); font-weight: 700; font-size: 13px; letter-spacing: 2px; color: var(--white); }
+.edge-footer__url   { font-family: var(--font-heading); font-size: 12px; color: var(--light-blue); }
+.edge-footer__meta  { font-size: 11px; color: var(--light-blue2); }
+
+/* Regulatory Certification Matrix (Phase II-E) */
+.reg-matrix { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:12px; }
+.reg-matrix th { background:var(--teal); color:var(--white); font-family:var(--font-heading); font-weight:700; font-size:11px; padding:9px 12px; text-align:center; }
+.reg-matrix th:first-child { text-align:left; min-width:140px; }
+.reg-matrix td { padding:8px 12px; border:.5px solid var(--light-blue); text-align:center; font-size:12px; }
+.reg-matrix td:first-child { text-align:left; font-weight:500; background:var(--off-white); }
+.reg-matrix td:last-child { text-align:left; font-size:11px; color:var(--light-blue2); }
+.reg-matrix tbody tr:hover td { background:#EBF3F8; }
+.cert-yes     { color:#1A7A4A; font-weight:700; }
+.cert-no      { color:#C0392B; font-weight:700; }
+.cert-partial { color:#E67E22; font-weight:700; }
+
+/* DLP Philosophy table badges */
+.dlp-philosophy-badge {
+  display: inline-block;
+  background: var(--teal-dark);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: .8px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.dlp-depth-badge {
+  font-size: 14px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+.dlp-depth--5 { color: #1A7A4A; }
+.dlp-depth--4 { color: #2E86AB; }
+.dlp-depth--3 { color: #E67E22; }
+.dlp-depth--2 { color: #C0392B; }
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+  .edge-header,
+  .edge-footer,
+  .edge-dark-section {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .toc-sidebar { display: none; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .edge-section  { padding: 24px 20px; }
+  .edge-grid-3   { grid-template-columns: 1fr; }
+  .edge-grid-2   { grid-template-columns: 1fr; }
+  .vendor-grid   { grid-template-columns: 1fr; }
+  .edge-header   { padding: 14px 20px 16px; }
+  .doc-nav       { padding: 8px 20px; }
+  .edge-footer   { padding: 16px 20px; }
+}

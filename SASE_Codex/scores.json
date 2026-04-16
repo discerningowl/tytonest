@@ -1,0 +1,613 @@
+{
+  "meta": {
+    "version": "1.1",
+    "last_updated": "2026-04-15",
+    "scale_description": "1=Poor/Missing · 2=Below Average · 3=Adequate · 4=Strong · 5=Best-in-Class",
+    "weight_multipliers": { "critical": 3, "high": 2, "medium": 1 },
+    "note_convention": "1-2 sentences. State what the vendor specifically does or does not do to justify the score."
+  },
+
+  "vendors": [
+    { "id": "palo_alto",  "name": "Palo Alto Networks", "product": "Prisma Access + SCM",     "tier": "big_five",  "arch_type": "stitched" },
+    { "id": "cato",       "name": "Cato Networks",       "product": "Cato SASE Cloud",          "tier": "big_five",  "arch_type": "single_pass" },
+    { "id": "netskope",   "name": "Netskope",            "product": "Netskope One",             "tier": "big_five",  "arch_type": "single_pass" },
+    { "id": "cloudflare", "name": "Cloudflare",          "product": "Cloudflare One",           "tier": "big_five",  "arch_type": "single_pass" },
+    { "id": "zscaler",    "name": "Zscaler",             "product": "ZIA + ZPA + ZDX",          "tier": "big_five",  "arch_type": "integrated",
+      "caution": "ZIA and ZPA are distinct products. Verify architecture claims — integration depth has shifted across releases." },
+
+    { "id": "aryaka",    "name": "Aryaka",    "product": "Aryaka SASE / SmartConnect",  "tier": "emerging", "arch_type": "managed_service",
+      "scope_note": "Scored on SD-WAN and AIOps pillars only. SSE and ZTNA scores are null — Aryaka's SSE is co-packaged (PA Prisma Access option) not proprietary, and ZTNA is not a pillar Aryaka competes on independently." },
+    { "id": "graphiant", "name": "Graphiant", "product": "Graphiant Network Edge",        "tier": "emerging", "arch_type": "naas_layer3",
+      "scope_note": "Scored on SD-WAN pillar only (connectivity criteria). No SSE, ZTNA, AIOps, or Sovereignty product — null scores in all other pillars by design." },
+    { "id": "nile",      "name": "Nile",      "product": "Nile Access Service",           "tier": "emerging", "arch_type": "zero_trust_naas",
+      "scope_note": "Scored on ZTNA pillar only (campus/LAN-applicable criteria). SD-WAN, SSE, AIOps, and Sovereignty scores are null — Nile does not compete in those domains." },
+    { "id": "island",    "name": "Island",    "product": "Island Enterprise Browser",     "tier": "emerging", "arch_type": "enterprise_browser",
+      "scope_note": "Scored on ZTNA pillar only (browser-applicable criteria). global_latency, dem, and legacy_app_support scores reflect browser-scope limitations. All other pillars null by design." }
+  ],
+
+  "pillars": {
+
+    "ztna": {
+      "label": "Remote Access / ZTNA",
+      "description": "Replacing legacy VPN with identity-based, per-application, continuous-trust access",
+      "criteria": [
+        {
+          "id": "device_posture",
+          "label": "Device Posture (Continuous)",
+          "weight": "critical",
+          "scale": "1=No posture · 3=One-time check at login · 5=Continuous EDR-integrated, session termination on failure",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Prisma Access integrates natively with CrowdStrike, SentinelOne, and Microsoft Defender for continuous posture. Session quarantine on posture failure is supported via HIP profiles in GlobalProtect." },
+            "cato":       { "score": 4, "note": "Cato Client enforces device posture at connect time and periodically re-checks via native MDM/EDR integrations (Intune, Jamf). True continuous session-kill on posture failure is functional but less granular than PA." },
+            "netskope":   { "score": 4, "note": "Netskope Client enforces posture checks via Device Classification and integrates with Intune, JAMF, and CrowdStrike. Continuous re-validation on policy change is supported; real-time EDR event-triggered session kill is newer." },
+            "cloudflare": { "score": 4, "note": "WARP client enforces posture checks via Cloudflare Gateway device posture rules; supports CrowdStrike, Intune, Tanium, and custom file/registry checks. Session re-evaluation on posture change is available." },
+            "zscaler":    { "score": 4, "note": "ZPA enforces device posture using Zscaler Client Connector and integrates with CrowdStrike ZTA score, Intune compliance, and SentinelOne. Continuous posture re-check interval is configurable but not fully event-driven." },
+            "nile":       { "score": 5, "note": "Nile Access Service enforces continuous device posture at the physical port — every wired and wireless connection triggers an identity + posture check before any access is granted. Posture change disconnects the session immediately." },
+            "island":     { "score": 4, "note": "Island integrates with CrowdStrike, SentinelOne, and Intune for posture signals before and during browser sessions. Posture-based policy enforcement per application is available; continuous EDR session-kill is less granular than campus-native solutions." }
+          }
+        },
+        {
+          "id": "identity_integration",
+          "label": "Identity Integration",
+          "weight": "critical",
+          "scale": "1=Basic SSO · 3=MFA + IdP support · 5=Conditional access + user risk scoring",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Deep Okta, Azure AD, and Ping integrations. SCM unifies identity policy across Prisma Access and on-prem NGFWs. AI Access Security adds user risk scoring layered on top of IdP signals." },
+            "cato":       { "score": 4, "note": "Cato integrates with major IdPs (Okta, Azure AD, ADFS) for MFA and SSO. User risk scoring via UEBA integration is functional but not as deeply embedded as PA's risk engine." },
+            "netskope":   { "score": 4, "note": "Netskope integrates with Okta, Azure AD, and other IdPs for conditional access. User risk can be fed into adaptive policy; full dynamic risk scoring is available but requires additional configuration." },
+            "cloudflare": { "score": 5, "note": "Cloudflare Access integrates with 20+ IdPs natively and supports short-lived certificate issuance (SCIM), risk-based posture signals, and Access Groups for conditional access without requiring VPN client." },
+            "zscaler":    { "score": 5, "note": "ZPA identity integration is a design center — deep Okta, Azure AD, and CrowdStrike ZTA score integration. AI-powered user risk scoring in ZPA Private Access portal adjusts access policy dynamically." },
+            "nile":       { "score": 4, "note": "Nile integrates with the customer's existing IdP (Okta, Entra ID, Ping) for identity-based port access. The same IdP that feeds the Big Five SASE stack feeds Nile — unified identity policy across campus and cloud. No user risk scoring layer native to Nile." },
+            "island":     { "score": 4, "note": "Island integrates with Okta, Azure AD, and Ping for per-application access policy. Identity-driven policy controls clipboard, download, upload, and session recording per app. No native user risk scoring; relies on IdP signals." }
+          }
+        },
+        {
+          "id": "micro_segmentation",
+          "label": "Per-App Micro-Segmentation",
+          "weight": "critical",
+          "scale": "1=Network-level only · 3=App-level access · 5=App + API layer + inline inspection",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Prisma Access enforces per-app policies with App-ID and User-ID inline. SCM enables policy segmentation at app, sub-app, and API URL level across all users and branches without network-level trust." },
+            "cato":       { "score": 4, "note": "Cato enforces application-level access policies via the SASE Cloud. Native single-pass inspection means per-app segmentation and IPS/DLP are co-enforced. Lacks Palo Alto's depth of App-ID signatures." },
+            "netskope":   { "score": 4, "note": "Netskope Private Access (NPA) delivers per-app ZTNA with inline traffic inspection. API-level visibility is available but requires SaaS connectors; inline API layer inspection is not yet unified with NPA." },
+            "cloudflare": { "score": 4, "note": "Cloudflare Access enforces per-app policies with identity-aware proxy. Inline inspection via Cloudflare Gateway DLP applies to web-based apps; thick-client/non-HTTP segmentation is more limited." },
+            "zscaler":    { "score": 5, "note": "ZPA enforces per-app access at the application level with no implicit lateral movement. App Connector model isolates apps individually on-prem. Zscaler Secure Private Access extends this to unmanaged endpoints." },
+            "nile":       { "score": 5, "note": "Nile enforces micro-segmentation at the physical port level — every switch port and AP is an identity enforcement point. Devices cannot reach other segments unless policy explicitly permits it, regardless of VLAN or physical proximity. Best-in-class for campus lateral movement prevention." },
+            "island":     { "score": 4, "note": "Island enforces per-application session policies — clipboard, upload, download, screenshot controls differ per app in the same browser session. Lateral movement in the traditional network sense is not in scope, but SaaS-layer data segmentation by application is strong." }
+          }
+        },
+        {
+          "id": "global_latency",
+          "label": "Global PoP Latency",
+          "weight": "high",
+          "scale": "1=>300ms typical · 3=<200ms · 5=<150ms with private backbone SLA",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma Access uses 100+ cloud-delivered PoPs across AWS, Azure, and GCP infrastructure globally. No private backbone between PoPs — relies on cloud provider backbone quality. Typical RTT <150ms in tier-1 markets." },
+            "cato":       { "score": 5, "note": "Cato's private SDP backbone interconnects 85+ PoPs with SLA-backed latency. Traffic between branches and PoPs stays on Cato's backbone, not the public internet. Measured median latency is <50ms for most tier-1 regions." },
+            "netskope":   { "score": 4, "note": "NewEdge network is entirely Netskope-owned infrastructure at 50+ PoPs with direct peering at major IXPs. Avoids backhaul through hyperscaler infrastructure. Sub-150ms achievable in covered regions." },
+            "cloudflare": { "score": 5, "note": "330+ PoPs connected by Cloudflare's private Argo network; users connect to nearest PoP within milliseconds by design. Best-in-class global PoP density — median single-digit ms RTT to PoP in most urban markets." },
+            "zscaler":    { "score": 4, "note": "150+ cloud security enforcement nodes globally via partner peering agreements and hyperscaler regions. ZDX provides real-time path visibility. Latency competitive in tier-1 markets; PoP-to-origin traverses public internet." },
+            "nile":       { "score": null, "note": "Not applicable — Nile is a campus/LAN product. Global PoP latency is not a relevant criterion for physical port-level access enforcement." },
+            "island":     { "score": null, "note": "Not applicable — Island enforces policy at the browser process layer. There is no PoP network; all enforcement is local to the endpoint running the browser." }
+          }
+        },
+        {
+          "id": "agentless_access",
+          "label": "Agentless Access",
+          "weight": "high",
+          "scale": "1=Agent required · 3=Browser isolation for web apps · 5=Full agentless including thick clients (RDP/SSH)",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma Access Browser (Talon acquisition) enables agentless access for web apps. RDP/SSH via clientless portal is supported but full feature depth requires agent for non-web app types." },
+            "cato":       { "score": 3, "note": "Cato supports browser-based clientless access for web applications. True thick-client agentless access (RDP/SSH without an agent) is limited; the Cato Client is typically required for full functionality." },
+            "netskope":   { "score": 4, "note": "Netskope supports clientless access via a browser-based portal for web apps and published apps. Agentless RDP/SSH via Netskope Private Access clientless mode is supported; some features require the Netskope Client." },
+            "cloudflare": { "score": 5, "note": "Cloudflare Access enables fully agentless access for HTTP/HTTPS apps, SSH, RDP, and VNC via browser-rendered sessions. No agent install required for unmanaged or contractor devices — WARP client optional." },
+            "zscaler":    { "score": 5, "note": "Zscaler Secure Private Access (formerly ZPA Browser Access) supports agentless access for web and SSH/RDP apps from any browser. No agent required for supported app types — designed for unmanaged device support." },
+            "nile":       { "score": 4, "note": "Nile supports agent-free enrollment for wired and wireless devices via 802.1X and certificate-based authentication. No endpoint agent required for campus access; BYOD and unmanaged devices onboard via the Nile portal. Browser-rendered or SSH agentless access is not in scope." },
+            "island":     { "score": 5, "note": "Island delivers a fully managed browser to contractor and BYOD devices with zero endpoint agent. The browser itself is the enforcement layer — no SASE client, no proxy agent required. Best agentless SaaS governance story for unmanaged devices in the Big Five + emerging comparison." }
+          }
+        },
+        {
+          "id": "enterprise_browser",
+          "label": "Enterprise Browser Integration",
+          "weight": "high",
+          "scale": "1=No story · 3=Partner integration available · 5=Native capability or deep validated integration with policy unification",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Prisma Access Browser (acquired Talon Security, 2023) is a Chromium-based enterprise browser managed natively within SCM. DLP, threat prevention, and access policy are enforced at the browser layer." },
+            "cato":       { "score": 3, "note": "Cato does not have a native enterprise browser. Integration with Island Browser and others is possible via extension, but policy unification with Cato CMA is limited." },
+            "netskope":   { "score": 4, "note": "Netskope has a validated integration with Island Browser and supports browser extension-based enforcement for managed browsers. Policy shared between NPA and browser context is available." },
+            "cloudflare": { "score": 4, "note": "Cloudflare Browser Rendering and WARP-in-browser approaches allow policy enforcement without a native browser agent. Integrations with Island and Chrome Enterprise are available at the partner level." },
+            "zscaler":    { "score": 3, "note": "Zscaler does not have a native enterprise browser. Browser isolation (ZIA) covers unmanaged endpoints via pixel-rendering RBI. Direct enterprise browser partnerships exist but policy unification with ZPA is not native." },
+            "nile":       { "score": null, "note": "Not applicable — Nile is a campus network product. Enterprise browser is not a Nile capability or competitive criterion." },
+            "island":     { "score": 5, "note": "Island is the enterprise browser — this criterion is the product definition. Full Chromium fork with IT-managed policy, per-app session controls, clipboard/download/upload/screenshot enforcement at the browser process layer. No other entrant in this comparison is purpose-built for this criterion." }
+          }
+        },
+        {
+          "id": "os_coverage",
+          "label": "Client OS Coverage",
+          "weight": "high",
+          "scale": "1=Windows only · 3=Win/Mac/iOS/Android · 5=All platforms including ChromeOS/Linux with full feature parity",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "GlobalProtect client supports Windows, macOS, iOS, Android, and Linux. ChromeOS support is available via managed browser extension. Feature parity is strong but Linux has some posture check limitations." },
+            "cato":       { "score": 5, "note": "Cato Client supports Windows, macOS, iOS, Android, Linux, and ChromeOS with full feature parity. All platforms receive the same policy enforcement, posture checks, and tunnel capabilities." },
+            "netskope":   { "score": 5, "note": "Netskope Client supports Windows, macOS, iOS, Android, Linux (including Ubuntu, RHEL, CentOS), and ChromeOS. Feature parity across platforms is strong with unified policy enforcement from NPA." },
+            "cloudflare": { "score": 5, "note": "WARP client supports Windows, macOS, iOS, Android, Linux, and ChromeOS. Cross-platform feature parity is excellent — all clients receive same Gateway policy enforcement with consistent DEM telemetry." },
+            "zscaler":    { "score": 4, "note": "Zscaler Client Connector supports Windows, macOS, iOS, Android, and Linux. ChromeOS is supported via app-based enrollment. Linux feature completeness trails Windows/macOS for some posture checks." },
+            "nile":       { "score": 4, "note": "Nile supports all wired and wireless device types that support 802.1X or certificate enrollment — Windows, macOS, Linux, iOS, Android, ChromeOS, and IoT. Coverage is hardware-layer, not OS-specific. Headless IoT devices with non-standard auth methods require additional onboarding steps." },
+            "island":     { "score": 4, "note": "Island runs on any OS that supports Chromium: Windows, macOS, Linux, and ChromeOS. iOS and Android are not supported (mobile browser policy requires MDM-based control, not a fork). Feature parity is consistent across desktop platforms." }
+          }
+        },
+        {
+          "id": "dem",
+          "label": "Digital Experience Monitoring",
+          "weight": "medium",
+          "scale": "1=No DEM · 3=Basic latency/loss reporting · 5=Per-session path visibility, ISP fault attribution, proactive alerting",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma Access ADEM provides per-session path tracing, endpoint score, and synthetic monitoring. ISP fault attribution is available; alerting on SLA breach is configurable via SCM." },
+            "cato":       { "score": 4, "note": "Cato DEM provides hop-level path visibility from client to app, including Cato PoP and last-mile link quality. ISP-level fault attribution is supported via Cato's network topology awareness." },
+            "netskope":   { "score": 3, "note": "Netskope DEM provides endpoint-to-app path scoring and synthetic monitoring for key SaaS apps. ISP fault attribution is developing; proactive alerting breadth is narrower than ZDX or ADEM." },
+            "cloudflare": { "score": 3, "note": "Cloudflare DEM provides per-device, per-app latency metrics and synthetic probes. ISP fault attribution and hop-level path tracing are in active development; less mature than ZDX." },
+            "zscaler":    { "score": 5, "note": "ZDX is a dedicated DEM platform with per-session path hop analysis, ISP fault attribution, device health scoring, and cross-correlation with Zscaler PoP events. Best-in-class DEM capability in the Big Five." },
+            "nile":       { "score": 3, "note": "Nile provides port-level telemetry and device health visibility within the campus — link quality, authentication events, device uptime. Path-level DEM from campus device to cloud application is not a native Nile capability; pairs with Big Five SASE DEM for end-to-end visibility." },
+            "island":     { "score": 2, "note": "Island provides session-level telemetry (which apps are accessed, policy enforcement events, session recording where enabled) but no network path visibility. ISP fault attribution and hop-level DEM are outside the browser scope." }
+          }
+        },
+        {
+          "id": "legacy_app_support",
+          "label": "Legacy App Support",
+          "weight": "medium",
+          "scale": "1=HTTP/HTTPS only · 3=Common non-web protocols · 5=Full UDP + non-HTTP + legacy on-prem without refactoring",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "GlobalProtect tunnel mode supports all protocols (TCP/UDP/ICMP) enabling legacy app access without refactoring. Prisma Access can tunnel to App Connector or directly to the data center for any port/protocol." },
+            "cato":       { "score": 5, "note": "Cato tunnels all traffic types (TCP/UDP/ICMP) natively via the Cato SD-WAN and client infrastructure. Legacy apps running on non-HTTP ports are supported without any app-side changes." },
+            "netskope":   { "score": 4, "note": "Netskope Private Access supports TCP-based non-HTTP apps and UDP is in extended beta. Full legacy protocol support is near-complete; some UDP app types require additional publisher configuration." },
+            "cloudflare": { "score": 4, "note": "Cloudflare Tunnel supports TCP and UDP (via QUIC tunneling). RDP, SSH, SMB, and common non-HTTP protocols are supported. Some complex legacy protocols may require routing via Magic WAN." },
+            "zscaler":    { "score": 4, "note": "ZPA Private Service Edge and App Connector support TCP and UDP apps (UDP added 2023). Legacy non-HTTP apps are generally supported; some complex multi-port applications require additional connector configuration." },
+            "nile":       { "score": 5, "note": "Nile operates at Layer 2/3 — all protocols, all port numbers, all device types are supported natively. Legacy apps on non-HTTP ports, IoT protocols, building automation, and industrial control traffic are all supported without any app-side changes." },
+            "island":     { "score": 1, "note": "Island is a browser — legacy thick-client apps, SSH, RDP, UDP protocols, and non-browser workloads are explicitly out of scope. This is a design boundary, not a gap; Island's scope is browser-based SaaS and web applications only." }
+          }
+        }
+      ]
+    },
+
+    "sse": {
+      "label": "Security Service Edge (SSE)",
+      "description": "Converging SWG, CASB, FWaaS, DLP, and SSL Decryption into a unified cloud security stack",
+      "criteria": [
+        {
+          "id": "dlp_unified_engine",
+          "label": "Unified DLP Policy Engine",
+          "weight": "critical",
+          "scale": "1=Siloed DLP per product · 3=Shared policy, separate engines · 5=Single-pass unified DLP across all channels",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Enterprise DLP in Prisma Access applies shared policies across SWG and CASB channels via a unified policy plane in SCM. Single-pass inspection within a PoP, but CASB API-mode uses a separate engine with policy sync." },
+            "cato":       { "score": 4, "note": "Cato's single-pass architecture applies DLP rules in one inspection pass across SWG, CASB inline, and SD-WAN traffic. CASB API-mode is newer and uses a shared policy store but separate enforcement engine." },
+            "netskope":   { "score": 5, "note": "Netskope's Unified DLP engine enforces consistent policies across SWG (inline), CASB (inline + API), and email in a single-pass architecture. Same classification engine applies regardless of channel — no policy drift." },
+            "cloudflare": { "score": 3, "note": "Cloudflare Gateway DLP covers SWG and CASB inline channels with unified rules. CASB API mode uses a separate scanning engine with partial policy synchronization. Full single-pass unification is on the roadmap." },
+            "zscaler":    { "score": 4, "note": "ZIA provides a unified DLP policy across SWG and CASB inline channels via single-pass proxy. CASB API-mode shares policy definitions but is enforced separately. Not all channels share a single enforcement engine." }
+          }
+        },
+        {
+          "id": "dlp_ml_classification",
+          "label": "ML-Based Data Classification",
+          "weight": "critical",
+          "scale": "1=Regex only · 3=ML + regex hybrid · 5=ML + EDM + OCR + document fingerprinting",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Enterprise DLP uses ML classifiers, Exact Data Match (EDM), OCR for image-based DLP, and document fingerprinting. WildFire integration enables malware + sensitive data correlation in a single inspection pass." },
+            "cato":       { "score": 3, "note": "Cato DLP supports regex-based patterns and some predefined ML classifiers for common data types (PCI, PII, HIPAA). EDM and document fingerprinting are not yet available; ML classification breadth is narrower than Netskope or PA." },
+            "netskope":   { "score": 5, "note": "Netskope's ML classification engine covers 1,000+ pre-built classifiers, EDM, OCR, document fingerprinting, and file sequence detection. Industry reference point for ML-based DLP sophistication." },
+            "cloudflare": { "score": 3, "note": "Cloudflare Gateway DLP supports regex patterns and a growing set of pre-built ML detection profiles (PII, PCI, credentials). EDM and document fingerprinting are not currently available." },
+            "zscaler":    { "score": 4, "note": "ZIA DLP includes ML classifiers, EDM, and indexed document matching (IDM). OCR-based DLP is available. Classification breadth is strong but ML model sophistication trails Netskope's purpose-built DLP platform." }
+          }
+        },
+        {
+          "id": "tls_inspection_scale",
+          "label": "TLS Inspection at Scale",
+          "weight": "critical",
+          "scale": "1=No TLS decryption · 3=Partial TLS support · 5=Full TLS 1.3, no performance cliff at scale",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Prisma Access performs TLS 1.3 decryption at scale with hardware-accelerated PoPs on dedicated infrastructure. No customer-reported throughput cliff; forward proxy CA tooling with full audit trail in SCM." },
+            "cato":       { "score": 5, "note": "Cato performs full TLS 1.3 inspection inline on its private backbone PoPs. Single-pass architecture means TLS decryption is bundled with all security engines — no re-encryption overhead between modules." },
+            "netskope":   { "score": 5, "note": "Netskope performs full TLS 1.3 decryption at all NewEdge PoPs. Purpose-built inline proxy infrastructure designed for TLS at scale with no throughput degradation observed at enterprise volumes." },
+            "cloudflare": { "score": 5, "note": "Cloudflare Gateway performs TLS 1.3 decryption at all 330+ PoPs. Built on Cloudflare's core proxy infrastructure which handles internet-scale TLS termination — enterprise SSE TLS load is a small fraction of platform capacity." },
+            "zscaler":    { "score": 5, "note": "ZIA was designed from inception as a TLS inspection proxy. Full TLS 1.3 support with per-policy bypass controls and certificate pinning exemptions. TLS inspection is the core ZIA use case with no throughput cliff at scale." }
+          }
+        },
+        {
+          "id": "ssl_decrypt_architecture",
+          "label": "SSL Decryption Architecture",
+          "weight": "critical",
+          "scale": "1=Centralized/backhauled · 3=PoP-local, limited policy controls · 5=PoP-local, full policy + CA tooling + audit trail",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "SSL decryption occurs at the Prisma Access PoP nearest the user — no backhaul. SCM provides full decryption policy management, CA certificate deployment, traffic bypass rules, and decryption audit logging." },
+            "cato":       { "score": 5, "note": "TLS inspection happens at the nearest Cato PoP with no cross-region backhaul. CA tooling, bypass rules, and per-policy controls are available in the Cato Management Application (CMA)." },
+            "netskope":   { "score": 5, "note": "SSL decryption is PoP-local on NewEdge infrastructure. Full CA management, per-domain bypass, compliance mode exceptions, and an audit trail of decrypted session metadata are available in Netskope's console." },
+            "cloudflare": { "score": 5, "note": "Gateway performs SSL decryption at the nearest Cloudflare PoP. Full CA certificate management, per-app bypass rules, and audit logging are available. Root CA deployment via MDM is standard practice." },
+            "zscaler":    { "score": 5, "note": "ZIA performs SSL inspection at the nearest ZEN globally. Per-policy decryption controls, bypass lists, custom CA management, and full audit logging are core ZIA capabilities." }
+          }
+        },
+        {
+          "id": "casb_dual_mode",
+          "label": "CASB — Inline + API Dual Mode",
+          "weight": "critical",
+          "scale": "1=API-only · 3=Inline-only · 5=Inline + API with unified policy and shared data store",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "SaaS Security (SSPM) in Prisma Access provides API-mode CASB. Inline CASB via proxy is also supported. Policy is coordinated via SCM but API and inline engines share policy definitions, not a single enforcement plane." },
+            "cato":       { "score": 4, "note": "Cato supports inline CASB via single-pass proxy and API-mode CASB for sanctioned SaaS (M365, Google, Salesforce). Shared policy store between modes; API CASB module is newer with narrower app coverage than Netskope." },
+            "netskope":   { "score": 5, "note": "Netskope CASB supports both inline (real-time) and API (out-of-band) modes with a unified policy engine. Same DLP rules and policy definitions apply to both channels — no separate policy authoring per mode. Industry reference for dual-mode CASB." },
+            "cloudflare": { "score": 3, "note": "Cloudflare CASB is primarily API-mode (posture and file scanning for M365, Google, GitHub). Inline CASB via Gateway handles real-time app control. Unified policy across both modes is not yet achieved." },
+            "zscaler":    { "score": 4, "note": "ZIA provides inline CASB for SaaS app control. CASB for SaaS provides API-mode scanning. Policy definitions are shared at the rule level in admin console but enforcement engines are separate." }
+          }
+        },
+        {
+          "id": "rbi",
+          "label": "Remote Browser Isolation (RBI)",
+          "weight": "high",
+          "scale": "1=None · 3=Third-party RBI bolt-on · 5=Native RBI with pixel-rendering or DOM reconstruction",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma Access includes Prisma RBI (integrated 2024) as a native capability within the platform. DOM isolation mode is available; policy is managed in SCM alongside other security controls." },
+            "cato":       { "score": 3, "note": "Cato RBI is available as an add-on capability. Integration within the CMA console is available, but the RBI engine is not as deeply native to the Cato single-pass architecture as other SSE capabilities." },
+            "netskope":   { "score": 4, "note": "Netskope RBI is a native capability supporting pixel-rendering isolation for risky categories and custom URL lists. Integrated with Netskope's CASB and DLP policies for consistent posture enforcement." },
+            "cloudflare": { "score": 5, "note": "Cloudflare Browser Isolation (NVR — Network Vector Rendering) is a native Cloudflare service with no pixel streaming and no latency cliff. Integrated with Gateway policies for inline RBI triggering." },
+            "zscaler":    { "score": 4, "note": "Zscaler Cloud Browser Isolation (ZCBI) is a native ZIA capability using pixel-streaming isolation. Integrated with ZIA policy for risk-based isolation triggering; available in Business/Transformation bundles." }
+          }
+        },
+        {
+          "id": "genai_data_protection",
+          "label": "AI/GenAI Data Protection",
+          "weight": "high",
+          "scale": "1=None · 3=Block by app category (e.g. block ChatGPT) · 5=Inline prompt inspection with DLP classification",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "AI Access Security in Prisma Access provides inline inspection of GenAI prompts and responses with DLP classification. Granular allow/block/coach per AI app, with response scanning — not just category-level blocking." },
+            "cato":       { "score": 4, "note": "Cato's single-pass inspection applies DLP rules to GenAI app traffic inline. Application-specific control for ChatGPT, Copilot, and other AI tools is available. Prompt-level DLP classification is functional but less granular than PA." },
+            "netskope":   { "score": 5, "note": "Netskope's inline DLP engine applies to GenAI app traffic with prompt-level classification and response scanning. AI app catalog of 500+ GenAI tools with per-app policies and user coaching — industry-leading GenAI protection depth." },
+            "cloudflare": { "score": 3, "note": "Cloudflare Gateway allows blocking GenAI app categories. Inline prompt inspection with DLP classification is in early availability; current capability is largely app-level allow/block without semantic content analysis." },
+            "zscaler":    { "score": 4, "note": "ZIA includes AI/ML App Control as part of its app catalog. Inline DLP applies to GenAI sessions; prompt-level analysis with user feedback is available. Breadth of coverage across GenAI apps catalogued is strong." }
+          }
+        },
+        {
+          "id": "shadow_it",
+          "label": "Shadow IT Discovery",
+          "weight": "high",
+          "scale": "1=None · 3=Discovery with basic risk scores · 5=Auto-discovery of 30k+ apps, one-click policy from discovery view",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "App-ID in Prisma Access identifies thousands of applications. SSPM adds managed app visibility. Shadow IT catalog is strong (~5,000+ apps) but the one-click-from-discovery to policy workflow is less streamlined than ZIA." },
+            "cato":       { "score": 4, "note": "Cato's application catalog covers ~5,000 apps with risk scoring, category classification, and one-click app control from the discovery view in CMA. Good operationally but catalog breadth trails Zscaler." },
+            "netskope":   { "score": 4, "note": "Netskope Cloud Confidence Index covers 59,000+ cloud apps with rich risk attributes. App discovery is excellent; policy creation from discovery is available but slightly more steps than ZIA's one-click workflow." },
+            "cloudflare": { "score": 3, "note": "Cloudflare Gateway provides application visibility via App Control with categories and risk scoring. App catalog is smaller (~2,000 apps) than Zscaler or Netskope; Shadow IT workflow is less developed." },
+            "zscaler":    { "score": 5, "note": "Zscaler Cloud App Catalog covers 30,000+ applications with risk scoring (1-100), data sensitivity flags, and one-click policy creation from the Shadow IT discovery view. Best-in-class Shadow IT tooling." }
+          }
+        },
+        {
+          "id": "ips_threat_intel",
+          "label": "IPS Threat Intelligence",
+          "weight": "high",
+          "scale": "1=Static signatures · 3=Regular feed updates · 5=Real-time feeds (<1hr), MITRE ATT&CK integration, cross-customer sharing",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "WildFire cloud threat intelligence shares real-time indicators across the entire Palo Alto customer base. Unit 42 threat research feeds into Prisma Access with MITRE ATT&CK-tagged detections and sub-5-minute signature propagation." },
+            "cato":       { "score": 4, "note": "Cato's threat research team provides curated IPS signatures and IOCs updated in near-real-time. Cross-customer telemetry sharing is built into the platform. MITRE ATT&CK tagging is available in the threat log view." },
+            "netskope":   { "score": 4, "note": "Netskope Threat Intel integrates with CrowdStrike, Cisco Talos, and other external feeds. Threat Research team provides cloud-native IOCs. MITRE ATT&CK mapping is available; update cadence is competitive but less granular than PA WildFire." },
+            "cloudflare": { "score": 4, "note": "Cloudflare Gateway IPS draws from Cloudflare's passive DNS and internet-scale traffic visibility. MITRE ATT&CK integration is available. Cross-customer anonymized threat sharing is inherent in the platform architecture." },
+            "zscaler":    { "score": 4, "note": "Zscaler ThreatLabZ research team provides signature updates with MITRE ATT&CK tagging. Real-time cross-customer threat sharing via the Zscaler cloud. Update cadence is strong; WildFire-equivalent intelligence depth is the comparison benchmark." }
+          }
+        },
+        {
+          "id": "fwaas_app_awareness",
+          "label": "FWaaS — App Awareness",
+          "weight": "medium",
+          "scale": "1=Port/protocol only · 3=L7 app ID for common apps · 5=Full L7 with custom signatures, evasion-resistant",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "App-ID is the deepest L7 application identification engine in the industry — 5,000+ signatures with evasion-resistance, streaming inspection, and custom App-ID creation. This is Palo Alto's core identity and clearest competitive moat." },
+            "cato":       { "score": 4, "note": "Cato's FWaaS provides L7 application awareness for ~3,500 applications with category-based and custom app policies. Custom signature creation is available. Slightly narrower coverage than PA App-ID." },
+            "netskope":   { "score": 3, "note": "Netskope FWaaS provides L7 app awareness primarily via its SWG/proxy layer. Port/protocol-based enforcement is also available. Custom signatures are limited; FWaaS is not Netskope's design center." },
+            "cloudflare": { "score": 4, "note": "Cloudflare Gateway provides L7 application control with DNS, HTTP, and network-layer policies. Application category and custom application policies are supported. Custom signature depth is growing." },
+            "zscaler":    { "score": 4, "note": "ZIA includes cloud-native FWaaS with L7 application awareness for thousands of apps. Custom app policies and evasion detection are functional. Not as deep as PA App-ID but sufficient for most FWaaS use cases." }
+          }
+        }
+      ]
+    },
+
+    "sdwan": {
+      "label": "SD-WAN",
+      "description": "Physical and virtual edge connectivity — the networking pillar of SASE",
+      "criteria": [
+        {
+          "id": "private_backbone",
+          "label": "Private Global Backbone",
+          "weight": "critical",
+          "scale": "1=Public internet only · 3=Partial private backbone · 5=Full private backbone, SLA-backed, no public internet between PoPs",
+          "scores": {
+            "palo_alto":  { "score": 3, "note": "Prisma SD-WAN (formerly CloudGenix) provides SD-WAN overlay but relies on customer-provided internet links. No private backbone between PoPs — Prisma Access PoPs use hyperscaler backbone." },
+            "cato":       { "score": 5, "note": "Cato operates a fully private SDP backbone connecting 85+ PoPs globally with SLA-backed latency guarantees. No public internet is traversed between Cato PoPs — the backbone is Cato's primary competitive moat for SD-WAN." },
+            "netskope":   { "score": 4, "note": "Netskope's NewEdge private network interconnects all PoPs via owned infrastructure with direct IXP peering. Not marketed as a traditional SD-WAN backbone per se, but NewEdge avoids hyperscaler transit." },
+            "cloudflare": { "score": 3, "note": "Magic WAN uses Cloudflare's Argo Smart Routing across its own network infrastructure between PoPs. Cloudflare's backbone is extensive but Magic WAN is a network overlay, not traditional CPE SD-WAN." },
+            "zscaler":    { "score": 2, "note": "Zscaler is not a traditional SD-WAN vendor. ZIA/ZPA provide internet and private app access but there is no Zscaler-owned WAN backbone or SD-WAN CPE product. This criterion is not applicable by design." },
+            "aryaka":     { "score": 4, "note": "Aryaka's SmartConnect private backbone connects 40+ PoPs globally with SLA-backed latency, FEC, and WAN optimization. Strong APAC and emerging market coverage. Smaller network than Cato (85+ PoPs) but SLA guarantees are operationally stronger for managed customers who want backbone performance without operating it themselves." },
+            "graphiant":  { "score": 4, "note": "Graphiant operates a private Layer 3 network fabric — sites connect via standard internet to Graphiant edge nodes, and Graphiant handles private routing internally without tunnels. Delivers equivalent SLA guarantees for deterministic-performance use cases without traditional CPE overlay complexity." }
+          }
+        },
+        {
+          "id": "app_aware_steering",
+          "label": "Application-Aware Path Steering",
+          "weight": "critical",
+          "scale": "1=Static routing · 3=Per-app steering, reactive · 5=Predictive per-app steering, sub-second failover",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma SD-WAN (CloudGenix ION devices) provides application-aware path steering with sub-second failover via link quality measurement. Predictive steering uses historical path analytics to anticipate degradation." },
+            "cato":       { "score": 5, "note": "Cato's SD-WAN performs continuous per-app path evaluation across all WAN links, predictively steering traffic before SLA breach. Sub-second failover is supported with automatic path selection based on app QoS requirements." },
+            "netskope":   { "score": 3, "note": "Netskope NSG provides per-app steering with reactive failover. NSG is a newer product; predictive steering and deep path analytics are less mature than Cato or PA CloudGenix." },
+            "cloudflare": { "score": 3, "note": "Magic WAN supports policy-based routing and Argo Smart Routing for path optimization, but hardware CPE with per-app SLA measurement is not the Magic WAN model." },
+            "zscaler":    { "score": 2, "note": "No native SD-WAN path steering capability. ZDX monitors app experience but does not control path selection at the branch level." },
+            "aryaka":     { "score": 4, "note": "Application-aware path steering is performed by Aryaka's NOC on behalf of the customer — not customer-configured. NOC monitors all WAN paths and steers traffic proactively. Sub-second failover is SLA-backed; the managed model means predictive steering is operationally native without requiring a customer-side engineering effort." },
+            "graphiant":  { "score": 3, "note": "Graphiant performs routing optimization within its own network fabric but does not offer customer-configured per-app policy steering. Traffic is admitted to the Graphiant network and Graphiant handles internal routing; application-specific steering granularity is limited compared to traditional SD-WAN." }
+          }
+        },
+        {
+          "id": "multi_link",
+          "label": "Multi-Link Aggregation",
+          "weight": "critical",
+          "scale": "1=Single link · 3=Active/standby multi-link · 5=Active/active bonding across MPLS+broadband+LTE, per-packet LB",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma SD-WAN ION devices support active/active multi-link with per-flow and per-packet load balancing across MPLS, broadband, and LTE. Link bonding and packet duplication for lossy links are available." },
+            "cato":       { "score": 5, "note": "Cato Socket appliances support active/active multi-link with per-packet load balancing, MPLS+broadband+LTE bonding, and last-mile quality monitoring. This is a core SD-WAN differentiator for Cato." },
+            "netskope":   { "score": 3, "note": "Netskope NSG supports multi-link with active/standby and basic active/active configurations. Per-packet load balancing and deep bonding across diverse link types are developing capabilities." },
+            "cloudflare": { "score": 2, "note": "Magic WAN does not provide CPE hardware multi-link aggregation. GRE/IPsec tunnel failover is available for upstream routers, but Cloudflare does not supply branch appliances with native multi-link bonding." },
+            "zscaler":    { "score": 1, "note": "No SD-WAN multi-link aggregation capability. Zscaler does not supply branch edge hardware. Not applicable by design." },
+            "aryaka":     { "score": 4, "note": "Aryaka SmartEdge appliances support active/active multi-link with MPLS, broadband, and LTE bonding. Per-packet and per-flow load balancing across uplinks are supported. Link bonding management is handled by Aryaka's NOC, not the customer team." },
+            "graphiant":  { "score": 2, "note": "Graphiant does not supply CPE hardware with native multi-link bonding. Sites connect to Graphiant edge nodes via a single internet uplink; multi-link failover at the branch requires the customer's existing router. Not a Graphiant design focus." }
+          }
+        },
+        {
+          "id": "cloud_onramp",
+          "label": "Cloud On-Ramp Quality",
+          "weight": "high",
+          "scale": "1=Backhaul to DC · 3=Direct internet breakout · 5=Direct peering with AWS/Azure/GCP + SaaS SLA monitoring",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma Access PoPs are deployed on AWS, Azure, and GCP with direct peering to cloud providers. Prisma SD-WAN integrates with Prisma Access for optimized cloud on-ramp with SaaS monitoring via ADEM." },
+            "cato":       { "score": 5, "note": "Cato PoPs are co-located with major cloud regions and have direct peering to AWS, Azure, GCP, and top SaaS providers. App-level SLA monitoring for O365, Salesforce, and other apps is built into the backbone." },
+            "netskope":   { "score": 4, "note": "Netskope NewEdge PoPs peer directly with major cloud providers and SaaS networks. Cloud on-ramp quality is excellent; SaaS SLA monitoring is available via Digital Experience Management." },
+            "cloudflare": { "score": 4, "note": "Cloudflare's global network peers with AWS, Azure, GCP, and thousands of SaaS providers at IXPs globally. Magic WAN routes branch traffic via Cloudflare's network for optimal cloud access." },
+            "zscaler":    { "score": 3, "note": "ZIA provides direct internet breakout from the nearest ZEN. No dedicated cloud on-ramp hardware, but ZDX monitors SaaS performance and ZIA PoPs are deployed near cloud regions." },
+            "aryaka":     { "score": 4, "note": "Aryaka PoPs peer with major cloud regions and SaaS providers. Cloud on-ramp is managed as part of the Aryaka service — Aryaka's NOC manages SaaS performance optimization and path selection to cloud destinations without customer configuration." },
+            "graphiant":  { "score": 3, "note": "Graphiant edge nodes provide internet breakout for cloud connectivity. Direct peering with AWS/Azure/GCP at Graphiant PoP level is developing; current model is optimized internet routing to cloud regions, not dedicated cloud on-ramp with SaaS SLA monitoring." }
+          }
+        },
+        {
+          "id": "ztp",
+          "label": "Zero-Touch Provisioning (ZTP)",
+          "weight": "high",
+          "scale": "1=Manual config required · 3=Partial ZTP · 5=Ships pre-configured, auto-registers, <30min to full operation",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma SD-WAN ION devices support ZTP via SCM — devices ship pre-configured, auto-register on first WAN contact, and receive policy from SCM. Typical deployment time <60 minutes for a standard branch." },
+            "cato":       { "score": 5, "note": "Cato Socket is the reference implementation of ZTP in SASE. Ships pre-configured, auto-registers to Cato Cloud on first internet contact. Sites are typically operational in under 30 minutes including WAN uplink testing." },
+            "netskope":   { "score": 3, "note": "Netskope NSG supports ZTP for initial registration but the provisioning experience requires more manual configuration steps than Cato. ZTP maturity reflects the newer NSG product." },
+            "cloudflare": { "score": 3, "note": "Magic WAN relies on existing customer routers/firewalls to establish GRE/IPsec tunnels to Cloudflare. No Cloudflare CPE device, so ZTP in the traditional appliance sense is not applicable." },
+            "zscaler":    { "score": 2, "note": "No SD-WAN CPE product — ZTP is not applicable. Zscaler Client Connector deployment is automated via MDM/GPO but this is endpoint agent deployment, not branch edge ZTP." },
+            "aryaka":     { "score": 4, "note": "Aryaka SmartEdge appliances ship pre-configured and auto-register on first WAN contact. ZTP is managed by Aryaka's NOC — Aryaka engineers activate the site remotely and validate connectivity, meaning on-site work is cable-plug-in only. Typical activation under 60 minutes." },
+            "graphiant":  { "score": 3, "note": "Graphiant edge node onboarding requires configuring the local router to point to the Graphiant edge node. No CPE appliance ships; ZTP applies to software configuration, not hardware provisioning. Requires more steps than Cato or Aryaka appliance ZTP." }
+          }
+        },
+        {
+          "id": "sse_convergence",
+          "label": "Security Integration (SSE Convergence)",
+          "weight": "high",
+          "scale": "1=Separate consoles and policy planes · 3=API integration between SD-WAN and SSE · 5=Shared policy engine, single console",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "SCM (Strata Cloud Manager) is the unified management plane for both Prisma Access (SSE) and Prisma SD-WAN (CloudGenix). Policy, telemetry, and AI-driven recommendations are shared — most converged management plane among stitched vendors." },
+            "cato":       { "score": 5, "note": "Cato's CMA manages SD-WAN, ZTNA, SSE, and XDR in a native single-pass architecture. Zero integration work required — this is single-vendor SASE by design." },
+            "netskope":   { "score": 4, "note": "Netskope Borderless SD-WAN (NSG) and Netskope One SSE share the same management console with coordinated policies. Full single-pass convergence is close but NSG's newer architecture means some SSE policies require separate configuration." },
+            "cloudflare": { "score": 4, "note": "Magic WAN and Cloudflare One share the Cloudflare Zero Trust dashboard with unified policy. Network-level routing and identity-based access are in the same console but use different policy paradigms." },
+            "zscaler":    { "score": 3, "note": "ZIA and ZPA share the ZIA admin portal for policy coordination, but there is no native SD-WAN product. SSE convergence in the traditional sense does not apply; Zscaler partners with third-party SD-WAN vendors." },
+            "aryaka":     { "score": 3, "note": "Aryaka SASE bundles SSE (co-packaged with PA Prisma Access or Aryaka-native SSE) with SD-WAN in one managed service contract. Policy coordination between SD-WAN and SSE is handled by Aryaka's NOC rather than a native single-pass engine — functionally converged via managed ops, not architecturally single-pass." },
+            "graphiant":  { "score": 1, "note": "Graphiant has no SSE capability. Security is explicitly out of scope — organizations must bring their own SSE via service chaining at the Graphiant edge node. Not applicable by design." }
+          }
+        },
+        {
+          "id": "5g_failover",
+          "label": "LTE/5G Failover",
+          "weight": "medium",
+          "scale": "1=No cellular · 3=Cellular via third-party modem · 5=Native 5G integration, <10s failover, usage controls",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma SD-WAN ION devices include integrated LTE (select models) and support 5G via external USB/PCIe modem. Failover time is sub-10 seconds. Usage controls are configurable in SCM." },
+            "cato":       { "score": 5, "note": "Cato Socket appliances include native LTE/5G integration (select models) with sub-10-second failover. SIM usage controls, carrier selection, and cellular link quality monitoring are native in CMA." },
+            "netskope":   { "score": 3, "note": "Netskope NSG supports LTE failover via integrated or external modems. 5G integration is in development. Failover functionality is available but cellular management depth is less mature than Cato." },
+            "cloudflare": { "score": 1, "note": "No CPE hardware product — LTE/5G failover at the branch level is not a Cloudflare Magic WAN capability. Customer-side router handles cellular." },
+            "zscaler":    { "score": 1, "note": "Not applicable — no SD-WAN CPE product. Cellular failover at the branch is the responsibility of the customer's networking hardware." },
+            "aryaka":     { "score": 3, "note": "Aryaka SmartEdge appliances support LTE failover via integrated or USB-attached modems. 5G integration is in development. Failover is managed by Aryaka's NOC; carrier selection and usage controls are part of the managed service." },
+            "graphiant":  { "score": 1, "note": "No CPE appliance product — LTE/5G failover at the branch is the responsibility of the customer's existing router hardware. Not applicable to Graphiant's NaaS model." }
+          }
+        },
+        {
+          "id": "wan_optimization",
+          "label": "WAN Optimization",
+          "weight": "medium",
+          "scale": "1=None · 3=TCP acceleration only · 5=FEC, packet duplication, deduplication for lossy/constrained links",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma SD-WAN provides TCP optimization, forward error correction (FEC), and packet duplication for lossy links. Deduplication is available for data-intensive traffic patterns." },
+            "cato":       { "score": 5, "note": "Cato's WAN optimization includes TCP acceleration, FEC, packet duplication, deduplication, and per-flow QoS across the private backbone. Optimization is applied both at the edge (Socket) and within the Cato backbone." },
+            "netskope":   { "score": 3, "note": "Netskope NSG provides TCP-level optimization and basic WAN acceleration. FEC and deep packet deduplication are in development. WAN optimization is not a feature area of focus for Netskope's SD-WAN." },
+            "cloudflare": { "score": 2, "note": "Magic WAN benefits from Argo Smart Routing which reduces RTT via optimal path selection. No branch-level FEC, packet duplication, or deduplication — these require CPE hardware that Cloudflare does not supply." },
+            "zscaler":    { "score": 1, "note": "No WAN optimization capability. Zscaler does not supply branch connectivity hardware or perform WAN transport optimization." },
+            "aryaka":     { "score": 5, "note": "WAN optimization is a core Aryaka backbone design objective: FEC, packet deduplication, TCP acceleration, and per-flow QoS are all built into SmartConnect. Optimization is applied both at the SmartEdge appliance and within the Aryaka backbone — directly competitive with Cato on this criterion." },
+            "graphiant":  { "score": 3, "note": "Graphiant provides network-level routing optimization within its fabric (avoiding congested internet segments) but does not perform appliance-layer FEC, packet deduplication, or TCP optimization. WAN optimization is lower priority for the tunnel-free NaaS architecture." }
+          }
+        }
+      ]
+    },
+
+    "aiops": {
+      "label": "AIOps & Autonomous Operations",
+      "description": "Using GenAI and ML to reduce operational burden and accelerate threat response",
+      "criteria": [
+        {
+          "id": "ueba",
+          "label": "UEBA / Behavioral Analytics",
+          "weight": "critical",
+          "scale": "1=No UEBA · 3=Rule-based anomaly detection · 5=ML UEBA, multi-dimensional baselines, automated risk escalation",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Cortex XDR (integrated with Prisma Access) delivers ML-based UEBA with peer-group baselining, multi-dimensional behavioral scoring, and automated incident creation on anomaly. Tight Prisma Access + Cortex integration makes this a leading SSE + UEBA story." },
+            "cato":       { "score": 4, "note": "Cato XDR includes UEBA with ML-based user behavior baselining and automated risk escalation. As an integrated component of the Cato SASE platform, UEBA signals are co-correlated with network events — strong for a single-vendor stack." },
+            "netskope":   { "score": 4, "note": "Netskope UEBA provides ML-based user risk scoring, insider threat detection, and automated policy response. Tight integration with DLP events gives UEBA strong data movement context." },
+            "cloudflare": { "score": 2, "note": "Cloudflare does not currently offer a mature UEBA solution. Basic anomaly detection is available in Cloudflare One logs; structured ML-based user behavior analytics with automated risk escalation is not a current product capability." },
+            "zscaler":    { "score": 5, "note": "Zscaler UEBA (via ZIA + ZPA telemetry) provides ML behavioral analytics with risk scoring per user. Tight integration with ZDX adds network-path context to user behavior. Strong autonomous risk escalation workflow." },
+            "aryaka":     { "score": 3, "note": "Aryaka's NOC/SOC uses ML-based anomaly detection and behavioral analytics internally to manage the network proactively, but this is an operator-facing capability, not a customer-facing UEBA console. Customer-accessible UEBA dashboards are limited; the AIOps value is in managed ops outcomes, not self-service analytics." }
+          }
+        },
+        {
+          "id": "genai_policy",
+          "label": "GenAI Policy Authoring",
+          "weight": "high",
+          "scale": "1=None · 3=Template-based policy wizard · 5=Natural language to policy with simulation preview",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "SCM's Strata Copilot allows natural language policy authoring with simulation preview before commit. AI-powered policy gap analysis, optimization recommendations, and change explanations are available." },
+            "cato":       { "score": 4, "note": "Cato's AI Assistant (CMA) supports natural language queries for policy status, anomaly explanations, and policy suggestions. Direct natural language to committed policy with simulation preview is in active development but not fully GA." },
+            "netskope":   { "score": 3, "note": "Netskope provides policy templates and a guided wizard for common use cases. AI-driven natural language policy authoring is in preview; current tooling is template-based rather than conversational." },
+            "cloudflare": { "score": 3, "note": "Cloudflare Zero Trust provides policy templates and a step-by-step wizard for common policies. AI-assisted natural language policy authoring is not currently available." },
+            "zscaler":    { "score": 4, "note": "Zscaler's AI-powered admin features in ZIA/ZPA include policy recommendations based on observed traffic and natural language query of logs. Full natural language to committed policy with simulation is in roadmap stage." },
+            "aryaka":     { "score": null, "note": "Not applicable — Aryaka does not expose a customer-facing policy authoring interface; policy is authored and managed by Aryaka's NOC on the customer's behalf. GenAI policy authoring as a customer self-service capability is outside the managed SASE model." }
+          }
+        },
+        {
+          "id": "path_optimization",
+          "label": "Autonomous Path Optimization",
+          "weight": "high",
+          "scale": "1=Manual path management · 3=Reactive ML steering · 5=Predictive rerouting 30-90s before SLA breach",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma SD-WAN uses ML-based path analytics with proactive rerouting based on predicted link degradation. ADEM provides the telemetry data feeding path decisions. Predictive window is 30-60s in documented performance benchmarks." },
+            "cato":       { "score": 5, "note": "Cato's autonomous path optimization continuously evaluates link quality for all WAN paths and predictively steers traffic before SLA degradation. The private backbone gives Cato full-path visibility for predictive decisions that ISP-dependent vendors cannot achieve." },
+            "netskope":   { "score": 3, "note": "Netskope NSG provides reactive path steering based on real-time link quality measurement. Predictive path optimization drawing on historical ML baselines is developing; current optimization is primarily reactive." },
+            "cloudflare": { "score": 3, "note": "Argo Smart Routing provides real-time optimal path selection across Cloudflare's network. Predictive rerouting ahead of SLA breach is not a documented Magic WAN capability; steering is reactive to observed conditions." },
+            "zscaler":    { "score": 3, "note": "ZDX provides path visibility but Zscaler does not control WAN transport infrastructure. Path optimization is advisory (recommendations to network team) rather than autonomous." },
+            "aryaka":     { "score": 5, "note": "Aryaka's NOC performs autonomous path optimization across the SmartConnect backbone — proactive rerouting before SLA breach is a managed service commitment, not a customer-configured capability. Full backbone visibility enables predictive decisions that self-operated SD-WAN vendors cannot match without dedicated NOC staff." }
+          }
+        },
+        {
+          "id": "rca",
+          "label": "Root Cause Analysis (RCA)",
+          "weight": "high",
+          "scale": "1=No automated RCA · 3=Hop-by-hop visibility · 5=Automated ISP/PoP fault attribution, <60s diagnosis",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "ADEM provides automated RCA with hop-by-hop path analysis from endpoint to application. ISP fault attribution is available. AI-driven incident explanation in SCM summarizes probable root cause within 60 seconds in most scenarios." },
+            "cato":       { "score": 4, "note": "Cato's XDR and DEM capabilities provide automated RCA for both network and security incidents. Full-path visibility (Cato controls the backbone) gives Cato more complete RCA data than ISP-dependent vendors." },
+            "netskope":   { "score": 3, "note": "Netskope DEM provides hop-level path visibility for endpoint-to-app paths. Automated RCA with ISP fault attribution is available for covered paths; synthesis of network + security event context is less mature than PA or Zscaler." },
+            "cloudflare": { "score": 3, "note": "Cloudflare's network analytics and DEM tools provide visibility into path quality and PoP health. Automated RCA with sub-60-second diagnosis is not consistently documented for branch-to-app scenarios." },
+            "zscaler":    { "score": 5, "note": "ZDX's automated RCA is best-in-class: per-session hop analysis, ISP fault attribution, device health correlation, and <60s diagnosis for user-reported issues. Single-click RCA from a ticket to identified fault location is a core ZDX selling point." },
+            "aryaka":     { "score": 5, "note": "Aryaka's NOC initiates RCA proactively — Aryaka engineers contact customers when issues are detected before users report them. Full-path visibility across the SmartConnect backbone means Aryaka can attribute faults to specific backbone segments, last-mile links, or ISP hops. No other vendor in this comparison offers proactive NOC-initiated RCA as a standard service." }
+          }
+        },
+        {
+          "id": "event_correlation",
+          "label": "Cross-Product Event Correlation",
+          "weight": "high",
+          "scale": "1=Siloed logs per product · 3=Unified log view · 5=ML incident grouping across all pillars, auto-enrichment",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Cortex XDR correlates events across Prisma Access, NGFW, endpoint (XDR agent), and cloud security into unified incidents with MITRE ATT&CK mapping, auto-enrichment, and ML threat scoring. Best-in-class cross-product correlation in the industry." },
+            "cato":       { "score": 4, "note": "Cato XDR provides cross-pillar incident correlation within the Cato SASE platform — network, endpoint (if Cato EDR deployed), and SASE events are co-correlated. Narrower product estate than PA but a very clean single-vendor story." },
+            "netskope":   { "score": 4, "note": "Netskope Intelligent SSE correlates DLP, CASB, UEBA, and threat events across the Netskope platform. Cross-correlation with non-Netskope endpoint telemetry requires SIEM integration; within-platform correlation is strong." },
+            "cloudflare": { "score": 3, "note": "Cloudflare One dashboard provides a unified view of Gateway, Access, and CASB events. ML-driven incident grouping across pillars is in development; current correlation is primarily log aggregation with manual analyst-driven triage." },
+            "zscaler":    { "score": 4, "note": "Zscaler's Unified Platform dashboard correlates ZIA, ZPA, and ZDX events. AI-powered incident grouping surfaces threat chains across products. Cross-product correlation with non-Zscaler endpoint data requires SIEM/SOAR integration." },
+            "aryaka":     { "score": 3, "note": "Aryaka's NOC correlates SD-WAN, SSE, and connectivity events internally across the managed platform. Customer-facing cross-product event correlation dashboards are basic; advanced correlation occurs within Aryaka's NOC tooling rather than a self-service console the customer operates." }
+          }
+        },
+        {
+          "id": "siem_soar",
+          "label": "SIEM/SOAR Integration",
+          "weight": "medium",
+          "scale": "1=Manual log export only · 3=One-way connector to major SIEMs · 5=Bidirectional native connectors, playbook triggers",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Cortex XSOAR (Palo Alto's native SOAR) integrates bidirectionally with Prisma Access and 1,000+ third-party connectors. SCM can trigger playbooks on security events. Native Sentinel, Splunk, and QRadar connectors ship with the platform." },
+            "cato":       { "score": 4, "note": "Cato provides native SIEM integrations (Splunk, Sentinel, QRadar, Google Chronicle) via streaming API and syslog. Bidirectional playbook triggers require custom SOAR integration; native XSOAR-equivalent is not available." },
+            "netskope":   { "score": 4, "note": "Netskope ships native connectors for Splunk, Microsoft Sentinel, IBM QRadar, and others. SOAR playbook triggers via webhook and Splunk SOAR connector are supported. Bidirectional enrichment requires custom integration work." },
+            "cloudflare": { "score": 3, "note": "Cloudflare One logs export to SIEM via Logpush (streaming to Splunk, Datadog, S3, etc.). SOAR integration requires custom webhook configuration; no native bidirectional SOAR connectors ship out-of-box." },
+            "zscaler":    { "score": 4, "note": "ZIA/ZPA ship with native Splunk, Sentinel, and QRadar connectors. Streaming log export via Nanolog Streaming Service (NSS) is the standard integration method. Bidirectional SOAR playbook triggering requires partner SOAR configuration." },
+            "aryaka":     { "score": 3, "note": "Aryaka supports log export to major SIEMs (Splunk, Sentinel) via syslog and API. Bidirectional SOAR integration requires custom configuration; no native SOAR playbook connectors ship out-of-box. SIEM integration is available but is not a primary Aryaka differentiator — the managed NOC/SOC is the operational model, not self-service SOAR." }
+          }
+        }
+      ]
+    },
+
+    "sovereignty": {
+      "label": "Sovereignty-by-Design",
+      "description": "Data residency, PoP-level localization, and regulatory compliance in 2026",
+      "criteria": [
+        {
+          "id": "regional_isolation",
+          "label": "Regional Data Plane Isolation",
+          "weight": "critical",
+          "scale": "1=No residency controls · 3=Tenant-level isolation · 5=PoP-level isolation, no cross-region metadata replication, auditable",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma Access supports regional data plane pinning — tenants can restrict processing to specified regions (e.g., EU-only). Cross-region metadata replication controls are available but require explicit configuration; not isolation-by-default." },
+            "cato":       { "score": 3, "note": "Cato supports regional data residency options for log storage and some processing components. Full PoP-level isolation with auditable metadata boundaries is not yet a shipped capability; data plane processing may traverse multiple PoPs." },
+            "netskope":   { "score": 5, "note": "Netskope NewEdge supports PoP-level tenant isolation — each tenant's traffic can be restricted to a specific geographic region with contractual prohibitions on cross-region metadata replication. Auditable via compliance dashboards. Sovereignty-by-design is a Netskope design center." },
+            "cloudflare": { "score": 4, "note": "Cloudflare Regional Services and Data Localization Suite allow customers to restrict data processing to specific regions (EU, US, etc.). Cross-region metadata replication is contractually controlled. Strong regulatory posture for GDPR." },
+            "zscaler":    { "score": 4, "note": "Zscaler supports data residency controls via regional cloud selection and Private Cloud options. Metadata processing isolation is available via Zscaler Private Cloud (ZPC) and specific contractual commitments for regulated industries." }
+          }
+        },
+        {
+          "id": "sovereign_pop",
+          "label": "Sovereign Cloud PoP Options",
+          "weight": "critical",
+          "scale": "1=US/EU regions only · 3=Major regulated markets · 5=All regulated markets + private/dedicated PoP option",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma Access is available in US, EU, Asia-Pacific, and key regulated markets (Saudi Arabia, UAE, India). Dedicated tenant cloud deployments are available for FedRAMP and specific regulated verticals." },
+            "cato":       { "score": 3, "note": "Cato has PoPs in most major markets but dedicated sovereign or private PoP options are limited compared to larger vendors. Key regulated markets in Middle East and APAC are covered; private PoP deployment requires a custom engagement." },
+            "netskope":   { "score": 5, "note": "Netskope's NewEdge network covers all major regulated markets including EU, US GovCloud, Australia, Japan, UAE, India, and Brazil with dedicated sovereign PoP options for each. Private/dedicated PoP deployments are available for large regulated enterprises." },
+            "cloudflare": { "score": 4, "note": "Cloudflare's 330+ PoP network covers nearly every regulated market globally. Cloudflare for Government and EU-specific data localization are available. Dedicated private PoP options are more limited compared to Netskope." },
+            "zscaler":    { "score": 4, "note": "Zscaler has ZEN nodes in all major regulated markets and offers Zscaler Private Cloud (ZPC) for highly regulated customers requiring dedicated infrastructure. FedRAMP authorized. UAE, India, and APAC regulated markets are covered." }
+          }
+        },
+        {
+          "id": "certifications",
+          "label": "Regulatory Certifications",
+          "weight": "high",
+          "scale": "1=SOC2 only · 3=SOC2 + ISO27001 + one regional cert · 5=SOC2, ISO27001, FedRAMP, C5, IRAP, CSA STAR — current",
+          "scores": {
+            "palo_alto":  { "score": 5, "note": "Prisma Access holds SOC2 Type II, ISO 27001, FedRAMP Moderate (Prisma Access for Government), BSI C5 (Germany), IRAP (Australia), CSA STAR Level 2, and StateRAMP. Broadest certification portfolio in the Big Five." },
+            "cato":       { "score": 3, "note": "Cato holds SOC2 Type II and ISO 27001. FedRAMP authorization is not achieved. BSI C5 and IRAP are not currently certified. Notable certification gap versus PA and Zscaler for government/regulated markets." },
+            "netskope":   { "score": 5, "note": "Netskope holds SOC2 Type II, ISO 27001, FedRAMP High (NewEdge), BSI C5, IRAP (Protected), CSA STAR Level 2, and multiple financial services certifications. Strongest FedRAMP posture (High vs. others' Moderate)." },
+            "cloudflare": { "score": 5, "note": "Cloudflare holds SOC2 Type II, ISO 27001, FedRAMP Moderate (Cloudflare for Teams), BSI C5, IRAP, CSA STAR, and HIPAA BAA. Broad certification coverage reflecting Cloudflare's global infrastructure maturity." },
+            "zscaler":    { "score": 5, "note": "Zscaler holds SOC2 Type II, ISO 27001, FedRAMP High (ZIA + ZPA for Government), BSI C5, IRAP, CSA STAR Level 2, and PCI DSS. Strongest FedRAMP posture alongside Netskope." }
+          }
+        },
+        {
+          "id": "customer_encryption",
+          "label": "Customer-Controlled Encryption Keys",
+          "weight": "high",
+          "scale": "1=Vendor-managed only · 3=BYOK available · 5=BYOK + HYOK + on-demand key rotation + audit trail",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Prisma Access supports BYOK via integration with customer HSMs for data at rest. HYOK where the vendor cannot decrypt is available in select deployment models. Key rotation and audit trail are supported." },
+            "cato":       { "score": 2, "note": "Cato uses Cato-managed encryption for all data at rest and in transit. BYOK is not currently a generally available capability. This is a notable gap for regulated industries requiring customer-controlled key management." },
+            "netskope":   { "score": 5, "note": "Netskope supports BYOK and HYOK (via external key management with AWS KMS, Azure Key Vault, and HSM integration), on-demand key rotation, and a full key management audit trail. Best-in-class encryption key sovereignty." },
+            "cloudflare": { "score": 4, "note": "Cloudflare supports Keyless SSL and BYOK for data-at-rest encryption in Cloudflare R2 and Zero Trust. HYOK is not fully available for all Zero Trust components. Key rotation and audit logging are standard Cloudflare capabilities." },
+            "zscaler":    { "score": 4, "note": "Zscaler supports BYOK for data-at-rest encryption of log data and configuration via integration with HSMs. HYOK is available in Private Cloud deployments. Key rotation with audit trail is available in ZIA for regulated customers." }
+          }
+        },
+        {
+          "id": "log_residency",
+          "label": "Log Residency Controls",
+          "weight": "high",
+          "scale": "1=No log residency control · 3=Regional log storage option · 5=Granular per-tenant, per-log-type residency controls",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Cortex Data Lake and Prisma Access support regional log storage with EU, US, and APAC options. Per-log-type residency controls are available in SCM. Cross-region log replication can be disabled per tenant." },
+            "cato":       { "score": 3, "note": "Cato supports regional log storage choices (EU vs. US data centers). Per-log-type granular residency controls are more limited than Netskope or Zscaler; regulatory compliance customers may require additional contractual commitments." },
+            "netskope":   { "score": 5, "note": "Netskope provides granular per-tenant log residency controls — customers can specify storage region per log type (web, CASB, DLP, ZTNA). Audit evidence of log residency is available in the Netskope console for compliance demonstrations." },
+            "cloudflare": { "score": 4, "note": "Cloudflare Logpush allows customers to route logs to customer-controlled storage in their preferred region. Regional Logpush destinations provide good log residency control, though per-log-type granularity requires multiple Logpush jobs." },
+            "zscaler":    { "score": 4, "note": "ZIA/ZPA log data residency is configurable by region (US, EU, APAC) for tenants. Zscaler Private Cloud allows fully dedicated log infrastructure in a customer-specified location. Per-log-type residency selection is available in regulated configurations." }
+          }
+        },
+        {
+          "id": "ml_data_isolation",
+          "label": "AI/ML Training Data Isolation",
+          "weight": "medium",
+          "scale": "1=No opt-out available · 3=Contractual opt-out · 5=Contractual prohibition + audit evidence available",
+          "scores": {
+            "palo_alto":  { "score": 4, "note": "Palo Alto contractually commits that customer security telemetry is not used to train shared AI models without consent. Prisma Access Enterprise agreements include ML data isolation clauses with audit rights." },
+            "cato":       { "score": 4, "note": "Cato contractually prohibits use of customer traffic data for training shared ML models without opt-in consent. Audit evidence of model training data isolation is available on request for enterprise customers." },
+            "netskope":   { "score": 5, "note": "Netskope provides contractual prohibition of customer data use for ML training, with audit evidence (SOC2 controls) documenting the isolation controls. Data submitted for DLP classification is explicitly excluded from shared model training." },
+            "cloudflare": { "score": 4, "note": "Cloudflare contractually commits that customer data processed through Cloudflare One is not used to train AI/ML models. Audit documentation is available. Strong privacy-by-design ethos consistent with published Privacy Policy commitments." },
+            "zscaler":    { "score": 4, "note": "Zscaler's customer agreements include ML training data isolation commitments. Audit evidence is available in the ZIA Trust Center. Customer traffic is not used for cross-customer ML model training without explicit opt-in." }
+          }
+        }
+      ]
+    }
+
+  }
+}

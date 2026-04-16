@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SASE Component Benchmark 2026 — Edge Solutions</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/toc.css">
+</head>
+<body class="has-toc">
+
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">PHASE I</span>
+      <span class="edge-pill edge-pill--secondary">BENCHMARK</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <h1 class="edge-header__title">SASE Component Benchmark 2026</h1>
+  <p class="edge-header__subtitle">Defining Best-in-Class for ZTNA, SSE, SD-WAN, AIOps &amp; Sovereignty · Research Series · Q2 2026</p>
+</header>
+<nav class="doc-nav">
+  <a href="sase_phase1_benchmark.html" class="active">Phase I: Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2a_ztna.html">II-A: ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2b_sse.html">II-B: SSE</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2c_sdwan.html">II-C: SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2d_aiops.html">II-D: AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2e_sovereignty.html">II-E: Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase2f_emerging.html">II-F: Emerging</a><span class="doc-nav__sep">›</span>
+  <a href="sase_phase3_scorecard.html">Phase III: Scorecard</a>
+</nav>
+<div class="page-body">
+<main>
+<section class="edge-section">
+  <span class="edge-pill">BLUF</span>
+  <h2 class="section-heading" style="margin-top:10px;">Bottom Line Up Front</h2>
+  <div class="edge-callout">
+    <div class="edge-callout__accent"></div>
+    <div>
+      <strong>What this document is:</strong> The evaluation rubric for the Edge Solutions SASE Vendor Research Series. It defines what "best-in-class" looks like across five pillars — ZTNA, SSE (SWG / CASB / FWaaS / DLP / SSL / RBI / GenAI), SD-WAN, AIOps, and Sovereignty-by-Design — before any vendor is scored. Every vendor deep dive in Phase II will be measured against these criteria. Read this first; reference it throughout.
+    </div>
+  </div>
+  <div class="edge-grid-4 mt-20">
+    <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
+      <div class="edge-stat__number">5</div>
+      <div class="edge-stat__label">EVALUATION PILLARS</div>
+    </div>
+    <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
+      <div class="edge-stat__number">36</div>
+      <div class="edge-stat__label">SCORED CRITERIA</div>
+    </div>
+    <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
+      <div class="edge-stat__number">8</div>
+      <div class="edge-stat__label">VENDORS IN SCOPE</div>
+    </div>
+    <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
+      <div class="edge-stat__number">3</div>
+      <div class="edge-stat__label">BUYER PERSONAS</div>
+    </div>
+  </div>
+</section>
+
+<div id="framing" class="pillar-hero">
+  <div class="pillar-hero__icon">🏗</div>
+  <div>
+    <div class="pillar-hero__title">Architectural Framing</div>
+    <div class="pillar-hero__sub">Understanding Single-Pass vs. Stitched SASE before evaluating any vendor</div>
+  </div>
+</div>
+
+<section class="edge-section">
+  <h2 class="section-heading">The Most Important Architectural Decision in SASE</h2>
+  <p>Before comparing vendors on features, buyers need to understand the single most consequential architectural split in the market: <strong>Single-Pass vs. Stitched (Multi-Engine) SASE</strong>. Every vendor's strengths and weaknesses flow from which side of this divide they sit on.</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">SINGLE-PASS</span>
+        <h3 class="edge-card__title">Native / Converged Architecture</h3>
+        <p>Traffic is inspected <strong>once</strong> by a unified policy engine that applies SWG, CASB, ZTNA, FWaaS, and DLP checks simultaneously. Security and networking logic share the same data plane.</p>
+        <ul class="check-list" style="margin-top:12px;">
+          <li>Lower latency — no chaining of proxy hops</li>
+          <li>Consistent policy — one rule set, no gaps between engines</li>
+          <li>Simpler operations — single console, single data model</li>
+          <li>Better DLP — full context is available in one pass</li>
+        </ul>
+        <div class="tag-row" style="margin-top:12px;">
+          <span class="tag">Cato Networks</span>
+          <span class="tag">Netskope (NewEdge)</span>
+          <span class="tag">Zscaler (ZIA/ZPA)</span>
+        </div>
+      </div>
+    </div>
+    <div class="edge-card edge-card--supplemental">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill edge-pill--secondary">STITCHED</span>
+        <h3 class="edge-card__title">Integrated / Multi-Engine Architecture</h3>
+        <p>Capabilities are bolted together from acquired products or partner integrations. Traffic may traverse multiple engines, each adding latency and creating potential for policy inconsistency.</p>
+        <ul class="warn-list" style="margin-top:12px;">
+          <li>Higher latency — multiple inspection hops</li>
+          <li>Policy gaps at integration seams</li>
+          <li>Heavier operational overhead</li>
+          <li>Often superior depth in individual components</li>
+        </ul>
+        <div class="tag-row" style="margin-top:12px;">
+          <span class="tag">Palo Alto (Prisma + SCM)</span>
+          <span class="tag">Cisco (SASE)</span>
+          <span class="tag">Fortinet (FortiSASE)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="edge-callout mt-20">
+    <div class="edge-callout__accent"></div>
+    <div>
+      <strong>Single-Pass vs Stitched:</strong> Imagine a security checkpoint at an airport. Single-Pass is one officer who checks your ID, your bag, and your boarding pass simultaneously. Stitched is three separate lines — ID check, then bag scan, then boarding pass — each with its own queue. You get to the gate either way, but the single officer is faster and has the full picture. The tradeoff: that one officer needs to be very good at all three jobs.
+    </div>
+  </div>
+  <h3 class="sub-heading mt-32">Why This Matters for the Benchmark</h3>
+  <p>Stitched vendors can still score highly — especially where deep per-component capability matters (e.g., Palo Alto's threat prevention depth). But single-pass vendors will score better on <strong>operational simplicity</strong>, <strong>DLP accuracy</strong>, and <strong>latency SLAs</strong>. This document scores both dimensions explicitly so buyers can weight them according to their own priorities.</p>
+</section>
+
+<div id="ztna" class="pillar-hero">
+  <div class="pillar-hero__icon">🔐</div>
+  <div>
+    <div class="pillar-hero__title">Pillar 1 — Remote Access / ZTNA</div>
+    <div class="pillar-hero__sub">Replacing legacy VPN with identity-based, per-application, continuous-trust access</div>
+  </div>
+</div>
+
+<section class="edge-section">
+  <h2 class="section-heading">What ZTNA Is (and Isn't)</h2>
+  <p>Legacy VPN grants <em>network access</em> — once authenticated, a user can reach anything on the subnet. ZTNA grants <em>application access</em> — the user is authorized to a specific app, on a specific device, in a specific context, for a specific session. Trust is never implicit; it is continuously re-evaluated.</p>
+  <p>ZTNA is built on ten operating principles (see source materials), but for benchmarking purposes, five are differentiating in 2026:</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="criterion-block">
+      <div class="criterion-block__label">1. Device Posture Assessment</div>
+      <p>Does the solution check device health (OS patch level, EDR status, certificate presence, disk encryption) at connection time <em>and</em> continuously throughout the session? Best-in-class solutions integrate with major EDR platforms (CrowdStrike, SentinelOne, Microsoft Defender) to pull real-time posture signals — not just a one-time snapshot at login.</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">2. App-Level Micro-Segmentation</div>
+      <p>Can access policies be enforced at the individual application or API endpoint level — not just at the network segment level? Best-in-class solutions support private app connectors that publish apps without requiring inbound firewall rules, making the app invisible to the internet entirely.</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">3. Global Latency &amp; PoP Distribution</div>
+      <p>ZTNA is only viable as a VPN replacement if latency is competitive. Best-in-class requires <strong>&lt;150ms RTT for 95% of global users</strong> to the nearest PoP, a private backbone (not hairpin via public internet), and active/active PoP failover with sub-5-second reconvergence.</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">4. Agentless / Browser-Based Access</div>
+      <p>For contractors, BYOD users, and VDI reduction, best-in-class solutions provide browser-isolated access that delivers a published app without installing a client. This is now a table-stakes capability in 2026; the differentiator is how well it handles thick-client apps (RDP, SSH, thick ERP).</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">5. Enterprise Browser</div>
+      <p>A managed, policy-enforced browser deployed as the primary access vehicle — distinct from agentless RBI. Enterprise browsers (Island, Talon/Palo Alto, Chrome Enterprise) enforce DLP, ZTNA policy, and data controls at the browser layer itself, eliminating the need for network-side inspection for managed devices. In 2026 this is an emerging but fast-moving category: some SASE vendors are building native enterprise browser capability, others are partnering, and some have no answer. It matters because it changes the architecture conversation — a well-deployed enterprise browser can reduce the scope of what the SASE proxy needs to inspect.</p>
+    </div>
+  </div>
+  <h3 class="sub-heading mt-32">ZTNA Best-in-Class Criteria Table</h3>
+  <table class="edge-table">
+    <thead>
+      <tr>
+        <th class="edge-table__label-col">Criterion</th>
+        <th class="edge-table__primary-col">Best-in-Class Standard (2026)</th>
+        <th class="edge-table__detail-col">Why It Matters</th>
+        <th class="edge-table__note-col">Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Device Posture (Continuous)</strong></td>
+        <td>Real-time EDR integration; session termination on posture failure; checks every 60s or on behavior trigger</td>
+        <td>Static posture checks are defeated by post-auth compromise. Continuous validation is the Zero Trust baseline.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Identity Integration</strong></td>
+        <td>Native SAML/OIDC; MFA enforcement at policy level; support for Okta, Azure AD, Ping; conditional access on user risk score</td>
+        <td>ZTNA without strong IdP integration is just a better VPN. Identity is the new perimeter.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Per-App Micro-Segmentation</strong></td>
+        <td>Connector-based app publishing; no inbound firewall rules required; policy at app/API layer, not subnet</td>
+        <td>Lateral movement after breach requires network-level access. App-level segmentation eliminates the attack surface.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Global PoP Latency</strong></td>
+        <td>&lt;150ms RTT for 95th percentile global users; private backbone preferred over public internet routing</td>
+        <td>User adoption fails if ZTNA is slower than VPN. Latency is the #1 rejection reason in ZTNA rollouts.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Agentless Access</strong></td>
+        <td>Browser-isolated access for web apps; SSH/RDP proxy for thick clients; no client install required for BYOD/contractors</td>
+        <td>Unmanaged devices represent the majority of contractor and partner access scenarios.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Enterprise Browser Integration</strong></td>
+        <td>Native enterprise browser capability or validated partner integration (Island, Chrome Enterprise); DLP and ZTNA policy enforced at the browser layer; vendor roadmap clarity on this category</td>
+        <td>Enterprise browsers shift security enforcement to the endpoint layer, reducing proxy inspection scope and improving user experience for managed devices. Vendors without a story here are architecturally behind for managed-device deployments.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Client OS Coverage</strong></td>
+        <td>Windows, macOS, iOS, Android, ChromeOS, Linux — all with feature parity on posture and policy enforcement</td>
+        <td>Feature gaps on non-Windows platforms are common and expose the weakest-link vulnerability.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Digital Experience Monitoring</strong></td>
+        <td>Per-session latency, packet loss, jitter reporting; end-to-end path visibility from client to app; proactive alerting</td>
+        <td>Helpdesk teams cannot troubleshoot ZTNA degradation without per-hop visibility. DEM is now a ZTNA feature, not optional.</td>
+        <td><span class="score-badge score-medium">MEDIUM</span></td>
+      </tr>
+      <tr>
+        <td><strong>Legacy App Support</strong></td>
+        <td>Non-web (UDP, non-HTTP) protocol support; compatibility with legacy on-prem apps without refactoring</td>
+        <td>Most enterprises have non-HTTP apps that ZTNA must support to complete the VPN replacement.</td>
+        <td><span class="score-badge score-medium">MEDIUM</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div id="sse" class="pillar-hero">
+  <div class="pillar-hero__icon">🛡</div>
+  <div>
+    <div class="pillar-hero__title">Pillar 2 — Security Service Edge (SSE)</div>
+    <div class="pillar-hero__sub">Converging SWG, CASB, FWaaS, DLP, SSL Decryption, RBI, and AI/GenAI Protection into a unified cloud security stack</div>
+  </div>
+</div>
+
+<section class="edge-section">
+  <h2 class="section-heading">SSE: Seven Technologies, One Architecture Problem</h2>
+  <p>SSE is the security half of SASE. It consolidates historically separate security products — SWG, CASB, FWaaS, DLP, and SSL/TLS decryption — into a cloud-delivered service. The consolidation only delivers value if all components share a <strong>unified policy engine and data store</strong>; otherwise it is a billing bundle, not an architecture.</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">SWG</span>
+        <h3 class="edge-card__title">Secure Web Gateway</h3>
+        <p>Inspects all web and internet traffic. Best-in-class in 2026 goes well beyond URL filtering:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li>Inline TLS 1.3 decryption at scale without latency penalty</li>
+          <li>AI-categorized URL/content classification (not just static databases)</li>
+          <li>Remote Browser Isolation (RBI) for risky or uncategorized sites</li>
+          <li>DNS security integrated (not bolted on)</li>
+          <li>Zero-day malware sandboxing with &lt;30s verdict time</li>
+        </ul>
+      </div>
+    </div>
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">CASB</span>
+        <h3 class="edge-card__title">Cloud Access Security Broker</h3>
+        <p>Governs access to sanctioned and unsanctioned SaaS. Key differentiation:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li>Inline + API-based dual mode (inline for real-time, API for historical scan)</li>
+          <li>Shadow IT discovery with business risk scoring</li>
+          <li>Granular SaaS control (e.g., allow Google Drive upload but block external share)</li>
+          <li>Tenant-to-tenant controls (block personal Google to corporate Google data movement)</li>
+          <li>App-to-app OAuth grant visibility</li>
+        </ul>
+      </div>
+    </div>
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">FWaaS</span>
+        <h3 class="edge-card__title">Firewall as a Service</h3>
+        <p>Cloud-native L3–L7 firewall replacing data center perimeter firewalls. Benchmarks:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li>Full L7 application awareness (not just port/protocol)</li>
+          <li>IPS/IDS with real-time threat intelligence updates</li>
+          <li>Egress controls for branch and cloud workloads</li>
+          <li>East-west traffic inspection in cloud environments</li>
+          <li>Policy consistency between branch and remote user (no split policy model)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">DLP</span>
+        <h3 class="edge-card__title">Data Loss Prevention</h3>
+        <p><strong>DLP is the most differentiated capability in SSE in 2026.</strong> Basic DLP uses regex patterns. Best-in-class uses ML:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li>ML-based content classification (not just regex/fingerprint)</li>
+          <li>Exact Data Matching (EDM) for structured PII datasets</li>
+          <li>Optical Character Recognition (OCR) for images and screenshots</li>
+          <li>Document fingerprinting across cloud and endpoint</li>
+          <li>Unified DLP policy across SWG, CASB, and ZTNA (one rule = everywhere)</li>
+          <li>Generative AI data protection — detect prompt injection and LLM data exfil</li>
+        </ul>
+      </div>
+    </div>
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">SSL/TLS</span>
+        <h3 class="edge-card__title">SSL/TLS Decryption</h3>
+        <p>SSL inspection is the prerequisite for almost everything else in SSE. Without it, SWG, DLP, and threat detection are operating blind on the majority of traffic. It deserves treatment as a first-class capability, not a checkbox:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li>Full TLS 1.3 decryption without performance degradation at scale</li>
+          <li>Certificate management — forward proxy CA deployment, pinning bypass for known apps (O365, Salesforce)</li>
+          <li>Policy-based decryption exemptions (banking, healthcare, personal categories) with audit trail</li>
+          <li>Inspection at the PoP — not backhauled to a central engine</li>
+          <li>Visibility into encrypted C2 traffic and malware exfiltration channels</li>
+        </ul>
+        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Key differentiator: Palo Alto (Prisma Access) carries NGFW-grade decryption into the cloud proxy. Vendors with bolt-on SSL inspection often show latency cliffs at scale or incomplete TLS 1.3 support.</p>
+      </div>
+    </div>
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">RBI</span>
+        <h3 class="edge-card__title">Remote Browser Isolation (RBI)</h3>
+        <p>RBI is architecturally distinct from SWG URL filtering — it does not block bad sites, it makes all sites safe by never executing web content on the endpoint. Two rendering models exist in 2026:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li><strong>Pixel-push:</strong> Server fully renders the page and streams a pixel image to the client. Zero DOM, zero JavaScript, zero active content reaches the endpoint. Maximum isolation, some latency overhead.</li>
+          <li><strong>DOM reconstruction:</strong> Server fetches the page, strips dangerous content, and reconstructs a sanitized DOM in the client browser. Lower latency, minor fidelity trade-offs for complex web applications.</li>
+        </ul>
+        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Vendor split: Zscaler (native pixel-push), Cloudflare (native, low-latency), Menlo (RBI-first, not in Big Five), Palo Alto (native DOM isolation), Netskope (native pixel-rendering). Cato: RBI available as add-on. All differ on whether RBI shares a policy engine with SWG — integration depth is the differentiator, not just availability.</p>
+      </div>
+    </div>
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">AI / GENAI</span>
+        <h3 class="edge-card__title">AI/GenAI Data Protection</h3>
+        <p>The fastest-growing SSE requirement in 2026. Employees are pasting PII, source code, M&amp;A details, and regulated data into public LLMs at a rate that outpaces most security policies. Best-in-class goes beyond blocking ChatGPT by category:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li>Inline DLP inspection of LLM prompts <em>and</em> responses — not just app-level block/allow</li>
+          <li>Per-model controls (block code uploads to public models; allow general queries)</li>
+          <li>Real-time user coaching when sensitive content is detected before submission</li>
+          <li>Visibility into 500+ AI tools across the org — shadow AI discovery</li>
+          <li>Prompt injection detection — prevent LLMs from being weaponized against the user</li>
+        </ul>
+        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Vendor split: Netskope leads with content-aware prompt inspection tied to its unified DLP engine. Palo Alto AI Access Security provides inline inspection per AI app. Zscaler enforces at the app category level — meaningful gap for regulated industries.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="edge-callout mt-20">
+    <div class="edge-callout__accent"></div>
+    <div>
+      <strong>DLP Is Not One Thing — Vendor Philosophy Determines Fit:</strong> Each vendor implements DLP from a different design center. There is no universal "best" — the right choice depends on what data problem you are actually solving. The Phase II pillar deep dives will map each vendor's DLP approach to specific use cases.
+    </div>
+  </div>
+  <div class="edge-grid-2 mt-20">
+    <div class="criterion-block">
+      <div class="criterion-block__label">Netskope — Data-Centric by Design</div>
+      <p>DLP is the product's core identity, not a feature layer. ML classification, EDM, OCR, and document fingerprinting share a single data store across inline and API modes. Policy written once applies everywhere — SWG, CASB, and private apps. <strong>Best fit:</strong> Organizations where data visibility and classification accuracy are the primary security requirement (financial services, legal, life sciences).</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">Zscaler — Proxy-Enforced DLP</div>
+      <p>DLP is enforced inline through the ZIA proxy for internet traffic and ZPA for private app access. Strong for web and cloud channel coverage. Architecture note: ZIA and ZPA are distinct products that share policy through integration rather than a native unified engine — worth validating in the Phase II SSE deep dive. <strong>Best fit:</strong> Organizations prioritizing ZTNA architecture and digital experience monitoring where DLP is a compliance requirement rather than a primary differentiator.</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">Palo Alto (Prisma + SCM) — Threat-First DLP</div>
+      <p>DLP capability is broad across the Prisma platform and benefits from WildFire threat intelligence integration. The design philosophy prioritizes threat prevention depth (ML-NGFW, sandboxing) over data classification fidelity. DLP policy is managed through Strata Cloud Manager alongside the broader security estate. <strong>Best fit:</strong> Organizations that need DLP as part of a comprehensive security posture where NGFW-grade threat prevention is the anchor requirement.</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">Cato &amp; Cloudflare — Operational DLP</div>
+      <p>Both vendors provide DLP coverage sufficient for standard compliance requirements (PCI, HIPAA pattern matching, common PII templates). Neither is designed for deep customization or complex data classification workflows. <strong>Best fit:</strong> Organizations where operational simplicity and consolidated networking+security matter more than DLP depth — mid-market, lean IT teams, SaaS-first environments.</p>
+    </div>
+  </div>
+
+  <h3 class="sub-heading mt-32">RBI Architecture — Why Rendering Model Matters</h3>
+  <div class="edge-grid-2" style="margin-bottom:20px;">
+    <div class="criterion-block">
+      <div class="criterion-block__label">Pixel-Push (Server-Side Rendering)</div>
+      <p>The server renders the full page and streams a compressed pixel image to the client. The endpoint receives no DOM, no JavaScript, no active content — only a visual representation. Any zero-day exploit in the page code fires on an isolated cloud container and dies there. Latency cost: 30–80ms typical overhead from pixel encoding and streaming. Use when: high-risk user populations, uncategorized sites, financial services regulatory requirements.</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">DOM Reconstruction (Clientless Rendering)</div>
+      <p>The server fetches the page, strips scripts and active content, and passes a sanitized DOM to the client browser for local rendering. The client renders its own view of the sanitized page. Latency cost: 5–20ms typical overhead — materially lower than pixel-push. Fidelity trade-off: complex JavaScript-heavy applications (SPAs, web apps with heavy client-side logic) may render incorrectly or incompletely. Use when: broad deployment across all web browsing, latency-sensitive users, or as the default RBI posture with pixel-push reserved for highest-risk sites.</p>
+    </div>
+  </div>
+  <div class="edge-callout" style="margin-bottom:20px;">
+    <div class="edge-callout__accent"></div>
+    <div><strong>Integration with SWG Policy Is the Key Differentiator:</strong> Having RBI is table stakes in 2026. Having RBI that shares a policy engine with SWG is not. Best-in-class: a SWG rule that says "isolate all uncategorized sites" automatically routes matching traffic through RBI — no separate policy object, no separate console. In stitched architectures, RBI and SWG are separate products with separate policies that must be manually kept in sync. Gaps in synchronization mean isolation can be bypassed by any category that falls outside the RBI policy scope.</div>
+  </div>
+
+  <h3 class="sub-heading mt-32">SSE Best-in-Class Criteria Table</h3>
+  <table class="edge-table">
+    <thead>
+      <tr>
+        <th class="edge-table__label-col">Criterion</th>
+        <th class="edge-table__primary-col">Best-in-Class Standard (2026)</th>
+        <th class="edge-table__detail-col">Why It Matters</th>
+        <th class="edge-table__note-col">Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Unified DLP Policy Engine</strong></td>
+        <td>Single DLP rule set enforced inline across all channels: web, SaaS, private apps, email, and endpoint</td>
+        <td>Siloed DLP creates policy gaps. A file blocked in SWG must also be blocked in CASB with the same rule.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>ML-Based Data Classification</strong></td>
+        <td>ML classifiers for PII, PHI, PCI, IP — not just regex. OCR for images. EDM for structured data.</td>
+        <td>Regex-only DLP has a 40–60% false-positive rate in real deployments. ML reduces this significantly.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>TLS Inspection at Scale</strong></td>
+        <td>Full TLS 1.3 decryption for &gt;95% of traffic; no performance cliff at scale; certificate pinning bypass for known apps</td>
+        <td>The majority of malware now uses encrypted channels. SWG without TLS inspection is operating largely blind.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>SSL Decryption Architecture</strong></td>
+        <td>Decryption performed at the PoP (not backhauled); policy-based exemptions with audit trail; CA deployment tooling for managed devices; no latency cliff under load</td>
+        <td>Where and how decryption happens is as important as whether it happens. Centralized decryption engines create bottlenecks and single points of failure. PoP-local decryption scales with the user, not the data center.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>CASB — Inline + API Dual Mode</strong></td>
+        <td>Real-time inline control for active sessions + API mode for retrospective data scan of existing cloud storage</td>
+        <td>Inline only misses files already at rest. API only misses live uploads. Both modes are required.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Remote Browser Isolation (RBI)</strong></td>
+        <td>Pixel-rendering or DOM-reconstruction isolation for risky/uncategorized URLs; BYOD isolation without full agent</td>
+        <td>Zero-click browser exploits bypass all URL filtering. RBI eliminates the attack surface for unknown sites.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>AI/GenAI Data Protection</strong></td>
+        <td>Visibility and control over ChatGPT, Copilot, Gemini usage; detect sensitive data in LLM prompts; block exfiltration via AI tools</td>
+        <td>GenAI adoption is outpacing policy. Without inline CASB controls, employees routinely paste PII/IP into public LLMs.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Shadow IT Discovery</strong></td>
+        <td>Automatic discovery and risk scoring of &gt;30,000 cloud apps; one-click block/allow/monitor from discovery view</td>
+        <td>Average enterprise uses 1,000+ cloud apps. Security teams can only manage what they can see.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>IPS Threat Intelligence</strong></td>
+        <td>Threat feeds updated in real time (&lt;1hr); integration with MITRE ATT&amp;CK; cross-customer threat sharing</td>
+        <td>Static threat signatures are defeated within hours of novel malware release.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>FWaaS — App Awareness</strong></td>
+        <td>L7 app identification without relying on port/protocol; supports custom app signatures; evasion-resistant</td>
+        <td>Port-based firewall rules are trivially bypassed by port-hopping malware and non-standard services.</td>
+        <td><span class="score-badge score-medium">MEDIUM</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="edge-callout--warning edge-callout mt-20">
+    <div class="edge-callout__accent" style="background:#D4A017;"></div>
+    <div>
+      <strong>2026 Watch Area — Generative AI Exfiltration:</strong> The fastest-growing DLP gap in 2026 is sensitive data flowing into public LLM prompts. Netskope leads here with inline prompt inspection tied to their unified DLP engine. Zscaler has added GenAI app controls within ZIA, but enforcement is at the application category level rather than content-aware inspection — a meaningful gap for regulated industries. This capability is absent in most stitched or commodity SSE offerings and will be a scored criterion in the Phase II-B SSE deep dive.
+    </div>
+  </div>
+</section>
+
+<div id="sdwan" class="pillar-hero">
+  <div class="pillar-hero__icon">🌐</div>
+  <div>
+    <div class="pillar-hero__title">Pillar 3 — SD-WAN</div>
+    <div class="pillar-hero__sub">Physical and virtual edge connectivity — the "A" in SASE</div>
+  </div>
+</div>
+
+<section class="edge-section">
+  <h2 class="section-heading">SD-WAN: The Network Foundation of SASE</h2>
+  <p>SD-WAN is often undersold as "just routing" in SASE conversations dominated by security. This is a mistake. A vendor's SD-WAN architecture determines WAN performance, branch reliability, and the quality of the middle-mile path between users and cloud workloads. In 2026, the key split is between vendors with <strong>native private backbones</strong> vs. those relying on public internet routing with optimization.</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">THIN EDGE</span>
+        <h3 class="edge-card__title">Cloud-Heavy Architecture</h3>
+        <p>Minimal on-premises hardware. Security, routing, and optimization are handled in the cloud or at the nearest PoP. Best suited for organizations with:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li>Small branches or retail locations</li>
+          <li>Heavy SaaS adoption (M365, Salesforce, Workday)</li>
+          <li>Low tolerance for on-site IT complexity</li>
+          <li>Priority on fast deployment and managed service</li>
+        </ul>
+        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Examples: Cato Socket, Cloudflare One Appliance (formerly Magic WAN Connector), Zscaler Branch Connector, Netskope SASE Gateway</p>
+      </div>
+    </div>
+    <div class="edge-card edge-card--supplemental">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill edge-pill--secondary">THICK EDGE</span>
+        <h3 class="edge-card__title">Branch-Heavy Architecture</h3>
+        <p>Significant processing at the branch: local security enforcement, application optimization, offline resilience. Best suited for:</p>
+        <ul class="check-list" style="margin-top:8px;">
+          <li>Manufacturing or retail with latency-sensitive local apps</li>
+          <li>Environments with intermittent WAN (remote sites)</li>
+          <li>Regulated industries requiring local data inspection</li>
+          <li>Large branches needing local LAN-side security</li>
+        </ul>
+        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Examples: Palo Alto Prisma SD-WAN (ex-CloudGenix), Fortinet SD-WAN, Versa</p>
+      </div>
+    </div>
+  </div>
+  <h3 class="sub-heading mt-32">SD-WAN Best-in-Class Criteria Table</h3>
+  <table class="edge-table">
+    <thead>
+      <tr>
+        <th class="edge-table__label-col">Criterion</th>
+        <th class="edge-table__primary-col">Best-in-Class Standard (2026)</th>
+        <th class="edge-table__detail-col">Why It Matters</th>
+        <th class="edge-table__note-col">Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Private Global Backbone</strong></td>
+        <td>Vendor-owned or leased private backbone connecting all PoPs; traffic does not traverse public internet between PoPs; SLA-backed latency guarantees</td>
+        <td>Public internet routing is unpredictable. A private backbone provides consistent, measurable middle-mile performance — critical for real-time apps (Zoom, Teams, VoIP).</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Application-Aware Path Steering</strong></td>
+        <td>Real-time path selection per application based on latency, jitter, packet loss thresholds; sub-second reconvergence on path failure</td>
+        <td>Routing all traffic on the same path wastes expensive MPLS bandwidth on bulk transfers and degrades real-time app quality when links are congested.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Multi-Link Aggregation</strong></td>
+        <td>Active/active bonding across MPLS + broadband + LTE/5G; per-packet or per-flow load balancing; automatic failover</td>
+        <td>Single-link dependency is the leading cause of branch outages. Multi-link with active failover is the baseline for business continuity.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cloud On-Ramp Quality</strong></td>
+        <td>Direct peering or co-location with AWS, Azure, GCP; optimized routing to Microsoft 365 (bypassing MPLS backhauling); SaaS SLA monitoring</td>
+        <td>Backhauling SaaS traffic to a central data center adds 80–200ms of unnecessary latency. Direct cloud on-ramp is table stakes in 2026.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Zero-Touch Provisioning (ZTP)</strong></td>
+        <td>Branch appliance ships pre-configured; plug in, auto-registers, pulls policy from cloud; &lt;30min to full operation</td>
+        <td>IT teams cannot staff remote site deployments. ZTP is the difference between SASE being deployable at scale and requiring expensive truck rolls.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Security Integration (SSE Convergence)</strong></td>
+        <td>SD-WAN and SSE share a single policy engine and management plane — not a bolted API integration</td>
+        <td>Separate SD-WAN and SSE policy planes create operational overhead and policy inconsistency. True convergence means one rule governs both network and security behavior.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>LTE/5G Failover</strong></td>
+        <td>Native 5G integration in hardware; automatic cellular failover &lt;10 seconds; cellular usage reporting and cost controls</td>
+        <td>5G branch connectivity is now cost-competitive with broadband for many sites. Built-in 5G eliminates the need for separate cellular routers.</td>
+        <td><span class="score-badge score-medium">MEDIUM</span></td>
+      </tr>
+      <tr>
+        <td><strong>WAN Optimization</strong></td>
+        <td>TCP acceleration, forward error correction (FEC), packet duplication for lossy links; deduplication for bandwidth-constrained sites</td>
+        <td>Still relevant for sites relying on satellite or long-haul broadband where raw throughput cannot be purchased cheaply.</td>
+        <td><span class="score-badge score-medium">MEDIUM</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div id="aiops" class="pillar-hero">
+  <div class="pillar-hero__icon">🤖</div>
+  <div>
+    <div class="pillar-hero__title">Pillar 4 — AIOps &amp; Autonomous Operations</div>
+    <div class="pillar-hero__sub">Using GenAI and ML to reduce operational burden and accelerate threat response</div>
+  </div>
+</div>
+
+<section class="edge-section">
+  <h2 class="section-heading">AIOps: From Monitoring to Autonomous Action</h2>
+  <p>AIOps in SASE covers two distinct problems: <strong>network operations</strong> (diagnose why a user in Singapore has bad latency to Salesforce) and <strong>security operations</strong> (correlate 47 low-confidence signals into one high-confidence threat incident). Best-in-class vendors in 2026 are moving beyond dashboards into <em>autonomous remediation</em> — where the system proposes or executes corrective actions without a human ticket.</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="criterion-block">
+      <div class="criterion-block__label">GenAI Policy Authoring</div>
+      <p>Natural language to policy rule translation. An admin types "block all uploads to personal cloud storage from unmanaged devices during work hours" and the system generates the policy object. Best-in-class includes policy simulation (what traffic would this rule affect?) before deployment.</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">Anomaly Detection &amp; UEBA</div>
+      <p>User and Entity Behavior Analytics that baselines normal behavior per user, per app, per time-of-day — and alerts on deviations. Best-in-class uses multi-dimensional models, not single-threshold rules. Detects insider threat and credential abuse that signature-based tools miss.</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">Middle-Mile Diagnostics</div>
+      <p>Automated root-cause analysis for latency complaints: is the problem the ISP, the PoP, the application, or the device? Best-in-class provides a single "path health score" per session with automatic ISP fault attribution — replacing manual traceroutes and MTR analysis.</p>
+    </div>
+    <div class="criterion-block">
+      <div class="criterion-block__label">Incident Correlation &amp; SOAR</div>
+      <p>Cross-product event correlation that links a SWG alert, a CASB anomaly, and a ZTNA posture failure into one incident ticket. Best-in-class auto-enriches with threat intelligence and suggests containment actions (e.g., "isolate this user's access pending review").</p>
+    </div>
+  </div>
+  <h3 class="sub-heading mt-32">AIOps Best-in-Class Criteria Table</h3>
+  <table class="edge-table">
+    <thead>
+      <tr>
+        <th class="edge-table__label-col">Criterion</th>
+        <th class="edge-table__primary-col">Best-in-Class Standard (2026)</th>
+        <th class="edge-table__detail-col">Why It Matters</th>
+        <th class="edge-table__note-col">Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GenAI Policy Authoring</strong></td>
+        <td>Natural language → policy rule with simulation preview; supports complex conditional logic; self-documents policy intent</td>
+        <td>Policy authoring is the #1 operational bottleneck in SASE. NL interfaces reduce time-to-policy from days to minutes.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>UEBA / Behavioral Analytics</strong></td>
+        <td>Per-user, per-entity behavioral baselines; multi-dimensional anomaly scoring; automated risk escalation with evidence bundles</td>
+        <td>Credential-based attacks are undetectable without behavioral context. UEBA is the primary control for insider threat and account takeover.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Autonomous Path Optimization</strong></td>
+        <td>ML-driven path selection that anticipates congestion (not just reacts); predictive rerouting 30–90 seconds before SLA breach</td>
+        <td>Reactive path steering still drops packets during the detection window. Predictive optimization eliminates perceptible degradation.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Root Cause Analysis (RCA)</strong></td>
+        <td>Automated hop-by-hop path analysis with ISP/PoP fault attribution; &lt;60-second diagnosis for reported incidents</td>
+        <td>Mean-time-to-resolution for network issues averages 4+ hours without automated RCA. Best-in-class compresses this to minutes.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cross-Product Event Correlation</strong></td>
+        <td>Unified event stream across SWG, CASB, ZTNA, SD-WAN; ML-based incident grouping; eliminates alert fatigue from siloed logs</td>
+        <td>SOC analysts spend 40–60% of time correlating events across tools. Cross-product correlation is the difference between detection and noise.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>SIEM/SOAR Integration</strong></td>
+        <td>Native connectors to Splunk, Microsoft Sentinel, CrowdStrike Falcon; bidirectional — enrich and receive playbook triggers</td>
+        <td>SASE does not replace SIEM/SOAR; it must feed it. Vendors without native connectors force manual log export and lose real-time context.</td>
+        <td><span class="score-badge score-medium">MEDIUM</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div id="sovereignty" class="pillar-hero">
+  <div class="pillar-hero__icon">🏛</div>
+  <div>
+    <div class="pillar-hero__title">Pillar 5 — Sovereignty-by-Design</div>
+    <div class="pillar-hero__sub">Data residency, PoP-level localization, and regulatory compliance in 2026</div>
+  </div>
+</div>
+
+<section class="edge-section">
+  <h2 class="section-heading">Why Sovereignty Is Now a Scored SASE Criterion</h2>
+  <p>Data residency requirements have tightened significantly entering 2026. GDPR enforcement has expanded, Brazil's LGPD is fully active, India's DPDP Act is in force, and the EU AI Act's data governance provisions are being applied to cloud security services. For global organizations, a SASE vendor's ability to guarantee data stays within a jurisdiction — at the PoP level, not just contractually — is now a procurement requirement, not a checkbox.</p>
+  <div class="edge-callout mt-20">
+    <div class="edge-callout__accent"></div>
+    <div>
+      <strong>The Critical Distinction:</strong> "Data residency" claimed in a contract is not the same as data residency enforced in architecture. Best-in-class vendors can demonstrate that logs, metadata, and DLP-inspected content never physically leave the designated region — verified through architecture documentation, third-party audit, or sovereign PoP design.
+    </div>
+  </div>
+  <h3 class="sub-heading mt-32">Sovereignty Best-in-Class Criteria Table</h3>
+  <table class="edge-table">
+    <thead>
+      <tr>
+        <th class="edge-table__label-col">Criterion</th>
+        <th class="edge-table__primary-col">Best-in-Class Standard (2026)</th>
+        <th class="edge-table__detail-col">Why It Matters</th>
+        <th class="edge-table__note-col">Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Regional Data Plane Isolation</strong></td>
+        <td>Traffic inspected and logged in designated region; no metadata replication to out-of-region nodes; PoP-level isolation — not just tenant-level isolation</td>
+        <td>Tenant-level isolation still allows metadata to replicate across regions for analytics. PoP-level isolation is what regulators now expect.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Sovereign Cloud PoP Options</strong></td>
+        <td>Dedicated PoPs in EU, India, Brazil, UAE, Australia; option for private cloud or co-location deployment for highest-sensitivity sectors</td>
+        <td>Financial services, healthcare, and government typically require dedicated infrastructure, not shared public cloud tenancy.</td>
+        <td><span class="score-badge score-critical">CRITICAL</span></td>
+      </tr>
+      <tr>
+        <td><strong>Regulatory Certifications</strong></td>
+        <td>ISO 27001, SOC 2 Type II, FedRAMP (US), C5 (Germany), IRAP (Australia), CSA STAR — current, not expired</td>
+        <td>Certifications are increasingly required by procurement. A vendor without FedRAMP cannot sell to US federal. A vendor without C5 faces headwinds in Germany.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Customer-Controlled Encryption Keys</strong></td>
+        <td>Bring Your Own Key (BYOK) or Hold Your Own Key (HYOK) for logs and stored DLP-inspected content; key rotation on demand</td>
+        <td>Vendor-managed encryption keys expose data to vendor-side compromise or government subpoena. Customer key control is the standard for regulated industries.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>Log Residency Controls</strong></td>
+        <td>Granular control over where security event logs, DLP incident logs, and network flow logs are stored; configurable per tenant or per data type</td>
+        <td>Logs contain PII (IP addresses, usernames, URL paths). Without log residency controls, GDPR compliance for security operations is difficult to demonstrate.</td>
+        <td><span class="score-badge score-high">HIGH</span></td>
+      </tr>
+      <tr>
+        <td><strong>AI/ML Training Data Isolation</strong></td>
+        <td>Explicit opt-out from customer data being used to train vendor's ML models; contractual prohibition; audit evidence available</td>
+        <td>Several SASE vendors use customer traffic telemetry to improve their ML threat models. For regulated industries, this represents unauthorized cross-customer data sharing.</td>
+        <td><span class="score-badge score-medium">MEDIUM</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div id="scoring" class="edge-dark-section">
+  <div style="max-width:1100px; margin:0 auto;">
+    <h2>Master Scoring Rubric</h2>
+    <p>Each vendor in Phase II will be scored against these criteria on a 1–5 scale. Scores are maintained in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> and rendered dynamically in each pillar document and the Phase III Master Scorecard.</p>
+  </div>
+</div>
+
+<section class="edge-section--wide" style="padding:40px;">
+  <div style="max-width:1100px; margin:0 auto;">
+  <table class="edge-table">
+    <thead>
+      <tr>
+        <th class="edge-table__label-col" style="min-width:140px;">Pillar</th>
+        <th class="edge-table__primary-col">Criterion</th>
+        <th class="edge-table__detail-col" style="min-width:80px;">Weight</th>
+        <th class="edge-table__note-col">Score Scale (1–5)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>ZTNA</strong></td><td>Device Posture (Continuous)</td><td>Critical × 3</td><td>1 = No posture · 3 = One-time check · 5 = Continuous EDR-integrated</td></tr>
+      <tr><td><strong>ZTNA</strong></td><td>Identity Integration</td><td>Critical × 3</td><td>1 = Basic SSO · 3 = MFA + IdP · 5 = Conditional access + risk scoring</td></tr>
+      <tr><td><strong>ZTNA</strong></td><td>Per-App Micro-Segmentation</td><td>Critical × 3</td><td>1 = Network-level only · 3 = App-level · 5 = App + API + inline inspect</td></tr>
+      <tr><td><strong>ZTNA</strong></td><td>Global PoP Latency</td><td>High × 2</td><td>1 = &gt;300ms · 3 = &lt;200ms · 5 = &lt;150ms with private backbone</td></tr>
+      <tr><td><strong>ZTNA</strong></td><td>Agentless Access</td><td>High × 2</td><td>1 = Agent required · 3 = Browser for web apps · 5 = Full agentless incl. thick clients</td></tr>
+      <tr><td><strong>ZTNA</strong></td><td>Enterprise Browser Integration</td><td>High × 2</td><td>1 = No story · 3 = Partner integration · 5 = Native capability or deep validated integration with policy unification</td></tr>
+      <tr><td><strong>SSE</strong></td><td>Unified DLP Policy Engine</td><td>Critical × 3</td><td>1 = Siloed DLP per product · 3 = Shared policy, separate engines · 5 = Single-pass unified DLP</td></tr>
+      <tr><td><strong>SSE</strong></td><td>ML-Based Data Classification</td><td>Critical × 3</td><td>1 = Regex only · 3 = ML + regex · 5 = ML + EDM + OCR + doc fingerprint</td></tr>
+      <tr><td><strong>SSE</strong></td><td>TLS Inspection at Scale</td><td>Critical × 3</td><td>1 = No TLS decrypt · 3 = Partial TLS · 5 = Full TLS 1.3, no perf cliff</td></tr>
+      <tr><td><strong>SSE</strong></td><td>SSL Decryption Architecture</td><td>Critical × 3</td><td>1 = Centralized/backhauled · 3 = PoP-local, limited policy · 5 = PoP-local, full policy controls, CA tooling, audit trail</td></tr>
+      <tr><td><strong>SSE</strong></td><td>CASB Dual Mode</td><td>Critical × 3</td><td>1 = API only · 3 = Inline only · 5 = Inline + API with unified policy</td></tr>
+      <tr><td><strong>SSE</strong></td><td>GenAI Data Protection</td><td>High × 2</td><td>1 = None · 3 = Block by app category · 5 = Inline prompt inspection + DLP</td></tr>
+      <tr><td><strong>SSE</strong></td><td>Remote Browser Isolation</td><td>High × 2</td><td>1 = None · 3 = Third-party RBI bolt-on · 5 = Native RBI, pixel-render</td></tr>
+      <tr><td><strong>SSE</strong></td><td>Shadow IT Discovery</td><td>High × 2</td><td>1 = No discovery · 3 = Basic app inventory · 5 = 30,000+ apps, risk scored, one-click policy</td></tr>
+      <tr><td><strong>SSE</strong></td><td>IPS Threat Intelligence</td><td>High × 2</td><td>1 = Static signatures · 3 = Daily feed updates · 5 = Real-time feeds, MITRE ATT&amp;CK mapped, cross-customer sharing</td></tr>
+      <tr><td><strong>SSE</strong></td><td>FWaaS App Awareness</td><td>Medium × 1</td><td>1 = Port/protocol only · 3 = Common app signatures · 5 = Full L7 app ID, custom signatures, evasion-resistant</td></tr>
+      <tr><td><strong>SD-WAN</strong></td><td>Private Global Backbone</td><td>Critical × 3</td><td>1 = Public internet only · 3 = Partial private · 5 = Full private backbone, SLA-backed. Note: Cloudflare scored on Magic WAN + One Appliance capability combined.</td></tr>
+      <tr><td><strong>SD-WAN</strong></td><td>App-Aware Path Steering</td><td>Critical × 3</td><td>1 = Static routing · 3 = Per-app steering · 5 = Predictive steering, sub-second failover</td></tr>
+      <tr><td><strong>SD-WAN</strong></td><td>Cloud On-Ramp Quality</td><td>High × 2</td><td>1 = Backhaul to DC · 3 = Direct breakout · 5 = Direct peering + SaaS SLA monitor</td></tr>
+      <tr><td><strong>SD-WAN</strong></td><td>SSE Convergence (Single Pane)</td><td>High × 2</td><td>1 = Separate consoles · 3 = API integration · 5 = Shared policy engine, single console</td></tr>
+      <tr><td><strong>AIOps</strong></td><td>UEBA / Behavioral Analytics</td><td>Critical × 3</td><td>1 = No UEBA · 3 = Rule-based anomaly · 5 = ML UEBA, multi-dim, auto-escalation</td></tr>
+      <tr><td><strong>AIOps</strong></td><td>GenAI Policy Authoring</td><td>High × 2</td><td>1 = None · 3 = Template-based · 5 = NL → policy with simulation preview</td></tr>
+      <tr><td><strong>AIOps</strong></td><td>Cross-Product Correlation</td><td>High × 2</td><td>1 = Siloed logs · 3 = Unified log view · 5 = ML incident grouping, auto-enrichment</td></tr>
+      <tr><td><strong>Sovereignty</strong></td><td>Regional Data Plane Isolation</td><td>Critical × 3</td><td>1 = No residency control · 3 = Tenant-level · 5 = PoP-level isolation, auditable</td></tr>
+      <tr><td><strong>Sovereignty</strong></td><td>Sovereign Cloud PoP Options</td><td>Critical × 3</td><td>1 = US/EU only · 3 = Major regions · 5 = All regulated markets + private PoP option</td></tr>
+      <tr><td><strong>Sovereignty</strong></td><td>Customer-Controlled Encryption</td><td>High × 2</td><td>1 = Vendor-managed only · 3 = BYOK option · 5 = BYOK + HYOK + audit trail</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<div id="personas" class="pillar-hero">
+  <div class="pillar-hero__icon">👥</div>
+  <div>
+    <div class="pillar-hero__title">Buyer Persona Weighting</div>
+    <div class="pillar-hero__sub">Not all criteria matter equally to all buyers — here's how to weight the rubric by organizational profile</div>
+  </div>
+</div>
+
+<section class="edge-section">
+  <h2 class="section-heading">Three Archetypes, Three Weighting Profiles</h2>
+  <p>The same vendor can be the right answer for one organization and the wrong answer for another, depending on what they value most. Phase II vendor scores will be filtered through each of these three personas.</p>
+  <div class="edge-grid-3 mt-20">
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">PERSONA A</span>
+        <h3 class="edge-card__title">Lean IT / Mid-Market</h3>
+        <p style="font-size:12px; color:var(--light-blue2);">500–3,000 employees · Small security team · SaaS-first</p>
+        <ul class="check-list" style="margin-top:10px;">
+          <li><strong>Highest weight:</strong> Operational simplicity, single console</li>
+          <li><strong>Highest weight:</strong> ZTP and fast deployment</li>
+          <li><strong>Highest weight:</strong> Managed service / co-managed option</li>
+          <li><strong>Lower weight:</strong> Deep DLP customization</li>
+          <li><strong>Lower weight:</strong> Sovereign PoP options</li>
+        </ul>
+        <div class="edge-callout" style="margin-top:12px; padding:8px 12px;">
+          <div class="edge-callout__accent"></div>
+          <div style="font-size:12px;"><strong>Best-fit vendors likely:</strong> Cato Networks, Cloudflare</div>
+        </div>
+      </div>
+    </div>
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">PERSONA B</span>
+        <h3 class="edge-card__title">Global Security Ops</h3>
+        <p style="font-size:12px; color:var(--light-blue2);">5,000+ employees · Dedicated SOC · Regulated industry</p>
+        <ul class="check-list" style="margin-top:10px;">
+          <li><strong>Highest weight:</strong> DLP depth and accuracy</li>
+          <li><strong>Highest weight:</strong> UEBA and threat detection</li>
+          <li><strong>Highest weight:</strong> SIEM/SOAR integration</li>
+          <li><strong>Highest weight:</strong> Sovereignty and certifications</li>
+          <li><strong>Lower weight:</strong> Ease of initial setup</li>
+        </ul>
+        <div class="edge-callout" style="margin-top:12px; padding:8px 12px;">
+          <div class="edge-callout__accent"></div>
+          <div style="font-size:12px;"><strong>Best-fit vendors likely:</strong> Netskope (DLP/CASB-primary), Palo Alto (threat prevention-primary), Zscaler (ZTNA/DEM-primary)</div>
+        </div>
+      </div>
+    </div>
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">PERSONA C</span>
+        <h3 class="edge-card__title">Global Network Ops / SD-WAN First</h3>
+        <p style="font-size:12px; color:var(--light-blue2);">Multi-site enterprise · MPLS replacement · Performance-driven</p>
+        <ul class="check-list" style="margin-top:10px;">
+          <li><strong>Highest weight:</strong> Private backbone quality</li>
+          <li><strong>Highest weight:</strong> App-aware path steering</li>
+          <li><strong>Highest weight:</strong> Branch hardware flexibility</li>
+          <li><strong>Highest weight:</strong> Global PoP coverage</li>
+          <li><strong>Lower weight:</strong> Advanced DLP</li>
+        </ul>
+        <div class="edge-callout" style="margin-top:12px; padding:8px 12px;">
+          <div class="edge-callout__accent"></div>
+          <div style="font-size:12px;"><strong>Best-fit vendors likely:</strong> Cato, Aryaka, Palo Alto SD-WAN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="edge-callout mt-20">
+    <div class="edge-callout__accent"></div>
+    <div>
+      <strong>Note on Emerging Vendors:</strong> Aryaka, Graphiant, Nile, and Island will be evaluated in Phase II-F. Aryaka competes on Pillars 3+4 (SD-WAN + managed ops). Graphiant competes on Pillar 3 only (private connectivity). Nile competes on a new category: Zero Trust campus LAN, which extends ZTNA principles inward to the physical building. Island is a full Chromium fork enterprise browser enforcing Zero Trust policy at the browser layer — distinct from proxy-side inspection. None are wholesale SASE replacements. Full analysis in Phase II-F.
+    </div>
+  </div>
+</section>
+
+<section class="edge-dark-section">
+  <div style="max-width:1100px; margin:0 auto;">
+    <h2>What Comes Next</h2>
+    <p>This document is the evaluation rubric. Phase II applies it — organized by pillar, not by vendor, so every comparison is apples-to-apples across the Big Five.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; position:relative; z-index:1;">
+      <div style="background:var(--teal-dark); border:1px solid var(--teal-light); border-radius:4px; padding:14px 16px;">
+        <div style="color:var(--lime); font-family:var(--font-heading); font-weight:700; font-size:11px; letter-spacing:1px; margin-bottom:8px;">PHASE II — PILLAR DEEP DIVES</div>
+        <ul style="padding-left:16px; list-style:disc;">
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-A</strong> — ZTNA: All Big Five scored on remote access, device posture, enterprise browser</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-B</strong> — SSE: SWG, CASB, FWaaS, DLP, SSL Decryption, RBI, and AI/GenAI Protection compared across vendors</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-C</strong> — SD-WAN: Backbone, path steering, branch edge architecture</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-D</strong> — AIOps: Automation, UEBA, root cause analysis, policy authoring</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-E</strong> — Sovereignty: Data residency, certifications, encryption key control</li>
+          <li style="color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);">Phase II-F</strong> — Emerging Vendors: Aryaka, Graphiant, Nile, Island — scoped to their relevant pillars</li>
+        </ul>
+      </div>
+      <div style="background:var(--teal-dark); border:1px solid var(--teal-light); border-radius:4px; padding:14px 16px;">
+        <div style="color:var(--lime); font-family:var(--font-heading); font-weight:700; font-size:11px; letter-spacing:1px; margin-bottom:8px;">PHASE III — MASTER SCORECARD</div>
+        <p style="color:var(--light-blue); font-size:12px; margin-bottom:10px;">Consolidated vendor × criterion matrix pulled dynamically from <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> — the single source of truth for all scores.</p>
+        <ul style="padding-left:16px; list-style:disc;">
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;">Full weighted score per vendor per pillar</li>
+          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;">Persona fit matrix — Lean IT vs. Global SecOps vs. SD-WAN First</li>
+          <li style="color:var(--light-blue); font-size:12px;">Recommendations by use case and organizational profile</li>
+        </ul>
+        <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--teal-light);">
+          <p style="color:var(--light-blue2); font-size:11px;">Scores updated in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> once — reflected in all pillar docs and Phase III automatically.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--teal-light);">
+      <p style="color:var(--light-blue); font-size:12px;"><strong style="color:var(--light-blue2);">Big Five:</strong> Palo Alto Networks (Prisma Access + SCM) · Cato Networks · Netskope · Cloudflare · Zscaler &nbsp;|&nbsp; <strong style="color:var(--light-blue2);">Emerging:</strong> Aryaka · Graphiant · Nile · Island</p>
+    </div>
+  </div>
+</section>
+</main>
+</div><!-- /.page-body -->
+<footer class="edge-footer">
+  <span class="edge-footer__brand">Edge Solutions</span>
+  <div class="edge-footer__meta">
+    SASE Vendor Research Series · Phase I · Q2 2026<br>
+    Working Document — Internal Use &amp; Client Distribution
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/toc.js"></script>
+</body>
+</html>
