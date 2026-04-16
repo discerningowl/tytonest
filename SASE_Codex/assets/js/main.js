@@ -124,24 +124,41 @@ function renderScoringTable(pillar, vendors, containerId) {
 (function loadScores() {
   // Derive scores.json path from the current page URL — works regardless
   // of how scripts are loaded (Cloudflare Rocket Loader, async, defer, etc.)
-  var pathname = window.location.pathname;                        // e.g. /SASE_Codex/sase_scorecard.html
-  var dir      = pathname.substring(0, pathname.lastIndexOf('/') + 1); // e.g. /SASE_Codex/
-  var scoresUrl = dir + 'scores.json';                           // e.g. /SASE_Codex/scores.json
+  var pathname  = window.location.pathname;
+  var dir       = pathname.substring(0, pathname.lastIndexOf('/') + 1);
+  var scoresUrl = dir + 'scores.json';
 
-  fetch(scoresUrl)
-    .then(function(r) {
-      if (!r.ok) throw new Error('scores.json HTTP ' + r.status);
-      return r.json();
-    })
-    .then(function(data) {
-      if (typeof window.renderPage === 'function') {
-        window.renderPage(data);
-      }
-    })
-    .catch(function() {
-      // Use page-local fallback if available
-      if (typeof window.FALLBACK_DATA !== 'undefined' && typeof window.renderPage === 'function') {
-        window.renderPage(window.FALLBACK_DATA);
-      }
-    });
+  function showError(msg) {
+    var banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9999;background:#C44536;color:#fff;font-family:monospace;font-size:12px;padding:10px 14px;border-radius:6px;max-width:420px;box-shadow:0 4px 12px rgba(0,0,0,.3);';
+    banner.textContent = 'scores.json: ' + msg;
+    document.body.appendChild(banner);
+    console.error('SASE Codex scores.json error:', msg);
+  }
+
+  function doFetch() {
+    fetch(scoresUrl)
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status + ' — ' + scoresUrl);
+        return r.json();
+      })
+      .then(function(data) {
+        if (typeof window.renderPage === 'function') {
+          window.renderPage(data);
+        }
+      })
+      .catch(function(err) {
+        showError(err.message || String(err));
+        if (typeof window.FALLBACK_DATA !== 'undefined' && typeof window.renderPage === 'function') {
+          window.renderPage(window.FALLBACK_DATA);
+        }
+      });
+  }
+
+  // Wait for DOM so inline renderPage definitions are guaranteed to exist
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', doFetch);
+  } else {
+    doFetch();
+  }
 })();
