@@ -14,7 +14,7 @@
     <span class="edge-header__brand">EDGE SOLUTIONS</span>
     <div class="edge-header__pills">
       <span class="edge-pill">BENCHMARK</span>
-      <span class="edge-pill edge-pill--secondary">COMPONENT ANALYSIS</span>
+      <span class="edge-pill edge-pill--muted">COMPONENT ANALYSIS</span>
       <span class="edge-pill edge-pill--phase">2026</span>
     </div>
   </div>
@@ -45,19 +45,19 @@
     </div>
   </div>
   <div class="edge-grid-4 mt-20">
-    <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
+    <div class="edge-stat" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">5</div>
       <div class="edge-stat__label">EVALUATION PILLARS</div>
     </div>
-    <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
+    <div class="edge-stat" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">39</div>
       <div class="edge-stat__label">SCORED CRITERIA</div>
     </div>
-    <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
+    <div class="edge-stat" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">9</div>
       <div class="edge-stat__label">VENDORS IN SCOPE</div>
     </div>
-    <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
+    <div class="edge-stat" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">3</div>
       <div class="edge-stat__label">BUYER PERSONAS</div>
     </div>
@@ -98,7 +98,7 @@
     <div class="edge-card edge-card--supplemental">
       <div class="edge-card__accent"></div>
       <div class="edge-card__body">
-        <span class="edge-pill edge-pill--secondary">STITCHED</span>
+        <span class="edge-pill edge-pill--muted">STITCHED</span>
         <h3 class="edge-card__title">Integrated / Multi-Engine Architecture</h3>
         <p>Capabilities are bolted together from acquired products or partner integrations. Traffic may traverse multiple engines, each adding latency and creating potential for policy inconsistency.</p>
         <ul class="warn-list" style="margin-top:12px;">
@@ -314,7 +314,7 @@
           <li>Inspection at the PoP — not backhauled to a central engine</li>
           <li>Visibility into encrypted C2 traffic and malware exfiltration channels</li>
         </ul>
-        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Key differentiator: Palo Alto (Prisma Access) carries NGFW-grade decryption into the cloud proxy. Vendors with bolt-on SSL inspection often show latency cliffs at scale or incomplete TLS 1.3 support.</p>
+        <p style="margin-top:10px; font-size:12px; color:var(--edge-muted);">Key differentiator: Palo Alto (Prisma Access) carries NGFW-grade decryption into the cloud proxy. Vendors with bolt-on SSL inspection often show latency cliffs at scale or incomplete TLS 1.3 support.</p>
       </div>
     </div>
     <div class="edge-card">
@@ -327,7 +327,7 @@
           <li><strong>Pixel-push:</strong> Server fully renders the page and streams a pixel image to the client. Zero DOM, zero JavaScript, zero active content reaches the endpoint. Maximum isolation, some latency overhead.</li>
           <li><strong>DOM reconstruction:</strong> Server fetches the page, strips dangerous content, and reconstructs a sanitized DOM in the client browser. Lower latency, minor fidelity trade-offs for complex web applications.</li>
         </ul>
-        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Vendor split: Zscaler (native pixel-push), Cloudflare (native, low-latency), Menlo (RBI-first, not in Big Five), Palo Alto (native DOM isolation), Netskope (native pixel-rendering). Cato: RBI available as add-on. All differ on whether RBI shares a policy engine with SWG — integration depth is the differentiator, not just availability.</p>
+        <p style="margin-top:10px; font-size:12px; color:var(--edge-muted);">Vendor split: Zscaler (native pixel-push), Cloudflare (native, low-latency), Menlo (RBI-first, not in Big Five), Palo Alto (native DOM isolation), Netskope (native pixel-rendering). Cato: RBI available as add-on. All differ on whether RBI shares a policy engine with SWG — integration depth is the differentiator, not just availability.</p>
       </div>
     </div>
     <div class="edge-card">
@@ -343,7 +343,7 @@
           <li>Visibility into 500+ AI tools across the org — shadow AI discovery</li>
           <li>Prompt injection detection — prevent LLMs from being weaponized against the user</li>
         </ul>
-        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Vendor split: Netskope leads with content-aware prompt inspection tied to its unified DLP engine. Palo Alto AI Access Security provides inline inspection per AI app. Zscaler enforces at the app category level — meaningful gap for regulated industries.</p>
+        <p style="margin-top:10px; font-size:12px; color:var(--edge-muted);">Vendor split: Netskope leads with content-aware prompt inspection tied to its unified DLP engine. Palo Alto AI Access Security provides inline inspection per AI app. Zscaler enforces at the app category level — meaningful gap for regulated industries.</p>
       </div>
     </div>
   </div>
@@ -464,7 +464,7 @@
   </table>
   <div class="edge-callout--warning edge-callout mt-20" style="align-items:flex-start; flex-direction:column; gap:14px;">
     <div style="display:flex; align-items:flex-start; gap:10px; width:100%;">
-      <div class="edge-callout__accent" style="background:#D4A017; min-height:48px;"></div>
+      <div class="edge-callout__accent" style="min-height:48px;"></div>
       <div style="flex:1;">
         <strong>2026 Watch Area — Generative AI Exfiltration</strong>
         <p style="margin-top:6px;">The fastest-growing DLP gap in 2026 is sensitive data flowing into public LLM prompts. This is no longer theoretical — Netskope telemetry shows GenAI-related violations more than doubled year-over-year, with enterprises logging an average of 223 incidents per month; Zscaler recorded 410 million DLP violations tied to ChatGPT alone across 2025. The 2026 inflection point is the shift from <strong>shadow AI governance</strong> (who is using what tool) to <strong>agentic AI exfiltration</strong> — autonomous agents that exfiltrate data without any user action, bypassing coaching and app-block controls entirely. Every major vendor now has a GenAI protection story; depth and enforcement mechanism vary sharply.</p>
@@ -514,7 +514,7 @@
         </tbody>
       </table>
     </div>
-    <p style="font-size:12px; color:#7a6a2a; padding-left:4px;"><strong>Scored criterion in the <a href="sase_sse.html" style="color:#8a7a1a;">SSE deep dive</a>.</strong> The agentic AI dimension will be weighted separately from shadow AI governance — it represents a materially different threat model requiring different controls.</p>
+    <p style="font-size:12px; color:var(--edge-muted); padding-left:4px;"><strong>Scored criterion in the <a href="sase_sse.html" style="color:var(--edge-blue);">SSE deep dive</a>.</strong> The agentic AI dimension will be weighted separately from shadow AI governance — it represents a materially different threat model requiring different controls.</p>
   </div>
 </section>
 
@@ -542,13 +542,13 @@
           <li>Low tolerance for on-site IT complexity</li>
           <li>Priority on fast deployment and managed service</li>
         </ul>
-        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Examples: Cato Socket, Cloudflare One Appliance (formerly Magic WAN Connector), Zscaler Branch Connector, Netskope SASE Gateway</p>
+        <p style="margin-top:10px; font-size:12px; color:var(--edge-muted);">Examples: Cato Socket, Cloudflare One Appliance (formerly Magic WAN Connector), Zscaler Branch Connector, Netskope SASE Gateway</p>
       </div>
     </div>
     <div class="edge-card edge-card--supplemental">
       <div class="edge-card__accent"></div>
       <div class="edge-card__body">
-        <span class="edge-pill edge-pill--secondary">THICK EDGE</span>
+        <span class="edge-pill edge-pill--muted">THICK EDGE</span>
         <h3 class="edge-card__title">Branch-Heavy Architecture</h3>
         <p>Significant processing at the branch: local security enforcement, application optimization, offline resilience. Best suited for:</p>
         <ul class="check-list" style="margin-top:8px;">
@@ -557,7 +557,7 @@
           <li>Regulated industries requiring local data inspection</li>
           <li>Large branches needing local LAN-side security</li>
         </ul>
-        <p style="margin-top:10px; font-size:12px; color:var(--light-blue2);">Examples: Palo Alto Prisma SD-WAN (ex-CloudGenix), Fortinet SD-WAN, Versa</p>
+        <p style="margin-top:10px; font-size:12px; color:var(--edge-muted);">Examples: Palo Alto Prisma SD-WAN (ex-CloudGenix), Fortinet SD-WAN, Versa</p>
       </div>
     </div>
   </div>
@@ -775,7 +775,7 @@
 <div id="scoring" class="edge-dark-section">
   <div style="max-width:1100px; margin:0 auto;">
     <h2>Master Scoring Rubric</h2>
-    <p>Each vendor in Phase II will be scored against these criteria on a 1–5 scale. Scores are maintained in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> and rendered dynamically in each pillar document and the <a href="sase_scorecard.html">Master Scorecard</a>.</p>
+    <p>Each vendor in Phase II will be scored against these criteria on a 1–5 scale. Scores are maintained in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--edge-green);">scores.json</code> and rendered dynamically in each pillar document and the <a href="sase_scorecard.html">Master Scorecard</a>.</p>
   </div>
 </div>
 
@@ -839,7 +839,7 @@
       <div class="edge-card__body">
         <span class="edge-pill">PERSONA A</span>
         <h3 class="edge-card__title">Lean IT / Mid-Market</h3>
-        <p style="font-size:12px; color:var(--light-blue2);">500–3,000 employees · Small security team · SaaS-first</p>
+        <p style="font-size:12px; color:var(--edge-muted);">500–3,000 employees · Small security team · SaaS-first</p>
         <ul class="check-list" style="margin-top:10px;">
           <li><strong>Highest weight:</strong> Operational simplicity, single console</li>
           <li><strong>Highest weight:</strong> ZTP and fast deployment</li>
@@ -858,7 +858,7 @@
       <div class="edge-card__body">
         <span class="edge-pill">PERSONA B</span>
         <h3 class="edge-card__title">Global Security Ops</h3>
-        <p style="font-size:12px; color:var(--light-blue2);">5,000+ employees · Dedicated SOC · Regulated industry</p>
+        <p style="font-size:12px; color:var(--edge-muted);">5,000+ employees · Dedicated SOC · Regulated industry</p>
         <ul class="check-list" style="margin-top:10px;">
           <li><strong>Highest weight:</strong> DLP depth and accuracy</li>
           <li><strong>Highest weight:</strong> UEBA and threat detection</li>
@@ -877,7 +877,7 @@
       <div class="edge-card__body">
         <span class="edge-pill">PERSONA C</span>
         <h3 class="edge-card__title">Global Network Ops / SD-WAN First</h3>
-        <p style="font-size:12px; color:var(--light-blue2);">Multi-site enterprise · MPLS replacement · Performance-driven</p>
+        <p style="font-size:12px; color:var(--edge-muted);">Multi-site enterprise · MPLS replacement · Performance-driven</p>
         <ul class="check-list" style="margin-top:10px;">
           <li><strong>Highest weight:</strong> Private backbone quality</li>
           <li><strong>Highest weight:</strong> App-aware path steering</li>
@@ -895,7 +895,7 @@
   <div class="edge-callout mt-20">
     <div class="edge-callout__accent"></div>
     <div>
-      <strong>Note on Emerging Vendors:</strong> Aryaka, Graphiant, Nile, and Island will be evaluated in the <a href="sase_emerging.html">Emerging Vendors</a> section. Aryaka competes on Pillars 3+4 (SD-WAN + managed ops). Graphiant competes on Pillar 3 only (private connectivity). Nile competes on a new category: Zero Trust campus LAN, which extends ZTNA principles inward to the physical building. Island is a full Chromium fork enterprise browser enforcing Zero Trust policy at the browser layer — distinct from proxy-side inspection. None are wholesale SASE replacements. Full analysis in <a href="sase_emerging.html" style="color:var(--light-blue); font-size:12px;">Emerging Vendors</a>.
+      <strong>Note on Emerging Vendors:</strong> Aryaka, Graphiant, Nile, and Island will be evaluated in the <a href="sase_emerging.html">Emerging Vendors</a> section. Aryaka competes on Pillars 3+4 (SD-WAN + managed ops). Graphiant competes on Pillar 3 only (private connectivity). Nile competes on a new category: Zero Trust campus LAN, which extends ZTNA principles inward to the physical building. Island is a full Chromium fork enterprise browser enforcing Zero Trust policy at the browser layer — distinct from proxy-side inspection. None are wholesale SASE replacements. Full analysis in <a href="sase_emerging.html" style="color:var(--edge-blue); font-size:12px;">Emerging Vendors</a>.
     </div>
   </div>
 </section>
@@ -906,33 +906,33 @@
     <p>This document is the evaluation rubric. The Benchmark applies it — organized by pillar, not by vendor, so every comparison is apples-to-apples across the Big Five.</p>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; position:relative; z-index:1;">
-      <div style="background:var(--teal-dark); border:1px solid var(--teal-light); border-radius:4px; padding:14px 16px;">
-        <div style="color:var(--lime); font-family:var(--font-heading); font-weight:700; font-size:11px; letter-spacing:1px; margin-bottom:8px;">PHASE II — PILLAR DEEP DIVES</div>
+      <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(198,210,25,0.3); border-radius:var(--r-sm); padding:14px 16px;">
+        <div style="color:var(--edge-green); font-weight:700; font-size:11px; letter-spacing:1px; margin-bottom:8px;">PHASE II — PILLAR DEEP DIVES</div>
         <ul style="padding-left:16px; list-style:disc;">
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_ztna.html" style="color:var(--white);">ZTNA</a></strong> — All Big Five scored on remote access, device posture, enterprise browser</li>
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_sse.html" style="color:var(--white);">SSE</a></strong> — SWG, CASB, FWaaS, DLP, SSL Decryption, RBI, and AI/GenAI Protection compared across vendors</li>
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_sdwan.html" style="color:var(--white);">SD-WAN</a></strong> — Backbone, path steering, branch edge architecture</li>
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_aiops.html" style="color:var(--white);">AIOps</a></strong> — Automation, UEBA, root cause analysis, policy authoring</li>
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_sovereignty.html" style="color:var(--white);">Sovereignty</a></strong> — Data residency, certifications, encryption key control</li>
-          <li style="color:var(--light-blue); font-size:12px;"><strong style="color:var(--white);"><a href="sase_emerging.html" style="color:var(--white);">Emerging Vendors</a></strong> — Aryaka, Graphiant, Nile, Island — scoped to their relevant pillars</li>
+          <li style="margin-bottom:5px; color:rgba(255,255,255,0.65); font-size:12px;"><strong style="color:var(--white);"><a href="sase_ztna.html" style="color:var(--white);">ZTNA</a></strong> — All Big Five scored on remote access, device posture, enterprise browser</li>
+          <li style="margin-bottom:5px; color:rgba(255,255,255,0.65); font-size:12px;"><strong style="color:var(--white);"><a href="sase_sse.html" style="color:var(--white);">SSE</a></strong> — SWG, CASB, FWaaS, DLP, SSL Decryption, RBI, and AI/GenAI Protection compared across vendors</li>
+          <li style="margin-bottom:5px; color:rgba(255,255,255,0.65); font-size:12px;"><strong style="color:var(--white);"><a href="sase_sdwan.html" style="color:var(--white);">SD-WAN</a></strong> — Backbone, path steering, branch edge architecture</li>
+          <li style="margin-bottom:5px; color:rgba(255,255,255,0.65); font-size:12px;"><strong style="color:var(--white);"><a href="sase_aiops.html" style="color:var(--white);">AIOps</a></strong> — Automation, UEBA, root cause analysis, policy authoring</li>
+          <li style="margin-bottom:5px; color:rgba(255,255,255,0.65); font-size:12px;"><strong style="color:var(--white);"><a href="sase_sovereignty.html" style="color:var(--white);">Sovereignty</a></strong> — Data residency, certifications, encryption key control</li>
+          <li style="color:rgba(255,255,255,0.65); font-size:12px;"><strong style="color:var(--white);"><a href="sase_emerging.html" style="color:var(--white);">Emerging Vendors</a></strong> — Aryaka, Graphiant, Nile, Island — scoped to their relevant pillars</li>
         </ul>
       </div>
-      <div style="background:var(--teal-dark); border:1px solid var(--teal-light); border-radius:4px; padding:14px 16px;">
-        <div style="color:var(--lime); font-family:var(--font-heading); font-weight:700; font-size:11px; letter-spacing:1px; margin-bottom:8px;">PHASE III — MASTER SCORECARD</div>
-        <p style="color:var(--light-blue); font-size:12px; margin-bottom:10px;">Consolidated vendor × criterion matrix pulled dynamically from <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> — the single source of truth for all scores.</p>
+      <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(198,210,25,0.3); border-radius:var(--r-sm); padding:14px 16px;">
+        <div style="color:var(--edge-green); font-weight:700; font-size:11px; letter-spacing:1px; margin-bottom:8px;">PHASE III — MASTER SCORECARD</div>
+        <p style="color:rgba(255,255,255,0.65); font-size:12px; margin-bottom:10px;">Consolidated vendor × criterion matrix pulled dynamically from <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--edge-green);">scores.json</code> — the single source of truth for all scores.</p>
         <ul style="padding-left:16px; list-style:disc;">
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;">Full weighted score per vendor per pillar</li>
-          <li style="margin-bottom:5px; color:var(--light-blue); font-size:12px;">Persona fit matrix — Lean IT vs. Global SecOps vs. SD-WAN First</li>
-          <li style="color:var(--light-blue); font-size:12px;">Recommendations by use case and organizational profile</li>
+          <li style="margin-bottom:5px; color:rgba(255,255,255,0.65); font-size:12px;">Full weighted score per vendor per pillar</li>
+          <li style="margin-bottom:5px; color:rgba(255,255,255,0.65); font-size:12px;">Persona fit matrix — Lean IT vs. Global SecOps vs. SD-WAN First</li>
+          <li style="color:rgba(255,255,255,0.65); font-size:12px;">Recommendations by use case and organizational profile</li>
         </ul>
-        <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--teal-light);">
-          <p style="color:var(--light-blue2); font-size:11px;">Scores updated in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--lime);">scores.json</code> once — reflected in all pillar docs and the <a href="sase_scorecard.html" style="color:var(--lime);">Scorecard</a> automatically.</p>
+        <div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(198,210,25,0.2);">
+          <p style="color:rgba(255,255,255,0.45); font-size:11px;">Scores updated in <code style="background:rgba(0,0,0,0.2); padding:1px 5px; border-radius:2px; color:var(--edge-green);">scores.json</code> once — reflected in all pillar docs and the <a href="sase_scorecard.html" style="color:var(--edge-green);">Scorecard</a> automatically.</p>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--teal-light);">
-      <p style="color:var(--light-blue); font-size:12px;"><strong style="color:var(--light-blue2);">Big Five:</strong> Palo Alto Networks (Prisma Access + SCM) · Cato Networks · Netskope · Cloudflare · Zscaler &nbsp;|&nbsp; <strong style="color:var(--light-blue2);">Emerging:</strong> Aryaka · Graphiant · Nile · Island</p>
+    <div style="margin-top:20px; padding-top:16px; border-top:1px solid rgba(198,210,25,0.2);">
+      <p style="color:rgba(255,255,255,0.65); font-size:12px;"><strong style="color:rgba(255,255,255,0.45);">Big Five:</strong> Palo Alto Networks (Prisma Access + SCM) · Cato Networks · Netskope · Cloudflare · Zscaler &nbsp;|&nbsp; <strong style="color:rgba(255,255,255,0.45);">Emerging:</strong> Aryaka · Graphiant · Nile · Island</p>
     </div>
   </div>
 </section>

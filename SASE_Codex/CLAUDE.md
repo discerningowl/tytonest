@@ -1,6 +1,6 @@
 # CLAUDE.md — SASE Codex
 ## Decision Log & Architecture Reference
-*Last updated: 2026-04-17 — scores.json v1.3 with Cato AI Security (Aim acquisition) + Dynamic Prevention scoring; v1.2 baseline Cloudflare One Appliance, Netskope NewEdge footprint, and Cato FedRAMP March 2026 corrections*
+*Last updated: 2026-04-17 — scores.json v1.3 with Cato AI Security (Aim acquisition) + Dynamic Prevention scoring; v1.2 baseline Cloudflare One Appliance, Netskope NewEdge footprint, and Cato FedRAMP March 2026 corrections. Edge Documents v0.2 brand refactor complete.*
 
 ---
 
@@ -160,14 +160,35 @@ Each pillar doc fetches only its relevant pillar section. The Scorecard fetches 
 
 ## Styling & Branding
 
-- All HTML documents use Edge Solutions brand (skill: `/mnt/skills/user/edge-documents/SKILL.md`)
-- CSS variables defined in each file's `<style>` block — do not use inline hex values
-- Fonts: Heebo (headings), Roboto (body) via Google Fonts
-- Score badges: CRITICAL = red `#C0392B`, HIGH = orange `#E67E22`, MEDIUM = yellow `#F1C40F`
+- All HTML documents use Edge Solutions brand (skill: `/mnt/skills/user/edge-documents/SKILL.md`) — **v0.2 kit** as of 2026-04-17 refactor
+- **Brand tokens live in `assets/css/main.css` only.** Per-file `<style>` blocks are for page-specific layout only (e.g., scorecard JS-rendered components). Do not redefine brand tokens inline.
+- **Fonts:** Atkinson Hyperlegible Next (body + display) via Google Fonts `@import` in `main.css`. Inter for dense UI chrome. Do NOT use Heebo or Roboto.
+- **`--font` / `--font-ui`** — CSS variables for Atkinson and Inter respectively. Never hardcode `font-family` values.
+- **Ambient layer:** `body::before` radial gradients + `body::after` grain overlay defined in `main.css`. Do not duplicate in per-page styles.
+- **Content z-index:** All structural elements (`header`, `nav`, `main`, `footer`, `.page-body`) carry `position: relative; z-index: 2` to render above grain.
+- Score badges: CRITICAL = `var(--error)` `#C44536`, HIGH = `var(--warning)` `#E6A817`, MEDIUM = `#F1C40F`
 - **Website mode — files are NOT self-contained.** CSS lives in `assets/css/`, JS in `assets/js/`. HTML pages link to shared assets.
-- Google Fonts loaded via shared CSS
+- Google Fonts loaded via `@import` in `main.css` — HTML `<head>` needs no font `<link>` tags.
 - `scores.json` fetched by all pillar pages from root
 - **Left-side TOC:** Every page includes a fixed sidebar TOC. Implementation lives in `assets/js/toc.js` + `assets/css/toc.css`. TOC auto-generates from `<h2>`/`<h3>` headings via JS — no manual per-page markup. Active section highlighted via IntersectionObserver. Collapsible on mobile.
+
+### Core Brand Tokens (v0.2 — use these, never invent others)
+
+| Token | Value | Role |
+|---|---|---|
+| `--edge-blue` | `#486D87` | Primary — headers, nav, dominant backgrounds |
+| `--edge-green` | `#C6D219` | Accent — rules, pills, CTAs. Punctuation only, never dominant |
+| `--edge-dark` | `#4C5351` | Body text on light surfaces |
+| `--edge-muted` | `#7B7D72` | Secondary text, labels, meta |
+| `--edge-light` | `#F2F3F4` | Page canvas, light surfaces |
+| `--edge-moss` | `#9DA03C` | Supporting accent |
+| `--warning` | `#E6A817` | Caution states |
+| `--error` | `#C44536` | Error / destructive |
+| `--white` | `#FFFFFF` | — |
+
+**Dark-section background:** `#2d4a5c` (dark tint of edge-blue — used for BLUF boxes, doc-nav, pillar-hero, dark sub-panels). No separate CSS variable — use the literal value.
+
+**Glass card pattern:** `background: rgba(255,255,255,0.72–0.82); backdrop-filter: blur(16px); border: 0.5px solid rgba(72,109,135,0.25);`
 
 ### Radar Chart Sizing (sase_scorecard.html)
 Do NOT use Chart.js `responsive`/`maintainAspectRatio`/`aspectRatio` options to control chart dimensions — they are unreliable when the chart renders after a `fetch()` resolves.
@@ -184,12 +205,12 @@ All pages use the `sase_ztna.html` header as the reference implementation. Do no
 **Structure (top row — right-aligned pills):**
 ```html
 <span class="edge-pill">DOCUMENT TYPE</span>
-<span class="edge-pill edge-pill--secondary">DESCRIPTOR LABEL</span>
+<span class="edge-pill edge-pill--muted">DESCRIPTOR LABEL</span>
 <span class="edge-pill edge-pill--phase">2026</span>
 ```
-- **Pill 1 (lime):** Document type — `BENCHMARK`, `ZTNA`, `SSE`, `SD-WAN`, `AIOPS`, `SOVEREIGNTY`, `EMERGING`, `SCORECARD`
-- **Pill 2 (gray/secondary):** Page type — `COMPONENT ANALYSIS`, `TECHNICAL DEEP DIVE`, `MASTER SCORECARD`, `EMERGING VENDORS`, etc.
-- **Pill 3 (teal-dark + lime border):** Always `2026`. Class: `edge-pill edge-pill--phase`.
+- **Pill 1 (lime/green):** Document type — `BENCHMARK`, `ZTNA`, `SSE`, `SD-WAN`, `AIOPS`, `SOVEREIGNTY`, `EMERGING`, `SCORECARD`
+- **Pill 2 (gray/muted):** Page type — `COMPONENT ANALYSIS`, `TECHNICAL DEEP DIVE`, `MASTER SCORECARD`, `EMERGING VENDORS`, etc.
+- **Pill 3 (dark + green border):** Always `2026`. Class: `edge-pill edge-pill--phase`.
 
 **Brand string:** `EDGE SOLUTIONS` — all caps, always.
 
@@ -206,12 +227,14 @@ All pages use the `sase_ztna.html` header as the reference implementation. Do no
 ```
 The CSS defines `.edge-header__bottom { margin-top: 4px; }` so the wrapper is intentional for spacing.
 
-**Pill class definitions (canonical):**
+**Pill class definitions (canonical — v0.2):**
 ```css
-.edge-pill { background: var(--lime); color: var(--slate); ... }
-.edge-pill--secondary { background: var(--light-blue2); color: var(--white); }
-.edge-pill--phase { background: var(--teal-dark); color: var(--lime); border: 1px solid var(--lime); }
+.edge-pill          { background: var(--edge-green); color: var(--edge-dark); }
+.edge-pill--muted   { background: var(--edge-muted); color: var(--white); }
+.edge-pill--moss    { background: var(--edge-moss);  color: var(--white); }
+.edge-pill--phase   { background: #2d4a5c; color: var(--edge-green); border: 1px solid var(--edge-green); }
 ```
+**Note:** `edge-pill--secondary` is a legacy alias mapped to `--muted` in main.css for backward compatibility. Use `edge-pill--muted` in all new and edited markup.
 
 ---
 
@@ -242,7 +265,7 @@ The CSS defines `.edge-header__bottom { margin-top: 4px; }` so the wrapper is in
 ## Writing Style
 
 - **BLUF:** Lead with the answer, follow with supporting detail
-- **Feynman Technique:** Plain-language intuition before going technical.
-- **Precision:** No filler, no hedging without cause, no confident claims about Zscaler without verification
+- **Feynman Technique:** Plain-language intuition before going technical. No need to state that it is a Feynman.
+- **Precision:** No filler, no hedging without cause, no confident claims about any vendor without verification
 - **DLP hierarchy language:** Avoid ranking vendors 1/2/3 — describe philosophy and fit instead
 - Working documents are for internal use and client distribution — technical depth is appropriate

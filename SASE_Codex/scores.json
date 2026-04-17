@@ -1,10 +1,11 @@
 {
   "meta": {
-    "version": "1.3",
+    "version": "1.4",
     "last_updated": "2026-04-17",
     "scale_description": "1=Poor/Missing · 2=Below Average · 3=Adequate · 4=Strong · 5=Best-in-Class",
     "weight_multipliers": { "critical": 3, "high": 2, "medium": 1 },
-    "note_convention": "1-2 sentences. State what the vendor specifically does or does not do to justify the score."
+    "note_convention": "1-2 sentences. State what the vendor specifically does or does not do to justify the score.",
+    "last_verified_convention": "ISO date on criteria where scores reference PoP counts, certifications, or other time-sensitive facts. Verify quarterly or on vendor announcement."
   },
 
   "vendors": [
@@ -81,6 +82,7 @@
           "label": "Global PoP Latency",
           "weight": "high",
           "scale": "1=>300ms typical · 3=<200ms · 5=<150ms with private backbone SLA",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma Access uses 100+ cloud-delivered PoPs across AWS, Azure, and GCP infrastructure globally. No private backbone between PoPs — relies on cloud provider backbone quality. Typical RTT <150ms in tier-1 markets." },
             "cato":       { "score": 5, "note": "Cato's private SDP backbone interconnects 85+ PoPs with SLA-backed latency. Traffic between branches and PoPs stays on Cato's backbone, not the public internet. Measured median latency is <50ms for most tier-1 regions." },
@@ -315,6 +317,7 @@
           "label": "Private Global Backbone",
           "weight": "critical",
           "scale": "1=Public internet only · 3=Partial private backbone · 5=Full private backbone, SLA-backed, no public internet between PoPs",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 3, "note": "Prisma SD-WAN (formerly CloudGenix) provides SD-WAN overlay but relies on customer-provided internet links. No private backbone between PoPs — Prisma Access PoPs use hyperscaler backbone." },
             "cato":       { "score": 5, "note": "Cato operates a fully private SDP backbone connecting 85+ PoPs globally with SLA-backed latency guarantees. No public internet is traversed between Cato PoPs — the backbone is Cato's primary competitive moat for SD-WAN." },
@@ -360,6 +363,7 @@
           "label": "Cloud On-Ramp Quality",
           "weight": "high",
           "scale": "1=Backhaul to DC · 3=Direct internet breakout · 5=Direct peering with AWS/Azure/GCP + SaaS SLA monitoring",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma Access PoPs are deployed on AWS, Azure, and GCP with direct peering to cloud providers. Prisma SD-WAN integrates with Prisma Access for optimized cloud on-ramp with SaaS monitoring via ADEM." },
             "cato":       { "score": 5, "note": "Cato PoPs are co-located with major cloud regions and have direct peering to AWS, Azure, GCP, and top SaaS providers. App-level SLA monitoring for O365, Salesforce, and other apps is built into the backbone." },
@@ -375,6 +379,7 @@
           "label": "Zero-Touch Provisioning (ZTP)",
           "weight": "high",
           "scale": "1=Manual config required · 3=Partial ZTP · 5=Ships pre-configured, auto-registers, <30min to full operation",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma SD-WAN ION devices support ZTP via SCM — devices ship pre-configured, auto-register on first WAN contact, and receive policy from SCM. Typical deployment time <60 minutes for a standard branch." },
             "cato":       { "score": 5, "note": "Cato Socket is the reference implementation of ZTP in SASE. Ships pre-configured, auto-registers to Cato Cloud on first internet contact. Sites are typically operational in under 30 minutes including WAN uplink testing." },
@@ -533,6 +538,7 @@
           "label": "Regional Data Plane Isolation",
           "weight": "critical",
           "scale": "1=No residency controls · 3=Tenant-level isolation · 5=PoP-level isolation, no cross-region metadata replication, auditable",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma Access supports regional data plane pinning — tenants can restrict processing to specified regions (e.g., EU-only). Cross-region metadata replication controls are available but require explicit configuration; not isolation-by-default." },
             "cato":       { "score": 3, "note": "Cato supports regional data residency options for log storage and some processing components. Full PoP-level isolation with auditable metadata boundaries is not yet a shipped capability; data plane processing may traverse multiple PoPs." },
@@ -546,6 +552,7 @@
           "label": "Sovereign Cloud PoP Options",
           "weight": "critical",
           "scale": "1=US/EU regions only · 3=Major regulated markets · 5=All regulated markets + private/dedicated PoP option",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma Access is available in US, EU, Asia-Pacific, and key regulated markets (Saudi Arabia, UAE, India). Dedicated tenant cloud deployments are available for FedRAMP and specific regulated verticals." },
             "cato":       { "score": 3, "note": "Cato has PoPs in most major markets but dedicated sovereign or private PoP options are limited compared to larger vendors. Key regulated markets in Middle East and APAC are covered; private PoP deployment requires a custom engagement." },
@@ -559,6 +566,7 @@
           "label": "Regulatory Certifications",
           "weight": "high",
           "scale": "1=SOC2 only · 3=SOC2 + ISO27001 + one regional cert · 5=SOC2, ISO27001, FedRAMP, C5, IRAP, CSA STAR — current",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 5, "note": "Prisma Access holds SOC2 Type II, ISO 27001, FedRAMP Moderate (Prisma Access for Government), BSI C5 (Germany), IRAP (Australia), CSA STAR Level 2, and StateRAMP. Broadest certification portfolio in the Big Five." },
             "cato":       { "score": 3, "note": "Cato holds SOC2 Type II and ISO 27001. FedRAMP High authorization initiated March 2026 with Coalfire (pending, not yet authorized). BSI C5 and IRAP are not currently certified. Notable certification gap versus PA and Zscaler for government/regulated markets today." },
@@ -572,6 +580,7 @@
           "label": "Customer-Controlled Encryption Keys",
           "weight": "high",
           "scale": "1=Vendor-managed only · 3=BYOK available · 5=BYOK + HYOK + on-demand key rotation + audit trail",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma Access supports BYOK via integration with customer HSMs for data at rest. HYOK where the vendor cannot decrypt is available in select deployment models. Key rotation and audit trail are supported." },
             "cato":       { "score": 2, "note": "Cato uses Cato-managed encryption for all data at rest and in transit. BYOK is not currently a generally available capability. This is a notable gap for regulated industries requiring customer-controlled key management." },
@@ -585,6 +594,7 @@
           "label": "Log Residency Controls",
           "weight": "high",
           "scale": "1=No log residency control · 3=Regional log storage option · 5=Granular per-tenant, per-log-type residency controls",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Cortex Data Lake and Prisma Access support regional log storage with EU, US, and APAC options. Per-log-type residency controls are available in SCM. Cross-region log replication can be disabled per tenant." },
             "cato":       { "score": 3, "note": "Cato supports regional log storage choices (EU vs. US data centers). Per-log-type granular residency controls are more limited than Netskope or Zscaler; regulatory compliance customers may require additional contractual commitments." },
@@ -598,6 +608,7 @@
           "label": "AI/ML Training Data Isolation",
           "weight": "medium",
           "scale": "1=No opt-out available · 3=Contractual opt-out · 5=Contractual prohibition + audit evidence available",
+          "last_verified": "2026-04-17",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Palo Alto contractually commits that customer security telemetry is not used to train shared AI models without consent. Prisma Access Enterprise agreements include ML data isolation clauses with audit rights." },
             "cato":       { "score": 4, "note": "Cato contractually prohibits use of customer traffic data for training shared ML models without opt-in consent. Audit evidence of model training data isolation is available on request for enterprise customers." },

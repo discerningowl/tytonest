@@ -14,23 +14,23 @@
       display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
     }
     .pillar-rank-title {
-      font-family: var(--font-heading); font-weight: 700;
-      font-size: 13px; color: var(--teal);
+      font-weight: 700;
+      font-size: 13px; color: var(--edge-blue);
     }
     .vendor-rank-row {
       display: flex; align-items: center; gap: 10px; margin-bottom: 5px;
     }
     .vendor-rank-row .v-label {
-      font-family: var(--font-heading); font-size: 11px; font-weight: 700;
-      width: 140px; flex-shrink: 0; color: var(--slate);
+      font-size: 11px; font-weight: 700;
+      width: 140px; flex-shrink: 0; color: var(--edge-dark);
     }
     .vendor-rank-row .bar-bg {
-      flex: 1; background: var(--light-gray); border-radius: 3px; height: 14px;
+      flex: 1; background: rgba(72,109,135,0.15); border-radius: 3px; height: 14px;
     }
     .vendor-rank-row .bar-fill { height: 14px; border-radius: 3px; }
     .vendor-rank-row .pct-label {
-      font-family: var(--font-heading); font-weight: 700; font-size: 12px;
-      min-width: 42px; text-align: right; color: var(--slate);
+      font-weight: 700; font-size: 12px;
+      min-width: 42px; text-align: right; color: var(--edge-dark);
     }
     /* ── Vendor summary cards ────────────────────────────────── */
     .v-cards-grid {
@@ -39,30 +39,30 @@
       gap: 16px;
     }
     .v-summary-card {
-      background: var(--white); border-radius: 4px;
-      border: 1.5px solid var(--light-blue);
-      overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      background: rgba(255,255,255,0.80); border-radius: var(--r-md);
+      border: 0.5px solid rgba(72,109,135,0.25);
+      overflow: hidden; box-shadow: 0 4px 20px rgba(72,109,135,0.10);
     }
-    .v-summary-card__hdr { padding: 12px 14px; font-family: var(--font-heading); }
+    .v-summary-card__hdr { padding: 12px 14px; }
     .v-summary-card__name  { font-weight: 700; font-size: 13px; color: var(--white); }
     .v-summary-card__sub   { font-size: 10px; color: rgba(255,255,255,.75); margin-top: 2px; }
     .v-summary-card__body  { padding: 12px 14px; }
     .v-summary-card__arch  {
-      font-family: var(--font-heading); font-size: 10px; color: var(--light-blue2);
+      font-size: 10px; color: var(--edge-muted);
       letter-spacing: .5px; text-transform: uppercase; margin-bottom: 10px;
     }
     .v-mini-bars { display: grid; gap: 5px; }
     .v-mini-row  { display: flex; align-items: center; gap: 6px; }
-    .v-mini-row .lbl      { font-size: 10px; font-family: var(--font-heading); flex: 1; color: var(--slate); }
-    .v-mini-row .mini-bg  { width: 60px; background: var(--light-gray); border-radius: 2px; height: 5px; }
+    .v-mini-row .lbl      { font-size: 10px; flex: 1; color: var(--edge-dark); }
+    .v-mini-row .mini-bg  { width: 60px; background: rgba(72,109,135,0.15); border-radius: 2px; height: 5px; }
     .v-mini-row .mini-fill{ height: 5px; border-radius: 2px; }
-    .v-mini-row .mini-pct { font-family: var(--font-heading); font-weight: 700; font-size: 10px; min-width: 30px; text-align: right; }
+    .v-mini-row .mini-pct { font-weight: 700; font-size: 10px; min-width: 30px; text-align: right; }
     /* ── Emerging vendor note strip ─────────────────────────── */
     .emerging-scope-note {
-      background: var(--off-white); border: 1px solid var(--light-blue);
-      border-radius: 3px; padding: 8px 12px;
-      font-size: 11px; color: var(--light-blue2);
-      font-family: var(--font-heading); margin-top: 6px;
+      background: var(--edge-light); border: 1px solid rgba(72,109,135,0.2);
+      border-radius: var(--r-sm); padding: 8px 12px;
+      font-size: 11px; color: var(--edge-muted);
+      margin-top: 6px;
     }
   </style>
 </head>
@@ -72,7 +72,7 @@
     <span class="edge-header__brand">EDGE SOLUTIONS</span>
     <div class="edge-header__pills">
       <span class="edge-pill">SCORECARD</span>
-      <span class="edge-pill edge-pill--secondary">SYNTHESIS</span>
+      <span class="edge-pill edge-pill--muted">SYNTHESIS</span>
       <span class="edge-pill edge-pill--phase">2026</span>
     </div>
   </div>
@@ -97,19 +97,19 @@
 <div class="edge-section">
   <div class="bluf-box">
     <div class="bluf-box__label">Bottom Line Up Front — Synthesis</div>
-    <p><strong style="color:var(--lime);">No single vendor dominates all five pillars.</strong> This is the central finding of the 2026 SASE Big Five analysis. The right vendor is determined by which pillars are critical to a given organization's architecture and which operational model — single-vendor convergence vs. best-of-breed integration — the team can actually sustain.</p>
-    <p><strong style="color:var(--lime);">Pillar leaders:</strong> Cato owns SD-WAN. Netskope owns SSE + Sovereignty. Palo Alto leads ZTNA and AIOps. Zscaler is the most balanced ZTNA + SSE platform for enterprises that can absorb ZIA/ZPA complexity. Cloudflare wins on global performance and GenAI protection but trails on SD-WAN and AIOps maturity.</p>
-    <p><strong style="color:var(--lime);">Architecture type still matters most.</strong> Single-pass vendors (Cato, Netskope, Cloudflare) have an inherent operational simplicity advantage. Stitched/integrated vendors (Palo Alto, Zscaler) trade integration tax for depth and ecosystem breadth. The correct choice depends on team size, existing investments, and whether security depth or operational simplicity is the governing constraint.</p>
+    <p><strong style="color:var(--edge-green);">No single vendor dominates all five pillars.</strong> This is the central finding of the 2026 SASE Big Five analysis. The right vendor is determined by which pillars are critical to a given organization's architecture and which operational model — single-vendor convergence vs. best-of-breed integration — the team can actually sustain.</p>
+    <p><strong style="color:var(--edge-green);">Pillar leaders:</strong> Cato owns SD-WAN. Netskope owns SSE + Sovereignty. Palo Alto leads ZTNA and AIOps. Zscaler is the most balanced ZTNA + SSE platform for enterprises that can absorb ZIA/ZPA complexity. Cloudflare wins on global performance and GenAI protection but trails on SD-WAN and AIOps maturity.</p>
+    <p><strong style="color:var(--edge-green);">Architecture type still matters most.</strong> Single-pass vendors (Cato, Netskope, Cloudflare) have an inherent operational simplicity advantage. Stitched/integrated vendors (Palo Alto, Zscaler) trade integration tax for depth and ecosystem breadth. The correct choice depends on team size, existing investments, and whether security depth or operational simplicity is the governing constraint.</p>
   </div>
-  <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px;padding:14px 20px;background:var(--white);border:1px solid var(--light-blue);border-radius:4px;align-items:center;">
-    <span style="font-family:var(--font-heading);font-size:11px;color:var(--light-blue2);letter-spacing:.5px;">VENDOR KEY:</span>
+  <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px;padding:14px 20px;background:rgba(255,255,255,0.72);border:0.5px solid rgba(72,109,135,0.25);border-radius:var(--r-md);align-items:center;">
+    <span style="font-size:11px;color:var(--edge-muted);letter-spacing:.5px;">VENDOR KEY:</span>
     <span class="v-chip v-palo"><span class="v-dot"></span>Palo Alto</span>
     <span class="v-chip v-cato"><span class="v-dot"></span>Cato</span>
     <span class="v-chip v-netskope"><span class="v-dot"></span>Netskope</span>
     <span class="v-chip v-cloudflare"><span class="v-dot"></span>Cloudflare</span>
     <span class="v-chip v-zscaler"><span class="v-dot"></span>Zscaler</span>
-    <span style="font-size:11px;color:var(--light-blue2);font-family:var(--font-heading);margin-left:8px;">EMERGING:</span>
-    <span style="font-family:var(--font-heading);font-size:11px;color:var(--slate);">Aryaka · Graphiant · Nile · Island (in-scope pillars only)</span>
+    <span style="font-size:11px;color:var(--edge-muted);margin-left:8px;">EMERGING:</span>
+    <span style="font-size:11px;color:var(--edge-dark);">Aryaka · Graphiant · Nile · Island (in-scope pillars only)</span>
   </div>
 </div>
 
@@ -127,7 +127,7 @@
       <span class="v-chip v-cloudflare"><span class="v-dot"></span>Cloudflare</span>
       <span class="v-chip v-zscaler"><span class="v-dot"></span>Zscaler</span>
     </div>
-    <p style="font-size:11px;color:var(--light-blue2);text-align:center;margin-top:8px;">Big Five only · Scores = pillar weighted % (score × weight multiplier, normalized to 100%) · Source: scores.json</p>
+    <p style="font-size:11px;color:var(--edge-muted);text-align:center;margin-top:8px;">Big Five only · Scores = pillar weighted % (score × weight multiplier, normalized to 100%) · Source: scores.json</p>
   </div>
 </div>
 
@@ -136,7 +136,7 @@
   <hr class="edge-rule">
   <p style="margin-bottom:16px;font-size:13px;">Big Five across all pillars. Weight: Critical ×3 · High ×2 · Medium ×1. Pillar score = vendor weighted points ÷ max possible × 100. Emerging vendors shown in-scope only; cross-pillar totals not computed.</p>
   <div id="master-table-container" style="overflow-x:auto;">
-    <p style="color:var(--light-blue2);padding:20px;text-align:center;">Loading scores…</p>
+    <p style="color:var(--edge-muted);padding:20px;text-align:center;">Loading scores…</p>
   </div>
 </div>
 
@@ -144,7 +144,7 @@
   <h2 class="section-heading">Per-Pillar Vendor Rankings</h2>
   <hr class="edge-rule">
   <div id="pillar-bars-container">
-    <p style="color:var(--light-blue2);padding:20px;text-align:center;">Loading…</p>
+    <p style="color:var(--edge-muted);padding:20px;text-align:center;">Loading…</p>
   </div>
 </div>
 
@@ -152,7 +152,7 @@
   <h2 class="section-heading">Vendor Executive Profiles</h2>
   <hr class="edge-rule">
   <div id="vendor-cards-container" class="v-cards-grid">
-    <p style="color:var(--light-blue2);padding:20px;text-align:center;">Loading…</p>
+    <p style="color:var(--edge-muted);padding:20px;text-align:center;">Loading…</p>
   </div>
 </div>
 
@@ -166,15 +166,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--light-blue2);">SMB–Mid-market</span></td>
+        <td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td>
         <td>Small security team (1–5 people), limited vendor management capacity, operational simplicity is the governing constraint</td>
         <td><ol style="padding-left:16px;font-size:12.5px;"><li>Single-vendor, one console</li><li>Fast deployment (ZTP)</li><li>No integration engineering</li></ol></td>
         <td><span class="winner-tag winner-primary">CATO</span></td>
         <td><span class="winner-tag winner-alt">CLOUDFLARE</span></td>
-        <td style="font-size:12.5px;">Cato's single-pass architecture eliminates the integration tax entirely. ZTNA, SSE, SD-WAN, and AIOps are all one stack, one console, one support call. Cloudflare is the alt for cloud-native/no-branch environments where SD-WAN is not needed.</td>
+        <td style="font-size:12.5px;">Cato's single-pass architecture eliminates the integration tax entirely. ZTNA, SSE, SD-WAN, and AIOps are all one stack, one console, one support call. Cloudflare is the alt for cloud-native/no-branch environments where SD-WAN is not needed. <strong>2026 note:</strong> Cato now offers standalone modules (AI Security, SD-WAN, SSE, UZTNA) for organizations that want to start with one pillar and expand — the modular adoption path lowers the barrier to entry for lean teams that aren’t ready to replace everything at once.</td>
       </tr>
       <tr>
-        <td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--light-blue2);">Large Enterprise</span></td>
+        <td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td>
         <td>Dedicated SOC (10+ staff), existing NGFW estate, threat-prevention depth is the governing constraint, hybrid on-prem + cloud</td>
         <td><ol style="padding-left:16px;font-size:12.5px;"><li>Threat intelligence depth</li><li>Hybrid policy unified management</li><li>SIEM/SOAR integration</li></ol></td>
         <td><span class="winner-tag winner-primary">PALO ALTO</span></td>
@@ -182,7 +182,7 @@
         <td style="font-size:12.5px;">Palo Alto's WildFire + App-ID + SCM is the only platform that manages physical NGFW estate and cloud SSE/ZTNA from a unified policy plane. Zscaler is the alt for organizations wanting to separate physical firewall management from their cloud SSE stack.</td>
       </tr>
       <tr>
-        <td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--light-blue2);">Finance · Healthcare · Legal</span></td>
+        <td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td>
         <td>Data classification governs all policy, GDPR/HIPAA/PCI compliance obligations, DLP is a board-level concern</td>
         <td><ol style="padding-left:16px;font-size:12.5px;"><li>ML DLP + CASB dual-mode</li><li>GenAI data protection</li><li>Sovereignty &amp; log residency</li></ol></td>
         <td><span class="winner-tag winner-primary">NETSKOPE</span></td>
@@ -190,7 +190,7 @@
         <td style="font-size:12.5px;">Netskope's data-centric architecture — DLP fused with ZTNA access grants, inline + API CASB, sovereign PoP design — is built from the ground up for regulated data. Palo Alto is the alt where threat prevention and regulatory compliance must coexist with existing NGFW investment.</td>
       </tr>
       <tr>
-        <td><strong>Global Performance</strong><br><span style="font-size:11px;color:var(--light-blue2);">Distributed / APAC-heavy</span></td>
+        <td><strong>Global Performance</strong><br><span style="font-size:11px;color:var(--edge-muted);">Distributed / APAC-heavy</span></td>
         <td>Users distributed across 30+ countries, latency to SASE PoP is a first-class SLA, developer/API-heavy workloads, cloud-native</td>
         <td><ol style="padding-left:16px;font-size:12.5px;"><li>Global PoP density / latency</li><li>Developer API access</li><li>Agentless / BYOD coverage</li></ol></td>
         <td><span class="winner-tag winner-primary">CLOUDFLARE</span></td>
@@ -198,7 +198,7 @@
         <td style="font-size:12.5px;">Cloudflare's 330+ PoP network is unmatched for global latency. Developer-native API, Terraform-deployable, zero-install agentless ZTNA. Cato is the alt for organizations also needing SD-WAN branch connectivity with SLA-backed private backbone performance.</td>
       </tr>
       <tr>
-        <td><strong>Enterprise ZT Transformation</strong><br><span style="font-size:11px;color:var(--light-blue2);">Strategic ZT Program</span></td>
+        <td><strong>Enterprise ZT Transformation</strong><br><span style="font-size:11px;color:var(--edge-muted);">Strategic ZT Program</span></td>
         <td>Multi-year Zero Trust program, replacing VPN + perimeter firewall simultaneously, needs mature per-app segmentation and DEM</td>
         <td><ol style="padding-left:16px;font-size:12.5px;"><li>Per-app segmentation maturity</li><li>DEM for user adoption tracking</li><li>Identity risk integration</li></ol></td>
         <td><span class="winner-tag winner-primary">ZSCALER</span></td>
@@ -207,7 +207,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Emerging vendor complement:</strong> None of the Big Five address campus/LAN Zero Trust (Nile), managed SASE for global connectivity (Aryaka), tunnel-free private WAN (Graphiant), or browser-layer enforcement without TLS decryption (Island). For organizations with requirements in these areas, emerging vendor deployment alongside a Big Five platform is the recommended architecture. See <a href="sase_emerging.html" style="color:var(--teal);">Emerging Vendors</a>.</div></div>
+  <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Emerging vendor complement:</strong> None of the Big Five address campus/LAN Zero Trust (Nile), managed SASE for global connectivity (Aryaka), tunnel-free private WAN (Graphiant), or browser-layer enforcement without TLS decryption (Island). For organizations with requirements in these areas, emerging vendor deployment alongside a Big Five platform is the recommended architecture. See <a href="sase_emerging.html" style="color:var(--edge-green);">Emerging Vendors</a>.</div></div>
 </div>
 
 <div class="edge-section" style="padding-top:0;">
@@ -233,10 +233,10 @@
 <div class="edge-dark-section">
   <div style="max-width:1020px;margin:0 auto;">
     <h2>2026 SASE Market: Four Macro Conclusions</h2>
-    <p><strong style="color:var(--lime);">1. The "single-vendor SASE" narrative is maturing, not converging.</strong> Cato proves the single-vendor model works operationally. But Palo Alto and Zscaler's integrated platforms continue to win large enterprises because depth matters more than simplicity at scale. The market will remain bifurcated between simplicity buyers and depth buyers through at least 2028.</p>
-    <p><strong style="color:var(--lime);">2. GenAI data protection is the new DLP frontier and is already a purchasing criterion.</strong> Organizations that deployed SASE in 2022–2024 are discovering their DLP policies don't cover AI prompt data. In 2026, GenAI app protection has become a first-round RFP question. Netskope and Cloudflare are the current leaders; Palo Alto and Zscaler are actively closing the gap.</p>
-    <p><strong style="color:var(--lime);">3. Sovereignty-by-design is the 2026 enterprise procurement gate for EMEA and APAC.</strong> Data residency and PoP-level isolation are no longer optional for EU-regulated industries. Netskope's sovereign PoP architecture and Cloudflare's regional data plane isolation are the most advanced. Cato's sovereignty story is the weakest in the Big Five — a material gap for EMEA-heavy organizations.</p>
-    <p><strong style="color:var(--lime);">4. The campus edge is the gap no Big Five vendor fills.</strong> As Zero Trust matures, the physical campus network is the last perimeter still operating on implicit trust. Nile's Zero Trust NaaS fills this gap. For organizations with ZT as a strategic program (not just remote access), Nile + any Big Five SASE is the 2026 architectural answer. Watch for Big Five acquisition activity in this space through 2026–2027.</p>
+    <p><strong style="color:var(--edge-green);">1. The "single-vendor SASE" narrative is maturing, not converging.</strong> Cato proves the single-vendor model works operationally. But Palo Alto and Zscaler's integrated platforms continue to win large enterprises because depth matters more than simplicity at scale. The market will remain bifurcated between simplicity buyers and depth buyers through at least 2028.</p>
+    <p><strong style="color:var(--edge-green);">2. GenAI data protection is the new DLP frontier and is already a purchasing criterion.</strong> Organizations that deployed SASE in 2022–2024 are discovering their DLP policies don't cover AI prompt data. In 2026, GenAI app protection has become a first-round RFP question. Netskope and Cloudflare are the current leaders; Palo Alto and Zscaler are actively closing the gap.</p>
+    <p><strong style="color:var(--edge-green);">3. Sovereignty-by-design is the 2026 enterprise procurement gate for EMEA and APAC.</strong> Data residency and PoP-level isolation are no longer optional for EU-regulated industries. Netskope's sovereign PoP architecture and Cloudflare's regional data plane isolation are the most advanced. Cato's sovereignty story is the weakest in the Big Five — a material gap for EMEA-heavy organizations.</p>
+    <p><strong style="color:var(--edge-green);">4. The campus edge is the gap no Big Five vendor fills.</strong> As Zero Trust matures, the physical campus network is the last perimeter still operating on implicit trust. Nile's Zero Trust NaaS fills this gap. For organizations with ZT as a strategic program (not just remote access), Nile + any Big Five SASE is the 2026 architectural answer. Watch for Big Five acquisition activity in this space through 2026–2027.</p>
   </div>
 </div>
 
@@ -345,10 +345,10 @@ function renderRadar(data, bigFiveVendors) {
       scales: {
         r: {
           min: 0, max: 100,
-          ticks: { stepSize: 20, font: { size: 11 }, color: '#889CAF' },
-          grid:  { color: '#A9B8C8' },
-          pointLabels: { font: { size: 13, family: 'Heebo, Calibri, sans-serif' }, color: '#44546A' },
-          angleLines: { color: '#A9B8C8' }
+          ticks: { stepSize: 20, font: { size: 11 }, color: '#7B7D72' },
+          grid:  { color: 'rgba(72,109,135,0.2)' },
+          pointLabels: { font: { size: 13, family: 'Atkinson Hyperlegible Next, sans-serif' }, color: '#4C5351' },
+          angleLines: { color: 'rgba(72,109,135,0.2)' }
         }
       },
       plugins: {
@@ -398,11 +398,11 @@ function renderMasterTable(data, bigFiveVendors) {
     });
 
     /* Pillar subtotal row */
-    html += '<tr style="background:var(--off-white)!important;"><td style="font-family:var(--font-heading);font-weight:700;font-size:11px;color:var(--teal);padding:6px 14px;">PILLAR SCORE</td>';
+    html += '<tr style="background:var(--edge-light)!important;"><td style="font-weight:700;font-size:11px;color:var(--edge-blue);padding:6px 14px;">PILLAR SCORE</td>';
     bigFiveVendors.forEach(function(v) {
       var r   = computePillarScore(pillar, v.id);
       var pct = r.pct !== null ? r.pct : '–';
-      html += '<td class="score-cell" style="font-family:var(--font-heading);font-weight:700;font-size:13px;color:' + (V_COLORS[v.id] || '#44546A') + ';">' + pct + (typeof pct === 'number' ? '%' : '') + '</td>';
+      html += '<td class="score-cell" style="font-weight:700;font-size:13px;color:' + (V_COLORS[v.id] || '#4C5351') + ';">' + pct + (typeof pct === 'number' ? '%' : '') + '</td>';
     });
     html += '</tr>';
   });
@@ -462,7 +462,7 @@ function renderPillarBars(data, allVendors) {
 
     rows.forEach(function(r) {
       var isEmerging = r.vendor.tier === 'emerging';
-      var vcolor = isEmerging ? '#889CAF' : (V_COLORS[r.vendor.id] || '#889CAF');
+      var vcolor = isEmerging ? '#7B7D72' : (V_COLORS[r.vendor.id] || '#7B7D72');
       var displayName = r.vendor.name.replace('Palo Alto Networks', 'Palo Alto');
       if (isEmerging) displayName += ' ✦';
       html += '<div class="vendor-rank-row">';
@@ -472,7 +472,7 @@ function renderPillarBars(data, allVendors) {
       html += '</div>';
     });
 
-    html += '<div style="font-size:10px;color:var(--light-blue2);margin-top:4px;">✦ Emerging vendor — in-scope pillar only</div>';
+    html += '<div style="font-size:10px;color:var(--edge-muted);margin-top:4px;">✦ Emerging vendor — in-scope pillar only</div>';
     html += '</div>';
   });
 
@@ -528,9 +528,9 @@ function renderVendorCards(data, bigFiveVendors) {
     html += '</div>';
     html += '<div class="v-summary-card__body">';
     html += '<div class="v-summary-card__arch">' + (archLabels[v.arch_type] || v.arch_type) + '</div>';
-    html += '<p style="font-size:12px;line-height:1.5;margin-bottom:10px;color:var(--slate);">' + (blurbs[v.id] || '') + '</p>';
+    html += '<p style="font-size:12px;line-height:1.5;margin-bottom:10px;color:var(--edge-dark);">' + (blurbs[v.id] || '') + '</p>';
     html += '<div class="v-mini-bars">' + miniBarHtml + '</div>';
-    html += '<div style="margin-top:10px;font-family:var(--font-heading);font-size:12px;font-weight:700;color:' + vcolor + ';">Overall: ' + (overall !== null ? overall + '%' : '–') + '</div>';
+    html += '<div style="margin-top:10px;font-size:12px;font-weight:700;color:' + vcolor + ';">Overall: ' + (overall !== null ? overall + '%' : '–') + '</div>';
     html += '</div></div>';
   });
 
