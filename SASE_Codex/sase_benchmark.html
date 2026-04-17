@@ -18,8 +18,10 @@
       <span class="edge-pill edge-pill--phase">2026</span>
     </div>
   </div>
-  <h1 class="edge-header__title">SASE Component Benchmark 2026</h1>
-  <p class="edge-header__subtitle">Defining Best-in-Class for ZTNA, SSE, SD-WAN, AIOps &amp; Sovereignty · Research Series · Q2 2026</p>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">SASE Component Benchmark 2026</h1>
+    <p class="edge-header__subtitle">Defining Best-in-Class for ZTNA, SSE, SD-WAN, AIOps &amp; Sovereignty · Research Series · Q2 2026</p>
+  </div>
 </header>
 <nav class="doc-nav">
   <a href="sase_benchmark.html" class="active">Benchmark</a><span class="doc-nav__sep">›</span>
@@ -48,11 +50,11 @@
       <div class="edge-stat__label">EVALUATION PILLARS</div>
     </div>
     <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
-      <div class="edge-stat__number">36</div>
+      <div class="edge-stat__number">39</div>
       <div class="edge-stat__label">SCORED CRITERIA</div>
     </div>
     <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
-      <div class="edge-stat__number">8</div>
+      <div class="edge-stat__number">9</div>
       <div class="edge-stat__label">VENDORS IN SCOPE</div>
     </div>
     <div class="edge-stat" style="background:var(--white); border:1.5px solid var(--teal); border-radius:4px;">
@@ -460,11 +462,59 @@
       </tr>
     </tbody>
   </table>
-  <div class="edge-callout--warning edge-callout mt-20">
-    <div class="edge-callout__accent" style="background:#D4A017;"></div>
-    <div>
-      <strong>2026 Watch Area — Generative AI Exfiltration:</strong> The fastest-growing DLP gap in 2026 is sensitive data flowing into public LLM prompts. Netskope leads here with inline prompt inspection tied to their unified DLP engine. Zscaler has added GenAI app controls within ZIA, but enforcement is at the application category level rather than content-aware inspection — a meaningful gap for regulated industries. This capability is absent in most stitched or commodity SSE offerings and will be a scored criterion in the <a href="sase_sse.html">SSE deep dive</a>.
+  <div class="edge-callout--warning edge-callout mt-20" style="align-items:flex-start; flex-direction:column; gap:14px;">
+    <div style="display:flex; align-items:flex-start; gap:10px; width:100%;">
+      <div class="edge-callout__accent" style="background:#D4A017; min-height:48px;"></div>
+      <div style="flex:1;">
+        <strong>2026 Watch Area — Generative AI Exfiltration</strong>
+        <p style="margin-top:6px;">The fastest-growing DLP gap in 2026 is sensitive data flowing into public LLM prompts. This is no longer theoretical — Netskope telemetry shows GenAI-related violations more than doubled year-over-year, with enterprises logging an average of 223 incidents per month; Zscaler recorded 410 million DLP violations tied to ChatGPT alone across 2025. The 2026 inflection point is the shift from <strong>shadow AI governance</strong> (who is using what tool) to <strong>agentic AI exfiltration</strong> — autonomous agents that exfiltrate data without any user action, bypassing coaching and app-block controls entirely. Every major vendor now has a GenAI protection story; depth and enforcement mechanism vary sharply.</p>
+      </div>
     </div>
+    <div style="width:100%; overflow-x:auto;">
+      <table class="edge-table" style="margin:0;">
+        <thead>
+          <tr>
+            <th class="edge-table__label-col" style="white-space:nowrap;">Vendor</th>
+            <th class="edge-table__primary-col" style="min-width:130px;">2026 Position</th>
+            <th class="edge-table__detail-col">Current Capability &amp; Key Gap</th>
+            <th class="edge-table__note-col" style="min-width:120px;">Agentic AI Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:var(--v-netskope);">Netskope</strong></td>
+            <td>Category research leader</td>
+            <td>Inline prompt + response DLP tied to the same ML engine as SWG, CASB, and private apps. Real-time user coaching (57% alter behavior after alert); 1,600+ AI tools tracked. <em>Gap:</em> 47% of users still on personal, unmanaged accounts outside inspection path.</td>
+            <td><span class="weight-badge weight-medium">EMERGING</span><br><span style="font-size:11px;">Agentic controls developing; shadow AI governance is the current strength</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--v-zscaler);">Zscaler</strong></td>
+            <td>Deepest telemetry; strong proxy enforcement</td>
+            <td>410M ChatGPT-linked DLP violations in 2025; AI Access Security covers 100+ DLP dictionaries for prompt-level inspection; Browser Isolation available for high-risk tools. <em>Note:</em> App-category-only enforcement is now outdated — content-aware prompt inspection is GA, though ML classification depth trails Netskope for complex regulated-data scenarios.</td>
+            <td><span class="weight-badge weight-medium">EMERGING</span><br><span style="font-size:11px;">ThreatLabz 2026 report signals platform pivot toward agentic risk</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--v-palo);">Palo Alto</strong></td>
+            <td>Architecturally most aggressive</td>
+            <td>Prisma SASE 4.0 (March 2026): AI Access Security across 6,000+ GenAI apps with real-time prompt analysis. Prisma Access Browser moves DLP inspection pre-encryption with 1,000+ classifiers — no TLS bottleneck. Protect AI acquisition (2025) adds model-layer threat coverage. <em>Trade-off:</em> Highest breadth; highest operational complexity.</td>
+            <td><span class="weight-badge weight-critical" style="background:var(--v-palo);">ACTIVE</span><br><span style="font-size:11px;">Protect AI covers prompt injection, data poisoning &amp; model manipulation</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--v-cloudflare);">Cloudflare</strong></td>
+            <td>Developer-native; dual-side coverage</td>
+            <td>Only vendor covering both workforce exfiltration (Cloudflare One SASE) and AI app builders (AI Gateway DLP — no TLS decryption required). AI-SPM via API integration with ChatGPT, Claude, and Gemini is GA. <em>Gap:</em> AI context analysis for DLP was closed beta as of mid-2025; classification depth trails Netskope and Zscaler for regulated-data scenarios.</td>
+            <td><span class="weight-badge weight-medium">EMERGING</span><br><span style="font-size:11px;">MCP server access controls shipping; agentic coverage expanding</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--v-cato);">Cato</strong></td>
+            <td>Latest mover; GA with agentic roadmap</td>
+            <td>GenAI CASB controls GA April 2025 (950+ app catalog, shadow AI dashboard, ML-based DLP classifiers, single-pass delivery). Feb 2026: runtime guardrails for private AI agents — blocks agentic exploits with full traceability. Single-pass means GenAI DLP shares the same policy engine as all SSE controls. <em>Gap:</em> Telemetry depth and research credibility still trail the other four.</td>
+            <td><span class="weight-badge weight-critical" style="background:var(--v-cato);">ACTIVE</span><br><span style="font-size:11px;">Aim Security acquisition; private AI firewall + AI-SPM + MCP governance GA</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:#7a6a2a; padding-left:4px;"><strong>Scored criterion in the <a href="sase_sse.html" style="color:#8a7a1a;">SSE deep dive</a>.</strong> The agentic AI dimension will be weighted separately from shadow AI governance — it represents a materially different threat model requiring different controls.</p>
   </div>
 </section>
 

@@ -58,7 +58,7 @@
 <div class="edge-section" style="padding-top:0;">
   <h2 class="section-heading">Regulatory Certification Matrix</h2>
   <hr class="edge-rule">
-  <p style="margin-bottom:14px;font-size:13.5px;">Current certifications as of Q1 2026. Verify with vendors prior to procurement — certifications have annual renewal cycles and scope may vary by product/region.</p>
+  <p style="margin-bottom:14px;font-size:13.5px;">Current certifications as of Q2 2026. Verify with vendors prior to procurement — certifications have annual renewal cycles and scope may vary by product/region.</p>
   <table class="reg-matrix">
     <thead>
       <tr><th>Certification</th><th>Palo Alto</th><th>Cato</th><th>Netskope</th><th>Cloudflare</th><th>Zscaler</th><th>Scope Notes</th></tr>
@@ -66,7 +66,7 @@
     <tbody>
       <tr><td>SOC 2 Type II</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>All vendors; verify current report date</td></tr>
       <tr><td>ISO 27001</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>All vendors</td></tr>
-      <tr><td>FedRAMP</td><td class="cert-partial">Moderate</td><td class="cert-no">✗</td><td class="cert-yes">High</td><td class="cert-partial">Moderate</td><td class="cert-yes">High</td><td>High = DOD/IC eligible; Moderate = civilian agencies only</td></tr>
+      <tr><td>FedRAMP</td><td class="cert-partial">Moderate</td><td class="cert-partial">In Process (High)</td><td class="cert-yes">High</td><td class="cert-partial">Moderate</td><td class="cert-yes">High</td><td>High = DOD/IC eligible; Moderate = civilian agencies only. Cato initiated FedRAMP High authorization March 2026 — pending, not yet authorized.</td></tr>
       <tr><td>BSI C5 (Germany)</td><td class="cert-yes">✓</td><td class="cert-no">✗</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>Required for German regulated entities</td></tr>
       <tr><td>IRAP (Australia)</td><td class="cert-yes">✓</td><td class="cert-no">✗</td><td class="cert-yes">Protected</td><td class="cert-yes">✓</td><td class="cert-yes">✓</td><td>Protected level = Australian government eligible</td></tr>
       <tr><td>CSA STAR</td><td class="cert-yes">Level 2</td><td class="cert-no">✗</td><td class="cert-yes">Level 2</td><td class="cert-yes">✓</td><td class="cert-yes">Level 2</td><td>Level 2 = third-party audit</td></tr>
@@ -77,7 +77,7 @@
   </table>
   <div class="edge-callout edge-callout--warning" style="margin-top:14px;">
     <div class="edge-callout__accent"></div>
-    <div><strong>Cato certification gap is procurement-disqualifying for regulated markets:</strong> No FedRAMP, no BSI C5, no IRAP, no CSA STAR as of Q1 2026. For US government, German regulated, Australian government, or any buyer with encryption key sovereignty requirements, Cato cannot be positioned as a primary SASE platform without compliance risk. A roadmap commitment is not a certification.</div>
+    <div><strong>Cato certification gap is procurement-disqualifying for regulated markets today:</strong> No current FedRAMP, no BSI C5, no IRAP, no CSA STAR as of Q2 2026. For US government, German regulated, Australian government, or any buyer with encryption key sovereignty requirements, Cato cannot be positioned as a primary SASE platform without compliance risk. Cato initiated FedRAMP High authorization in March 2026 with Coalfire — a credible roadmap signal, but the process typically takes 12–24 months. A roadmap commitment is not a certification.</div>
   </div>
 </div>
 
@@ -95,7 +95,7 @@
       <p>FedRAMP High authorization covers DOD and intelligence community workloads — the highest US government authorization level. IRAP Protected covers Australian government classified workloads. These are the two hardest authorizations to obtain and the most meaningful for government-adjacent enterprise buyers.</p>
       <div class="vendor-grid">
         <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Only vendor with BYOK + HYOK available. PoP-level isolation is architectural, not contractual-only. FedRAMP High + IRAP Protected. Best log residency granularity (per-log-type, per-tenant). ML training data isolation with SOC2 audit evidence. Best for EU regulated and US government buyers.</p></div>
-        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>NewEdge PoP count (75+) smaller than Cloudflare (330+) — emerging market coverage less dense. Dedicated private PoP for small regulated entities requires custom engagement. FedRAMP High configurations are premium-priced.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>NewEdge footprint (120+ data centers in 75+ regions) smaller than Cloudflare (330+ PoPs) — emerging market coverage less dense. Dedicated private PoP for small regulated entities requires custom engagement. FedRAMP High configurations are premium-priced.</p></div>
       </div>
     </div>
   </div>
@@ -142,7 +142,7 @@
   <div class="vendor-section">
     <div class="vendor-header"><h2>Cato Networks — Significant Sovereignty Gaps</h2><span class="arch-tag">NOT RECOMMENDED FOR REGULATED / GOVERNMENT BUYERS</span></div>
     <div class="vendor-body">
-      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>Procurement Warning:</strong> Cato does not hold FedRAMP, BSI C5, IRAP, or CSA STAR certifications as of Q1 2026. No BYOK is generally available. For any procurement requiring these certifications, Cato is not a viable option regardless of its strengths in other pillars.</div></div>
+      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>Procurement Warning:</strong> Cato does not currently hold FedRAMP, BSI C5, IRAP, or CSA STAR certifications as of Q2 2026. No BYOK is generally available. Cato initiated FedRAMP High authorization in March 2026 (typical process 12–24 months). For any procurement requiring these certifications <em>now</em>, Cato is not a viable option regardless of its strengths in other pillars.</div></div>
       <p>Cato's sovereignty posture reflects its focus on operational simplicity and SMB/mid-market SASE rather than regulated enterprise and government markets. SOC2 Type II and ISO 27001 are in place. PCI DSS and HIPAA BAA are available. Beyond this, the certification portfolio has significant gaps.</p>
       <div class="vendor-subhead">Data Residency + Encryption Limitations</div>
       <p>Cato supports regional log storage as a tenant selection. Full PoP-level data plane isolation with auditable metadata boundaries is not a shipped capability — Cato's single-pass architecture processes traffic across PoPs to optimize performance, which is architecturally at odds with "traffic never leaves France" requirements. BYOK is not generally available as of Q1 2026 — the most significant sovereignty gap in the Cato platform for any customer whose regulator requires customer-managed encryption keys.</p>
@@ -175,10 +175,11 @@
 
 <div class="edge-dark-section">
   <div style="max-width:1020px;margin:0 auto;">
-    <h2>Sovereignty in 2026: Three Regulatory Drivers</h2>
+    <h2>Sovereignty in 2026: Four Regulatory Drivers</h2>
     <p><strong style="color:var(--lime);">1. DORA is now in full effect.</strong> EU financial services entities must document ICT third-party risk with contractual provisions, exit plans, and incident reporting requirements. SASE vendors that provide structured DORA Article 28 compliance documentation — audit rights, concentration risk disclosure, incident notification SLAs — will win financial services deals over those that can't. Netskope's DORA readiness documentation is the most complete in the Big Five as of Q1 2026.</p>
     <p><strong style="color:var(--lime);">2. The EU AI Act's data governance requirements are hitting SASE.</strong> AI Act Article 10 requires that training data for AI/ML systems be subject to data governance practices. If a SASE vendor uses customer traffic data to train shared ML models without contractual prohibition and audit evidence, EU-based customers face Article 10 compliance exposure. Contractual opt-out alone is not sufficient — audit evidence of isolation controls is required. Only Netskope provides SOC2-audited ML training data isolation as of Q1 2026.</p>
     <p><strong style="color:var(--lime);">3. Encryption key sovereignty is becoming a contract requirement, not a feature.</strong> German BaFin, French ACPR, and Dutch DNB guidance on cloud security increasingly references HYOK as the expected standard for sensitive data processing. "The cloud provider cannot decrypt" is the regulatory expectation, not "the cloud provider won't decrypt." Netskope's HYOK addresses this directly. The remaining Big Five vendors have no current response to this requirement outside ZPC deployments (Zscaler).</p>
+    <p><strong style="color:var(--lime);">4. APAC data sovereignty is accelerating — India's DPDPA is the newest pressure point.</strong> India's Digital Personal Data Protection Act (DPDPA) mandates local data residency for organizations classified as Significant Data Fiduciaries, layered with sector-specific rules from RBI (banking) and SEBI (securities). Netskope announced a NewEdge management plane in Mumbai on April 14, 2026 — joining eight existing Indian data centers — to deliver a fully sovereign SASE platform for DPDPA compliance including sensitive metadata and logs. Expect similar localization announcements from other Big Five vendors through 2026 as APAC regulatory pressure compounds.</p>
   </div>
 </div>
 </main>

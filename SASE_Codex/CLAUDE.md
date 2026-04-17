@@ -1,6 +1,6 @@
 # CLAUDE.md — SASE Codex
 ## Decision Log & Architecture Reference
-*Last updated: Q2 2026 — update this file as decisions are made*
+*Last updated: 2026-04-17 — scores.json v1.3 with Cato AI Security (Aim acquisition) + Dynamic Prevention scoring; v1.2 baseline Cloudflare One Appliance, Netskope NewEdge footprint, and Cato FedRAMP March 2026 corrections*
 
 ---
 
@@ -160,7 +160,7 @@ Each pillar doc fetches only its relevant pillar section. The Scorecard fetches 
 
 ## Styling & Branding
 
-- All HTML documents use Edge Solutions brand (skill: `/mnt/skills/user/edge-solutions-html/SKILL.md`)
+- All HTML documents use Edge Solutions brand (skill: `/mnt/skills/user/edge-documents/SKILL.md`)
 - CSS variables defined in each file's `<style>` block — do not use inline hex values
 - Fonts: Heebo (headings), Roboto (body) via Google Fonts
 - Score badges: CRITICAL = red `#C0392B`, HIGH = orange `#E67E22`, MEDIUM = yellow `#F1C40F`
@@ -197,7 +197,14 @@ All pages use the `sase_ztna.html` header as the reference implementation. Do no
 
 **Header padding:** `18px 40px 20px`.
 
-**No `edge-header__bottom` wrapper div** — title and subtitle sit directly in the header flex column.
+**No `edge-header__bottom` wrapper div in benchmark only — all other pages use the wrapper.** *(This file previously said the opposite — corrected 2026-04-17 after discovering benchmark was the outlier.)* Canonical structure for pillar and scorecard pages is:
+```html
+<div class="edge-header__bottom">
+  <h1 class="edge-header__title">...</h1>
+  <p class="edge-header__subtitle">...</p>
+</div>
+```
+The CSS defines `.edge-header__bottom { margin-top: 4px; }` so the wrapper is intentional for spacing.
 
 **Pill class definitions (canonical):**
 ```css
@@ -208,10 +215,34 @@ All pages use the `sase_ztna.html` header as the reference implementation. Do no
 
 ---
 
+## Cloudflare Pages Deployment Notes
+
+**Live URL:** `https://tytonest.xyz/SASE_Codex/`  
+**Repo:** `discerningowl/tytonest` (GitHub) · Production branch: `main` · No build command · No output directory
+
+### What works and what doesn't
+- **Clean URLs:** Cloudflare Pages natively strips `.html` and serves `sase_scorecard` from `sase_scorecard.html`. No `_redirects` file needed — it causes redirect loops.
+- **`_headers` subdirectory rules:** `/SASE_Codex/*` overrides do NOT reliably apply. Use a single global `/*` rule for everything.
+- **`scores.json` fetch path:** Use `window.location.pathname` to derive the path — NOT script `src` attribute detection. Cloudflare Rocket Loader rewrites `<script>` tags, breaking src-based detection.
+- **Cache:** After any `_headers` change, manually purge via Cloudflare dashboard → Caching → Configuration → Purge Everything.
+
+### Current `_headers` (repo root)
+```
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; img-src 'self' data:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'
+```
+
+---
+
 ## Writing Style
 
 - **BLUF:** Lead with the answer, follow with supporting detail
-- **Feynman Technique:** Plain-language intuition before going technical
+- **Feynman Technique:** Plain-language intuition before going technical.
 - **Precision:** No filler, no hedging without cause, no confident claims about Zscaler without verification
 - **DLP hierarchy language:** Avoid ranking vendors 1/2/3 — describe philosophy and fit instead
 - Working documents are for internal use and client distribution — technical depth is appropriate

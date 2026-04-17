@@ -1,0 +1,77 @@
+2026-04-17 freshness pass: scores.json v1.3 + Cato 2026 product integration
+
+## scores.json (v1.1 → v1.3)
+
+### v1.2 baseline corrections
+- Cloudflare SD-WAN: ztp 3→4, multi_link 2→3 (Cloudflare One Appliance ships
+  pre-installed via partner network; supports multi-WAN with ECMP and
+  active/standby HA). 5g_failover stays 1 but note corrected (Ethernet-only
+  hardware spec: 2×SFP+ + 6×RJ45).
+- Cloudflare SD-WAN: app_aware_steering + wan_optimization notes updated
+  to reference the Appliance rather than implying no CPE exists.
+- Netskope ZTNA global_latency note: "50+ PoPs" → "120+ data centers in
+  75+ regions" (per Netskope 2025 datasheet).
+- Netskope SSE shadow_it note: 59,000+ → 50,000+ apps (reconciled).
+- Palo Alto SSE fwaas_app_awareness note: 5,000+ → 4,000+ signatures
+  (reconciled with existing SSE page prose).
+- Cato sovereignty certifications note: FedRAMP not-achieved → "In
+  Process (High, March 2026 with Coalfire)" per Mar 12 2026 announcement.
+
+### v1.3 Cato 2026 product integration
+- Cato SSE genai_data_protection: 4 → 5.
+  Justification: Cato AI Security (GA March 2026 via Aim Security
+  acquisition Q3 2025) covers public AI inline prompt/response inspection,
+  AI-SPM for model supply chain, private AI firewall for homegrown
+  apps/agents, and MCP server governance — broader than inline-only DLP
+  approaches.
+- Cato AIOps ueba: 4 → 5.
+  Justification: Cato XDR UEBA + Cato Dynamic Prevention (GA March 3 2026)
+  adds auto-adaptive threat prevention correlating months of signals
+  across DLP/IPS/NGAM sensors. Meets the "ML UEBA, multi-dimensional
+  baselines, automated risk escalation" scale-5 description.
+
+## HTML pages
+
+- sase_benchmark.html: stats 36→39 criteria, 8→9 vendors; added missing
+  edge-header__bottom wrapper div.
+- sase_ztna.html: App-ID 17,000+→4,000+ (reconciled); Cato 90+→85+ PoPs;
+  FALLBACK_PILLAR Netskope PoP note synced.
+- sase_sse.html: Netskope CCI 60,000+→50,000+; FALLBACK_PILLAR synced
+  for App-ID, CCI, and Cato AI/GenAI 4→5; new Cato "AI Security — Aim
+  Security Acquisition" vendor prose section; BLUF and "Three Defining
+  Shifts" #1 rewritten to include March 2026 Cato platform shift.
+- sase_sdwan.html: FALLBACK_PILLAR synced with v1.2 Cloudflare score
+  changes.
+- sase_aiops.html: added Zscaler DEM/RCA and Cloudflare "not recommended"
+  persona rows; removed redundant RCA callout; FALLBACK_PILLAR Cato UEBA
+  synced to 5; new Cato "UEBA + Dynamic Prevention + AI Assistant"
+  vendor prose section; BLUF rewritten.
+- sase_sovereignty.html: Cato FedRAMP matrix row → "In Process (High)"
+  with March 2026 context; procurement warnings updated; Netskope
+  footprint framing corrected; "Q1 2026" → "Q2 2026"; added 4th
+  regulatory driver (DPDPA / Netskope India management plane Apr 14 2026).
+- sase_emerging.html: Island added to summary paragraph and HTML <title>.
+- sase_scorecard.html: secondary pill MASTER SCORECARD → SYNTHESIS.
+
+## Housekeeping
+
+- CLAUDE.md: header-wrapper rule corrected (benchmark was the outlier,
+  not the reference — all 7 other pages use the wrapper); timestamp
+  updated with v1.3 context.
+- TODO.md: full rewrite documenting v1.2 and v1.3 changes, score impact
+  summary, and deferred Cato Neural Edge / modular adoption / Netskope
+  MCP work.
+
+## Score impact
+
+- Cloudflare SD-WAN: 58% → 64% (+6, from v1.2 ztp + multi_link)
+- Cato SSE: 81% → 82% (+1, from v1.3 GenAI 4→5)
+- Cato AIOps: 83% → 88% (+5, from v1.3 UEBA 4→5)
+- All other weighted pillar percentages unchanged.
+
+## Verification
+
+All v1.2 and v1.3 score changes validated via scores.json parse + recomputed
+pillar weights. Specific claim sources verified via web search (Netskope
+NewEdge datasheet, Cato press releases Mar 3/12/17/31 2026, Cloudflare
+One Appliance docs).
