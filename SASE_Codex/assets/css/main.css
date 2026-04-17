@@ -744,6 +744,9 @@ canvas#radarChart { display: block; }
 .edge-stat         { text-align: center; padding: 12px; }
 .edge-stat__number { font-weight: 700; font-size: 32px; color: var(--edge-green); }
 .edge-stat__label  { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: .5px; margin-top: 3px; }
+/* Light-surface variant — use when stat cards sit on a light/glass background */
+.edge-stat--light .edge-stat__number { color: var(--edge-blue); }
+.edge-stat--light .edge-stat__label  { color: var(--edge-muted); }
 
 /* Criterion blocks (Phase I) */
 .criterion-block {

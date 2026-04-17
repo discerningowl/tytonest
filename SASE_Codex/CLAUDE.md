@@ -1,6 +1,6 @@
 # CLAUDE.md — SASE Codex
 ## Decision Log & Architecture Reference
-*Last updated: 2026-04-17 — scores.json v1.3 with Cato AI Security (Aim acquisition) + Dynamic Prevention scoring; v1.2 baseline Cloudflare One Appliance, Netskope NewEdge footprint, and Cato FedRAMP March 2026 corrections. Edge Documents v0.2 brand refactor complete.*
+*Last updated: 2026-04-17 — scores.json v1.3 with Cato AI Security (Aim acquisition) + Dynamic Prevention scoring; v1.2 baseline Cloudflare One Appliance, Netskope NewEdge footprint, and Cato FedRAMP March 2026 corrections. Edge Documents v0.2 brand refactor complete. Canonical 4-persona set established (P1 Lean IT, P2 Global Security Ops, P3 Data-First/Regulated, P4 Platform/Network Architect) — all pillar pages updated.*
 
 ---
 
@@ -30,6 +30,37 @@ Edge Solutions SASE Vendor Research Series — **SASE Codex**. Goal: produce a f
 | `sase_emerging.html` | Emerging Vendors — Aryaka, Graphiant, Nile, Island | ✅ Complete |
 | `sase_scorecard.html` | Master Scorecard & Persona Fit Matrix | ✅ Complete |
 | `scores.json` | Vendor × Criterion Score Data | ✅ Complete — Big Five all pillars + Emerging in-scope |
+
+---
+
+## Canonical Buyer Personas
+
+*Established 2026-04-17. All pillar persona tables use these four names, subtitles, and badge classes.*
+
+| # | Name | Subtitle | Primary Pain | Pillar Priority | Primary Vendor Fit |
+|---|------|----------|-------------|-----------------|--------------------|
+| P1 | **Lean IT** | SMB–Mid-market | One team wearing every hat; no dedicated NetOps/SecOps | ZTNA → SSE → SD-WAN optional | Cato (single-vendor, ZTP); Cloudflare alt for cloud-native/no-branch |
+| P2 | **Global Security Ops** | Large Enterprise | Threat surface grew post-M&A; needs SOC depth + DEM + hybrid management | SSE/DLP → ZTNA → AIOps | Palo Alto (threat depth + SCM hybrid); Zscaler alt (per-app ZTNA + ZDX) |
+| P3 | **Data-First / Regulated** | Finance · Healthcare · Legal | Data classification governs access; GDPR/HIPAA/PCI; DLP is board-level | SSE/DLP → Sovereignty → ZTNA | Netskope (DLP-fused access, sovereign PoP); Palo Alto alt (threat + compliance) |
+| P4 | **Platform / Network Architect** | 500–5,000 employees | Owns SD-WAN refresh + ZTNA; MPLS exit; needs WAN + security in one policy plane | SD-WAN → ZTNA → AIOps for NOC | Cato (native backbone); Cloudflare alt (cloud-native/flexible CPE); Aryaka alt (managed) |
+
+**Scorecard-only additional personas** (synthesis document only, not used in pillar tables):
+- **Global Performance** (Distributed / APAC-heavy) → Cloudflare primary
+- **Enterprise ZT Transformation** (Strategic ZT Program) → Zscaler primary
+
+**Badge CSS classes:** Use `winner-primary` for primary fit, `winner-alt` for strong alternative. Old `winner-tag` class (no modifier) is legacy — do not use in new markup.
+
+**Persona table structure** (canonical HTML pattern):
+```html
+<tr>
+  <td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td>
+  <td>Profile text...</td>
+  <td>Primary need...</td>
+  <td><span class="winner-tag winner-primary">VENDOR</span></td>
+  <td><span class="winner-tag winner-alt">ALT VENDOR</span></td>
+  <td>Rationale...</td>
+</tr>
+```
 
 ---
 

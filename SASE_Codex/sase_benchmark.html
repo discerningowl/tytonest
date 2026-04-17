@@ -45,20 +45,20 @@
     </div>
   </div>
   <div class="edge-grid-4 mt-20">
-    <div class="edge-stat" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">5</div>
       <div class="edge-stat__label">EVALUATION PILLARS</div>
     </div>
-    <div class="edge-stat" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">39</div>
       <div class="edge-stat__label">SCORED CRITERIA</div>
     </div>
-    <div class="edge-stat" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">9</div>
       <div class="edge-stat__label">VENDORS IN SCOPE</div>
     </div>
-    <div class="edge-stat" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
-      <div class="edge-stat__number">3</div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">4</div>
       <div class="edge-stat__label">BUYER PERSONAS</div>
     </div>
   </div>
@@ -825,77 +825,101 @@
 <div id="personas" class="pillar-hero">
   <div class="pillar-hero__icon">👥</div>
   <div>
-    <div class="pillar-hero__title">Buyer Persona Weighting</div>
-    <div class="pillar-hero__sub">Not all criteria matter equally to all buyers — here's how to weight the rubric by organizational profile</div>
+    <div class="pillar-hero__title">Buyer Personas</div>
+    <div class="pillar-hero__sub">Four organizational archetypes — each weights the evaluation rubric differently</div>
   </div>
 </div>
 
 <section class="edge-section">
-  <h2 class="section-heading">Three Archetypes, Three Weighting Profiles</h2>
-  <p>The same vendor can be the right answer for one organization and the wrong answer for another, depending on what they value most. Vendor scores will be filtered through each of these three personas.</p>
-  <div class="edge-grid-3 mt-20">
+  <h2 class="section-heading">Four Canonical Buyer Personas</h2>
+  <p>The same vendor can be the right answer for one organization and the wrong answer for another, depending on which pillars matter most. These four personas are used consistently across all pillar deep dives and the Master Scorecard.</p>
+  <div class="edge-grid-2 mt-20">
+
     <div class="edge-card">
       <div class="edge-card__accent"></div>
       <div class="edge-card__body">
-        <span class="edge-pill">PERSONA A</span>
-        <h3 class="edge-card__title">Lean IT / Mid-Market</h3>
-        <p style="font-size:12px; color:var(--edge-muted);">500–3,000 employees · Small security team · SaaS-first</p>
-        <ul class="check-list" style="margin-top:10px;">
+        <span class="edge-pill">P1</span>
+        <h3 class="edge-card__title">Lean IT</h3>
+        <p style="font-size:12px; color:var(--edge-muted); margin-bottom:10px;">SMB–Mid-market · 50–500 employees · 1–5 person security team</p>
+        <p style="font-size:13px;">One team wearing every hat. Can’t afford dedicated NetOps, SecOps, and SD-WAN specialists. Needs a single console that doesn’t require three vendors to troubleshoot.</p>
+        <ul style="margin-top:8px; padding-left:16px; font-size:12.5px;">
           <li><strong>Highest weight:</strong> Operational simplicity, single console</li>
           <li><strong>Highest weight:</strong> ZTP and fast deployment</li>
-          <li><strong>Highest weight:</strong> Managed service / co-managed option</li>
           <li><strong>Lower weight:</strong> Deep DLP customization</li>
           <li><strong>Lower weight:</strong> Sovereign PoP options</li>
         </ul>
         <div class="edge-callout" style="margin-top:12px; padding:8px 12px;">
           <div class="edge-callout__accent"></div>
-          <div style="font-size:12px;"><strong>Best-fit vendors likely:</strong> Cato Networks, Cloudflare</div>
+          <div style="font-size:12px;"><strong>Primary fit:</strong> <span class="winner-tag winner-primary">CATO</span> &nbsp; <strong>Alt:</strong> <span class="winner-tag winner-alt">CLOUDFLARE</span></div>
         </div>
       </div>
     </div>
+
     <div class="edge-card">
       <div class="edge-card__accent"></div>
       <div class="edge-card__body">
-        <span class="edge-pill">PERSONA B</span>
+        <span class="edge-pill">P2</span>
         <h3 class="edge-card__title">Global Security Ops</h3>
-        <p style="font-size:12px; color:var(--edge-muted);">5,000+ employees · Dedicated SOC · Regulated industry</p>
-        <ul class="check-list" style="margin-top:10px;">
-          <li><strong>Highest weight:</strong> DLP depth and accuracy</li>
-          <li><strong>Highest weight:</strong> UEBA and threat detection</li>
+        <p style="font-size:12px; color:var(--edge-muted); margin-bottom:10px;">Large Enterprise · 2,000+ employees · Dedicated SOC · Multi-region</p>
+        <p style="font-size:13px;">Threat surface grew post-M&A. Needs real-time DLP, AI-assisted threat detection, DEM, and a unified management plane across hybrid on-prem + cloud estate.</p>
+        <ul style="margin-top:8px; padding-left:16px; font-size:12.5px;">
+          <li><strong>Highest weight:</strong> Threat intelligence depth (WildFire, App-ID)</li>
+          <li><strong>Highest weight:</strong> UEBA and cross-product correlation</li>
           <li><strong>Highest weight:</strong> SIEM/SOAR integration</li>
-          <li><strong>Highest weight:</strong> Sovereignty and certifications</li>
           <li><strong>Lower weight:</strong> Ease of initial setup</li>
         </ul>
         <div class="edge-callout" style="margin-top:12px; padding:8px 12px;">
           <div class="edge-callout__accent"></div>
-          <div style="font-size:12px;"><strong>Best-fit vendors likely:</strong> Netskope (DLP/CASB-primary), Palo Alto (threat prevention-primary), Zscaler (ZTNA/DEM-primary)</div>
+          <div style="font-size:12px;"><strong>Primary fit:</strong> <span class="winner-tag winner-primary">PALO ALTO</span> &nbsp; <strong>Alt:</strong> <span class="winner-tag winner-alt">ZSCALER</span></div>
         </div>
       </div>
     </div>
+
     <div class="edge-card">
       <div class="edge-card__accent"></div>
       <div class="edge-card__body">
-        <span class="edge-pill">PERSONA C</span>
-        <h3 class="edge-card__title">Global Network Ops / SD-WAN First</h3>
-        <p style="font-size:12px; color:var(--edge-muted);">Multi-site enterprise · MPLS replacement · Performance-driven</p>
-        <ul class="check-list" style="margin-top:10px;">
-          <li><strong>Highest weight:</strong> Private backbone quality</li>
-          <li><strong>Highest weight:</strong> App-aware path steering</li>
-          <li><strong>Highest weight:</strong> Branch hardware flexibility</li>
-          <li><strong>Highest weight:</strong> Global PoP coverage</li>
-          <li><strong>Lower weight:</strong> Advanced DLP</li>
+        <span class="edge-pill">P3</span>
+        <h3 class="edge-card__title">Data-First / Regulated</h3>
+        <p style="font-size:12px; color:var(--edge-muted); margin-bottom:10px;">Finance · Healthcare · Legal · EU / APAC regulated entities</p>
+        <p style="font-size:13px;">Data classification governs all access policy. GDPR, HIPAA, PCI, DORA compliance obligations. DLP is a board-level concern, not an IT feature.</p>
+        <ul style="margin-top:8px; padding-left:16px; font-size:12.5px;">
+          <li><strong>Highest weight:</strong> ML DLP depth and CASB dual-mode</li>
+          <li><strong>Highest weight:</strong> Sovereignty and log residency</li>
+          <li><strong>Highest weight:</strong> GenAI data protection</li>
+          <li><strong>Lower weight:</strong> SD-WAN branch connectivity</li>
         </ul>
         <div class="edge-callout" style="margin-top:12px; padding:8px 12px;">
           <div class="edge-callout__accent"></div>
-          <div style="font-size:12px;"><strong>Best-fit vendors likely:</strong> Cato, Aryaka, Palo Alto SD-WAN</div>
+          <div style="font-size:12px;"><strong>Primary fit:</strong> <span class="winner-tag winner-primary">NETSKOPE</span> &nbsp; <strong>Alt:</strong> <span class="winner-tag winner-alt">PALO ALTO</span></div>
         </div>
       </div>
     </div>
+
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="edge-pill">P4</span>
+        <h3 class="edge-card__title">Platform / Network Architect</h3>
+        <p style="font-size:12px; color:var(--edge-muted); margin-bottom:10px;">500–5,000 employees · Multi-site · MPLS replacement in progress</p>
+        <p style="font-size:13px;">Owns SD-WAN refresh and branch connectivity. Needs application-aware path steering, a private backbone SLA, and a single policy plane covering WAN and security together.</p>
+        <ul style="margin-top:8px; padding-left:16px; font-size:12.5px;">
+          <li><strong>Highest weight:</strong> Private backbone quality and SLA</li>
+          <li><strong>Highest weight:</strong> App-aware path steering</li>
+          <li><strong>Highest weight:</strong> SD-WAN + ZTNA + SSE convergence</li>
+          <li><strong>Lower weight:</strong> Advanced DLP customization</li>
+        </ul>
+        <div class="edge-callout" style="margin-top:12px; padding:8px 12px;">
+          <div class="edge-callout__accent"></div>
+          <div style="font-size:12px;"><strong>Primary fit:</strong> <span class="winner-tag winner-primary">CATO</span> &nbsp; <strong>Alt:</strong> <span class="winner-tag winner-alt">CLOUDFLARE</span> <span class="winner-tag winner-alt">ARYAKA</span></div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div class="edge-callout mt-20">
     <div class="edge-callout__accent"></div>
     <div>
-      <strong>Note on Emerging Vendors:</strong> Aryaka, Graphiant, Nile, and Island will be evaluated in the <a href="sase_emerging.html">Emerging Vendors</a> section. Aryaka competes on Pillars 3+4 (SD-WAN + managed ops). Graphiant competes on Pillar 3 only (private connectivity). Nile competes on a new category: Zero Trust campus LAN, which extends ZTNA principles inward to the physical building. Island is a full Chromium fork enterprise browser enforcing Zero Trust policy at the browser layer — distinct from proxy-side inspection. None are wholesale SASE replacements. Full analysis in <a href="sase_emerging.html" style="color:var(--edge-blue); font-size:12px;">Emerging Vendors</a>.
+      <strong>Note on Emerging Vendors:</strong> Aryaka, Graphiant, Nile, and Island are evaluated in the <a href="sase_emerging.html">Emerging Vendors</a> section. Aryaka competes on SD-WAN + managed ops. Graphiant competes on private WAN connectivity only. Nile extends Zero Trust to the campus LAN edge. Island is a full Chromium fork enterprise browser enforcing Zero Trust policy at the browser layer. None are wholesale SASE replacements. Full analysis in <a href="sase_emerging.html" style="color:var(--edge-blue);">Emerging Vendors</a>.
     </div>
   </div>
 </section>

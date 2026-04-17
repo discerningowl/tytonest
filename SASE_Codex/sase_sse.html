@@ -207,9 +207,10 @@
   <table class="persona-table" style="margin-top:16px;">
     <thead><tr><th>Persona</th><th>Profile</th><th>Primary SSE Need</th><th>Best Fit</th><th>Rationale</th></tr></thead>
     <tbody>
-      <tr><td><strong>Lean IT / SMB</strong></td><td>Compliance-driven · Operational simplicity primary · No dedicated security team</td><td>SSE that works without a DLP specialist; adequate coverage for standard compliance requirements</td><td><span class="winner-tag">CATO</span></td><td>SSE is included in the base SASE license. One console. Adequate DLP for most compliance requirements. No need for a DLP specialist. Cloudflare is a credible alternative for technically capable lean teams.</td></tr>
-      <tr><td><strong>Data-Sensitive / Regulated</strong></td><td>Healthcare, Finance, Legal · DLP is the primary mandate</td><td>ML DLP depth, dual-mode CASB, GenAI data protection, unified policy engine</td><td><span class="winner-tag">NETSKOPE</span></td><td>The ML DLP depth, EDM, OCR, and dual-mode CASB are purpose-built for this use case. Zscaler is the credible alternative if inline internet security is the primary use case and DLP is compliance-driven rather than sophisticated.</td></tr>
-      <tr><td><strong>Security-First / Threat-Focused</strong></td><td>Dedicated SecOps · APT defense · Existing Palo Alto ecosystem</td><td>Threat prevention depth, WildFire sandbox, App-ID, NGFW policy continuity</td><td><span class="winner-tag">PALO ALTO</span></td><td>Unit 42 threat intelligence, WildFire sandbox, App-ID, and the SCM bridge to physical NGFWs make Prisma Access the strongest SSE for threat-centric security programs.</td></tr>
+      <tr><td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td><td>Small security team (1–5 people), compliance-driven, operational simplicity primary, no dedicated DLP specialist</td><td>SSE that works without a DLP specialist; adequate coverage for standard compliance requirements</td><td><span class="winner-tag winner-primary">CATO</span></td><td>SSE is included in the base SASE license. One console. Adequate DLP for most compliance requirements. No need for a DLP specialist. Cloudflare is a credible alternative for technically capable lean teams.</td></tr>
+      <tr><td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td><td>Dedicated SecOps, APT defense, existing Palo Alto ecosystem, threat prevention depth is the governing constraint</td><td>Threat prevention depth, WildFire sandbox, App-ID, NGFW policy continuity</td><td><span class="winner-tag winner-primary">PALO ALTO</span></td><td>Unit 42 threat intelligence, WildFire sandbox, App-ID, and the SCM bridge to physical NGFWs make Prisma Access the strongest SSE for threat-centric security programs.</td></tr>
+      <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td>Data classification governs all policy, DLP is the primary mandate, GDPR/HIPAA/PCI compliance obligations</td><td>ML DLP depth, dual-mode CASB, GenAI data protection, unified policy engine</td><td><span class="winner-tag winner-primary">NETSKOPE</span></td><td>The ML DLP depth, EDM, OCR, and dual-mode CASB are purpose-built for this use case. Zscaler is the credible alternative if inline internet security is the primary use case and DLP is compliance-driven rather than sophisticated.</td></tr>
+      <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td>Owns SD-WAN + SSE together; needs SSE integrated with branch CPE; single policy plane for WAN and security is the priority</td><td>SSE converged with SD-WAN in one stack; no separate security PoP hop from branch; single console</td><td><span class="winner-tag winner-primary">CATO</span></td><td>Single-pass engine means SD-WAN branch traffic is inspected by the same SSE stack as remote users — no hairpinning, no separate security overlay. Cato Neural Edge GPU inspection extends this to inline AI security without additional hops.</td></tr>
     </tbody>
   </table>
   <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Shadow IT exception:</strong> For organizations where SaaS visibility and per-activity app governance is the primary SSE driver, <strong>Zscaler ZIA</strong> wins regardless of persona — the 30,000+ app catalog with risk scoring and one-click policy creation is unmatched in the Big Five.</div></div>
@@ -239,14 +240,8 @@ window.renderPage = function(data) {
   var vendors = data.vendors.filter(function(v) { return v.tier === 'big_five'; });
   renderScoringTable(data.pillars.sse, vendors, 'score-container');
 };
-<script>
-window.renderPage = function(data) {
-  if (!data.pillars || !data.pillars.sse) {
-    document.getElementById('score-container').innerHTML =
-      '<div class="edge-callout edge-callout--warning" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Local server required.</strong> Scores are loaded from <code>scores.json</code> via a <code>fetch()</code> request, which browsers block on <code>file://</code> URLs. Run <code>python3 -m http.server 8000</code> from the project root and open <a href="http://localhost:8000/sase_sse.html">http://localhost:8000/sase_sse.html</a>. See <code>README.md</code> for full instructions.</div></div>';
-    return;
-  }
-  var vendors = data.vendors.filter(function(v) { return v.tier === 'big_five'; });
-  renderScoringTable(data.pillars.sse, vendors, 'score-container');
-};
 </script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/toc.js"></script>
+</body>
+</html>
