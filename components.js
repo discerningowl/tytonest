@@ -19,8 +19,11 @@
 
   function setActiveNav() {
     var page = window.location.pathname.split('/').pop();
-    if (page === 'kettlebell.html') {
-      var link = document.querySelector('[data-nav="training"]');
+    var navKey = null;
+    if (page === 'kettlebell.html') navKey = 'training';
+    else if (page === 'projects.html') navKey = 'projects';
+    if (navKey) {
+      var link = document.querySelector('[data-nav="' + navKey + '"]');
       if (link) link.classList.add('active');
     }
   }
