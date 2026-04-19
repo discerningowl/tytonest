@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryaka — Vendor Deep Dive — Edge Solutions SASE Codex</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/toc.css">
+</head>
+<body class="has-toc">
+
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">VENDOR DEEP DIVE</span>
+      <span class="edge-pill edge-pill--muted">ARYAKA</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Aryaka — Managed SASE</h1>
+    <p class="edge-header__subtitle">Managed Service Delivery · Private Global Backbone · SD-WAN + AIOps Scope · SASE Codex Working Document — Edge Solutions</p>
+  </div>
+</header>
+
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_scorecard.html">Scorecard</a>
+</nav>
+
+<div class="page-body">
+<main>
+
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Aryaka's differentiation is the operational model, not the technology. Where Big Five SASE platforms require dedicated networking and security staff to configure, monitor, and maintain, Aryaka sells a fully managed service: Aryaka's NOC/SOC operates the SD-WAN and SSE on behalf of the customer. Where Cato says "we made it simple enough for your team to run," Aryaka says "we'll run it for you." This is the correct answer for organizations that cannot staff a Big Five SASE deployment correctly — a misconfigured Cato or Palo Alto deployment is worse than a well-managed Aryaka one.</p>
+    <p><strong>Pillar scope:</strong> SD-WAN and AIOps. Aryaka's SSE is co-packaged via Palo Alto Prisma Access or Aryaka-native SSE depending on the tier — not a proprietary competitive SSE capability. ZTNA and Sovereignty are not independently scored pillars for Aryaka.</p>
+    <p><strong>Primary fit:</strong> Lean IT (P1) and Platform/Network Architect (P4) who want SD-WAN outcomes without SD-WAN operations. <strong>Primary limitation:</strong> SSE depth trails Big Five for complex DLP/CASB programs; organizations with strong internal security ops teams lose control by adopting the managed model.</p>
+  </div>
+
+  <div class="edge-grid-4 mt-20">
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">40+</div>
+      <div class="edge-stat__label">GLOBAL PoPs</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">24×7</div>
+      <div class="edge-stat__label">NOC/SOC INCLUDED</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Managed</div>
+      <div class="edge-stat__label">DELIVERY MODEL</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Gartner MQ</div>
+      <div class="edge-stat__label">GLOBAL WAN SERVICES</div>
+    </div>
+  </div>
+</div>
+
+<!-- Architecture -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="architecture" class="pillar-hero">
+    <div class="pillar-hero__icon">🏗</div>
+    <div>
+      <div class="pillar-hero__title">Architecture: Managed SASE — Outcomes, Not Platform</div>
+      <div class="pillar-hero__sub">Why Aryaka's model is structurally different from every Big Five vendor</div>
+    </div>
+  </div>
+  <h2 class="section-heading">The Managed Service Distinction</h2>
+  <hr class="edge-rule">
+  <p>Every Big Five SASE vendor delivers a platform. Aryaka delivers a service. The customer receives network connectivity and security outcomes — not a console to configure. Aryaka's operations team handles provisioning, policy tuning, fault detection, and incident response. The customer's IT team interacts with Aryaka via a portal and a dedicated account team, not via a CLI or policy engine.</p>
+  <p>This model exists because the Big Five platforms, despite their ZTP and simplification investments, still require skilled engineers to operate correctly. A Cato deployment managed by an undertrained team will develop policy debt, misconfigured security rules, and missed alerts within 18 months. Aryaka's NOC/SOC doesn't have that problem because Aryaka's own staff is accountable for outcomes.</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL STRENGTHS</span><ul style="margin-top:12px;"><li>No internal WAN operations expertise required</li><li>24×7 NOC/SOC proactively detects and resolves issues before users report them</li><li>SmartConnect private backbone purpose-built for WAN optimization (FEC, dedup, TCP acceleration)</li><li>Strong APAC and emerging market backbone coverage — historically underserved by MPLS alternatives</li><li>Gartner-named in Global WAN Services MQ — validated market position</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL LIMITATIONS</span><ul style="margin-top:12px;"><li>SSE depth trails Big Five for complex DLP/CASB programs</li><li>Less customer-side control — wrong fit for organizations with strong internal security ops teams</li><li>Smaller PoP network (40+) than Cato (85+) or Cloudflare (330+)</li><li>Not a full SASE replacement for organizations with advanced security requirements</li><li>Managed model introduces vendor dependency — exit complexity higher than self-operated platforms</li></ul></div></div>
+  </div>
+</div>
+
+<!-- SD-WAN -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sdwan" class="pillar-hero">
+    <div class="pillar-hero__icon">🌐</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 3 — SD-WAN</div>
+      <div class="pillar-hero__sub">SmartConnect private backbone · WAN optimization · managed path steering</div>
+    </div>
+  </div>
+  <h2 class="section-heading">SD-WAN Analysis</h2>
+  <hr class="edge-rule">
+  <p>Aryaka operates its own private global backbone (SmartConnect) with 40+ PoPs, purpose-built for WAN optimization. SLA-backed latency with FEC, packet deduplication, and TCP optimization. For enterprise WAN connectivity in APAC and emerging markets — historically underserved by MPLS alternatives — Aryaka's backbone coverage and performance is frequently cited as superior to Big Five alternatives in terms of consistent middle-mile latency. Application-aware path steering is managed by Aryaka's NOC, not the customer — the operations team monitors SLAs, detects degradation, and reroutes traffic before users are impacted.</p>
+  <div class="vendor-subhead">Backbone Architecture</div>
+  <p>SmartConnect is a private global network with SLA-backed fiber interconnects between PoPs. Unlike Cato's backbone (which also serves the SSE enforcement function), Aryaka's backbone is purpose-built for WAN transport optimization — FEC, packet duplication, and TCP acceleration are the primary design goals. This makes Aryaka's WAN performance story particularly strong for latency-sensitive workloads: financial transactions, unified communications, cloud ERP.</p>
+  <div class="vendor-subhead">Deployment Model</div>
+  <p>Aryaka deploys physical CPE (Aryaka WAN PoP) at customer locations that auto-registers with the SmartConnect backbone. The CPE is managed by Aryaka — firmware updates, policy changes, and troubleshooting are handled by Aryaka's team, not the customer's IT staff. ZTP is available; Aryaka's on-boarding team typically coordinates the initial deployment with the customer's facilities or network team.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Private SLA-backed backbone with WAN optimization (FEC, dedup, TCP acceleration). Strong APAC and emerging market coverage. Managed path steering — Aryaka NOC handles tuning and troubleshooting. Best for global enterprises wanting managed WAN without internal expertise.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>40+ PoPs — fewer than Cato (85+) or Cloudflare (330+). Less transparent than self-managed SD-WAN — customers have limited visibility into backbone routing decisions. Managed model means less control over path policy customization. Not suitable for organizations that need to manage their own SD-WAN policy plane.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sdwan.html" style="color:var(--edge-blue);">SD-WAN pillar comparison — all vendors</a></p>
+</div>
+
+<!-- AIOps -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="aiops" class="pillar-hero">
+    <div class="pillar-hero__icon">🤖</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 4 — AI-Driven Operations</div>
+      <div class="pillar-hero__sub">Managed NOC/SOC · proactive fault detection · human-in-the-loop AIOps</div>
+    </div>
+  </div>
+  <h2 class="section-heading">AIOps Analysis</h2>
+  <hr class="edge-rule">
+  <p>Aryaka's AIOps story is unique and shouldn't be evaluated the same way as Big Five platform AIOps. Rather than AI tools for customers to use, Aryaka's NOC/SOC uses AI/ML tools to manage the network proactively on behalf of customers. The 24×7 managed service includes proactive fault detection, automated RCA, and Aryaka engineers contacting customers when issues are detected before users report them.</p>
+  <div class="vendor-subhead">Managed Operations vs. Platform AIOps</div>
+  <p>The Big Five AIOps story is: "here are dashboards, alerts, and policy tools — your team runs them." Aryaka's AIOps story is: "our team runs them for you." For organizations without NOC staff, Aryaka's model delivers operationally superior outcomes to a Big Five platform operated by an undertrained or understaffed team. For organizations with dedicated network engineers who want full control and visibility, Aryaka's managed model is constraining.</p>
+  <div class="vendor-subhead">Proactive vs. Reactive</div>
+  <p>Aryaka's NOC monitors path performance and application experience metrics continuously. When a degradation trend is detected, the NOC investigates and remediates before the SLA is breached and before users open helpdesk tickets. This is structurally equivalent to Cato's predictive path optimization — the difference is that Cato uses algorithms, and Aryaka uses a combination of algorithms and human engineers. The outcome is similar; the operational model is different.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>24×7 NOC/SOC proactive monitoring and remediation — customers don't need AIOps tools if Aryaka's team is operating them. Proactive fault detection before user-reported tickets. Best AIOps for organizations without dedicated NOC/NetOps staff. MTTR typically better than self-operated platforms for the same buyer profile.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Limited customer-side AIOps tooling — less suitable for organizations that want to run their own incident correlation and policy automation. Security AIOps (UEBA, cross-product correlation) depends on the SSE tier chosen. Not comparable to Palo Alto Cortex XDR or Zscaler ZDX for organizations with dedicated SecOps teams.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_aiops.html" style="color:var(--edge-blue);">AIOps pillar comparison — all vendors</a></p>
+</div>
+
+<!-- SSE -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sse" class="pillar-hero">
+    <div class="pillar-hero__icon">🛡</div>
+    <div>
+      <div class="pillar-hero__title">SSE — Co-Packaged, Not Proprietary</div>
+      <div class="pillar-hero__sub">Palo Alto Prisma Access option · Aryaka-native SSE · adequate for standard compliance</div>
+    </div>
+  </div>
+  <h2 class="section-heading">SSE Position</h2>
+  <hr class="edge-rule">
+  <p>Aryaka SASE includes an SSE layer co-packaged with either Palo Alto Prisma Access or Aryaka-native SSE depending on the tier. The SSE capabilities are functional for standard enterprise compliance requirements (SWG, basic DLP, CASB app discovery, FWaaS) but do not match Netskope's DLP depth, Palo Alto's App-ID and WildFire threat intelligence, or Zscaler's per-activity SaaS controls. For organizations where SD-WAN reliability and managed operations are the primary need and SSE is a compliance function rather than a differentiating capability, this is adequate.</p>
+  <div class="edge-callout"><div class="edge-callout__accent"></div><div><strong>Pairing recommendation:</strong> For organizations where SSE depth matters — complex DLP programs, regulated industries, sophisticated threat prevention — Aryaka works best as the SD-WAN + managed operations layer paired with a Big Five SSE. Aryaka SD-WAN + Netskope SSE/ZTNA is the reference architecture for organizations that need managed WAN connectivity without sacrificing DLP depth.</div></div>
+</div>
+
+<!-- PERSONA FIT -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="personas">Persona Fit Summary</h2>
+  <hr class="edge-rule">
+  <table class="persona-table" style="margin-top:16px;">
+    <thead><tr><th>Persona</th><th>Aryaka Fit</th><th>Primary Reason</th><th>Watch</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td><td><span class="winner-tag winner-primary">PRIMARY</span></td><td>Managed SASE delivers outcomes without requiring the lean team to operate a platform. Cato is the primary self-operated alternative; Aryaka is the right answer when the team genuinely cannot staff platform operations.</td><td>SSE depth ceiling — if DLP sophistication requirements grow, the team may need to separate SSE from WAN.</td></tr>
+      <tr><td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td><td><span style="background:#eee; color:#555; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600;">NOT RECOMMENDED</span></td><td>Large security ops teams want control, visibility, and policy ownership — exactly what Aryaka's managed model removes. Palo Alto or Zscaler serve this persona.</td><td>—</td></tr>
+      <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td><span class="winner-tag winner-alt">PARTIAL</span></td><td>Aryaka SD-WAN as the connectivity layer paired with Netskope or Palo Alto SSE/ZTNA is viable for regulated organizations that need managed WAN without sacrificing compliance-grade DLP.</td><td>Aryaka's native SSE is not sufficient for regulated industries. Must be architected as Aryaka WAN + Big Five SSE pairing.</td></tr>
+      <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td><span class="winner-tag winner-alt">ALTERNATIVE</span></td><td>For organizations with global branch connectivity requirements and APAC/emerging market footprint where Cato's 85 PoP coverage is insufficient, Aryaka's managed backbone is a credible alternative. Cato remains primary if self-operated is acceptable.</td><td>Less customer control over SD-WAN policy plane than Cato. Managed model dependency. Verify APAC PoP coverage matches the specific deployment geography.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CHANGELOG -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="changelog">Changelog</h2>
+  <hr class="edge-rule">
+  <table class="edge-table" style="font-size:13px;">
+    <thead><tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>2026-04-19</td><td>v1.0</td><td>Initial working document created under v2.0 Codex structure. Content extracted and expanded from sase_emerging.html contextual analysis. Aryaka scored on SD-WAN and AIOps pillars; SSE and ZTNA null by design (co-packaged, not proprietary).</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</main>
+</div>
+
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Codex · Working Document · Aryaka · Last Reviewed: 2026-04-19</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/back-to-top.js"></script>
+</body>
+</html>

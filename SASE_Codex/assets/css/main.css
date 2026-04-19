@@ -533,17 +533,17 @@ h3.sub-heading {
 .criterion-scale  { font-size: 11px; color: var(--edge-muted); margin-top: 2px; }
 .score-note       { font-size: 11px; color: var(--edge-dark); margin-top: 4px; line-height: 1.4; text-align: left; }
 
-/* Master table (Phase III) */
+/* Master table (Phase III / Scorecard)
+   Note: scorecard renders this table via JS into .master-table.
+   font-size is 12px in the scorecard (compact) vs 13px here (default).
+   The scorecard JS writes inline style overrides where needed. */
 .master-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.master-table th { font-weight: 700; font-size: 11px; color: var(--white); padding: 10px 14px; text-align: left; background: var(--edge-blue); }
-.master-table th.vcol { background: var(--edge-dark); text-align: center; min-width: 120px; }
-.master-table td { padding: 8px 14px; border: .5px solid rgba(72,109,135,0.2); vertical-align: middle; }
-.master-table tbody tr:nth-child(odd)  td:first-child       { background: rgba(72,109,135,0.08); }
-.master-table tbody tr:nth-child(even) td:first-child       { background: rgba(72,109,135,0.04); }
-.master-table tbody tr:nth-child(odd)  td:not(:first-child) { background: var(--white); }
-.master-table tbody tr:nth-child(even) td:not(:first-child) { background: rgba(72,109,135,0.04); }
-.master-table .total-row td { background: #2d4a5c !important; color: var(--white); font-weight: 700; }
-.master-table .pillar-group-header td { background: var(--edge-blue) !important; color: var(--white); font-weight: 700; font-size: 11px; letter-spacing: .5px; text-transform: uppercase; padding: 6px 14px; }
+.master-table th { font-weight: 700; font-size: 11px; color: var(--white); padding: 10px 14px; text-align: left; background: #2d4a5c; }
+.master-table th.vcol { text-align: center; min-width: 90px; }
+.master-table td { padding: 6px 12px; border-bottom: .5px solid rgba(72,109,135,0.1); vertical-align: middle; }
+.master-table .score-cell { text-align: center; }
+.master-table .pillar-group-header td { background: rgba(72,109,135,0.06); padding: 6px 12px; }
+.master-table .total-row td { background: var(--edge-light) !important; font-weight: 700; font-size: 13px; }
 
 /* Score bar */
 .score-bar-wrap { display: flex; align-items: center; gap: 8px; }
@@ -576,6 +576,70 @@ h3.sub-heading {
 .cert-yes     { color:#1A7A4A; font-weight:700; }
 .cert-no      { color:var(--error); font-weight:700; }
 .cert-partial { color:var(--warning); font-weight:700; }
+
+/* ============================================================
+   SCORECARD — Pillar rank bars, vendor summary cards, mini bars
+   Used by: sase_scorecard.html
+   ============================================================ */
+.pillar-rank-block  { margin-bottom: 28px; }
+.pillar-rank-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.pillar-rank-title  { font-weight: 700; font-size: 13px; color: var(--edge-blue); }
+
+.vendor-rank-row         { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+.vendor-rank-row .v-label    { font-size: 11px; font-weight: 700; width: 140px; flex-shrink: 0; color: var(--edge-dark); }
+.vendor-rank-row .bar-bg     { flex: 1; background: rgba(72,109,135,0.15); border-radius: 3px; height: 14px; }
+.vendor-rank-row .bar-fill   { height: 14px; border-radius: 3px; }
+.vendor-rank-row .pct-label  { font-weight: 700; font-size: 12px; min-width: 42px; text-align: right; color: var(--edge-dark); }
+
+.v-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 16px;
+}
+.v-summary-card {
+  background: rgba(255,255,255,0.80);
+  border-radius: var(--r-md);
+  border: 0.5px solid rgba(72,109,135,0.25);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(72,109,135,0.10);
+}
+.v-summary-card__hdr  { padding: 12px 14px; }
+.v-summary-card__name { font-weight: 700; font-size: 13px; color: var(--white); }
+.v-summary-card__sub  { font-size: 10px; color: rgba(255,255,255,.75); margin-top: 2px; }
+.v-summary-card__body { padding: 12px 14px; }
+.v-summary-card__arch {
+  font-size: 10px; color: var(--edge-muted);
+  letter-spacing: .5px; text-transform: uppercase; margin-bottom: 10px;
+}
+
+.v-mini-bars          { display: grid; gap: 5px; }
+.v-mini-row           { display: flex; align-items: center; gap: 6px; }
+.v-mini-row .lbl      { font-size: 10px; flex: 1; color: var(--edge-dark); }
+.v-mini-row .mini-bg  { width: 60px; background: rgba(72,109,135,0.15); border-radius: 2px; height: 5px; }
+.v-mini-row .mini-fill{ height: 5px; border-radius: 2px; }
+.v-mini-row .mini-pct { font-weight: 700; font-size: 10px; min-width: 30px; text-align: right; }
+
+.emerging-scope-note {
+  background: var(--edge-light);
+  border: 1px solid rgba(72,109,135,0.2);
+  border-radius: var(--r-sm);
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--edge-muted);
+  margin-top: 6px;
+}
+
+/* Pending status badge — working-doc index rows and spin-off headers */
+.badge-pending {
+  background: rgba(230,168,23,0.12);
+  color: #8a6200;
+  padding: 2px 6px;
+  border-radius: var(--r-sm);
+  font-size: 11px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  white-space: nowrap;
+}
 
 /* DLP philosophy */
 .dlp-philosophy-badge {

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Island — Vendor Deep Dive — Edge Solutions SASE Codex</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/toc.css">
+</head>
+<body class="has-toc">
+
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">VENDOR DEEP DIVE</span>
+      <span class="edge-pill edge-pill--muted">ISLAND</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Island — Enterprise Browser + Full SASE Stack</h1>
+    <p class="edge-header__subtitle">Chromium Fork · Pre-Encryption Enforcement · SWG · ZTNA · CASB · RBI · DLP · SASE Codex Working Document — Edge Solutions</p>
+  </div>
+</header>
+
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_scorecard.html">Scorecard</a>
+</nav>
+
+<div class="page-body">
+<main>
+
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Island is the most credible architectural challenge to proxy-based SASE for AI-era workloads in 2026. A Chromium fork — not a plugin, not an extension — with Zero Trust enforcement wired into the browser core. In March 2026, Island launched a full SASE stack: SWG, ZTNA, CASB, RBI, and DLP delivered through the browser layer without SSL break-and-inspect. Up to 90% of enterprise sessions are browser-initiated, and for all of those sessions Island enforces policy with pre-encryption visibility — no TLS decryption required because the browser sees plaintext before it encrypts outbound requests. Zero customer churn. $4.8B valuation, $730M raised.</p>
+    <p><strong>Pillar scope:</strong> ZTNA and SSE (browser-applicable criteria). SD-WAN, AIOps, and Sovereignty are null by design — Island does not compete in those domains. Non-browser traffic (SSH, RDP thick clients on non-browser paths, SD-WAN) still requires a Big Five SASE platform alongside Island.</p>
+    <p><strong>Primary positioning:</strong> Island is not a Big Five replacement for organizations with complex non-browser workloads, SD-WAN requirements, or network security needs. It is the right primary answer for organizations where the majority of work happens in a browser, where TLS decryption creates compliance or operational complexity, and where AI-era workloads (browser-based SaaS, internal AI tools) are the primary security surface.</p>
+  </div>
+
+  <div class="edge-grid-4 mt-20">
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">$4.8B</div>
+      <div class="edge-stat__label">VALUATION</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">$730M</div>
+      <div class="edge-stat__label">TOTAL RAISED</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">0</div>
+      <div class="edge-stat__label">CUSTOMER CHURN</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Mar 2026</div>
+      <div class="edge-stat__label">FULL SASE LAUNCH</div>
+    </div>
+  </div>
+</div>
+
+<!-- Architecture -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="architecture" class="pillar-hero">
+    <div class="pillar-hero__icon">🏗</div>
+    <div>
+      <div class="pillar-hero__title">Architecture: Pre-Encryption Enforcement via Chromium Fork</div>
+      <div class="pillar-hero__sub">Why the browser layer changes the inspection scope conversation for proxy-based SASE</div>
+    </div>
+  </div>
+  <h2 class="section-heading">The Pre-Encryption Advantage</h2>
+  <hr class="edge-rule">
+  <p>Every proxy-based SASE vendor — Netskope, Zscaler, Cloudflare, Cato, Palo Alto — intercepts traffic at the network layer after the browser has encrypted it. This requires TLS break-and-inspect: the proxy terminates the TLS session, decrypts the traffic, inspects it, re-encrypts it, and forwards it. This works, but it creates friction: legal questions about privilege and confidentiality, certificate deployment complexity, performance overhead at inspection PoPs, and application compatibility issues from broken certificate chains.</p>
+  <p>Island eliminates this for browser traffic by operating at the browser layer itself. The Island browser sees every keystroke, every paste, every upload, every download, every form submission — before it's encrypted. DLP inspection, clipboard control, download restrictions, and data governance all execute on plaintext without any network-layer decryption. For the roughly 90% of enterprise sessions that are browser-initiated, this means Island can enforce the full SSE policy set without a proxy in the path.</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">WHAT A CHROMIUM FORK ENABLES</span><ul style="margin-top:10px; font-size:13px;"><li><strong>Clipboard control at the OS layer</strong> — enforced before data reaches the OS clipboard API, not possible from an extension</li><li><strong>Download control with server-side watermarking</strong> — Island's browser process intercepts downloads before they touch the filesystem</li><li><strong>Screenshot prevention at the GPU composition layer</strong> — captures at the OS level are intercepted before rendering</li><li><strong>Print control at the print spooler level</strong> — print jobs can be blocked, watermarked, or audited</li><li><strong>Full JavaScript engine visibility</strong> — the browser's own JS engine is accessible for form field monitoring, paste inspection, and input control</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL LIMITATIONS</span><ul style="margin-top:10px; font-size:13px;"><li>Browser-only scope — thick-client apps, SSH, native RDP, and non-browser network traffic require a separate SASE platform</li><li>Requires adoption of a new browser — change management overhead; user acceptance varies by organization culture</li><li>Full SASE stack is new (March 2026) — evaluate production maturity at scale before treating as equivalent to an established Big Five platform</li><li>No SD-WAN, no AIOps, no sovereignty certifications — Island is the enforcement layer, not the full stack for organizations with these requirements</li></ul></div></div>
+  </div>
+</div>
+
+<!-- ZTNA -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="ztna" class="pillar-hero">
+    <div class="pillar-hero__icon">🔐</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 1 — ZTNA (Browser Scope)</div>
+      <div class="pillar-hero__sub">Identity-based access · device posture via IdP integration · per-application session control</div>
+    </div>
+  </div>
+  <h2 class="section-heading">ZTNA Analysis</h2>
+  <hr class="edge-rule">
+  <p>Island's ZTNA enforces access policy at the browser session layer. Users authenticate via the organization's IdP (Okta, Microsoft Entra ID, Ping) before browser sessions are established. Per-application access rules are enforced by the Island browser — different policy applies to Salesforce than to SharePoint, within the same browser session. Device posture is integrated via CrowdStrike, SentinelOne, and Intune — posture signals are evaluated before and during sessions.</p>
+  <div class="vendor-subhead">Unmanaged Device + Contractor Access</div>
+  <p>Island's ZTNA story for unmanaged devices is architecturally strong. A contractor on a personal laptop installs Island and authenticates via the IdP. The session is fully governed — DLP, clipboard restrictions, download controls, and audit logging all apply — without requiring any corporate software beyond the browser itself. The device remains unmanaged; the session is fully controlled. This is differentiated from agentless ZTNA approaches (like Cloudflare's browser rendering) because Island governs the client-side session, not just the server-side presentation of the app.</p>
+  <div class="vendor-subhead">Per-Application Session Controls</div>
+  <p>Each application in Island can have its own policy: allow upload to Salesforce but restrict to specific file types; allow SharePoint read access but prevent download to personal devices; allow internal AI tool access but log all prompts and responses. These controls execute inside the browser session without requiring the user to context-switch or experience proxy-related latency. Policy is applied to the exact action — paste, upload, download, print, screenshot — not to the entire network connection.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Full IdP integration for identity-based access. Per-application session controls at action granularity (paste, upload, print, screenshot). Strong unmanaged device / contractor access story. Pre-encryption policy enforcement eliminates certificate chain issues. Zero churn — very high customer satisfaction.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Browser-only scope — thick-client app ZTNA (native SSH, RDP, thick ERP) requires a separate SASE platform. DEM for user experience diagnostics across non-browser paths is outside Island's scope. Behavioral anomaly detection beyond session-level controls is less mature than Zscaler ZDX or Palo Alto ADEM.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_ztna.html" style="color:var(--edge-blue);">ZTNA pillar comparison — all vendors</a></p>
+</div>
+
+<!-- SSE -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sse" class="pillar-hero">
+    <div class="pillar-hero__icon">🛡</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 2 — SSE (Browser Scope)</div>
+      <div class="pillar-hero__sub">SWG · CASB · DLP · RBI — all without SSL break-and-inspect · Full SASE stack Mar 2026</div>
+    </div>
+  </div>
+  <h2 class="section-heading">SSE Analysis</h2>
+  <hr class="edge-rule">
+  <div class="edge-callout"><div class="edge-callout__accent"></div><div><strong>March 2026 Update:</strong> Island launched a full SASE stack covering SWG, ZTNA, CASB, RBI, and DLP through the browser layer. This significantly expands Island's SSE coverage from a browser-enforcement complement to a primary SSE contender for browser-heavy environments. Production maturity at enterprise scale should be evaluated before positioning as equivalent to an established Big Five SSE platform.</div></div>
+  <div class="vendor-subhead">SWG (Secure Web Gateway)</div>
+  <p>Island's SWG enforces URL filtering and web access policy within the browser. Because Island operates at the browser layer, web filtering applies to every tab and every URL navigation without requiring any traffic to flow through a cloud PoP. For sanctioned and unsanctioned web destinations, Island can block, allow, or isolate at the browser level — with full audit logging of user actions within each web session.</p>
+  <div class="vendor-subhead">DLP — Pre-Encryption, No Proxy Required</div>
+  <p>DLP is Island's structural SSE differentiator. Netskope's DLP applies at the network inspection layer after TLS decryption. Island's DLP applies at the browser layer on plaintext before encryption. For regulated industries where TLS decryption creates legal or operational complexity (attorney-client privilege in legal, physician-patient confidentiality in healthcare, financial data confidentiality regulations), Island provides equivalent DLP enforcement without the decryption requirement. The DLP capabilities cover clipboard inspection, upload scanning, download content analysis, form field monitoring, and OCR on copy-paste operations.</p>
+  <div class="vendor-subhead">CASB — Browser-Layer SaaS Governance</div>
+  <p>Island's CASB governs SaaS access at the browser session layer. Per-application controls cover the full activity spectrum: allow Salesforce read/write but restrict download and export; allow Google Drive upload but restrict to approved file types; enforce watermarking on file downloads from SharePoint. Shadow IT discovery covers all web-accessible SaaS apps — Island can identify unsanctioned app usage and apply risk scoring without network-layer inspection. API-mode CASB for data at rest (scanning existing SharePoint, OneDrive, or Salesforce data) is outside Island's browser-layer scope and requires a separate CASB platform for comprehensive coverage.</p>
+  <div class="vendor-subhead">RBI (Remote Browser Isolation)</div>
+  <p>Island's architecture makes traditional RBI unnecessary for the Island browser itself — the browser already enforces session isolation natively. For external untrusted sites accessed through Island, Island can apply additional isolation modes that restrict what content can be interacted with, rendered, or copied, going beyond what traditional pixel-push or DOM-reconstruction RBI provides. For unmanaged devices accessing Island in a browser-within-browser configuration, Island delivers comparable isolation to traditional RBI with lower latency overhead.</p>
+  <div class="vendor-subhead">AI and GenAI Governance</div>
+  <p>Island's pre-encryption visibility is directly relevant to GenAI governance. AI tool prompts — the data sensitivity problem driving GenAI DLP investment across the Big Five — are plaintext inputs in the browser before they're encrypted and sent to the AI service. Island can inspect, classify, block, or redact sensitive content in AI prompts without any network-layer decryption. DLP policies that apply to file uploads and clipboard paste also apply to AI prompt submissions, with the same classification depth available for text inputs as for file content. This is architecturally superior to proxy-based GenAI DLP for browser-based AI tool access, which requires decrypting the HTTPS session to inspect prompt content.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Full SASE stack (SWG, ZTNA, CASB, RBI, DLP) launched March 2026. Pre-encryption DLP — no TLS break-and-inspect for browser traffic. Best GenAI governance for browser-based AI tools. Per-application session controls at action granularity. Up to 90% of sessions direct without backhaul — latency advantage over proxy-based SSE. Zero customer churn.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Browser-only scope — non-browser traffic (native apps, thick clients, network traffic) requires a separate SASE platform for SSE coverage. API-mode CASB (data at rest scanning) outside scope. Full SASE stack is March 2026 GA — evaluate production maturity at enterprise scale before treating as equivalent to established Big Five SSE. IPS/threat intelligence at the network layer is outside scope. No private PoP infrastructure for performance SLAs.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sse.html" style="color:var(--edge-blue);">SSE pillar comparison — all vendors</a></p>
+</div>
+
+<!-- OUT OF SCOPE -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="out-of-scope">Out of Scope — SD-WAN, AIOps, Sovereignty</h2>
+  <hr class="edge-rule">
+  <div class="edge-grid-3">
+    <div class="edge-card edge-card--supplemental"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">SD-WAN — NULL</span><p style="margin-top:8px; font-size:13px;">Island does not provide WAN connectivity, branch CPE, path steering, or SD-WAN services. For organizations with SD-WAN requirements, Island must be paired with a Big Five SASE or dedicated SD-WAN platform.</p></div></div>
+    <div class="edge-card edge-card--supplemental"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">AIOps — NULL</span><p style="margin-top:8px; font-size:13px;">Island does not provide enterprise UEBA, GenAI policy authoring, cross-product event correlation, or network path diagnostics. Session audit logging and DLP event reporting are available; enterprise AIOps requires a separate platform.</p></div></div>
+    <div class="edge-card edge-card--supplemental"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">SOVEREIGNTY — NULL</span><p style="margin-top:8px; font-size:13px;">Island does not hold FedRAMP, BSI C5, IRAP, or BYOK as of Q2 2026. For regulated industries requiring these certifications, Island must be paired with a sovereignty-compliant Big Five SASE platform. Verify current certification status with Island directly.</p></div></div>
+  </div>
+</div>
+
+<!-- PAIRING -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="pairing">Architecture Patterns — Island + Big Five</h2>
+  <hr class="edge-rule">
+  <p>Island is most architecturally powerful as the browser enforcement layer in a deployment that also includes a Big Five SASE for non-browser traffic. The right pairing depends on the organization's primary non-browser requirements:</p>
+  <table class="edge-table" style="margin-top:16px;">
+    <thead><tr><th>Primary Non-Browser Need</th><th>Recommended Big Five Pairing</th><th>Island's Role</th></tr></thead>
+    <tbody>
+      <tr><td>SD-WAN + ZTNA convergence</td><td>Cato Networks</td><td>Island handles browser-based SaaS and AI tool governance without TLS decryption; Cato handles SD-WAN, non-browser ZTNA, and network security.</td></tr>
+      <tr><td>Regulated DLP for non-browser traffic</td><td>Netskope</td><td>Island handles browser sessions pre-encryption; Netskope handles API-mode CASB data at rest scanning, non-browser DLP, and network-level SSE. The two DLP engines operate on different traffic surfaces without redundancy.</td></tr>
+      <tr><td>Threat intelligence + hybrid NGFW estate</td><td>Palo Alto Prisma Access</td><td>Island handles browser layer enforcement; Palo Alto handles threat prevention (WildFire/App-ID), physical NGFW policy continuity, and non-browser security. Note: Palo Alto Prisma Access Browser (PAB) competes directly with Island — evaluate both before committing.</td></tr>
+      <tr><td>Per-app ZTNA for thick-client apps</td><td>Zscaler ZPA</td><td>Island handles browser-based app access; ZPA handles thick-client private app access via inside-out connector model. ZDX provides DEM for the full user experience across both surfaces.</td></tr>
+    </tbody>
+  </table>
+  <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Standalone evaluation:</strong> For organizations where 90%+ of work happens in a browser and where non-browser ZTNA, SD-WAN, and network security are minimal requirements, Island's full SASE stack (March 2026) may be sufficient as a standalone platform. Evaluate current production maturity carefully — this is a March 2026 launch, not a multi-year-validated platform for the full SASE scope.</div></div>
+</div>
+
+<!-- COMPETITIVE NOTE -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="competitive">Competitive Note — Palo Alto Prisma Access Browser</h2>
+  <hr class="edge-rule">
+  <p>Palo Alto's Prisma Access Browser (PAB), from the 2023 Talon Security acquisition, is Island's most direct Big Five competitor. Both are Chromium forks targeting enterprise browser enforcement. The key differences as of Q2 2026:</p>
+  <table class="edge-table">
+    <thead><tr><th>Dimension</th><th>Island</th><th>Palo Alto PAB</th></tr></thead>
+    <tbody>
+      <tr><td>SASE integration</td><td>Standalone + full SASE stack (March 2026)</td><td>Integrated with Prisma Access + SCM policy plane — shares App-ID, DLP, and access policy with the broader PA stack</td></tr>
+      <tr><td>Policy plane</td><td>Island-native policy engine</td><td>SCM — same policy plane as Prisma Access cloud SASE and physical NGFWs</td></tr>
+      <tr><td>Maturity</td><td>More mature browser product, broader market traction, zero churn</td><td>PAB + SCM integration still maturing as of Q1 2026 — verify current integration scope before positioning</td></tr>
+      <tr><td>Best for</td><td>Organizations without existing Palo Alto investment; organizations wanting browser-layer SASE without full PA stack commitment</td><td>Organizations already running Prisma Access and SCM who want browser enforcement unified with their existing PA policy plane</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:14px; font-size:13px;">For organizations already running Palo Alto, PAB should be evaluated alongside Island before making a standalone enterprise browser decision. For organizations without Palo Alto, Island is the stronger current choice on product maturity and market traction.</p>
+</div>
+
+<!-- PERSONA FIT -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="personas">Persona Fit Summary</h2>
+  <hr class="edge-rule">
+  <table class="persona-table" style="margin-top:16px;">
+    <thead><tr><th>Persona</th><th>Island Fit</th><th>Primary Reason</th><th>Watch</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td><td><span class="winner-tag winner-alt">VIABLE</span></td><td>Island's full SASE stack (March 2026) may be sufficient for lean IT teams with browser-heavy workloads and minimal non-browser security requirements. Simpler than a Big Five proxy-based deployment for browser-first organizations.</td><td>No SD-WAN, no network security for non-browser traffic. Evaluate whether 90%+ browser session assumption holds for the actual workload profile.</td></tr>
+      <tr><td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td><td><span class="winner-tag winner-alt">COMPLEMENT</span></td><td>Island complements a Big Five SASE by handling browser-layer enforcement without TLS decryption — reduces proxy inspection scope for managed-device SaaS sessions. Best positioned as a layer alongside Palo Alto or Zscaler, not as a replacement.</td><td>Full SASE stack is March 2026 GA — validate at scale. Change management for browser adoption. Requires integration planning with existing security tooling.</td></tr>
+      <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td><span class="winner-tag winner-primary">PRIMARY USE CASE</span></td><td>Pre-encryption DLP without TLS break-and-inspect is the architecturally correct answer for industries where TLS decryption creates legal privilege or regulatory complexity. Island's browser-layer DLP enforces the same controls without the decryption requirement.</td><td>Sovereignty certifications (FedRAMP, BSI C5) not held — must be paired with a certified Big Five SASE for regulated environments with certification requirements. API-mode CASB requires a separate platform for data-at-rest coverage.</td></tr>
+      <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td><span style="background:#eee; color:#555; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600;">NOT RECOMMENDED STANDALONE</span></td><td>Network architects evaluating SD-WAN + ZTNA + SSE convergence need a platform with network-layer capabilities that Island doesn't provide. Island as a browser enforcement layer alongside Cato or Cloudflare is a valid architecture; Island as the primary SASE is not for this persona.</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CHANGELOG -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="changelog">Changelog</h2>
+  <hr class="edge-rule">
+  <table class="edge-table" style="font-size:13px;">
+    <thead><tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>2026-04-19</td><td>v1.0</td><td>Initial working document created under v2.0 Codex structure. Upgraded from ZTNA-only stub to full ZTNA + SSE coverage following Island's March 2026 full SASE stack launch (SWG, ZTNA, CASB, RBI, DLP). Content expanded from sase_emerging.html contextual analysis. $4.8B valuation, $730M raised, zero churn noted. PAB competitive comparison added.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</main>
+</div>
+
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Codex · Working Document · Island · Last Reviewed: 2026-04-19</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/back-to-top.js"></script>
+</body>
+</html>

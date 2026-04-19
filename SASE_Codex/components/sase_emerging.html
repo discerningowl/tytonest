@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emerging Vendors — Aryaka, Nile, Island, Fortinet, Versa — Edge Solutions</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/toc.css">
+</head>
+<body class="has-toc">
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">EMERGING</span>
+      <span class="edge-pill edge-pill--muted">EMERGING VENDORS</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Emerging Vendors — Aryaka, Fortinet, Versa, Nile, Island</h1>
+    <p class="edge-header__subtitle">2026 Disruptors · Targeted Analysis by Pillar Scope · SASE Vendor Research Series — Prepared by Edge Solutions</p>
+  </div>
+</header>
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="sase_emerging.html" class="active">Emerging</a><span class="doc-nav__sep">›</span>
+  <a href="sase_scorecard.html">Scorecard</a>
+</nav>
+<div class="page-body">
+<main>
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>The emerging vendors in this analysis address genuine gaps the Big Five don't prioritize. Aryaka competes directly on SD-WAN and AIOps by delivering managed SASE rather than platform SASE — the right answer for organizations that can't staff the operational complexity of a Big Five deployment. Fortinet brings FortiOS unification across SD-WAN and SSE, earning a Gartner MQ Leader position in 2025 with the strongest branch SD-WAN incumbency in the market. Versa Networks competes as a Gartner SASE Challenger with deep SD-WAN heritage and a converging SSE stack on a single software-defined VOS platform. Nile extends Zero Trust to the campus edge, where the Big Five don't compete — identity-based access at the physical LAN port. Island is the enterprise browser play: a Chromium fork that launched a full SASE stack in March 2026, enforcing Zero Trust policy at the browser layer without SSL break-and-inspect. Each wins in a specific context; none is a wholesale SASE replacement.</p>
+  </div>
+  <div class="edge-callout"><div class="edge-callout__accent"></div><div><strong>Scope note:</strong> Emerging vendors are analyzed by their relevant pillar scope only. They are not scored against the Big Five scoring rubric (different scope makes direct comparison misleading). Each section ends with a "How it fits alongside Big Five" recommendation for deployment context. Full working documents for each vendor are in <a href="../working-docs/" style="color:var(--edge-blue);">working-docs/</a> — this page provides contextual overview and comparative framing.</div></div>
+  <div class="feynman-box">
+    <h3>Why "emerging" vendors exist when the Big Five already do everything</h3>
+    <p>A platform that does everything tolerably well will always lose to a specialist that does one thing exceptionally well — as long as the buyer has a specific enough problem. The Big Five are optimizing for the broadest possible enterprise buyer. Emerging vendors are optimizing for a gap the Big Five either can't close or won't prioritize.</p>
+    <p>Aryaka's gap is operational: most enterprises can't staff a Big Five SASE deployment correctly, so a managed service that handles it for them beats a self-service platform that sits misconfigured. Fortinet's position is different — it is a Big Five-adjacent Gartner Leader, not a niche disruptor. Its gap-fill is for organizations with deep FortiGate SD-WAN and branch firewall investments who want a unified path to SASE without ripping out existing infrastructure. Versa's gap is the SD-WAN-led SASE entry point: enterprises migrating off MPLS who want a single-vendor platform that converges SD-WAN and SSE on commodity hardware, without the managed-service model of Aryaka or the full platform investment of a Big Five. Nile's gap is physical: every Big Five vendor's Zero Trust story stops at the WAN edge — the campus LAN is still a flat trusted network behind a firewall. Nile extends identity-based micro-segmentation to the physical port. Island's gap is the browser: inline CASB inspection can be reduced or eliminated for managed devices if the browser itself enforces DLP, access policy, and session controls natively.</p>
+    <p>None of these vendors is trying to replace a Big Five SASE platform. They are filling in the corners of a deployment that the Big Five platform leaves exposed.</p>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Emerging Vendor Analyses</h2>
+  <hr class="edge-rule">
+
+  <div class="vendor-section">
+    <div class="vendor-header-emerging">
+      <div>
+        <h2>Aryaka — Managed SASE</h2>
+        <div class="tagline">"We operate the SASE so you don't have to"</div>
+        <div class="scope-badges" style="margin-top:8px;"><span class="pillar-tag pillar-sdwan">SD-WAN</span><span class="pillar-tag pillar-aiops">AIOps</span></div>
+      </div>
+      <div style="text-align:right;"><span style="font-size:11px;color:var(--edge-green);">TIER: EMERGING · MODEL: MANAGED SERVICE</span></div>
+    </div>
+    <div class="vendor-body">
+      <p>Aryaka's differentiation is not technology — it's the operational model. Where Big Five SASE platforms require dedicated networking and security staff to configure, monitor, and maintain, Aryaka sells a managed service: Aryaka's NOC/SOC operates the SD-WAN and SSE on behalf of the customer. Where Cato says "we made it simple enough for your team to run," Aryaka says "we'll run it for you."</p>
+      <div class="vendor-subhead">SD-WAN — Global Private Backbone + Managed Overlay</div>
+      <p>Aryaka operates its own private global backbone (SmartConnect) with 40+ PoPs, purpose-built for WAN optimization: SLA-backed latency with FEC, packet deduplication, and TCP optimization. For enterprise WAN connectivity in APAC and emerging markets — historically underserved by MPLS alternatives — Aryaka's backbone coverage and performance is frequently cited as superior to Big Five alternatives. Application-aware path steering is managed by Aryaka's NOC, not the customer.</p>
+      <div class="vendor-subhead">AIOps — Managed Operations as the Differentiator</div>
+      <p>Aryaka's AIOps story is unique: rather than AI tools for customers to use, Aryaka's NOC/SOC uses AI/ML tools to manage the network proactively. The 24×7 managed service includes proactive fault detection, automated RCA, and Aryaka engineers contacting customers when issues are detected before users report them. This is operationally superior to the "AI alerts you can investigate" model of most Big Five AIOps for organizations without NOC staff.</p>
+      <div class="vendor-subhead">SSE Integration</div>
+      <p>Aryaka SASE includes an SSE layer (SWG, CASB, FWaaS) co-packaged with either Palo Alto Prisma Access or Aryaka-native SSE depending on the tier. The SSE capabilities are functional for standard enterprise requirements but do not match Netskope's DLP or Palo Alto's App-ID. For organizations where SD-WAN reliability and managed operations are the primary need, SSE adequacy is sufficient.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best managed SASE model — 24×7 NOC/SOC included, not extra. Strong APAC and emerging market backbone coverage. WAN optimization (FEC, dedup) built into the backbone. Best for organizations wanting SASE outcomes without SASE operational staffing.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>SSE depth trails Big Five for complex DLP/CASB. Less customer-side control — less suitable for strong internal security ops teams. Smaller PoP network (40+) than Cato (85+) or Cloudflare (330+). Not a full SASE replacement for organizations with advanced security requirements.</p></div>
+      </div>
+      <div class="vendor-subhead">How It Fits Alongside the Big Five</div>
+      <p><strong>Best pairing:</strong> Aryaka as managed SD-WAN + Netskope or Palo Alto as SSE/ZTNA layer for organizations needing managed WAN without sacrificing SSE depth. Alternatively, Aryaka full-stack SASE for lean IT organizations where the managed model is the primary decision criterion.</p>
+      <p style="margin-top:12px; font-size:13px;">→ <a href="../working-docs/aryaka.html" style="color:var(--edge-blue);">Full working document — aryaka.html</a></p>
+    </div>
+  </div>
+
+  <div class="vendor-section">
+    <div class="vendor-header-emerging">
+      <div>
+        <h2>Nile — Zero Trust NaaS (Campus/LAN Edge)</h2>
+        <div class="tagline">"Every port is a ZTNA enforcement point — zero trust starts at the wall jack"</div>
+        <div class="scope-badges" style="margin-top:8px;"><span class="pillar-tag pillar-ztna">ZTNA</span></div>
+      </div>
+      <div style="text-align:right;"><span style="font-size:11px;color:var(--edge-green);">TIER: EMERGING · MODEL: NaaS / LAN EDGE</span></div>
+    </div>
+    <div class="vendor-body">
+      <p>Nile solves a problem all Big Five SASE vendors ignore: the campus LAN. ZTNA in 2026 governs remote access beautifully — a user in a coffee shop gets identity-based, per-app access. But when that same user walks into the corporate office and plugs into a wall jack, they typically land on a flat network segment with broad access determined by VLAN assignment, not identity. Nile applies ZTNA principles to the physical campus — every wired and wireless port is an enforcement point where identity is verified, device posture is checked, and access is granted per-application, not per-VLAN.</p>
+      <div class="vendor-subhead">Zero Trust at the Physical Port</div>
+      <p>Nile Access Service replaces traditional campus switching and wireless infrastructure. Physical switches and APs are Nile hardware, managed as-a-service with zero on-prem infrastructure to manage. When a device connects to a Nile port, the authentication flow mirrors cloud ZTNA: identity (802.1X or certificate), device posture check, and policy assignment. Micro-segmentation at the port level means a Finance device cannot reach an Engineering device unless policy explicitly permits it, regardless of physical location.</p>
+      <div class="vendor-subhead">NaaS Delivery + IdP Integration</div>
+      <p>Nile sells as-a-service: hardware provided, managed, replaced, and supported by Nile — customer pays per-port per-year. No firmware management, no hardware refresh cycle. Nile integrates with the organization's existing IdP (Okta, Entra ID) — the same IdP that feeds the Big Five SASE platform — so that identity policy is consistent whether a user is on-campus (Nile enforcement) or remote (Big Five ZTNA enforcement).</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Only purpose-built Zero Trust NaaS for campus/LAN edge. Eliminates campus network technical debt via NaaS model. Port-level micro-segmentation enforced by identity, not VLAN. Unified identity policy with Big Five SASE via shared IdP. Best for healthcare, financial services, and higher education with complex campus security requirements.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Hardware replacement — facilities and network teams must plan physical infrastructure change. No cloud SSE or WAN — not a standalone SASE replacement. Relatively new vendor. Premium pricing vs. traditional campus networking for organizations without strong ZT campus requirements.</p></div>
+      </div>
+      <div class="vendor-subhead">How It Fits Alongside the Big Five</div>
+      <p><strong>Best pairing:</strong> Nile for campus LAN Zero Trust + any Big Five SASE for cloud and remote access. Campus users on Nile get identity-based port access; same user remote gets Big Five ZTNA access. For healthcare and financial services, this pairing is the architecturally correct ZT design for 2026.</p>
+      <p style="margin-top:12px; font-size:13px;">→ <a href="../working-docs/nile.html" style="color:var(--edge-blue);">Full working document — nile.html</a></p>
+    </div>
+  </div>
+
+  <div class="vendor-section">
+    <div class="vendor-header-emerging">
+      <div>
+        <h2>Island — Enterprise Browser</h2>
+        <div class="tagline">"Zero Trust at the browser layer — the last mile of access enforcement"</div>
+        <div class="scope-badges" style="margin-top:8px;"><span class="pillar-tag pillar-ztna">ZTNA</span><span class="pillar-tag pillar-sse">SSE</span></div>
+      </div>
+      <div style="text-align:right;"><span style="font-size:11px;color:var(--edge-green);">TIER: EMERGING · MODEL: ENTERPRISE BROWSER · UPGRADED v2.0</span></div>
+    </div>
+    <div class="vendor-body">
+      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>v2.0 Update — March 2026:</strong> Island launched a full SASE stack in March 2026 — SWG, ZTNA, CASB, RBI, and DLP delivered through the browser layer without SSL break-and-inspect. Up to 90% of sessions direct without backhaul. Scope is now ZTNA + SSE. The full working document reflects the expanded scope.</div></div>
+      <p>Island is a Chromium fork — not a plugin, not an extension, not a locked-down kiosk. It is a full, productized browser built from the Chromium source with a Zero Trust enforcement layer wired into the core. When an employee opens Island, they are in a managed browser where IT controls what can be copied, pasted, printed, screenshotted, downloaded, and uploaded, at the application and URL level, without any traffic flowing through a proxy or a SASE PoP. The enforcement is at the browser process itself.</p>
+      <div class="vendor-subhead">Architecture: Full Chromium Fork, Not a Plugin</div>
+      <p>Browser extensions operate at the content-script layer — they can read and modify page content but cannot control browser internals (network stack, download behavior, clipboard at the OS level, print spooler). Island operates below that layer. Clipboard control is enforced before data reaches the OS clipboard. Downloads can be watermarked server-side by Island's browser process before the file touches the endpoint filesystem. Screenshot prevention works at the GPU composition layer. These controls are architecturally impossible from an extension — they require ownership of the browser process itself.</p>
+      <div class="vendor-subhead">Full SASE Stack — March 2026</div>
+      <p>Island's March 2026 SASE launch delivers SWG, ZTNA, CASB, RBI, and DLP through the browser layer. The key architectural distinction: because Island has pre-encryption visibility (the browser sees plaintext before it encrypts outbound requests), SSL break-and-inspect is architecturally unnecessary for browser-originated traffic. This is a genuine differentiator — up to 90% of enterprise sessions are browser-initiated, and for all of those sessions Island can enforce policy without the latency, complexity, and compliance risk of TLS decryption at a cloud proxy.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Full Chromium fork — enforcement impossible to achieve via extension. Pre-encryption visibility — DLP without TLS decryption for browser traffic. Full SASE stack (SWG, ZTNA, CASB, RBI, DLP) launched March 2026. Up to 90% of sessions direct without backhaul. Zero customer churn. $4.8B valuation, $730M raised — well-capitalized. Most credible architectural challenge to proxy-based SASE for AI-era workloads.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Browser-only scope — thick-client app traffic still requires SASE network layer. Requires user adoption of a new browser — change management overhead. Full SASE stack is new (March 2026) — production maturity at enterprise scale still developing. Not a substitute for SASE SD-WAN. Evaluate production maturity carefully before positioning as a full Big Five replacement.</p></div>
+      </div>
+      <div class="vendor-subhead">How It Fits Alongside the Big Five</div>
+      <p><strong>Best pairing:</strong> Island for browser-layer SASE (SWG, ZTNA, CASB, RBI, DLP without decryption) + a Big Five SASE for non-browser traffic (SD-WAN, private app ZTNA for thick clients, network security). For regulated industries where TLS decryption creates compliance complexity, Island handles the browser surface; SASE handles the rest.</p>
+      <p style="margin-top:12px; font-size:13px;">→ <a href="../working-docs/island.html" style="color:var(--edge-blue);">Full working document — island.html</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading">Emerging Vendor Comparison — At a Glance</h2>
+  <hr class="edge-rule">
+  <table class="compete-table">
+    <thead>
+      <tr><th>Vendor</th><th>Model</th><th>Primary Pillar</th><th>Wins When</th><th>Loses When</th><th>Best Big Five Pairing</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Aryaka</strong></td><td>Managed SASE Service</td><td>SD-WAN + AIOps</td><td>Customer lacks staff to operate a Big Five SASE; APAC/emerging market WAN performance is primary driver; managed operations preferred over platform</td><td>Deep DLP/CASB requirements; strong internal security ops team wanting full platform control; strict sovereignty requirements</td><td>Aryaka SD-WAN + Netskope SSE (where DLP depth is needed) or standalone Aryaka SASE for lean IT orgs</td></tr>
+      <tr><td><strong>Nile</strong></td><td>Zero Trust NaaS (Campus)</td><td>ZTNA (campus/LAN extension)</td><td>Campus network Zero Trust required alongside cloud ZTNA; NaaS campus model preferred; healthcare/finance with dense on-campus device environments</td><td>Cloud and remote access are the only ZTNA requirements; campus not in scope; organization is fully cloud-native with no physical campus</td><td>Nile campus + any Big Five SASE for cloud/remote — unified via shared IdP</td></tr>
+      <tr><td><strong>Island</strong></td><td>Enterprise Browser / SASE</td><td>ZTNA + SSE (browser layer)</td><td>Browser-layer SASE without TLS decryption; regulated industries where proxy decryption is legally problematic; contractor/BYOD SaaS governance; AI-era workloads where most sessions are browser-initiated</td><td>Thick-client or non-browser app access; network security (SD-WAN); private app ZTNA without another SASE platform for non-browser traffic</td><td>Island browser layer SASE + any Big Five SASE for SD-WAN, network security, and non-browser private app access</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="edge-dark-section">
+  <div style="max-width:1020px;margin:0 auto;">
+    <h2>Emerging Vendors in 2026: The Right Mental Model</h2>
+    <p><strong style="color:var(--edge-green);">These vendors are solving real gaps the Big Five don't address.</strong> The Big Five SASE platforms are cloud-first, remote-user-first, and security-team-operated. Aryaka solves for the operations gap (managed service). Fortinet solves for the FortiGate incumbent gap — enterprises already running FortiGate SD-WAN and branch NGFWs can converge to FortiSASE without a platform rip-and-replace. Versa solves for the SD-WAN-led SASE entry path — software-defined, commodity hardware, single VOS platform, Gartner Challenger recognition. Nile solves for the campus gap (physical port-level Zero Trust). Island solves for the browser gap — and in March 2026, launched a full SASE stack delivered through the browser layer, representing the most credible architectural challenge to proxy-based SASE in 2026.</p>
+    <p><strong style="color:var(--edge-green);">Island's March 2026 SASE launch changes the competitive calculus.</strong> Island was previously an interesting point solution for the browser enforcement layer. Its full SASE stack launch — SWG, ZTNA, CASB, RBI, DLP without SSL break-and-inspect — makes it a legitimate alternative to proxy-based SASE for organizations where most sessions are browser-initiated and TLS decryption is operationally or legally problematic. Zero customer churn and $730M raised signal real enterprise traction. Evaluate it seriously before defaulting to a proxy-based Big Five deployment for browser-heavy environments.</p>
+    <p><strong style="color:var(--edge-green);">Watch Nile and Island together.</strong> An enterprise running a serious Zero Trust program in 2026 needs both: Nile for campus port-level identity enforcement, Island for browser-layer SASE, and a Big Five SASE for SD-WAN, network security, and non-browser private app access. Neither Nile nor Island is on any Big Five roadmap in a meaningful way. Watch for acquisition activity in both categories through 2027.</p>
+  </div>
+</div>
+</main>
+</div><!-- /.page-body -->
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Codex · Emerging Vendors Overview · Last Reviewed: 2026-04-19 · Pending annotations cleared</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/back-to-top.js"></script>
+</body>
+</html>

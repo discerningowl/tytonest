@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cato Networks — Vendor Deep Dive — Edge Solutions SASE Codex</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/toc.css">
+</head>
+<body class="has-toc">
+
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">VENDOR DEEP DIVE</span>
+      <span class="edge-pill edge-pill--muted">CATO NETWORKS</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Cato Networks — Cato SASE Cloud</h1>
+    <p class="edge-header__subtitle">Single-Vendor SASE · Native Single-Pass Architecture · Private Global Backbone · SASE Codex Working Document — Edge Solutions</p>
+  </div>
+</header>
+
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_scorecard.html">Scorecard</a>
+</nav>
+
+<div class="page-body">
+<main>
+
+<!-- ============================================================
+     BLUF + VENDOR OVERVIEW
+     ============================================================ -->
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Cato Networks is the reference implementation of single-vendor SASE — the only platform in the Big Five where SD-WAN, ZTNA, SSE, and AIOps share a genuine single-pass engine on a private global backbone, managed through one console. Its structural advantages are operational simplicity (best-in-class for Lean IT), predictive path optimization (backbone ownership lets Cato reroute 30–90 seconds before a user-visible SLA breach), and the cleanest convergence story (ZTNA and security are not integrated — they are the same stack). The material development in 2026: Cato AI Security (Aim Security acquisition, GA March 2026) extends the platform from inline GenAI governance to private AI firewall, AI-SPM, and MCP governance on Cato Neural Edge GPU infrastructure. Cato Dynamic Prevention (March 2026) closes the UEBA depth gap that has historically been its primary AIOps weakness against Palo Alto and Zscaler.</p>
+    <p><strong>Primary fit:</strong> Lean IT (SMB–mid-market), Platform/Network Architects doing SD-WAN + ZTNA convergence. <strong>Primary limitations:</strong> Sovereignty (no FedRAMP, no BSI C5, no BYOK as of Q2 2026 — disqualifying for regulated and government buyers). DLP depth for sophisticated data classification programs trails Netskope. No native enterprise browser.</p>
+  </div>
+
+  <div class="edge-grid-4 mt-20">
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">85+</div>
+      <div class="edge-stat__label">GLOBAL PoPs</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">1</div>
+      <div class="edge-stat__label">POLICY ENGINE</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Mar 2026</div>
+      <div class="edge-stat__label">AI SECURITY GA</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Gartner MQ</div>
+      <div class="edge-stat__label">LEADER 2025</div>
+    </div>
+  </div>
+</div>
+
+<!-- Architecture Overview -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="architecture" class="pillar-hero">
+    <div class="pillar-hero__icon">🏗</div>
+    <div>
+      <div class="pillar-hero__title">Architecture: Native Single-Pass on a Private Backbone</div>
+      <div class="pillar-hero__sub">Why Cato's structural design is different — and what it means operationally</div>
+    </div>
+  </div>
+
+  <h2 class="section-heading">The Single-Pass Advantage</h2>
+  <hr class="edge-rule">
+  <p>Every other SASE vendor routes traffic through multiple coordinated inspection engines — SD-WAN steers it, then SSE inspects it, then ZTNA validates the session. In a stitched architecture, these happen sequentially via integrated but separate systems. Cato's single-pass engine decrypts traffic once and runs all inspection (SWG, CASB, DLP, IPS, FWaaS, ZTNA context) simultaneously in a single processing operation. There are no seams between engines where inspection can be bypassed, and there is no additional latency added per security function.</p>
+  <p>The private backbone extends this advantage to the network layer. Where other vendors rely on public internet routing between PoPs, Cato's PoPs are interconnected via SLA-backed private fiber — Cato controls the complete path from edge appliance to destination. This is why path optimization can be predictive (Cato measures every hop at every PoP every second and reroutes before user-visible degradation) rather than reactive.</p>
+
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="arch-tag">STRUCTURAL STRENGTHS</span>
+        <ul style="margin-top:12px;">
+          <li>One decryption operation — zero inspection gaps between engines</li>
+          <li>Private backbone SLA — contractual, measurable latency</li>
+          <li>Single console (CMA) — SD-WAN, ZTNA, SSE, XDR in one UI</li>
+          <li>No integration overhead between SASE components</li>
+          <li>Zero Touch Provisioning — branch Socket deployable in &lt;15 minutes</li>
+        </ul>
+      </div>
+    </div>
+    <div class="edge-card">
+      <div class="edge-card__accent"></div>
+      <div class="edge-card__body">
+        <span class="arch-tag">STRUCTURAL LIMITATIONS</span>
+        <ul style="margin-top:12px;">
+          <li>Single-vendor lock-in is real — less component flexibility than stitched competitors</li>
+          <li>~85 PoPs vs. Cloudflare's 330+ — coverage thinner in emerging markets</li>
+          <li>DLP depth trades off against simplicity — adequate for compliance, not for sophisticated classification programs</li>
+          <li>Sovereignty posture significantly weaker than Netskope/Zscaler</li>
+          <li>No native enterprise browser — no equivalent to Palo Alto PAB</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PILLAR 1 — ZTNA
+     ============================================================ -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="ztna" class="pillar-hero">
+    <div class="pillar-hero__icon">🔐</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 1 — ZTNA / Remote Access</div>
+      <div class="pillar-hero__sub">Cato SDP · Single-pass engine · Private backbone transit</div>
+    </div>
+  </div>
+
+  <h2 class="section-heading">ZTNA Analysis</h2>
+  <hr class="edge-rule">
+
+  <p>Cato ZTNA — marketed as Cato SDP (Software Defined Perimeter) — is processed by the same single-pass engine and delivered over the same private backbone as FWaaS, SWG, and CASB. There is no product integration between ZTNA and security — they are the same stack. This eliminates both the ZIA/ZPA operational seam in Zscaler and the SCM coordination overhead in Palo Alto. A remote user's ZTNA session and a branch office's SD-WAN traffic share the same policy plane, the same backbone path, and the same console.</p>
+
+  <div class="vendor-subhead">Device Posture + Global Latency</div>
+  <p>EDR integration covers CrowdStrike, SentinelOne, and Carbon Black with event-driven session teardown on posture failure. Posture checks run at connection time with scheduled periodic re-checks. Continuous behavioral anomaly detection — Palo Alto's AI-RT capability — is not matched at the same depth; Cato's posture model is assessed as periodic + event-triggered rather than streaming behavioral. Where Cato wins on ZTNA performance: the private backbone means the path from the user's nearest PoP to a private application transits Cato's own fiber, not the public internet — delivering sub-150ms globally with a contractual SLA.</p>
+
+  <div class="vendor-subhead">Identity + UEBA</div>
+  <p>Full SAML 2.0 / OIDC with Okta, Microsoft Entra ID, Google Workspace, and Ping Identity. MFA is standard. Cato's UEBA module correlates identity signals with network behavior for per-user risk scoring, and those scores feed dynamically into access policy. Less DEM granularity than Zscaler ZDX, but the UEBA data shares the same data store as all other Cato security telemetry — no integration overhead to get risk scores into policy.</p>
+
+  <div class="vendor-subhead">Agentless Access</div>
+  <p>Cato supports clientless ZTNA for web-delivered applications via browser-based access. For thick-client applications (RDP, SSH), Cato requires the Cato Client agent. Agentless coverage for non-web apps is narrower than Cloudflare's browser-rendered approach, which renders RDP/SSH sessions directly in a browser window with zero endpoint install. For BYOD-heavy environments with non-web app requirements, this is the primary ZTNA gap to evaluate.</p>
+
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Cleanest ZTNA + SD-WAN + SSE single-vendor story. One console, one policy engine — no integration tax. Private backbone SLA for ZTNA transit — measurable latency commitment. ZTP simplifies branch + ZTNA rollout as one operation. Best for lean IT teams.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No native enterprise browser. L7 app signatures less extensive than Palo Alto App-ID. Agentless thick-client (RDP/SSH) narrower than Cloudflare. Behavioral posture detection behind Palo Alto AI-RT. UEBA functional but not as deep as Netskope's DLP-informed scoring.</p></div>
+  </div>
+
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_ztna.html#cato" style="color:var(--edge-blue);">ZTNA pillar comparison — all vendors</a></p>
+</div>
+
+<!-- ============================================================
+     PILLAR 2 — SSE
+     ============================================================ -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sse" class="pillar-hero">
+    <div class="pillar-hero__icon">🛡</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 2 — SSE (Security Service Edge)</div>
+      <div class="pillar-hero__sub">SWG · CASB · DLP · FWaaS · RBI · Cato AI Security</div>
+    </div>
+  </div>
+
+  <h2 class="section-heading">SSE Analysis</h2>
+  <hr class="edge-rule">
+
+  <p>Cato's SSE is inseparable from its SASE platform — the same single-pass engine that handles SD-WAN routing also performs SWG, CASB, DLP, IPS, and FWaaS in one unified operation. This is the purest expression of single-vendor SASE and creates the lowest operational overhead of any vendor in this comparison. The trade-off is depth: Cato DLP is adequate for most compliance scenarios but is not the tool for organizations building sophisticated data classification programs.</p>
+
+  <div class="vendor-subhead">DLP Philosophy — Operational</div>
+  <p>Cato's DLP is compliance-first, not data-science-first. Pre-built classifiers for common regulated data types (PII, PCI, HIPAA) cover most enterprise requirements. No EDM (Exact Data Matching) or document fingerprinting as of Q2 2026 — for organizations that need to track specific records or detect reformatted sensitive documents, this is a disqualifying gap. For organizations that need adequate DLP without a dedicated DLP specialist, it is the right fit.</p>
+
+  <div class="vendor-subhead">Cato AI Security — GenAI &amp; Agentic AI Protection</div>
+  <p>In Q3 2025, Cato acquired Aim Security. In March 2026, Cato launched Cato AI Security as a native SASE platform capability on Cato Neural Edge — NVIDIA GPUs deployed across the 85+ PoP private backbone. The scope covers four areas:</p>
+  <ul>
+    <li><strong>Public AI app governance:</strong> Shadow AI discovery, inline DLP on prompts and responses, per-app risk scoring</li>
+    <li><strong>Private AI firewall:</strong> Protecting homegrown AI apps and agents at runtime</li>
+    <li><strong>AI Security Posture Management (AI-SPM):</strong> Model development lifecycle security</li>
+    <li><strong>MCP governance:</strong> Visibility and control over MCP server interactions</li>
+  </ul>
+  <p>The architectural significance: AI inspection runs inline on backbone-edge GPUs without routing traffic to a separate hyperscaler environment. A user in Singapore inspecting an AI prompt hits the nearest Cato PoP, the GPU inspects inline, and the single-pass engine continues — no additional network hop. This eliminates the latency penalty that stitched AI-inspection architectures incur, and AI DLP shares the same policy plane as all other Cato security controls.</p>
+  <p><strong>Honest assessment:</strong> Cato AI Security is new (GA March 2026). Evaluate production maturity and integration depth before scoring as equivalent to Netskope's established inline GenAI capability, which has a longer deployment track record. For organizations prioritizing operational simplicity in AI governance over classification depth, Cato's integrated approach is the right answer.</p>
+
+  <div class="vendor-subhead">IPS and Threat Prevention</div>
+  <p>Cato Research Labs provides regular threat intelligence updates to the IPS, applied inline via the single-pass engine with no additional latency hop. Cato XDR integration means IPS events correlate with user behavior and network anomalies automatically. Threat prevention is solid without being exceptional — appropriate for most enterprise use cases, below Palo Alto's Unit 42/WildFire depth for APT-focused programs.</p>
+
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>True single-pass — zero inspection gaps between engines. Lowest operational complexity of any SSE vendor. SSE + SD-WAN + ZTNA share one policy plane. IPS inline with no additional latency hop. Cato AI Security (March 2026) covers public AI, private AI apps, AI agents, and MCP governance natively.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DLP classification depth below Netskope and Palo Alto — no EDM or document fingerprinting. CASB API mode less developed than Netskope. Shadow IT app catalog smaller (~5,000 vs. Zscaler's 30,000+). Cato AI Security is new — evaluate production maturity before positioning as equivalent to established vendors.</p></div>
+  </div>
+
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sse.html#cato" style="color:var(--edge-blue);">SSE pillar comparison — all vendors</a></p>
+</div>
+
+<!-- ============================================================
+     PILLAR 3 — SD-WAN
+     ============================================================ -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sdwan" class="pillar-hero">
+    <div class="pillar-hero__icon">🌐</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 3 — SD-WAN</div>
+      <div class="pillar-hero__sub">Native SASE SD-WAN · Private backbone · Predictive path steering · Cato Socket</div>
+    </div>
+  </div>
+
+  <h2 class="section-heading">SD-WAN Analysis</h2>
+  <hr class="edge-rule">
+
+  <p>Cato's SD-WAN leadership in the SASE context rests on three structural advantages: (1) a private SLA-backed backbone between all PoPs, (2) native convergence with SSE so the WAN policy and security policy are genuinely one system, and (3) the Cato Socket's Zero-Touch Provisioning that lets branches go live in under 15 minutes. The private backbone is the most defensible advantage — Cato can guarantee consistent latency, apply packet duplication for lossy links, and perform FEC because they control the complete path between PoPs. No other Big Five vendor owns this path.</p>
+
+  <div class="vendor-subhead">Application-Aware Steering — Predictive, Not Reactive</div>
+  <p>Cato performs predictive application-aware path steering using real-time SLA monitoring across all active links. The AI-driven steering engine collects backbone telemetry every second at every PoP and detects degradation trends 30–90 seconds before a SLA breach becomes user-visible, pre-emptively moving traffic. Sub-second reactive failover is supported in parallel. App identification uses the same single-pass engine as SSE — no separate SD-WAN app recognition database, no policy reconciliation overhead.</p>
+
+  <div class="vendor-subhead">Multi-Link + WAN Optimization</div>
+  <p>Active/active multi-link bonding with per-packet load balancing is supported. Forward Error Correction (FEC) and packet duplication handle lossy link conditions, critical for 4G/5G failover scenarios. The Cato Socket hardware line covers small branches through large campus deployments with ZTP deployment in all cases.</p>
+
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Fully private SLA-backed backbone — the only Big Five vendor owning the complete inter-PoP path. Predictive AI path steering (30–90s pre-breach reroute). Active/active multi-link bonding with per-packet load balancing. ZTP sub-15min branch deployment. Single policy plane for SD-WAN + SSE. FEC + packet duplication for lossy links.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>~85 PoPs — fewer than Cloudflare globally; coverage thinner in emerging markets. Hardware CPE ecosystem smaller than legacy SD-WAN vendors (Fortinet, Versa). No vCPE option for virtual branch deployments. Single-vendor commitment required — no SD-WAN-only licensing path.</p></div>
+  </div>
+
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sdwan.html#cato" style="color:var(--edge-blue);">SD-WAN pillar comparison — all vendors</a></p>
+</div>
+
+<!-- ============================================================
+     PILLAR 4 — AIOps
+     ============================================================ -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="aiops" class="pillar-hero">
+    <div class="pillar-hero__icon">🤖</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 4 — AI-Driven Operations</div>
+      <div class="pillar-hero__sub">Cato XDR · Dynamic Prevention · Autonomous backbone · AI Assistant</div>
+    </div>
+  </div>
+
+  <h2 class="section-heading">AIOps Analysis</h2>
+  <hr class="edge-rule">
+
+  <p>Cato's AIOps advantage is structural: owning the complete network path means Cato can diagnose latency problems with complete hop visibility that ISP-dependent vendors cannot replicate. Cato XDR extends this into security operations, correlating network telemetry, endpoint data (if Cato EDR is deployed), and SASE events in a single platform with a shared data store — not via product integration. Cato XDR is included in the platform license, not a separately licensed add-on like Cortex XDR (Palo Alto) or ZDX (Zscaler).</p>
+
+  <div class="vendor-subhead">Autonomous Path Optimization — Structural Advantage</div>
+  <p>Because Cato controls both the edge appliance (Socket) and the backbone between PoPs, path optimization can be genuinely predictive. Backbone telemetry collected every second at every PoP feeds the steering algorithm, which reroutes traffic before SLA breach is detectable by the user — 30–90 seconds ahead of user-visible impact. Vendors performing path optimization on customer-ISP links can only react to observed degradation; they cannot act preemptively because they don't own the infrastructure. This is the most defensible structural AIOps advantage in the Big Five.</p>
+
+  <div class="vendor-subhead">UEBA + Dynamic Prevention</div>
+  <p>Cato XDR includes UEBA with ML-based behavioral baselining. Cross-product correlation within the Cato platform is seamless — unlike Palo Alto (Cortex is a separate product) or Zscaler (ZDX is separately licensed), Cato XDR's UEBA and network telemetry share the same data store by design. In March 2026, Cato launched <strong>Dynamic Prevention</strong> — an auto-adaptive threat prevention engine that continuously correlates months of activity across inline sensors (DLP, IPS, NGAM) and out-of-band engines to detect behavior-based threats that appear individually benign. Once identified, Cato automatically applies adaptive access restrictions without SOC intervention. Dynamic Prevention is assessed as closing the historical UEBA depth gap against Palo Alto and Zscaler, though as a new capability (March 2026 GA) it warrants evaluation for detection accuracy and false-positive rates in production or PoC before scoring equivalent to Cortex XDR's validated track record.</p>
+
+  <div class="vendor-subhead">AI Assistant</div>
+  <p>The Cato AI Assistant in CMA supports natural language queries for policy status explanations and anomaly summaries. Full natural language-to-committed-policy with pre-commit simulation (Palo Alto Strata Copilot's defining capability) is in active development but not fully GA as of Q2 2026. For lean IT teams that want to query platform status in plain English, the AI Assistant delivers value; for teams seeking to eliminate manual policy authoring entirely, Palo Alto is currently ahead.</p>
+
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Structural path optimization advantage from private backbone ownership — predictive, not reactive. Single-platform XDR — no product integration required. Cato XDR included in platform license (not a separate SKU). Dynamic Prevention (March 2026) adds auto-adaptive behavioral blocking without SOC intervention. Best AIOps story for Lean IT teams that need mature UEBA without a dedicated security ops team.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Endpoint UEBA requires Cato EDR — cross-EDR correlation (CrowdStrike, SentinelOne) requires SIEM. AI Assistant NL-to-policy authoring not yet GA. Cross-product correlation breadth narrower than Palo Alto Cortex (which spans endpoint + cloud + SASE). SIEM/SOAR integration depth trails Palo Alto. Dynamic Prevention is new — validate in PoC before taking as equivalent to Cortex XDR.</p></div>
+  </div>
+
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_aiops.html#cato" style="color:var(--edge-blue);">AIOps pillar comparison — all vendors</a></p>
+</div>
+
+<!-- ============================================================
+     PILLAR 5 — SOVEREIGNTY
+     ============================================================ -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sovereignty" class="pillar-hero">
+    <div class="pillar-hero__icon">🏛</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 5 — Sovereignty by Design</div>
+      <div class="pillar-hero__sub">Data residency · Regulatory certifications · Encryption key custody</div>
+    </div>
+  </div>
+
+  <h2 class="section-heading">Sovereignty Analysis</h2>
+  <hr class="edge-rule">
+
+  <div class="edge-callout edge-callout--warning">
+    <div class="edge-callout__accent"></div>
+    <div><strong>Procurement Warning — Regulated and Government Buyers:</strong> Cato does not currently hold FedRAMP, BSI C5, IRAP, or CSA STAR certifications as of Q2 2026. No BYOK is generally available. For any procurement requiring these certifications now, Cato is not a viable option regardless of its strengths in other pillars. This is not a gap — it is a hard disqualifier for the affected buyer segments.</div>
+  </div>
+
+  <p>Cato's sovereignty posture reflects its market focus on operational simplicity and mid-market SASE rather than regulated enterprise and government segments. SOC2 Type II and ISO 27001 are in place. PCI DSS (partial scope) and HIPAA BAA are available. Beyond these, the certification portfolio has significant gaps that are procurement-disqualifying for regulated buyers today.</p>
+
+  <div class="vendor-subhead">Data Residency Limitations</div>
+  <p>Cato supports regional log storage as a tenant configuration option. Full PoP-level data plane isolation with auditable metadata boundaries — the architecture Netskope and Zscaler offer — is not a shipped Cato capability. Cato's single-pass architecture optimizes traffic across PoPs for performance, which is architecturally at odds with strict "traffic and metadata never leave France" requirements. The operational model that makes Cato fast is the same model that makes hard data residency constraints difficult to implement.</p>
+
+  <div class="vendor-subhead">FedRAMP Roadmap</div>
+  <p>Cato initiated FedRAMP High authorization in March 2026 with Coalfire as the 3PAO. This is a credible signal of intent toward the government market. The process typically takes 12–24 months from initiation — a roadmap commitment is not a certification, and no provisional ATO should be assumed before the process completes. The certification gap is real and present today.</p>
+
+  <div class="vendor-subhead">BYOK Status</div>
+  <p>Customer-managed encryption keys (BYOK) are not generally available as of Q1 2026. This is the most significant single sovereignty gap for any customer whose regulator requires customer-controlled key custody — German BaFin, French ACPR, and Dutch DNB guidance increasingly references BYOK as a minimum expectation for cloud security tooling processing sensitive data.</p>
+
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>SOC2 Type II and ISO 27001 in place. HIPAA BAA available — adequate for non-regulated healthcare adjacent buyers. ML training data isolation contractually committed. Cato's other pillar strengths (operational simplicity, single-pass) are unaffected for non-regulated mid-market buyers where these sovereignty gaps are not relevant.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No FedRAMP (in process — March 2026 initiation, 12–24 months typical). No BSI C5. No IRAP. No CSA STAR. No BYOK. No PoP-level data plane isolation. Not viable for US government, German regulated, Australian government, EU financial services with DORA Article 28 key custody requirements, or any buyer with encryption sovereignty mandates.</p></div>
+  </div>
+
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sovereignty.html#cato" style="color:var(--edge-blue);">Sovereignty pillar comparison — all vendors</a></p>
+</div>
+
+<!-- ============================================================
+     PERSONA FIT SUMMARY
+     ============================================================ -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="personas">Persona Fit Summary</h2>
+  <hr class="edge-rule">
+  <table class="persona-table" style="margin-top:16px;">
+    <thead>
+      <tr><th>Persona</th><th>Cato Fit</th><th>Primary Reason</th><th>Watch</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td>
+        <td><span class="winner-tag winner-primary">PRIMARY</span></td>
+        <td>One console, one vendor, ZTP deployment, lowest operational overhead of any SASE platform. Single-pass means DLP, ZTNA, and SD-WAN are all configured in the same place.</td>
+        <td>DLP sophistication ceiling if data classification requirements grow.</td>
+      </tr>
+      <tr>
+        <td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td>
+        <td><span class="winner-tag winner-alt">ALTERNATIVE</span></td>
+        <td>Dynamic Prevention and Cato XDR now compete with Palo Alto Cortex for AIOps depth at the enterprise level — viable for organizations that want AIOps without a separate Cortex XDR license.</td>
+        <td>Cross-product correlation breadth (endpoint + cloud + SASE together) still stronger in Palo Alto. No native SOAR.</td>
+      </tr>
+      <tr>
+        <td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td>
+        <td><span style="background:#eee; color:#555; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600;">NOT RECOMMENDED</span></td>
+        <td>DLP depth trails Netskope for sophisticated classification. Sovereignty posture is disqualifying for most regulated industries with FedRAMP, BSI C5, or BYOK requirements.</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td>
+        <td><span class="winner-tag winner-primary">PRIMARY</span></td>
+        <td>SD-WAN + ZTNA convergence on one platform is Cato's defining advantage. Single policy plane for branch WAN and remote user access. Private backbone SLA for both. ZTP for both. Best architecture for MPLS exit + ZTNA deployment as a combined program.</td>
+        <td>Agentless coverage for non-web apps narrower than Cloudflare — evaluate if heavy contractor or BYOD access is a requirement alongside the SD-WAN rollout.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================
+     CHANGELOG + METADATA
+     ============================================================ -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="changelog">Changelog</h2>
+  <hr class="edge-rule">
+  <table class="edge-table" style="font-size:13px;">
+    <thead>
+      <tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2026-04-19</td>
+        <td>v1.0</td>
+        <td>Initial working document created under v2.0 Codex structure. Content consolidated from sase_ztna.html, sase_sse.html, sase_sdwan.html, sase_aiops.html, sase_sovereignty.html pillar docs. Reflects Cato AI Security (Aim acquisition, March 2026 GA), Cato Dynamic Prevention (March 2026), and Cato FedRAMP High initiation (March 2026).</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</main>
+</div><!-- /.page-body -->
+
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Codex · Working Document · Cato Networks · Last Reviewed: 2026-04-19</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/back-to-top.js"></script>
+</body>
+</html>

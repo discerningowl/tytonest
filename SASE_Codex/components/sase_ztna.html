@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZTNA Deep Dive — Edge Solutions SASE Codex</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/toc.css">
+</head>
+<body class="has-toc">
+
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">ZTNA</span>
+      <span class="edge-pill edge-pill--muted">COMPONENT BENCHMARK</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">ZTNA — Zero Trust Network Access</h1>
+    <p class="edge-header__subtitle">Remote Access · Device Posture · Per-App Segmentation · Agentless Access · 2026 Component Analysis — Prepared by Edge Solutions</p>
+  </div>
+</header>
+
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="sase_ztna.html" class="active">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="sase_scorecard.html">Scorecard</a>
+</nav>
+
+<div class="page-body">
+<main>
+
+<!-- BLUF -->
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Zscaler leads ZTNA on per-app segmentation maturity and digital experience monitoring (ZDX), but its ZIA/ZPA product split creates operational seams that buyers must plan for. Palo Alto Networks (Prisma Access + SCM) is the strongest enterprise choice where a hybrid on-prem/cloud estate needs a unified management plane. Cloudflare One wins on global latency and agentless access breadth — particularly for BYOD and developer-centric environments. Cato Networks delivers the cleanest single-vendor operational story for lean IT teams. Netskope leads where ZTNA access policy must be driven by data sensitivity — the only vendor that fuses DLP classification with the access grant itself.</p>
+  </div>
+
+  <div class="feynman-box">
+    <h3>ZTNA: Why the network is the wrong trust boundary</h3>
+    <p>Traditional VPNs work like a hotel key card: once you swipe in, you're on the floor and can knock on any door. ZTNA is the concierge model — prove who you are, which room you're visiting, and what device you're carrying, <em>for every room, every time</em>. There's no floor-wide access.</p>
+    <p>The architectural flip: instead of routing all traffic to a corporate data center for inspection, a ZTNA cloud broker near the user makes a per-session access decision. The data center never sees the connection unless the app lives there.</p>
+    <p>In 2026, the critical extension is <strong>continuous trust</strong>. The check doesn't happen only at login. If a device is compromised mid-session — EDR fires an alert, compliance state degrades — the broker tears down that session automatically. This requires the ZTNA client to maintain an active posture feed to the broker throughout the session, which is why EDR integration depth has become the top differentiator between vendors.</p>
+  </div>
+</div>
+
+<!-- CRITERIA -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="criteria">Criteria at a Glance</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:18px;font-size:13.5px;">Nine criteria evaluated. Three weighted <strong>Critical ×3</strong>, four <strong>High ×2</strong>, two <strong>Medium ×1</strong>.</p>
+  <div class="edge-grid-3" style="margin-bottom:28px;">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill">CRITICAL ×3</span><h3 class="edge-card__title">Core Trust Pillars</h3><ul><li>Device Posture (Continuous)</li><li>Identity Integration</li><li>Per-App Micro-Segmentation</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill edge-pill--moss">HIGH ×2</span><h3 class="edge-card__title">Performance &amp; Access</h3><ul><li>Global PoP Latency</li><li>Agentless Access</li><li>Enterprise Browser Integration</li><li>Client OS Coverage</li></ul></div></div>
+    <div class="edge-card edge-card--supplemental"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill edge-pill--muted">MEDIUM ×1</span><h3 class="edge-card__title">Operational Depth</h3><ul><li>Digital Experience Monitoring</li><li>Legacy App Support</li></ul></div></div>
+  </div>
+</div>
+
+<!-- VENDOR SUMMARIES -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="vendors">Vendor Summaries — ZTNA Pillar</h2>
+  <hr class="edge-rule">
+  <p style="font-size:13px; margin-bottom:24px;">Each card summarizes this vendor's ZTNA position. Full per-pillar analysis is in the vendor working document.</p>
+
+  <!-- PALO ALTO -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Palo Alto Networks — Prisma Access + SCM</h2><span class="arch-tag">STITCHED / INTEGRATED</span></div>
+    <div class="vendor-body">
+      <p>The strongest ZTNA for hybrid on-prem + cloud estates. SCM ties Prisma Access cloud ZTNA to physical NGFWs and Panorama-managed devices — a branch firewall posture, a remote user session, and an on-prem device sharing one policy framework. AI-RT behavioral anomaly detection flags session-level threats independent of EDR alerts — the deepest "continuous" posture layer in the Big Five. Prisma Access Browser (from Talon acquisition) adds a native enterprise browser in the SCM policy plane. App-ID provides 4,000+ evasion-resistant L7 signatures at the ZTNA access layer.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best hybrid on-prem + cloud management via SCM. Strongest L7 App-ID for ZTNA enforcement. AI-RT behavioral posture — unique in Big Five. Native enterprise browser (PAB). FedRAMP High authorized. ADEM native DEM.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Policy coherence depends on SCM integration quality. Agent required for full capability — agentless narrower than Cloudflare. PAB + SCM integration still maturing (Q1 2026). Complexity requires trained operators.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/palo-alto-networks.html#ztna" style="color:var(--edge-blue);">Full ZTNA analysis — palo-alto-networks.html</a></p>
+    </div>
+  </div>
+
+  <!-- CATO -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Cato Networks — Cato SDP</h2><span class="arch-tag">NATIVE SINGLE-PASS</span></div>
+    <div class="vendor-body">
+      <p>The cleanest single-vendor ZTNA story. Cato SDP runs on the same single-pass engine as FWaaS, SWG, and CASB — no product integration between ZTNA and security, just one stack. Private backbone (85+ PoPs, SLA-backed fiber) means ZTNA transit delivers sub-150ms globally with a contractual latency commitment. EDR integration with event-driven session teardown. ZTP deployment lets branches and ZTNA roll out as a single program. UEBA risk scoring feeds access policy without external tooling.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Cleanest ZTNA + SD-WAN + SSE single-vendor story. One console, one policy engine. Private backbone SLA for ZTNA transit. Best for lean IT. ZTP simplifies joint branch + ZTNA rollout.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No native enterprise browser. L7 signatures less extensive than Palo Alto App-ID. Agentless thick-client narrower than Cloudflare. Behavioral posture detection behind Palo Alto AI-RT.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/cato-networks.html#ztna" style="color:var(--edge-blue);">Full ZTNA analysis — cato-networks.html</a></p>
+    </div>
+  </div>
+
+  <!-- NETSKOPE -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Netskope — NPA (Netskope Private Access)</h2><span class="arch-tag">SINGLE-PASS / DATA-CENTRIC</span></div>
+    <div class="vendor-body">
+      <p>The only vendor where ZTNA access decisions are informed by data sensitivity, not just identity. A user accessing an app containing PII gets a tighter policy than the same user accessing a non-sensitive app — same identity, same device, different data classification. DLP policy applies at the access grant layer, not just at inspection. User Risk Scoring aggregates behavioral, UEBA, and DLP signals for dynamic mid-session policy. Agentless ZTNA covers web apps well; non-web thick-client access requires per-protocol SSH/RDP gateway configuration.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Only vendor fusing DLP classification with ZTNA access grants. Best inline + API CASB shared policy plane with ZTNA. Natural choice for regulated industries. User risk score integrates data signals alongside behavioral.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DEM less mature than Zscaler ZDX. No native enterprise browser. Non-HTTP agentless requires more configuration than Cloudflare browser rendering.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/netskope.html#ztna" style="color:var(--edge-blue);">Full ZTNA analysis — netskope.html</a></p>
+    </div>
+  </div>
+
+  <!-- CLOUDFLARE -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Cloudflare — Cloudflare Access</h2><span class="arch-tag">EDGE-NATIVE / PERFORMANCE-FIRST</span></div>
+    <div class="vendor-body">
+      <p>The performance-first and agentless-first ZTNA. 330+ global PoPs — most users connect within 20–50ms. Browser Rendering renders RDP, SSH, SMB, and VNC sessions directly in a browser window via server-side rendering, with zero endpoint install. A contractor on a personal Chromebook accesses the same RDP desktop as a managed Windows device — architecturally unmatched in the Big Five for thick-client agentless access. WARP client provides compliance-based posture; no EDR-independent behavioral anomaly detection. Fastest policy deployment: API-native, Terraform-managed, sub-30-second global propagation.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best agentless — browser-rendered RDP/SSH/VNC with zero install. Largest PoP density, best global latency. Fastest deployment. Best for BYOD-heavy, multi-cloud, high contractor populations.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DEX less mature than Zscaler ZDX. No native enterprise browser. No UEBA/behavioral analytics. Magic WAN is not traditional SD-WAN.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/cloudflare.html#ztna" style="color:var(--edge-blue);">Full ZTNA analysis — cloudflare.html</a></p>
+    </div>
+  </div>
+
+  <!-- ZSCALER -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Zscaler — ZPA (Zero Trust Private Access)</h2><span class="arch-tag">IDENTITY-FIRST PROXY</span></div>
+    <div class="vendor-body">
+      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>Research Note:</strong> ZIA and ZPA are distinct products. All claims reflect verified public architecture as of Q1 2026. Verify before updating scores if Zscaler announces architectural changes post-Zenith Live 2026.</div></div>
+      <p>The most mature per-app ZTNA segmentation in the Big Five. Inside-out connector model: the app-side connector calls out to Zscaler — no inbound ports, no network adjacency, no lateral movement risk from a compromised connector. Each application segment has its own connector group, access policy, and inspection rule. ZDX telemetry-derived risk scores feed ZPA access policy dynamically — step-up MFA or session throttling without SOAR. ZDX (separately licensed) provides sub-60-second automated fault attribution, the best DEM in the Big Five for enterprise helpdesk workflows.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Most mature per-app segmentation — inside-out connector is the reference implementation. Best DEM/ZDX for helpdesk workflows. Deepest identity + risk integration. Zero exposed inbound ports. Largest enterprise ZTNA installed base.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>ZIA/ZPA are separate products — verify policy unification scope. Agentless narrower than Cloudflare. No native enterprise browser. ZDX separately licensed — include in TCO.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/zscaler.html#ztna" style="color:var(--edge-blue);">Full ZTNA analysis — zscaler.html</a></p>
+    </div>
+  </div>
+
+  <!-- EMERGING CALLOUTS -->
+  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Island (Enterprise Browser)</strong> — A Chromium fork enforcing Zero Trust at the browser layer — session isolation, DLP without a proxy, clipboard control, per-application access governance. Architecturally distinct from proxy-side CASB. March 2026: Island launched a full SASE stack (SWG, ZTNA, CASB, RBI, DLP) through the browser. Full analysis: <a href="../working-docs/island.html" style="color:var(--edge-blue);">island.html</a>.</div></div>
+  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Nile (Zero Trust NaaS)</strong> — Extends ZTNA to the campus/LAN edge. Every wired and wireless port is a ZTNA enforcement point with identity-based micro-segmentation at Layer 2. Not a WAN or cloud security play — complements Big Five SASE for fully zero-trust branch environments. Full analysis: <a href="../working-docs/nile.html" style="color:var(--edge-blue);">nile.html</a>.</div></div>
+</div>
+
+<!-- SCORING -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="scores">Vendor Scoring — ZTNA Pillar</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:14px;font-size:13px;">Scale: 1=Poor/Missing · 3=Adequate · 5=Best-in-Class. Weight multipliers: Critical ×3 · High ×2 · Medium ×1.</p>
+  <div id="score-container"><p class="score-loading">Loading scores…</p></div>
+</div>
+
+<!-- PERSONA FIT -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="personas">Persona Fit — ZTNA Pillar</h2>
+  <hr class="edge-rule">
+  <table class="persona-table">
+    <thead><tr><th>Persona</th><th>Profile</th><th>Primary ZTNA Need</th><th>Best Fit</th><th>Rationale</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td><td>Small security team, limited vendor management capacity, operational simplicity is the governing constraint</td><td>Single-vendor simplicity, ZTP deployment, minimal daily management</td><td><span class="winner-tag winner-primary">CATO</span></td><td>One console for ZTNA + SSE + SD-WAN. ZTP. No integration tax. Best value without dedicated ZTNA engineering.</td></tr>
+      <tr><td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td><td>Dedicated SOC, hybrid on-prem + cloud estate, threat-prevention depth is the governing constraint</td><td>Per-app segmentation maturity, DEM, identity risk scoring, SOC integration</td><td><span class="winner-tag winner-primary">ZSCALER</span></td><td>ZPA per-app segmentation is most mature. ZDX is best-in-class DEM. Identity risk integration feeds SOC workflows natively without SOAR chain.</td></tr>
+      <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td>Data classification governs all policy, GDPR/HIPAA/PCI obligations, DLP is board-level</td><td>ZTNA policy driven by data classification, not identity alone</td><td><span class="winner-tag winner-primary">NETSKOPE</span></td><td>Only vendor fusing DLP classification with ZTNA access grants. Same user, same identity, same device — tighter policy for PII-containing apps.</td></tr>
+      <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td>Owns SD-WAN refresh alongside ZTNA; needs agent coverage for managed endpoints and agentless for BYOD/contractors</td><td>ZTNA integrated with SD-WAN CPE policy; global PoP coverage; agentless for BYOD</td><td><span class="winner-tag winner-primary">CATO</span> <span class="winner-tag winner-alt">CLOUDFLARE</span></td><td>Cato if SD-WAN + ZTNA convergence is the goal — single backbone, one policy plane. Cloudflare if cloud-first with no branch CPE and agentless contractor access is the priority.</td></tr>
+    </tbody>
+  </table>
+  <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Notable exception:</strong> For BYOD-heavy or developer-centric environments, <strong>Cloudflare One</strong> wins ZTNA — browser-rendered agentless access for RDP/SSH is architecturally unmatched in the Big Five.</div></div>
+</div>
+
+<!-- MARKET SHIFTS -->
+<div class="edge-dark-section">
+  <div style="max-width:1020px;margin:0 auto;">
+    <h2>ZTNA in 2026: Three Defining Shifts</h2>
+    <p><strong style="color:var(--edge-green);">1. Continuous posture has replaced static posture as table stakes.</strong> Any vendor without real-time EDR integration and session teardown on posture failure is now below the enterprise minimum. Palo Alto's AI-RT behavioral anomaly layer is extending this further — detecting session-level threats independent of whether an EDR alert fires. Expect others to match this capability by late 2026.</p>
+    <p><strong style="color:var(--edge-green);">2. Agentless access is no longer an edge case.</strong> Cloudflare's browser-rendered thick-client access — RDP/SSH/VNC in a browser with zero endpoint install — is setting a new minimum bar. Contractors, BYOD devices, and non-managed endpoints are now primary deployment targets. Vendors without a credible agentless story for non-web apps will lose deals in these segments.</p>
+    <p><strong style="color:var(--edge-green);">3. The enterprise browser is becoming a ZTNA enforcement layer.</strong> Palo Alto Prisma Access Browser, Island, and Chrome Enterprise are evolving into ZTNA control plane extensions — handling identity attestation, copy/paste policy, and watermarking at the browser layer independent of network path. Monitor Palo Alto's SCM + PAB integration roadmap and Island's full SASE stack maturity through H2 2026.</p>
+  </div>
+</div>
+
+</main>
+</div>
+
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Codex · ZTNA Component Benchmark · Last Reviewed: 2026-04-19</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+<script>
+window.renderPage = function(data) {
+  if (!data.pillars || !data.pillars.ztna) {
+    document.getElementById('score-container').innerHTML = '<div class="edge-callout edge-callout--warning" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Local server required.</strong> Run <code>python3 -m http.server 8000</code> from the project root. See <code>README.md</code>.</div></div>';
+    return;
+  }
+  var vendors = data.vendors.filter(function(v) { return v.tier === 'big_five'; });
+  renderScoringTable(data.pillars.ztna, vendors, 'score-container');
+};
+</script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/back-to-top.js"></script>
+</body>
+</html>

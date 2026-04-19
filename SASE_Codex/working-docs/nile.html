@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nile — Vendor Deep Dive — Edge Solutions SASE Codex</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/toc.css">
+</head>
+<body class="has-toc">
+
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">VENDOR DEEP DIVE</span>
+      <span class="edge-pill edge-pill--muted">NILE</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Nile — Zero Trust NaaS</h1>
+    <p class="edge-header__subtitle">Campus LAN Edge · Zero Trust at the Physical Port · Identity-Based Micro-Segmentation · SASE Codex Working Document — Edge Solutions</p>
+  </div>
+</header>
+
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_scorecard.html">Scorecard</a>
+</nav>
+
+<div class="page-body">
+<main>
+
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Nile solves a problem that every Big Five SASE vendor ignores: the campus LAN. ZTNA in 2026 governs remote access with identity-based, per-application trust. But when that same user walks into the corporate office and connects to a physical port, they typically land on a flat network segment with broad access determined by VLAN assignment, not identity. Nile applies ZTNA principles to the physical campus — every wired and wireless port is a Zero Trust enforcement point. Customers report 60% breach reduction. Co-founded by John Chambers and Pankaj Patel (ex-Cisco), $175M Series C, Gartner Visionary in 2025 Enterprise Wired &amp; Wireless LAN MQ.</p>
+    <p><strong>Pillar scope:</strong> ZTNA (campus/LAN-applicable criteria only). Nile does not compete in SD-WAN, SSE, AIOps, or Sovereignty. It is scored on the ZTNA pillar where campus-applicable criteria apply — device posture, identity integration, per-app micro-segmentation at the physical port layer.</p>
+    <p><strong>Primary fit:</strong> Complement to any Big Five SASE for organizations with Zero Trust programs that must extend to the physical campus. Strongest fit for healthcare, financial services, and higher education with dense on-campus device environments. <strong>Not a standalone SASE replacement.</strong></p>
+  </div>
+
+  <div class="edge-grid-4 mt-20">
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">$175M</div>
+      <div class="edge-stat__label">SERIES C</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">60%</div>
+      <div class="edge-stat__label">BREACH REDUCTION REPORTED</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Gartner</div>
+      <div class="edge-stat__label">VISIONARY 2025 LAN MQ</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">NaaS</div>
+      <div class="edge-stat__label">DELIVERY MODEL</div>
+    </div>
+  </div>
+</div>
+
+<!-- Architecture -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="architecture" class="pillar-hero">
+    <div class="pillar-hero__icon">🏗</div>
+    <div>
+      <div class="pillar-hero__title">Architecture: Zero Trust Built Into the Infrastructure Layer</div>
+      <div class="pillar-hero__sub">Not an overlay — Zero Trust enforced at every physical port by design</div>
+    </div>
+  </div>
+  <h2 class="section-heading">The Campus Zero Trust Gap</h2>
+  <hr class="edge-rule">
+  <p>Traditional campus networking assumes trust inside the building. A device that physically connects to a port in the corporate office lands on a VLAN with broad access — implicitly trusted because it's in the building. This is the last major perimeter in enterprise networking that operates on implicit trust, and it's increasingly being exploited as a lateral movement vector.</p>
+  <p>Nile's architecture eliminates this implicit trust model. Every physical connection — wired or wireless — triggers the same authentication and authorization flow as a cloud ZTNA session: identity verification via the organization's IdP (Okta, Entra ID), device posture check, and per-application access grant. The campus network infrastructure becomes a Zero Trust enforcement plane, not a trusted flat network.</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL STRENGTHS</span><ul style="margin-top:12px;"><li>Zero Trust enforced at every physical port — identity-based, not VLAN-based</li><li>Per-device isolation and micro-segmentation built into the infrastructure layer</li><li>NaaS delivery: hardware managed, maintained, and replaced by Nile</li><li>Integrates with existing IdP (Okta, Entra ID) — unified identity policy with Big Five SASE</li><li>AI-driven lifecycle operations: automated provisioning, fault detection, optimization</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL LIMITATIONS</span><ul style="margin-top:12px;"><li>Campus/LAN only — does not address cloud, WAN, or remote access</li><li>Requires physical infrastructure replacement — facilities and network team coordination</li><li>Not a standalone SASE replacement — requires a Big Five SASE for cloud and remote access</li><li>Premium pricing vs. traditional campus networking for organizations without ZT campus requirements</li><li>Relatively new vendor — large-scale enterprise deployment track record still developing</li></ul></div></div>
+  </div>
+</div>
+
+<!-- ZTNA -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="ztna" class="pillar-hero">
+    <div class="pillar-hero__icon">🔐</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 1 — ZTNA (Campus Scope)</div>
+      <div class="pillar-hero__sub">Zero Trust at the physical port · device posture at Layer 2 · identity-based micro-segmentation</div>
+    </div>
+  </div>
+  <h2 class="section-heading">ZTNA Analysis — Campus Application</h2>
+  <hr class="edge-rule">
+  <p>Nile Access Service replaces traditional campus switching and wireless infrastructure. Physical switches and APs are Nile hardware, managed as-a-service with zero on-prem infrastructure for the customer to operate. When a device connects to a Nile port, the authentication and authorization flow mirrors cloud ZTNA:</p>
+  <ol style="padding-left:20px; margin:12px 0; line-height:1.8;">
+    <li>Identity verification — 802.1X or certificate-based authentication via the existing IdP</li>
+    <li>Device posture check — the device's security state is evaluated against policy</li>
+    <li>Per-application access grant — access is assigned based on identity + posture, not VLAN membership</li>
+    <li>Continuous enforcement — posture changes trigger access re-evaluation mid-session</li>
+  </ol>
+  <div class="vendor-subhead">Device Posture — Continuous at the Physical Port</div>
+  <p>Every wired and wireless connection triggers an identity + posture check before any access is granted. Posture change disconnects the session immediately — this is continuous posture enforcement at the physical layer, which is stronger than what most cloud ZTNA vendors implement for campus-connected devices (most assume the device is trusted because it's on the corporate network). For hospitals with medical devices, financial services with trading terminals, and universities with research equipment, per-port isolation means a compromised device cannot reach adjacent devices regardless of physical location in the building.</p>
+  <div class="vendor-subhead">Identity Integration</div>
+  <p>Nile integrates with the organization's existing IdP (Okta, Microsoft Entra ID) — the same IdP that feeds the Big Five SASE platform for remote access. This creates a unified identity policy: the same user gets per-application access based on the same identity attributes whether they're connecting remotely (Big Five ZTNA) or in the office (Nile port enforcement). This is architecturally significant — it closes the identity policy gap between remote and on-campus access that every Big Five SASE vendor leaves open.</p>
+  <div class="vendor-subhead">AI-Driven Lifecycle Operations</div>
+  <p>Nile's NaaS model includes AI-driven operations: automated hardware provisioning (new ports are auto-detected and enrolled), continuous performance monitoring, predictive maintenance (hardware replacement before failure based on telemetry), and AI-assisted policy recommendations. The customer's IT team manages policy via the Nile portal; Nile's platform handles infrastructure operations.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Zero Trust enforced at every physical port — per-device isolation, micro-segmentation at Layer 2. Continuous posture enforcement — posture change disconnects the session immediately. Unified identity policy with Big Five SASE via shared IdP. NaaS delivery eliminates campus network technical debt and hardware refresh cycles. 60% breach reduction reported by customers.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Campus/LAN scope only — no cloud SSE, no remote access ZTNA, no SD-WAN. Requires physical infrastructure replacement — network team and facilities coordination required. New vendor — large-enterprise deployment scale still developing. Premium pricing vs. traditional campus networking for organizations not prioritizing ZT at the campus edge.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_ztna.html" style="color:var(--edge-blue);">ZTNA pillar comparison — all vendors</a></p>
+</div>
+
+<!-- DEPLOYMENT PAIRING -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="pairing">Big Five Pairing Recommendations</h2>
+  <hr class="edge-rule">
+  <p>Nile is not a standalone SASE platform. It is the campus enforcement layer in a Zero Trust architecture that also requires a Big Five SASE for cloud security, remote access, and WAN connectivity. The correct architecture for a complete Zero Trust deployment:</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">CAMPUS + CLOUD ZT ARCHITECTURE</span><p style="margin-top:10px; font-size:13px;">Nile handles every physical port in the building — wired and wireless. The Big Five SASE handles cloud ZTNA for remote users and contractors, SSE for internet and SaaS security, and SD-WAN for branch connectivity. Both enforcement planes share the same IdP, so identity policy is unified regardless of how or where the user connects.</p><p style="margin-top:8px; font-size:13px;"><strong>Recommended Big Five pairing:</strong> Any. Nile's IdP integration makes it vendor-agnostic at the campus layer — Cato, Cloudflare, Zscaler, Netskope, or Palo Alto can sit alongside Nile without architectural conflict.</p></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRONGEST USE CASES</span><ul style="margin-top:10px; font-size:13px;"><li><strong>Healthcare:</strong> Medical device isolation — every IoT device on its own micro-segment, cannot reach adjacent devices or patient records without explicit policy</li><li><strong>Financial services:</strong> Trading terminal isolation — financial terminals, Bloomberg stations, and SWIFT endpoints on dedicated segments with continuous posture monitoring</li><li><strong>Higher education:</strong> Research network isolation — lab equipment and research data on segments that cannot be reached from the general campus network</li><li><strong>Enterprise:</strong> Guest and contractor access — physical ports that grant internet-only access to unmanaged devices without requiring VLAN configuration changes</li></ul></div></div>
+  </div>
+</div>
+
+<!-- PERSONA FIT -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="personas">Persona Fit Summary</h2>
+  <hr class="edge-rule">
+  <table class="persona-table" style="margin-top:16px;">
+    <thead><tr><th>Persona</th><th>Nile Fit</th><th>Primary Reason</th><th>Watch</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td><td><span style="background:#eee; color:#555; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600;">NOT TYPICAL</span></td><td>Lean IT teams are unlikely to be running Zero Trust campus programs. Cato or Cloudflare handle remote access adequately for this persona without requiring physical infrastructure replacement.</td><td>—</td></tr>
+      <tr><td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td><td><span class="winner-tag winner-alt">COMPLEMENT</span></td><td>Large enterprises running active Zero Trust programs increasingly need campus enforcement alongside cloud ZTNA. Nile fills the campus gap that no Big Five vendor addresses.</td><td>Requires physical infrastructure project — significant change management. Position as Phase 2 of a ZT program after cloud ZTNA is operational.</td></tr>
+      <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td><span class="winner-tag winner-primary">PRIMARY USE CASE</span></td><td>Healthcare (medical device isolation), financial services (trading terminal isolation), and legal (document handling workstation isolation) are exactly the use cases Nile was designed for. Per-device micro-segmentation at the physical port is the architecturally correct answer for compliance-driven device isolation.</td><td>Must be paired with Big Five SASE for cloud and remote access. Nile alone is not sufficient for the full regulatory compliance picture.</td></tr>
+      <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td><span class="winner-tag winner-alt">COMPLEMENT</span></td><td>Network architects planning MPLS exit and SASE convergence should evaluate whether campus ZT is also in scope. If the organization has dense campus device environments (manufacturing, healthcare, education), Nile belongs in the architecture alongside the Big Five SD-WAN + ZTNA selection.</td><td>Infrastructure replacement project is a multi-quarter program. Plan alongside, not before, the cloud SASE deployment.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CHANGELOG -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="changelog">Changelog</h2>
+  <hr class="edge-rule">
+  <table class="edge-table" style="font-size:13px;">
+    <thead><tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>2026-04-19</td><td>v1.0</td><td>Initial working document created under v2.0 Codex structure. Content extracted and expanded from sase_emerging.html. Nile scored on ZTNA pillar (campus-applicable criteria); SD-WAN, SSE, AIOps, Sovereignty null by design. $175M Series C and Gartner Visionary 2025 LAN MQ noted.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</main>
+</div>
+
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Codex · Working Document · Nile · Last Reviewed: 2026-04-19</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/back-to-top.js"></script>
+</body>
+</html>

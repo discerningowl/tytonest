@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fortinet — Vendor Deep Dive — Edge Solutions SASE Codex</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/toc.css">
+</head>
+<body class="has-toc">
+
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">VENDOR DEEP DIVE</span>
+      <span class="edge-pill edge-pill--muted">FORTINET</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Fortinet — Fortinet Unified SASE</h1>
+    <p class="edge-header__subtitle">FortiOS-Native · SD-WAN Incumbent · Gartner MQ Leader 2025 · Four Concurrent MQ Reports · SASE Codex Working Document — Edge Solutions</p>
+  </div>
+</header>
+
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_scorecard.html">Scorecard</a>
+</nav>
+
+<div class="page-body">
+<main>
+
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Fortinet became a formal SASE market Leader in 2025 and cannot be ignored in a 2026 SASE evaluation. The strategic case: Fortinet is the incumbent SD-WAN + branch firewall vendor in a very large installed base. FortiOS unification — running SD-WAN, ZTNA, SSE, and NGFW under a single operating system, single management console, and single agent — is the most complete organic platform convergence story after Cato. Competitive pricing and a #1 Gartner Critical Capabilities ranking in Secure Branch Network Modernization mean Fortinet wins branch-centric MPLS-replacement deals, particularly in organizations that already run FortiGate firewalls.</p>
+    <p>The material limitation: customer experience. Gartner Peer Insights data and analyst commentary consistently note that Fortinet's technical support quality, software stability on updates, and operational complexity are friction points — described by multiple customers as an underdeveloped support model with a steep learning curve. Fortinet's SASE cloud SSE infrastructure (FortiSASE PoPs) is less mature than the Big Five SASE-native vendors. The product is strong; the operational experience around it is the watch area.</p>
+    <p><strong>Primary fit:</strong> Organizations with existing FortiGate SD-WAN or NGFW estates doing MPLS exit and SASE convergence. Competitive pricing makes it viable for cost-sensitive buyers. <strong>Primary limitation:</strong> Customer experience below average vs. Big Five; SSE cloud depth (DLP, CASB) trails Netskope and Zscaler for data-centric programs.</p>
+  </div>
+
+  <div class="edge-grid-4 mt-20">
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Gartner</div>
+      <div class="edge-stat__label">MQ LEADER 2025</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">4</div>
+      <div class="edge-stat__label">CONCURRENT MQ REPORTS</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">#1</div>
+      <div class="edge-stat__label">BRANCH MODERNIZATION (GARTNER CC)</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">FortiOS</div>
+      <div class="edge-stat__label">UNIFIED OS</div>
+    </div>
+  </div>
+
+  <div class="edge-callout edge-callout--warning" style="margin-top:20px;">
+    <div class="edge-callout__accent"></div>
+    <div><strong>Customer Experience Watch:</strong> Gartner Peer Insights reviews consistently flag Fortinet support quality, update-induced software instability, and operational complexity as customer experience negatives. This is a formally noted Gartner caution, not an isolated complaint. Evaluate support SLA and professional services commitment carefully in any Fortinet SASE deployment. Verify current experience ratings before positioning to clients.</div>
+  </div>
+</div>
+
+<!-- Architecture -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="architecture" class="pillar-hero">
+    <div class="pillar-hero__icon">🏗</div>
+    <div>
+      <div class="pillar-hero__title">Architecture: FortiOS Unified Platform</div>
+      <div class="pillar-hero__sub">Single OS, single console, single agent — the most complete organic convergence after Cato</div>
+    </div>
+  </div>
+  <h2 class="section-heading">The FortiOS Advantage</h2>
+  <hr class="edge-rule">
+  <p>Fortinet Unified SASE is built natively on FortiOS — the same operating system running on FortiGate NGFWs, FortiAP wireless, and FortiSwitch. SD-WAN, ZTNA, SSE (SWG, CASB, FWaaS, DLP), and on-premises NGFW all run on the same OS, managed through a single console (FortiManager/FortiSASE portal), and protected by the same FortiGuard AI-powered threat intelligence. This organic unification on a single OS is architecturally different from Palo Alto's SCM-coordinated stitched approach — FortiOS convergence is native, not integrated.</p>
+  <p>The competitive edge is the existing installed base. Fortinet has the largest SD-WAN and branch firewall customer base in the market. Organizations already running FortiGate SD-WAN or branch NGFWs can add FortiSASE cloud SSE and ZTNA to their existing FortiOS management plane without replacing hardware or re-training staff on a new management console. This upgrade-in-place motion is Fortinet's primary SASE sales motion and why it wins branch modernization deals disproportionately.</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL STRENGTHS</span><ul style="margin-top:12px;"><li>FortiOS native convergence — SD-WAN, ZTNA, SSE, NGFW on one OS</li><li>Largest SD-WAN + branch firewall installed base — upgrade path for existing customers</li><li>Competitive pricing — typically lower TCO than Cato or Palo Alto for similar scope</li><li>Only vendor in four concurrent Gartner MQ reports (SD-WAN, SSE, LAN, SASE)</li><li>#1 in Gartner Critical Capabilities — Secure Branch Network Modernization use case</li><li>FedRAMP Ready (High Impact level) — government-adjacent buyers</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL LIMITATIONS</span><ul style="margin-top:12px;"><li>Customer experience rated below average — support quality, update stability, and complexity are recurring complaints in Gartner Peer Insights</li><li>FortiSASE cloud SSE PoP infrastructure less mature than Big Five SASE-native vendors</li><li>SSE depth (DLP, CASB) trails Netskope and Zscaler for data-centric programs</li><li>Steeper learning curve for organizations not already in the Fortinet ecosystem</li><li>FortiSASE is the cloud SSE layer; FortiGate SD-WAN is the hardware layer — integration is native but the product lines have different roadmap cadences</li></ul></div></div>
+  </div>
+</div>
+
+<!-- ZTNA -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="ztna" class="pillar-hero">
+    <div class="pillar-hero__icon">🔐</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 1 — ZTNA / Remote Access</div>
+      <div class="pillar-hero__sub">Universal ZTNA · FortiClient agent · agent-based and agentless · FortiOS policy plane</div>
+    </div>
+  </div>
+  <h2 class="section-heading">ZTNA Analysis</h2>
+  <hr class="edge-rule">
+  <p>Fortinet's Universal ZTNA is delivered through FortiSASE and enforced via FortiClient. The same FortiClient agent handles ZTNA, endpoint protection (EDR), and device posture checks — a unified agent model that reduces endpoint software complexity. ZTNA policy is managed through the FortiSASE portal and can be coordinated with FortiGate on-premises NGFW policy through FortiManager, providing a degree of hybrid management comparable to Palo Alto SCM for organizations with FortiGate infrastructure.</p>
+  <div class="vendor-subhead">Device Posture</div>
+  <p>FortiClient performs device posture checks including OS version, patch status, FortiEDR or third-party EDR status, disk encryption, and certificate checks. Posture checks run at connection time and are rechecked periodically. Event-driven session termination on posture failure is supported. Continuous behavioral anomaly detection equivalent to Palo Alto AI-RT is not a documented FortiSASE capability as of Q2 2026 — posture enforcement is primarily compliance-check-based.</p>
+  <div class="vendor-subhead">Agentless Access</div>
+  <p>FortiSASE supports agentless ZTNA for web-delivered applications via browser-based access without requiring FortiClient installation. For thick-client applications, FortiClient is required. Agentless coverage for non-web thick-client apps (RDP, SSH via browser rendering) is not at the same level as Cloudflare's server-side browser rendering approach.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Universal ZTNA integrated with FortiOS policy plane. Single FortiClient agent for ZTNA + EPP + EDR + posture. Hybrid management alongside FortiGate NGFW via FortiManager. Gartner Customers' Choice for ZTNA (2025). Strong branch-ZTNA integration story for FortiGate SD-WAN customers.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No behavioral posture equivalent to Palo Alto AI-RT. Agentless thick-client (RDP/SSH) narrower than Cloudflare. DEM maturity trails Zscaler ZDX. Customer experience friction (support, update stability) applies to ZTNA as with the broader platform.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_ztna.html" style="color:var(--edge-blue);">ZTNA pillar comparison — all vendors</a></p>
+</div>
+
+<!-- SSE -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sse" class="pillar-hero">
+    <div class="pillar-hero__icon">🛡</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 2 — SSE (Security Service Edge)</div>
+      <div class="pillar-hero__sub">FortiSASE cloud · FortiGuard AI threat intelligence · SWG · CASB · FWaaS · DLP · RBI</div>
+    </div>
+  </div>
+  <h2 class="section-heading">SSE Analysis</h2>
+  <hr class="edge-rule">
+  <p>FortiSASE delivers cloud-based SSE (SWG, CASB, FWaaS, DLP, RBI) via Fortinet's cloud infrastructure, powered by FortiGuard AI-powered threat intelligence. FortiGuard is a genuine differentiator — Fortinet's threat research operation maintains one of the largest threat intelligence databases in the industry, feeding real-time updates to FortiSASE SWG and IPS. For threat prevention depth, FortiSASE is competitive with the Big Five.</p>
+  <div class="vendor-subhead">DLP and CASB</div>
+  <p>FortiSASE includes DLP and CASB capabilities as part of the unified platform. DLP covers pre-defined classifiers for common regulated data types (PII, PCI, HIPAA patterns) and some ML-based classification. CASB covers Shadow IT discovery and per-application access controls. The depth of both capabilities trails Netskope (industry reference for DLP) and Zscaler (30,000+ app CASB catalog) for organizations with sophisticated data classification programs or complex SaaS governance requirements. For standard compliance use cases — blocking unauthorized upload of PII, discovering shadow SaaS — FortiSASE DLP and CASB are adequate.</p>
+  <div class="vendor-subhead">AI/GenAI Protection</div>
+  <p>FortiSASE includes GenAI app governance — shadow AI discovery, access controls for GenAI applications, and inline inspection for common LLM tools. FortiGuard's threat intelligence feeds AI-related threat detection. The GenAI governance capability is functional for standard enterprise use cases; it does not match Netskope One AI Security's depth (Agentic Broker, AI Gateway, AI Red Teaming) or Palo Alto's three-plane AI security architecture. For organizations whose primary AI security concern is governance and compliance rather than agentic AI and model-layer threats, FortiSASE's AI controls are adequate.</p>
+  <div class="vendor-subhead">RBI (Remote Browser Isolation)</div>
+  <p>FortiSASE includes RBI as an integrated capability — site isolation for risky or uncategorized URLs. Integration with the SWG policy engine means SWG rules can trigger RBI automatically without separate policy objects, which is the best-in-class integration model. Verify current RBI deployment scale and performance characteristics before positioning for large enterprises.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>FortiGuard AI threat intelligence — one of the largest threat databases in the industry. Full SSE stack on FortiOS — SWG, CASB, FWaaS, DLP, RBI natively integrated. Competitive pricing vs. Big Five for similar SSE scope. Gartner Challenger in SSE MQ (2025) — validated market presence. GenAI app governance functional for standard enterprise use cases.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DLP depth trails Netskope for sophisticated classification programs. CASB app catalog smaller than Zscaler's 30,000+. FortiSASE cloud PoP infrastructure less mature than Cato or Cloudflare at global scale. Customer experience (support, update stability) is the primary operational risk. Agentic AI security significantly behind Netskope One AI Security.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sse.html" style="color:var(--edge-blue);">SSE pillar comparison — all vendors</a></p>
+</div>
+
+<!-- SD-WAN -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sdwan" class="pillar-hero">
+    <div class="pillar-hero__icon">🌐</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 3 — SD-WAN</div>
+      <div class="pillar-hero__sub">Fortinet Secure SD-WAN · FortiGate CPE · 5th consecutive MQ Leader · branch modernization leader</div>
+    </div>
+  </div>
+  <h2 class="section-heading">SD-WAN Analysis</h2>
+  <hr class="edge-rule">
+  <p>SD-WAN is Fortinet's strongest SASE pillar and the primary reason it belongs in a 2026 SASE evaluation. Fortinet was positioned highest for Ability to Execute in the 2024 Gartner MQ for SD-WAN for the fifth consecutive year and ranked #1 in Secure Branch Network Modernization in the 2025 Critical Capabilities for SASE Platforms. The FortiGate SD-WAN product line is feature-mature: active/active multi-link bonding, FEC, packet duplication, predictive path analytics, ZTP, and native 5G CPE support across the full FortiGate appliance range.</p>
+  <div class="vendor-subhead">Installed Base Advantage</div>
+  <p>Fortinet's competitive advantage in SD-WAN comes largely from incumbency. Organizations already running FortiGate branch firewalls can enable SD-WAN features on their existing hardware with a license change — no CPE replacement, no staff retraining, no management console change. This upgrade-in-place motion is why Fortinet wins SD-WAN deals in Fortinet NGFW accounts, and why the SD-WAN product's pricing is aggressive — the value is in extending the existing investment, not in displacing it.</p>
+  <div class="vendor-subhead">SSE Convergence</div>
+  <p>FortiGate SD-WAN + FortiSASE cloud SSE are managed through FortiManager and the FortiSASE portal with native FortiOS policy sharing. This is not a stitched integration via API — it is native FortiOS coordination, which provides better policy consistency than Zscaler's partner SD-WAN integration model while trailing Cato's true single-pass convergence. The result sits between "stitched" and "native single-pass" architecturally — tighter than Palo Alto's SCM coordination for Fortinet-native deployments.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>5th consecutive Gartner SD-WAN MQ Leader. #1 Secure Branch Network Modernization use case. Feature-mature CPE: active/active, FEC, packet duplication, 5G native. Upgrade-in-place for existing FortiGate customers. ZTP deployment. Competitive pricing. Native FortiOS coordination with FortiSASE cloud SSE.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No private backbone — public internet SD-WAN routing between PoPs (no equivalent to Cato's SLA-backed fiber). SD-WAN + SSE convergence is FortiOS-native but not true single-pass like Cato. FortiSASE cloud infrastructure maturity trails Cato for PoP-to-PoP performance SLAs. Customer support quality issues affect SD-WAN operations as with the broader platform.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sdwan.html" style="color:var(--edge-blue);">SD-WAN pillar comparison — all vendors</a></p>
+</div>
+
+<!-- AIOps -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="aiops" class="pillar-hero">
+    <div class="pillar-hero__icon">🤖</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 4 — AI-Driven Operations</div>
+      <div class="pillar-hero__sub">FortiAIOps · FortiAnalyzer · AI-powered policy automation · DEM</div>
+    </div>
+  </div>
+  <h2 class="section-heading">AIOps Analysis</h2>
+  <hr class="edge-rule">
+  <p>Fortinet's AIOps capabilities are delivered through FortiAIOps (network operations), FortiAnalyzer (log analytics and correlation), and FortiSIEM (if deployed). FortiAIOps provides AI-driven network health monitoring, anomaly detection, and guided remediation for FortiGate and FortiSASE deployments. FortiAnalyzer provides log aggregation, correlation, and reporting. Natural language policy authoring is on the roadmap; GenAI-powered automation is shipping in stages through 2025–2026.</p>
+  <div class="vendor-subhead">UEBA and Threat Correlation</div>
+  <p>FortiSIEM provides UEBA capabilities when deployed. For organizations without FortiSIEM, UEBA is limited — FortiAnalyzer provides log analytics and some behavioral baselining but is not equivalent to Palo Alto Cortex XDR or Zscaler UEBA in depth or cross-product correlation. FortiGuard threat intelligence enriches security events. Cross-product correlation across FortiGate, FortiSASE, FortiEDR, and FortiSIEM is available for Fortinet-native deployments; broader cross-vendor correlation requires external SIEM.</p>
+  <div class="vendor-subhead">DEM</div>
+  <p>FortiSASE includes DEM capabilities (digital experience monitoring) for remote users. Per-session path visibility and application performance monitoring are available. DEM maturity trails Zscaler ZDX — automated fault domain classification and sub-60-second root cause analysis are ZDX capabilities not yet matched at the same depth in FortiSASE DEM as of Q2 2026.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>FortiAIOps provides AI-driven network health and guided remediation. FortiGuard threat intelligence enriches event correlation. Native cross-product correlation for Fortinet-ecosystem deployments. FortiSIEM available for full UEBA if required. GenAI policy automation shipping in stages.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Full UEBA requires FortiSIEM deployment (separate product). NL policy authoring not yet fully GA. DEM trails Zscaler ZDX for enterprise fault attribution depth. Cross-vendor correlation requires external SIEM. AIOps maturity below Palo Alto Cortex XDR + XSOAR combination.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_aiops.html" style="color:var(--edge-blue);">AIOps pillar comparison — all vendors</a></p>
+</div>
+
+<!-- SOVEREIGNTY -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sovereignty" class="pillar-hero">
+    <div class="pillar-hero__icon">🏛</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 5 — Sovereignty by Design</div>
+      <div class="pillar-hero__sub">FedRAMP Ready (High) · FortiSASE regional deployment · regulatory certifications</div>
+    </div>
+  </div>
+  <h2 class="section-heading">Sovereignty Analysis</h2>
+  <hr class="edge-rule">
+  <p>Fortinet's sovereignty posture is developing but not yet at Big Five parity for the most demanding regulated environments. SOC 2 Type II, ISO 27001, and PCI DSS are in place. FedRAMP Ready at High Impact level has been achieved — a meaningful step toward government market access, though Ready status is not the same as FedRAMP Authorized (the process to authorization from Ready typically takes additional months). BSI C5 and IRAP status require verification with Fortinet directly for current standing.</p>
+  <div class="vendor-subhead">Regional Deployment</div>
+  <p>FortiSASE supports regional cloud deployment — customers can configure data processing to stay within specified regions (US, EU, APAC). Full PoP-level data plane isolation equivalent to Netskope's architectural isolation is not a documented FortiSASE capability as of Q2 2026. For organizations with strict PoP-level metadata residency requirements, verify the current data plane architecture directly with Fortinet.</p>
+  <div class="vendor-subhead">Hybrid On-Prem + Cloud Sovereignty</div>
+  <p>Similar to Palo Alto's SCM advantage, FortiOS unification means on-premises FortiGate NGFWs and FortiSASE cloud components can share policy through FortiManager. For organizations with regulated on-premises infrastructure alongside cloud SASE, this provides a degree of unified sovereignty posture across the hybrid estate — though FortiManager's sovereignty coverage of the on-prem estate is not as explicitly documented for regulated compliance as Palo Alto's SCM approach.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>FedRAMP Ready (High Impact level) — moving toward government market authorization. SOC 2 Type II, ISO 27001, PCI DSS in place. Regional cloud deployment options. FortiOS hybrid coverage extends toward on-prem NGFW estate. Sovereign SASE option available for regulated sectors.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>FedRAMP Ready ≠ FedRAMP Authorized — verify current authorization status. PoP-level data plane isolation not equivalent to Netskope architectural isolation. BYOK availability should be verified with Fortinet directly. BSI C5 and IRAP status require direct verification. FortiSASE cloud sovereignty posture less documented than Big Five peers.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sovereignty.html" style="color:var(--edge-blue);">Sovereignty pillar comparison — all vendors</a></p>
+</div>
+
+<!-- PERSONA FIT -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="personas">Persona Fit Summary</h2>
+  <hr class="edge-rule">
+  <table class="persona-table" style="margin-top:16px;">
+    <thead><tr><th>Persona</th><th>Fortinet Fit</th><th>Primary Reason</th><th>Watch</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td><td><span class="winner-tag winner-alt">VIABLE</span></td><td>Competitive pricing and FortiOS simplicity for organizations already in the Fortinet ecosystem. For greenfield Fortinet-naive organizations, Cato is simpler to deploy and operate. The steep learning curve for Fortinet-unfamiliar teams is a real friction cost.</td><td>Customer experience and support quality — lean IT teams are most hurt by support deficiencies. Validate support SLA carefully.</td></tr>
+      <tr><td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td><td><span class="winner-tag winner-alt">VIABLE</span></td><td>FortiGuard threat intelligence depth, FortiSIEM UEBA, and native FortiOS coordination across SD-WAN + SSE + ZTNA provide a credible enterprise security ops story for Fortinet-ecosystem organizations. Palo Alto is typically preferred for pure threat-first programs.</td><td>AIOps breadth (SOAR integration, NL policy authoring) trails Palo Alto + Cortex XDR. Customer experience complaints at scale.</td></tr>
+      <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td><span style="background:#eee; color:#555; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600;">NOT RECOMMENDED</span></td><td>DLP depth trails Netskope significantly for sophisticated data classification programs. Sovereignty certifications (BYOK, PoP-level isolation) are not at the level required by most heavily regulated buyers. Netskope or Zscaler are the correct choices for this persona.</td><td>—</td></tr>
+      <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td><span class="winner-tag winner-primary">PRIMARY FOR FORTINET INSTALLED BASE</span></td><td>For organizations already running FortiGate SD-WAN or branch NGFW, Fortinet Unified SASE is the lowest-friction SASE convergence path — upgrade existing hardware with license, add FortiSASE cloud, manage through FortiManager. Competitive pricing and #1 Gartner branch modernization ranking validate this motion. For greenfield deployments without existing Fortinet investment, Cato remains the stronger single-pass SD-WAN + SASE convergence choice.</td><td>No private backbone — SD-WAN performance over public internet without Cato's SLA-backed backbone. Customer support quality in production. Verify current FortiSASE cloud PoP coverage for target geographies.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CHANGELOG -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="changelog">Changelog</h2>
+  <hr class="edge-rule">
+  <table class="edge-table" style="font-size:13px;">
+    <thead><tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>2026-04-19</td><td>v1.0</td><td>Initial working document created. New in v2.0 Codex — Fortinet added as Gartner MQ Leader (July 2025). Research based on 2025 Gartner MQ for SASE Platforms, 2025 Critical Capabilities for SASE Platforms, 2025 Gartner MQ for SSE, 2024 Gartner MQ for SD-WAN, and Gartner Peer Insights customer reviews. Customer experience cautions confirmed from Peer Insights data.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</main>
+</div>
+
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Codex · Working Document · Fortinet · Last Reviewed: 2026-04-19</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/back-to-top.js"></script>
+</body>
+</html>

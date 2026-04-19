@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SD-WAN Deep Dive — Edge Solutions SASE Codex</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/toc.css">
+</head>
+<body class="has-toc">
+
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">SD-WAN</span>
+      <span class="edge-pill edge-pill--muted">COMPONENT BENCHMARK</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">SD-WAN — Branch Connectivity &amp; Private Backbone</h1>
+    <p class="edge-header__subtitle">Path Steering · WAN Optimization · Private Backbone · Branch CPE · 2026 Component Analysis — Prepared by Edge Solutions</p>
+  </div>
+</header>
+
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sdwan.html" class="active">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="sase_scorecard.html">Scorecard</a>
+</nav>
+
+<div class="page-body">
+<main>
+
+<!-- BLUF -->
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Cato Networks is the SD-WAN leader in the SASE context — its private backbone, predictive path steering, active/active multi-link bonding, and ZTP simplicity are the reference implementation for converged SD-WAN + security. Palo Alto (Prisma SD-WAN, formerly CloudGenix) is the strongest alternative for organizations with rich SD-WAN feature requirements and an existing Palo Alto NGFW estate managed through SCM.</p>
+    <p>Zscaler is the most important SD-WAN caveat: its architecture assumes good internet access and optimizes for security at the breakout point, not WAN connectivity. Zscaler scores low on SD-WAN criteria by design — not because Zscaler is deficient, but because SD-WAN is simply not what ZIA/ZPA was built to do. Cloudflare's Magic WAN + One Appliance is a maturing SD-WAN story best suited to cloud-first architectures with flexible on-ramp needs.</p>
+  </div>
+
+  <div class="feynman-box">
+    <h3>SD-WAN: The road network your applications actually travel on</h3>
+    <p>Think of branch offices as neighborhoods and your data center or cloud as downtown. Legacy networks connected neighborhoods to downtown via one expensive highway (MPLS). SD-WAN added multiple roads — broadband, 4G/5G, the old MPLS link — and a smart traffic controller that decides in real-time which road each application takes. Salesforce gets the fast broadband road; internal file transfers take LTE backup when broadband is congested.</p>
+    <p>In SASE, SD-WAN adds a crucial question: where does traffic get inspected for security? If a branch in Tokyo sends traffic through a New York security PoP before reaching a Tokyo SaaS endpoint, you've added 200ms of unnecessary latency. Good SASE SD-WAN solves both: it steers traffic efficiently AND ensures security inspection happens at the nearest cloud PoP. The vendors that built private backbones (Cato, Aryaka) have a structural advantage here — they control the entire path.</p>
+  </div>
+</div>
+
+<!-- ARCHITECTURE SPECTRUM -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="architecture">SD-WAN Architecture Spectrum</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:18px;font-size:13.5px;">Eight criteria evaluated. Three weighted <strong>Critical ×3</strong>, three <strong>High ×2</strong>, two <strong>Medium ×1</strong>.</p>
+  <div class="edge-grid-3" style="margin-bottom:28px;">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill">NATIVE SASE SD-WAN</span><h3 class="edge-card__title">Cato, Netskope NSG</h3><p style="font-size:13px;">SD-WAN and SSE share one platform and one policy plane. Branch traffic enters the SASE cloud and is simultaneously routed and inspected in a single operation. True convergence.</p></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill">INTEGRATED SASE SD-WAN</span><h3 class="edge-card__title">Palo Alto (Prisma SD-WAN + Prisma Access)</h3><p style="font-size:13px;">SD-WAN and SSE are separate products unified through SCM. Policy coordination exists; enforcement planes are separate. Richer SD-WAN feature set at the cost of integration complexity.</p></div></div>
+    <div class="edge-card edge-card--supplemental"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="edge-pill edge-pill--muted">NETWORK OVERLAY + CPE</span><h3 class="edge-card__title">Cloudflare (Magic WAN + One Appliance), Zscaler</h3><p style="font-size:13px;">Cloudflare offers both software overlay (Magic WAN) and a physical thin-edge CPE (One Appliance). Zscaler offers overlay-only security breakout with no native CPE — requires partner SD-WAN for hardware.</p></div></div>
+  </div>
+</div>
+
+<!-- VENDOR SUMMARIES -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="vendors">Vendor Summaries — SD-WAN Pillar</h2>
+  <hr class="edge-rule">
+
+  <!-- CATO -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Cato Networks — Native SD-WAN + Private Backbone</h2><span class="arch-tag">NATIVE SASE / PRIVATE BACKBONE</span></div>
+    <div class="vendor-body">
+      <p>SD-WAN leadership built on three structural advantages: a private SLA-backed backbone between all PoPs, native SSE convergence (WAN policy and security policy are genuinely one system), and Cato Socket ZTP that deploys branches in under 15 minutes. Predictive AI path steering detects degradation 30–90 seconds before SLA breach and pre-emptively reroutes — competing vendors performing path optimization on customer-ISP links can only react to observed degradation. Active/active multi-link bonding, FEC, and packet duplication handle lossy link conditions including 4G/5G failover.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Private SLA-backed backbone — only Big Five vendor owning the complete inter-PoP path. Predictive path steering (30–90s pre-breach reroute). Active/active multi-link bonding + FEC. Sub-15min ZTP. Single policy plane for SD-WAN + SSE + ZTNA.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>~85 PoPs vs. Cloudflare 330+ — thinner coverage in emerging markets. CPE ecosystem smaller than legacy vendors. No vCPE option for virtual branch deployments.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/cato-networks.html#sdwan" style="color:var(--edge-blue);">Full SD-WAN analysis — cato-networks.html</a></p>
+    </div>
+  </div>
+
+  <!-- PALO ALTO -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Palo Alto Networks — Prisma SD-WAN (formerly CloudGenix)</h2><span class="arch-tag">INTEGRATED / FEATURE-RICH</span></div>
+    <div class="vendor-body">
+      <p>A mature, feature-rich SD-WAN product integrated with Prisma Access through SCM. ION appliances support active/active multi-link bonding, FEC, packet duplication, and predictive path analytics across the full 1200/3200/5200 series range. ZTP via SCM deploys branches without on-site IT expertise. SCM is the differentiator: it unifies Prisma SD-WAN management with Prisma Access SSE, and ADEM monitors WAN path health alongside SaaS application experience. Direct cloud on-ramp to AWS, Azure, and GCP via dedicated peering.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Richest SD-WAN feature set — active/active, FEC, packet duplication. SCM unifies SD-WAN + SSE management. Strong cloud on-ramp with direct IaaS peering. ADEM monitors WAN + SaaS performance together. ION appliances cover all branch sizes.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>SD-WAN + SSE separate enforcement planes — not true single-pass convergence. No private backbone. Higher complexity than Cato for lean IT teams.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/palo-alto-networks.html#sdwan" style="color:var(--edge-blue);">Full SD-WAN analysis — palo-alto-networks.html</a></p>
+    </div>
+  </div>
+
+  <!-- ZSCALER -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Zscaler — Branch Connector / ZIA Security Breakout</h2><span class="arch-tag">SECURITY OVERLAY — NOT TRADITIONAL SD-WAN</span></div>
+    <div class="vendor-body">
+      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>Architecture Clarification:</strong> Zscaler's SD-WAN capability is a branch security overlay. It is not traditional SD-WAN — no CPE multi-link bonding, no FEC, no private backbone, no WAN optimization. Low scores on SD-WAN criteria reflect architectural design, not product quality.</div></div>
+      <p>Works with SD-WAN hardware partners (Cisco, VMware, Aruba, Fortinet, Versa) rather than providing its own CPE. For organizations already invested in Cisco or VMware SD-WAN, this integration model preserves hardware investments and adds best-in-class SSE at the internet breakout point. For greenfield SASE deployments, Zscaler requires a separate SD-WAN vendor decision.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best-in-class SSE at the internet breakout point. Works cleanly with existing Cisco/VMware/Aruba SD-WAN hardware. ZIA cloud on-ramp is excellent for SaaS traffic inspection at the branch.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No private backbone. No native CPE with multi-link bonding. No FEC or packet duplication. Requires separate SD-WAN vendor for greenfield deployments.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/zscaler.html#sdwan" style="color:var(--edge-blue);">Full SD-WAN analysis — zscaler.html</a></p>
+    </div>
+  </div>
+
+  <!-- NETSKOPE -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Netskope — NSG Appliances</h2><span class="arch-tag">NATIVE SASE / MATURING PRODUCT</span></div>
+    <div class="vendor-body">
+      <div class="edge-callout"><div class="edge-callout__accent"></div><div><strong>Maturity Note:</strong> Netskope's SD-WAN (NSG appliances) is a newer product line. Verify current maturity with Netskope before presenting as a primary SD-WAN recommendation to clients.</div></div>
+      <p>NSG appliances forward branch traffic to NewEdge for SSE inspection — native convergence similar to Cato's model. The key advantage: branch traffic benefits from Netskope's market-leading ML DLP and CASB during SD-WAN traversal. For data-sensitive organizations that want SD-WAN with best-in-class DLP in one platform, NSG is the credible alternative to Cato for the subset of buyers where DLP depth outweighs SD-WAN feature maturity.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Native convergence with Netskope One SSE — branch traffic benefits from ML DLP and CASB. NewEdge PoP coverage strong in regulated markets. Best SD-WAN for data-centric buyers who need DLP at the branch edge.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Newer product — maturity trails Cato and Prisma SD-WAN. Private backbone less robust than Cato. Active/active bonding and WAN optimization less developed.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/netskope.html#sdwan" style="color:var(--edge-blue);">Full SD-WAN analysis — netskope.html</a></p>
+    </div>
+  </div>
+
+  <!-- CLOUDFLARE -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Cloudflare — Magic WAN + Cloudflare One Appliance</h2><span class="arch-tag">NETWORK OVERLAY + THIN-EDGE CPE</span></div>
+    <div class="vendor-body">
+      <p>Two on-ramp paths: Magic WAN (software overlay via GRE/IPSec from existing routers) and the Cloudflare One Appliance (physical thin-edge CPE with ZTP, auto-connecting to 330+ PoPs). Both funnel into Argo Smart Routing (ML-based path optimization) and Cloudflare Gateway SSE inspection. The One Appliance is a meaningful improvement over pure-overlay Magic WAN but remains thin-edge — no active/active multi-link bonding, no FEC, no WAN optimization. Best for cloud-first or hybrid architectures where connectivity flexibility matters more than branch-local WAN optimization depth.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>330+ PoP network — best connectivity proximity globally. Argo Smart Routing — ML-based path optimization. One Appliance with ZTP for branch sites. Flexible: software overlay for existing hardware or physical CPE. Direct cloud peering with AWS/Azure/GCP.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>One Appliance is thin-edge — no active/active multi-link bonding, FEC, or packet duplication. No private backbone (Argo optimization is probabilistic, not SLA-backed). Appliance product line less mature than Cato Socket or Prisma ION.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/cloudflare.html#sdwan" style="color:var(--edge-blue);">Full SD-WAN analysis — cloudflare.html</a></p>
+    </div>
+  </div>
+
+  <!-- EMERGING -->
+  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Aryaka (Managed SASE)</strong> — Managed SD-WAN with a proprietary global private backbone. Strong for global enterprises wanting managed SD-WAN without internal expertise. Competes directly on the managed delivery model rather than platform depth. Full analysis: <a href="../working-docs/aryaka.html" style="color:var(--edge-blue);">aryaka.html</a>.</div></div>
+  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Graphiant (Tunnel-Free Connectivity)</strong> — Private connectivity without IPSec tunnels — targets the WAN underlay complexity problem rather than the security overlay. Architecturally distinct for latency-deterministic workloads. Lowest confidence in emerging list — reassess Q3 2026. Full analysis: <a href="../working-docs/graphiant.html" style="color:var(--edge-blue);">graphiant.html</a>.</div></div>
+  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Versa Networks (SD-WAN-Led SASE Challenger)</strong> — Gartner SASE Challenger (2025). Deep SD-WAN heritage with converging SSE capabilities. Strong partner ecosystem including Netskope integration. Full analysis: <a href="../working-docs/versa-networks.html" style="color:var(--edge-blue);">versa-networks.html</a>.</div></div>
+</div>
+
+<!-- SCORING -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="scores">Vendor Scoring — SD-WAN Pillar</h2>
+  <hr class="edge-rule">
+  <p style="margin-bottom:14px;font-size:13px;">Scale: 1=Poor/Missing · 3=Adequate · 5=Best-in-Class. Weight multipliers: Critical ×3 · High ×2 · Medium ×1. Note: Zscaler scores low on SD-WAN criteria by architectural design — these scores reflect position, not product quality.</p>
+  <div id="score-container"><p class="score-loading">Loading scores…</p></div>
+</div>
+
+<!-- PERSONA FIT -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="personas">Persona Fit — SD-WAN Pillar</h2>
+  <hr class="edge-rule">
+  <table class="persona-table" style="margin-top:16px;">
+    <thead><tr><th>Persona</th><th>Profile</th><th>Primary SD-WAN Need</th><th>Best Fit</th><th>Rationale</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td><td>Small team, 30–200 branches, fast deployment, no dedicated WAN specialist</td><td>ZTP, single console, private backbone SLA, no separate SD-WAN vendor</td><td><span class="winner-tag winner-primary">CATO</span></td><td>ZTP Socket deployment, single console, private backbone SLA, native SSE convergence. Branches go live fast, one screen to manage everything.</td></tr>
+      <tr><td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td><td>100+ branches, dedicated network team, existing Palo Alto NGFW estate, SCM already in place</td><td>Rich SD-WAN feature set, SCM integration with NGFW estate, ADEM for WAN + SaaS path monitoring</td><td><span class="winner-tag winner-primary">PALO ALTO</span></td><td>Prisma SD-WAN + SCM + Prisma Access — the richest feature set for organizations already operating Palo Alto infrastructure. SCM skills pay across three product lines simultaneously.</td></tr>
+      <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td>Branch locations handle sensitive data — DLP at the branch edge is a compliance requirement</td><td>SD-WAN where branch traffic benefits from ML DLP and CASB during WAN traversal</td><td><span class="winner-tag winner-primary">CATO</span> <span class="winner-tag winner-alt">NETSKOPE</span></td><td>Cato for lean data-sensitive buyers where simplicity is still the constraint. Netskope NSG where DLP depth is the primary driver — branch traffic through the same ML DLP engine as cloud and remote access.</td></tr>
+      <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td>Owns SD-WAN refresh, evaluating MPLS exit, developer-literate IT team, needs flexible on-ramp</td><td>Flexible on-ramp (overlay for existing hardware or CPE for new sites); direct cloud peering; AI workload path prioritization</td><td><span class="winner-tag winner-primary">CLOUDFLARE</span> <span class="winner-tag winner-alt">CATO</span></td><td>Cloudflare Magic WAN + One Appliance for cloud-native or hybrid architectures needing flexibility and PoP density. Cato if private backbone SLA and full SD-WAN + ZTNA + SSE convergence in one platform is the priority.</td></tr>
+    </tbody>
+  </table>
+  <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Note on Zscaler:</strong> Zscaler is not positioned in any SD-WAN persona row by design. For Zscaler buyers with branch connectivity requirements, the recommended architecture is Zscaler SSE + a dedicated SD-WAN partner (Cisco, VMware, Aruba) or Aryaka managed SASE.</div></div>
+</div>
+
+<!-- MARKET SHIFTS -->
+<div class="edge-dark-section">
+  <div style="max-width:1020px;margin:0 auto;">
+    <h2>SD-WAN in 2026: Three Defining Shifts</h2>
+    <p><strong style="color:var(--edge-green);">1. Private backbone is becoming a differentiator, not a luxury.</strong> With real-time collaboration, AI inference calls, and cloud-rendered applications dominating branch traffic, public internet SD-WAN jitter is a visible user experience problem. Cato and Aryaka's private backbone SLAs are winning deals where IT teams have been burned by internet-dependent jitter during video calls or latency spikes for cloud ERP. The unpredictability of BGP-routed internet is no longer tolerable for the primary application portfolio.</p>
+    <p><strong style="color:var(--edge-green);">2. 5G is replacing MPLS in the branch budget conversation.</strong> For branches under 500Mbps WAN requirement — which is most branches — 5G is now cost-competitive with broadband and far more reliable than LTE for failover. Vendors with native 5G CPE (Cato Socket, Palo Alto ION) are winning branch refresh cycles. The two-year MPLS contract renewal is the trigger moment — SD-WAN vendors with credible 5G CPE are in the room; those without are not.</p>
+    <p><strong style="color:var(--edge-green);">3. The SD-WAN vendor decision is collapsing into the SASE platform decision.</strong> Buyers who planned to select a SASE SSE vendor and a separate SD-WAN vendor are increasingly choosing one converged platform to avoid integration overhead. Cato is the primary beneficiary. The remaining standalone SD-WAN vendors — Versa, Fortinet SD-WAN, Aruba EdgeConnect — are repositioning as SASE platforms to survive this consolidation.</p>
+  </div>
+</div>
+
+</main>
+</div>
+
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Codex · SD-WAN Component Benchmark · Last Reviewed: 2026-04-19</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+<script>
+window.renderPage = function(data) {
+  if (!data.pillars || !data.pillars.sdwan) {
+    document.getElementById('score-container').innerHTML = '<div class="edge-callout edge-callout--warning" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Local server required.</strong> Run <code>python3 -m http.server 8000</code> from the project root. See <code>README.md</code>.</div></div>';
+    return;
+  }
+  var vendors = data.vendors.filter(function(v) { return v.tier === 'big_five'; });
+  renderScoringTable(data.pillars.sdwan, vendors, 'score-container');
+};
+</script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/back-to-top.js"></script>
+</body>
+</html>

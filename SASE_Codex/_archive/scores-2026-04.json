@@ -1,0 +1,49 @@
+{
+  "_archive_metadata": {
+    "archived_on": "2026-04-19",
+    "archived_version": "v1.6",
+    "superseded_by": "scores.json v1.7 — Fortinet and Versa full scoring pass",
+    "original_path": "assets/data/scores.json",
+    "note": "This is a reference snapshot of scores.json v1.6 at the moment Fortinet and Versa were scored. The live file (assets/data/scores.json) now contains the v1.7 fully-scored dataset. See TODO.md for the scoring-pass rationale."
+  },
+  "meta": {
+    "version": "1.6",
+    "last_updated": "2026-04-19",
+    "scale_description": "1=Poor/Missing · 2=Below Average · 3=Adequate · 4=Strong · 5=Best-in-Class",
+    "weight_multipliers": { "critical": 3, "high": 2, "medium": 1 },
+    "note_convention": "1-2 sentences. State what the vendor specifically does or does not do to justify the score.",
+    "last_verified_convention": "ISO date on criteria where scores reference PoP counts, certifications, or other time-sensitive facts. Verify quarterly or on vendor announcement.",
+    "changelog": "v1.6 (2026-04-19): Removed Graphiant vendor and all associated scores. v1.5 (2026-04-19): Added Fortinet and Versa Networks vendor entries. Updated Island scope_note to ZTNA+SSE following March 2026 full SASE stack launch. Scores for Fortinet and Versa are null pending full scoring pass — vendor entries establish schema structure."
+  },
+  "_archive_summary": {
+    "fortinet_null_scores_at_archive": [
+      "ztna.device_posture", "ztna.identity_integration", "ztna.micro_segmentation",
+      "ztna.global_latency", "ztna.agentless_access", "ztna.enterprise_browser",
+      "ztna.os_coverage", "ztna.dem", "ztna.legacy_app_support",
+      "sse.dlp_unified_engine", "sse.dlp_ml_classification", "sse.tls_inspection_scale",
+      "sse.ssl_decrypt_architecture", "sse.casb_dual_mode", "sse.rbi",
+      "sse.genai_data_protection", "sse.shadow_it", "sse.ips_threat_intel",
+      "sse.fwaas_app_awareness",
+      "aiops.ueba", "aiops.genai_policy", "aiops.rca", "aiops.event_correlation",
+      "aiops.siem_soar",
+      "sovereignty.regional_isolation", "sovereignty.sovereign_pop",
+      "sovereignty.certifications", "sovereignty.customer_encryption",
+      "sovereignty.log_residency", "sovereignty.ml_data_isolation"
+    ],
+    "versa_null_scores_at_archive": [
+      "ztna.device_posture", "ztna.identity_integration", "ztna.micro_segmentation",
+      "ztna.global_latency", "ztna.agentless_access", "ztna.enterprise_browser",
+      "ztna.os_coverage", "ztna.dem", "ztna.legacy_app_support",
+      "sse.dlp_unified_engine", "sse.dlp_ml_classification", "sse.tls_inspection_scale",
+      "sse.ssl_decrypt_architecture", "sse.casb_dual_mode", "sse.rbi",
+      "sse.genai_data_protection", "sse.shadow_it", "sse.ips_threat_intel",
+      "sse.fwaas_app_awareness",
+      "aiops.ueba", "aiops.genai_policy", "aiops.rca", "aiops.event_correlation",
+      "aiops.siem_soar",
+      "sovereignty.regional_isolation", "sovereignty.sovereign_pop",
+      "sovereignty.certifications", "sovereignty.customer_encryption",
+      "sovereignty.log_residency", "sovereignty.ml_data_isolation"
+    ],
+    "populated_scores_at_archive": "All Big Five vendors, Aryaka (SD-WAN + AIOps pillars), Island (ZTNA + SSE pillars), Nile (ZTNA pillar only) — fully populated."
+  }
+}

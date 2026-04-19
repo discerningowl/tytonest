@@ -1,111 +1,334 @@
 # CLAUDE.md — SASE Codex
-## Decision Log & Architecture Reference
-*Last updated: 2026-04-17 — scores.json v1.3 with Cato AI Security (Aim acquisition) + Dynamic Prevention scoring; v1.2 baseline Cloudflare One Appliance, Netskope NewEdge footprint, and Cato FedRAMP March 2026 corrections. Edge Documents v0.2 brand refactor complete. Canonical 4-persona set established (P1 Lean IT, P2 Global Security Ops, P3 Data-First/Regulated, P4 Platform/Network Architect) — all pillar pages updated.*
+## Architecture Reference & Decision Log
+*Last updated: 2026-04-19 — v2.0 restructure complete. All component benchmarks in `components/`, all vendor working-docs in `working-docs/`. 10 vendor files (5 Big Five + 5 emerging). scores.json v1.6 with Graphiant removed. Archive files date-suffixed.*
 
 ---
 
 ## Project Overview
 
-Edge Solutions SASE Vendor Research Series — **SASE Codex**. Goal: produce a full-fledged website (not a single whitepaper) comparing SASE vendors across pillars. Working directory: `~/Documents/Claude/Projects/SASE_Codex/`.
+Edge Solutions SASE Vendor Research Series — **SASE Codex**. Goal: a full-fledged website comparing SASE vendors across five pillars. Working directory: `~/Documents/Claude/Projects/SASE_Codex/`. Live: `https://tytonest.xyz/SASE_Codex/`.
 
-**Website Architecture:** CSS, JavaScript, and embedded data are extracted into their own files — no bundling everything into self-contained HTML. Each HTML page links to shared assets. No `index.html` — the site is pillar-first navigation.
-
-**Asset file conventions:**
-- `assets/css/` — shared stylesheets (Edge brand variables, typography, tables, score badges)
-- `assets/js/` — shared scripts (score renderer, chart logic, nav)
-- `scores.json` — vendor × criterion data (root of project, fetched by all pages)
+**Architecture:** CSS, JavaScript, and data in shared asset files — no self-contained HTML. Each page links to shared assets. Navigation via `_index.html` at root.
 
 ---
 
-## Document Structure
+## v2.0 Directory Structure (current)
 
-| File | Title | Status |
-|------|-------|--------|
-| `sase_benchmark.html` | Component Benchmark 2026 | ✅ Complete |
-| `sase_ztna.html` | ZTNA Deep Dive — Big Five | ✅ Complete |
-| `sase_sse.html` | SSE Deep Dive — Big Five | ✅ Complete |
-| `sase_sdwan.html` | SD-WAN Deep Dive — Big Five | ✅ Complete |
-| `sase_aiops.html` | AIOps Deep Dive — Big Five | ✅ Complete |
-| `sase_sovereignty.html` | Sovereignty Deep Dive — Big Five | ✅ Complete |
-| `sase_emerging.html` | Emerging Vendors — Aryaka, Graphiant, Nile, Island | ✅ Complete |
-| `sase_scorecard.html` | Master Scorecard & Persona Fit Matrix | ✅ Complete |
-| `scores.json` | Vendor × Criterion Score Data | ✅ Complete — Big Five all pillars + Emerging in-scope |
-
----
-
-## Canonical Buyer Personas
-
-*Established 2026-04-17. All pillar persona tables use these four names, subtitles, and badge classes.*
-
-| # | Name | Subtitle | Primary Pain | Pillar Priority | Primary Vendor Fit |
-|---|------|----------|-------------|-----------------|--------------------|
-| P1 | **Lean IT** | SMB–Mid-market | One team wearing every hat; no dedicated NetOps/SecOps | ZTNA → SSE → SD-WAN optional | Cato (single-vendor, ZTP); Cloudflare alt for cloud-native/no-branch |
-| P2 | **Global Security Ops** | Large Enterprise | Threat surface grew post-M&A; needs SOC depth + DEM + hybrid management | SSE/DLP → ZTNA → AIOps | Palo Alto (threat depth + SCM hybrid); Zscaler alt (per-app ZTNA + ZDX) |
-| P3 | **Data-First / Regulated** | Finance · Healthcare · Legal | Data classification governs access; GDPR/HIPAA/PCI; DLP is board-level | SSE/DLP → Sovereignty → ZTNA | Netskope (DLP-fused access, sovereign PoP); Palo Alto alt (threat + compliance) |
-| P4 | **Platform / Network Architect** | 500–5,000 employees | Owns SD-WAN refresh + ZTNA; MPLS exit; needs WAN + security in one policy plane | SD-WAN → ZTNA → AIOps for NOC | Cato (native backbone); Cloudflare alt (cloud-native/flexible CPE); Aryaka alt (managed) |
-
-**Scorecard-only additional personas** (synthesis document only, not used in pillar tables):
-- **Global Performance** (Distributed / APAC-heavy) → Cloudflare primary
-- **Enterprise ZT Transformation** (Strategic ZT Program) → Zscaler primary
-
-**Badge CSS classes:** Use `winner-primary` for primary fit, `winner-alt` for strong alternative. Old `winner-tag` class (no modifier) is legacy — do not use in new markup.
-
-**Persona table structure** (canonical HTML pattern):
-```html
-<tr>
-  <td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td>
-  <td>Profile text...</td>
-  <td>Primary need...</td>
-  <td><span class="winner-tag winner-primary">VENDOR</span></td>
-  <td><span class="winner-tag winner-alt">ALT VENDOR</span></td>
-  <td>Rationale...</td>
-</tr>
+```
+SASE_Codex/
+├── _index.html              ← Master navigation index (root entry point)
+├── scores.json              ← Single source of truth for all vendor scores
+├── CLAUDE.md                ← This file
+├── README.md                ← Server setup and deployment notes
+├── assets/
+│   ├── css/main.css         ← Brand tokens, shared layout
+│   ├── css/toc.css          ← Left-sidebar TOC styles
+│   └── js/
+│       ├── main.js          ← scores.json fetch, renderScoringTable(), nav
+│       └── toc.js           ← Auto-generated TOC from headings
+├── components/              ← Component benchmark documents (all 8 complete)
+│   ├── sase_benchmark.html  ← Evaluation rubric, criteria, personas
+│   ├── sase_ztna.html       ← ZTNA pillar deep dive
+│   ├── sase_sse.html        ← SSE pillar deep dive
+│   ├── sase_sdwan.html      ← SD-WAN pillar deep dive
+│   ├── sase_aiops.html      ← AIOps pillar deep dive
+│   ├── sase_sovereignty.html← Sovereignty pillar deep dive
+│   ├── sase_scorecard.html  ← Master scorecard (all pillars × all vendors)
+│   └── sase_emerging.html   ← Emerging vendor overview (contextual)
+├── working-docs/            ← Vendor deep-dive working documents (10 vendors)
+│   ├── cato-networks.html
+│   ├── cloudflare.html
+│   ├── netskope.html
+│   ├── palo-alto-networks.html
+│   ├── zscaler.html
+│   ├── aryaka.html
+│   ├── fortinet.html
+│   ├── island.html
+│   ├── nile.html
+│   └── versa-networks.html
+├── spin-offs/               ← Future: vendor briefs, comparisons, explainers
+│   ├── vendor-briefs/
+│   ├── comparisons/
+│   ├── explainers/
+│   └── whitepaper-sections/
+└── _archive/                ← Superseded flat-root files (date-suffixed)
+    ├── sase_benchmark-2026-04.html
+    ├── sase_ztna-2026-04.html
+    ├── sase_sse-2026-04.html
+    ├── sase_sdwan-2026-04.html
+    ├── sase_aiops-2026-04.html
+    └── sase_sovereignty-2026-04.html
 ```
 
 ---
 
-## Organizational Decisions
+## Relationship Map
 
-### Pillar-First Structure
-**Decision:** Documents are organized by pillar (ZTNA, SSE, SD-WAN, AIOps, Sovereignty), not by vendor.
-**Rationale:** Readers want to know "who wins on DLP" not "tell me everything about Zscaler." Pillar-first forces apples-to-apples comparison and surfaces vendor strengths/gaps more clearly.
-
-### Big Five vs. Emerging Vendors
-**Decision:** Big Five (Palo Alto, Cato, Netskope, Cloudflare, Zscaler) are the primary subjects of all Vendor Deep Dive pillar docs. Emerging vendors (Aryaka, Graphiant, Nile) get their own dedicated document (`sase_emerging.html`).
-**Rationale:** Emerging vendors compete on narrower scope and shouldn't dilute the primary comparison. They get a brief callout in relevant pillar docs with a pointer to their dedicated doc. Full analysis lives in `sase_emerging.html`.
-
-### Scored Tables in Both Places
-**Decision:** Each pillar deep dive includes a vendor scoring table. The Master Scorecard also includes full consolidated scoring. Both are rendered dynamically from `scores.json`.
-**Rationale:** Pillar docs need at-a-glance scores for readers who read only one section. The Scorecard synthesizes everything. Scores maintained once, displayed in multiple places.
+*Quick-reference for edit impact. Before changing anything, find it here to see what else needs to move.*
 
 ---
 
-## Data Architecture
+### 1. Data Flow — What Feeds What
 
-### scores.json — Single Source of Truth
-All vendor × criterion scores live in `scores.json`. HTML documents fetch this file and render scores dynamically. A score change in `scores.json` propagates to all documents automatically.
+```
+scores.json
+  └── fetched by assets/js/main.js at page load
+        ├── components/sase_ztna.html        ← renderScoringTable(pillars.ztna, big_five)
+        ├── components/sase_sse.html         ← renderScoringTable(pillars.sse, big_five)
+        ├── components/sase_sdwan.html       ← renderScoringTable(pillars.sdwan, all_vendors)
+        ├── components/sase_aiops.html       ← renderScoringTable(pillars.aiops, scoped_vendors)
+        ├── components/sase_sovereignty.html ← renderScoringTable(pillars.sovereignty, scoped_vendors)
+        └── components/sase_scorecard.html   ← renderRadar() + renderMasterTable() + renderPillarBars() + renderVendorCards()
 
-**Schema:**
+assets/css/main.css
+  └── linked by every page (components/ and working-docs/ via ../assets/css/main.css)
+
+assets/css/toc.css
+  └── linked by every page that has a sidebar TOC
+
+assets/js/toc.js
+  └── auto-generates TOC from h2/h3 headings on every page that includes it
+```
+
+**Rule:** Score changes go in `scores.json` only. They propagate automatically to all pillar tables and the scorecard. Never hardcode scores in HTML.
+
+---
+
+### 2. Vendor → Pillar Scope Matrix
+
+*Which pillars a vendor is scored on. Null = out of scope, not a zero.*
+
+| Vendor | ZTNA | SSE | SD-WAN | AIOps | Sovereignty | Notes |
+|---|---|---|---|---|---|---|
+| Palo Alto | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 |
+| Cato | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 |
+| Netskope | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 |
+| Cloudflare | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 |
+| Zscaler | ✓ | ✓ | ✓ | ✓ | ✓ | All 5; no native SD-WAN CPE (scores reflect null for CPE criteria) |
+| Fortinet | ✓ | ✓ | ✓ | ✓ | ✓ | All 5; all scores currently null pending research pass |
+| Versa | ✓ | ✓ | ✓ | ✓ | ✓ | All 5; all scores currently null pending research pass |
+| Aryaka | — | — | ✓ | ✓ | — | SD-WAN + AIOps only |
+| Island | ✓ | ✓ | — | — | — | ZTNA + SSE only (browser scope) |
+| Nile | ✓ | — | — | — | — | ZTNA only (campus/LAN scope) |
+
+---
+
+### 3. Content Dependency Map — What References What
+
+**`_index.html`** references:
+- Every file in `working-docs/` (navigation links + vendor count)
+- Every file in `components/` (navigation links + doc count)
+- Vendor count in header pill and metadata bar
+- `assets/css/main.css`
+
+**`components/sase_emerging.html`** references:
+- All 5 emerging vendor working-docs (deep links)
+- Prose descriptions of each emerging vendor's scope and fit
+- Comparison table row per emerging vendor
+- `scores.json` (indirectly via main.js, for any score tables)
+
+**`components/sase_scorecard.html`** references:
+- `scores.json` (all vendors, all pillars — most data-dense consumer)
+- All pillar component docs (cross-links)
+- All working-docs (vendor card deep links)
+
+**`components/sase_[pillar].html`** (each of 5 pillar docs) references:
+- `scores.json` (its own pillar's criteria and scores)
+- All vendor working-docs that are scored on that pillar (summary cards with deep links)
+- `components/sase_benchmark.html` (criteria rationale)
+
+**`components/sase_benchmark.html`** references:
+- No score data — framework only
+- Links to all 5 pillar docs
+
+**`working-docs/[vendor].html`** (each of 10 vendor docs) references:
+- `components/sase_[pillar].html` for each scored pillar (back-links)
+- No direct `scores.json` dependency — scores display lives in pillar docs
+
+**`CLAUDE.md`** references:
+- Vendor roster (must stay in sync with working-docs/ file list)
+- Directory structure (must reflect actual files)
+- scores.json version (must match meta.version in scores.json)
+
+**`README.md`** references:
+- File list in directory tree (must stay in sync with actual files)
+- URL table for all pages (must stay in sync with working-docs/ and components/)
+
+**`TODO.md`** references:
+- Vendor-specific pending work items (remove when vendor is dropped or work is done)
+
+---
+
+### 4. Change Impact Chains
+
+*Touch X → also update Y.*
+
+**Add a vendor:**
+1. Create `working-docs/[vendor].html`
+2. Add vendor entry to `scores.json` vendors array (with scope_note and null scores)
+3. Add null score blocks for all relevant criteria in `scores.json`
+4. Add row to `_index.html` working-docs panel; increment vendor count
+5. Add section to `components/sase_emerging.html` (if emerging) or update Big Five count
+6. Add row to emerging comparison table in `sase_emerging.html` (if emerging)
+7. Update `CLAUDE.md`: vendor roster table, directory structure, key vendor decisions
+8. Update `README.md`: directory tree, URL table
+9. Bump `scores.json` meta.version and changelog
+
+**Remove a vendor:**
+1. Move `working-docs/[vendor].html` to `_archive/[vendor]-YYYY-MM.html`
+2. Remove vendor entry from `scores.json` vendors array
+3. Remove all vendor score blocks from `scores.json` criteria
+4. Remove row from `_index.html`; decrement vendor count
+5. Remove section from `components/sase_emerging.html` (if emerging)
+6. Remove row from emerging comparison table in `sase_emerging.html`
+7. Update `CLAUDE.md`: vendor roster, directory structure, Big Five vs. Emerging note, key vendor decisions
+8. Update `README.md`: directory tree, URL table
+9. Update `TODO.md`: remove vendor-specific tasks
+10. Bump `scores.json` meta.version and changelog
+
+**Update a score:**
+1. Edit the score + note in `scores.json` for the relevant criterion
+2. Update `last_verified` date on the criterion if it's a time-sensitive fact
+3. Bump `scores.json` meta.last_updated and changelog
+4. Update the Last Reviewed date in the vendor's working-doc footer
+5. Flag any spin-offs derived from that vendor as potentially stale
+
+**Add a pillar criterion:**
+1. Add criterion block to `scores.json` under the relevant pillar
+2. Add score entries for every vendor scored on that pillar (or explicit null + note)
+3. Update the pillar component doc (`components/sase_[pillar].html`) with criterion explanation
+4. Update `components/sase_benchmark.html` if criteria weighting table is shown there
+5. Bump `scores.json` meta.version and changelog
+
+**Add a new pillar (rare):**
+1. Create `components/sase_[pillar].html`
+2. Add pillar block to `scores.json` with all criteria
+3. Update `_index.html` component panel; increment component count
+4. Update nav in every component doc and every working-doc to include new pillar link
+5. Update `components/sase_benchmark.html` with pillar definition
+6. Update `CLAUDE.md` canonical pillar keys
+7. Update `README.md` URL table
+
+**Rename or restructure a file:**
+1. Update every inbound link from `_index.html`, component nav bars, and working-doc nav bars
+2. Update `README.md` URL table and directory tree
+3. Update `CLAUDE.md` directory structure
+4. Check `assets/js/main.js` for any hardcoded path references
+5. Move old file to `_archive/` with date suffix if it was a published page
+
+**Update vendor scope (e.g. Island from ZTNA-only to ZTNA+SSE):**
+1. Update vendor `scope_note` in `scores.json`
+2. Add new pillar's score blocks to all criteria for that pillar in `scores.json`
+3. Add new pillar section to `working-docs/[vendor].html`
+4. Update `components/sase_emerging.html` scope badges and prose
+5. Update `CLAUDE.md` vendor roster table
+6. Bump `scores.json` meta.version and changelog
+
+**Publish a spin-off:**
+1. Create file in `spin-offs/[type]/[name].html` derived from working-docs source
+2. Add row to `_index.html` spin-offs panel; increment published count
+3. Do NOT modify any working-doc or scores.json — spin-offs consume, never modify
+
+---
+
+### 5. Downstream Staleness Triggers
+
+*When event E occurs, these files may become stale and need review.*
+
+| Event | Files to review |
+|---|---|
+| Vendor product launch or major update | `working-docs/[vendor].html`, relevant `components/sase_[pillar].html` summary cards, any spin-offs derived from that vendor |
+| Gartner MQ position change | `working-docs/[vendor].html`, `components/sase_emerging.html` if emerging, `components/sase_scorecard.html` persona matrix, `CLAUDE.md` key vendor decisions |
+| Acquisition (vendor buys or is acquired) | `working-docs/[vendor].html`, `scores.json` scope_note and affected scores, `CLAUDE.md` key vendor decisions |
+| New pillar criterion added to benchmark | `scores.json`, all pillar component docs, `components/sase_benchmark.html` |
+| Certification status change (FedRAMP, IRAP, C5) | `scores.json` certifications criterion, `components/sase_sovereignty.html`, `working-docs/[vendor].html` sovereignty section |
+| PoP count or backbone coverage change | `scores.json` global_latency + private_backbone criteria, `working-docs/[vendor].html`, `last_verified` date on affected criteria |
+| scores.json version bump | `CLAUDE.md` scores.json schema section version reference |
+| Spin-off published from a working-doc that later updates | Add stale notice to spin-off file header |
+
+---
+
+## Asset Path Conventions (critical — always verify)
+
+**From `components/` files:**
+```html
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/css/toc.css">
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/toc.js"></script>
+```
+scores.json is fetched by `main.js` with path `../scores.json` from `components/`.
+
+**From `working-docs/` files:**
+```html
+<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="../assets/css/toc.css">
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/toc.js"></script>
+```
+scores.json is not directly fetched by working-docs — they link to the component pillar docs for score display.
+
+**From root (`_index.html`):**
+```html
+<link rel="stylesheet" href="assets/css/main.css">
+```
+
+**Nav links within `components/`:** bare filename `sase_x.html` (same directory).
+
+**Nav links from `working-docs/` to components:** `../components/sase_x.html`
+
+**Pillar anchor links from `working-docs/`:** `../working-docs/vendor.html#pillar_id`
+
+**Index link from `components/` or `working-docs/`:** `../_index.html`
+
+---
+
+## Vendor Roster
+
+### Big Five (complete, all 5 pillars)
+
+| ID in scores.json | Name | Product | Arch type |
+|---|---|---|---|
+| `palo_alto` | Palo Alto Networks | Prisma Access + SCM | `stitched` |
+| `cato` | Cato Networks | Cato SASE Cloud | `single_pass` |
+| `netskope` | Netskope | Netskope One | `single_pass` |
+| `cloudflare` | Cloudflare | Cloudflare One | `single_pass` |
+| `zscaler` | Zscaler | ZIA + ZPA + ZDX | `integrated` |
+
+### Emerging (pillar-scoped)
+
+| ID | Name | Scope | Notes |
+|---|---|---|---|
+| `aryaka` | Aryaka | SD-WAN + AIOps | Managed SASE; SSE co-packaged (PA Prisma option) |
+| `fortinet` | Fortinet | All 5 pillars | MQ Leader 2025; scores pending full pass; customer experience caution |
+| `island` | Island | ZTNA + SSE | Enterprise Browser; March 2026 full SASE stack launch |
+| `nile` | Nile | ZTNA (campus) | Zero Trust NaaS; $175M Series C; Gartner Visionary 2025 LAN MQ |
+| `versa` | Versa Networks | All 5 pillars | Gartner Challenger 2025 (3rd year); FedRAMP Ready High; scores pending |
+
+---
+
+## scores.json Schema
+
 ```json
 {
-  "meta": {
-    "version": "1.0",
-    "last_updated": "YYYY-MM-DD",
-    "scale_description": "1=Poor/Missing · 2=Below Average · 3=Adequate · 4=Strong · 5=Best-in-Class",
-    "weight_multipliers": { "critical": 3, "high": 2, "medium": 1 }
-  },
-  "vendors": [ ... ],
+  "meta": { "version": "1.5", "last_updated": "2026-04-19", ... },
+  "vendors": [
+    { "id": "palo_alto", "name": "...", "product": "...", "tier": "big_five", "arch_type": "stitched" },
+    { "id": "island", "name": "...", "tier": "emerging", "arch_type": "enterprise_browser",
+      "scope_note": "Scored on ZTNA + SSE pillars. SD-WAN, AIOps, Sovereignty null by design." }
+  ],
   "pillars": {
     "ztna": {
-      "label": "...",
+      "label": "Remote Access / ZTNA",
       "criteria": [
         {
           "id": "device_posture",
           "label": "Device Posture (Continuous)",
           "weight": "critical",
-          "scale": "1=No posture · 3=One-time check · 5=Continuous EDR-integrated",
+          "scale": "1=No posture · 3=One-time check · 5=Continuous EDR-integrated, session termination on failure",
           "scores": {
-            "palo_alto": { "score": null, "note": "" }
+            "palo_alto": { "score": 5, "note": "1-2 sentence evidence note." },
+            "fortinet":  { "score": null, "note": "Pending — note what to verify." }
           }
         }
       ]
@@ -114,189 +337,260 @@ All vendor × criterion scores live in `scores.json`. HTML documents fetch this 
 }
 ```
 
-**Note field convention:** Short evidence string, 1–2 sentences maximum. States what the vendor specifically does (or doesn't do) to justify the score. Example: *"Prisma Access integrates with CrowdStrike, SentinelOne, and Microsoft Defender for continuous posture. Session quarantine on posture failure is supported."* Narrative analysis belongs in the HTML, not the JSON.
+**Score null convention:** Use `null` (not 0) when a vendor is out-of-scope for a criterion. Include a `note` explaining why. Fortinet and Versa have null scores pending full research pass.
 
-**How HTML docs consume scores.json:**
-```javascript
-fetch('scores.json')
-  .then(r => r.json())
-  .then(data => renderScoringTable(data.pillars.ztna));
-```
-Each pillar doc fetches only its relevant pillar section. The Scorecard fetches the full file and builds the consolidated matrix.
+**Note field:** 1–2 sentences. States what the vendor specifically does or does not do to justify the score. Narrative analysis belongs in the HTML, not the JSON.
+
+**Weight multipliers:** `"critical": 3 · "high": 2 · "medium": 1`
+
+**Canonical pillar keys:** `ztna · sse · sdwan · aiops · sovereignty`
 
 ---
 
-## Vendor-Specific Decisions
+## Canonical Buyer Personas
+
+*All pillar docs use these four. Scorecard adds two additional (Global Performance, Enterprise ZT Transformation).*
+
+| # | Name | Subtitle | Primary Vendor Fit |
+|---|------|----------|--------------------|
+| P1 | **Lean IT** | SMB–Mid-market | Cato primary; Cloudflare alt |
+| P2 | **Global Security Ops** | Large Enterprise | Palo Alto primary; Zscaler alt |
+| P3 | **Data-First / Regulated** | Finance · Healthcare · Legal | Netskope primary; Palo Alto alt |
+| P4 | **Platform / Network Architect** | 500–5,000 employees | Cato primary; Cloudflare / Aryaka alt |
+
+**Badge classes:** `winner-primary` and `winner-alt`. Legacy `winner-tag` (no modifier) — do not use in new markup.
+
+```html
+<!-- Canonical persona row pattern -->
+<tr>
+  <td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td>
+  <td>Profile...</td><td>Primary need...</td>
+  <td><span class="winner-tag winner-primary">CATO</span></td>
+  <td><span class="winner-tag winner-alt">CLOUDFLARE</span></td>
+  <td>Rationale...</td>
+</tr>
+```
+
+---
+
+## Vendor Working Document Conventions
+
+Each `working-docs/vendor.html` follows this structure:
+1. **Header** — Edge brand header with vendor name and subtitle
+2. **Nav** — links to `../_index.html`, `../components/sase_benchmark.html`, and relevant pillar pages
+3. **BLUF** — 3-paragraph summary (position, pillar scope, primary fit/limitation)
+4. **Stats strip** — 4 `edge-stat` blocks (key numbers/badges)
+5. **Architecture section** (id=`architecture`) — structural strengths/limitations grid
+6. **One section per scored pillar** (id=`ztna`, `sse`, `sdwan`, `aiops`, `sovereignty`)
+7. **Persona Fit Table** — 4-row table using canonical personas
+8. **Changelog table** — version history
+
+Pillar sections link back to component pillar docs at the bottom:
+```html
+<p>→ <a href="../components/sase_ztna.html">ZTNA pillar comparison — all vendors</a></p>
+```
+
+Emerging vendors with limited scope (Aryaka, Nile, Island) only have sections for their in-scope pillars. Out-of-scope pillars get a brief `edge-card--supplemental` note.
+
+---
+
+## Two-Layer Architecture (v2.0)
+
+**Component docs (`components/`)** own the framework:
+- Feynman intuition intro
+- Criteria definitions and weighting rationale
+- DLP philosophy table, architectural framing
+- Scoring table (rendered from `scores.json`)
+- Persona fit matrix
+
+**Vendor working docs (`working-docs/`)** own vendor narrative:
+- Per-vendor pillar analysis organized by pillar section with anchor IDs
+- Summary cards (~100–200 words + strengths/watch areas)
+- Changelog
+
+Components contain summary cards that link to vendor working-docs:
+```html
+<a href="../working-docs/cato-networks.html#sse">Full SSE analysis — cato-networks.html</a>
+```
+
+---
+
+## Scoring Table Rendering
+
+`window.renderPage` in each component doc is called by `main.js` after `scores.json` fetch:
+
+```javascript
+window.renderPage = function(data) {
+  if (!data.pillars || !data.pillars.ztna) {
+    document.getElementById('score-container').innerHTML = '<div class="edge-callout...">Local server required...</div>';
+    return;
+  }
+  var vendors = data.vendors.filter(function(v) { return v.tier === 'big_five'; });
+  renderScoringTable(data.pillars.ztna, vendors, 'score-container');
+};
+```
+
+`renderScoringTable(pillar, vendors, containerId)` is defined in `main.js`. It renders a full criterion × vendor matrix with score dots and notes.
+
+The scorecard uses a more complex `window.renderPage` that calls `renderRadar()`, `renderMasterTable()`, `renderPillarBars()`, and `renderVendorCards()`.
+
+---
+
+## Organizational Decisions
+
+### Pillar-First Navigation
+Documents organized by pillar (ZTNA, SSE, SD-WAN, AIOps, Sovereignty), not by vendor. Readers asking "who wins on DLP" get a direct answer. Vendor working-docs exist for full vendor context.
+
+### Big Five vs. Emerging
+Big Five are the primary subjects of all pillar comparison docs. Emerging vendors (Aryaka, Fortinet, Island, Nile, Versa) each have working-docs with scoped pillar analysis. Emerging vendors appear in pillar docs as callout boxes with links to their working-docs.
+
+### scores.json as Single Source of Truth
+All scores live in `scores.json`. A score change propagates automatically to all pillar tables and the Master Scorecard. Do not hardcode scores in HTML.
+
+---
+
+## Key Vendor Decisions
 
 ### Palo Alto Networks
-**Scope:** Prisma Access (cloud SSE/ZTNA delivery) + Strata Cloud Manager (unified management plane). SCM is a key differentiator — it ties Prisma Access and the physical NGFW estate together and is often undersold.
-**Architecture type:** Stitched/integrated (not single-pass native).
+Scope: Prisma Access + SCM. SCM ties cloud SASE and physical NGFW estate together — often undersold. Architecture: stitched. Strongest enterprise browser (Prisma Access Browser from Talon acquisition).
 
 ### Zscaler
-**Caution flag:** Zscaler's product naming and architecture has shifted across releases. Do not make confident claims without verification. Flag uncertainty explicitly in the deep dive.
-**Known architecture note:** ZIA (internet access) and ZPA (private access) are distinct products. They share policy through integration — not a native unified engine. Confirm current state in the SSE deep dive (`sase_sse.html`) and ZTNA deep dive (`sase_ztna.html`) before scoring.
-**Primary identity:** Identity-first proxy / ZTNA + Digital Experience Monitoring (ZDX). DLP is a compliance capability, not the core design philosophy.
+**Caution:** ZIA and ZPA are distinct products. Do not claim native unified engine without verification. ZDX is separately licensed. Architecture: integrated (ZIA + ZPA via policy sync).
 
 ### Cato Networks
-**Architecture type:** Single-pass, native converged SASE. Private backbone (Cato Cloud). Best reference implementation of true single-vendor SASE.
+Single-pass, private backbone (85+ PoPs). Reference implementation of true single-vendor SASE. Cato Dynamic Prevention (March 2026) — auto-adaptive behavioral blocking. Aim Security acquisition closes the AI security gap.
 
 ### Netskope
-**Architecture type:** Single-pass (NewEdge network). Data-centric design philosophy — DLP and CASB are the core, not features bolted on.
-**DLP:** Industry reference point for ML-based DLP, EDM, OCR, unified inline + API policy.
+Data-centric design. Industry reference for ML DLP (1,000+ classifiers, EDM, OCR). NewEdge sovereign PoP architecture. FedRAMP High + IRAP Protected. Strongest sovereignty posture in Big Five. Mumbai management plane announced April 2026 for DPDPA.
 
 ### Cloudflare
-**Architecture type:** Single-pass. Largest PoP network density of any vendor. Developer-friendly. SASE portfolio built on Cloudflare One.
+330+ PoPs, best global latency. Developer-native. Strongest GenAI protection dual-side story (workforce + builders). MCP server governance (April 2026).
+
+### Fortinet (Emerging, new in v2.0)
+Gartner MQ Leader 2025, #1 Secure Branch Network Modernization. Only vendor in four concurrent Gartner MQ reports. FortiOS unified OS. **Customer experience watch**: Gartner Peer Insights shows below-average support quality, update-induced software instability. Scores pending full research pass.
+
+### Versa Networks (Emerging, new in v2.0)
+Gartner SASE Challenger 2025 (3rd year). One of only three vendors in SD-WAN + SSE + SASE Platforms MQs. VOS software-defined architecture (runs on commodity hardware). FedRAMP Ready High. #1 Network Starter Kit use case (Gartner Critical Capabilities). Scores pending full research pass.
+
+### Island (Emerging, updated v2.0)
+March 2026: Full SASE stack launched — SWG, ZTNA, CASB, RBI, DLP through the browser layer without SSL break-and-inspect. Pre-encryption enforcement. $4.8B valuation, $730M raised, zero customer churn. Scope updated from ZTNA-only to ZTNA + SSE. Competitor: Palo Alto Prisma Access Browser (PAB).
 
 ### Aryaka
-**Scope:** Managed SASE with focus on global connectivity performance. Competes primarily on SD-WAN (Pillar 3) and AIOps/managed ops (Pillar 4).
-
-### Graphiant
-**Scope:** "Network Edge" private connectivity without tunnels. Pillar 3 (SD-WAN) only. Not a full SASE stack.
+Managed SASE. SmartConnect private backbone (40+ PoPs). 24×7 NOC/SOC included. SD-WAN + AIOps scope only (SSE is co-packaged PA Prisma Access option).
 
 ### Nile
-**Scope:** Zero Trust NaaS for campus/LAN edge. Extends ZTNA principles to the physical building. Not a WAN or cloud security play — complementary, not competitive.
-
-### Island
-**Scope:** Enterprise Browser. Enforces Zero Trust policy at the browser layer — session isolation, DLP, clipboard control, screenshot prevention, and SaaS access governance without a proxy in the path. Distinct from browser extensions (full Chromium fork). Competes in the ZTNA pillar as a last-mile enforcement point for managed and unmanaged devices.
-**Placement:** Full analysis in `sase_emerging.html`. Callout in `sase_ztna.html` under Enterprise Browser criterion.
-
----
-
-## Content Decisions
-
-### DLP Framing
-**Decision:** DLP is framed as vendor philosophy / design center, not a ranked hierarchy.
-**Rationale:** Different DLP implementations suit different use cases. Netskope = data-centric. Zscaler = proxy-enforced. Palo Alto = threat-first. Cato/Cloudflare = operational/compliance. No universal "best" — fit depends on the customer's data problem.
-
-### SSL/TLS Decryption
-**Decision:** Treated as a first-class SSE capability with its own criterion, not a checkbox under SWG.
-**Two scored criteria:** (1) TLS Inspection at Scale — whether full TLS 1.3 decryption works at volume. (2) SSL Decryption Architecture — where and how it happens (PoP-local vs. backhauled, policy controls, CA tooling).
-
-### Enterprise Browser
-**Decision:** Added to ZTNA pillar as a distinct criterion from Agentless Access.
-**Rationale:** Enterprise browsers (Island, Talon/Palo Alto, Chrome Enterprise) enforce policy at the browser layer — architecturally different from proxy-side agentless access. Changes the inspection scope conversation for managed devices. Fast-moving category in 2026.
-**Scoring scope:** Score separately for (1) native enterprise browser and (2) browser extension/plugin. Some vendors (Palo Alto via Prisma Access Browser) offer a full browser; others offer lightweight extensions. Island is scored in `sase_emerging.html` as a standalone emerging vendor.
-
-### RBI (Remote Browser Isolation)
-**Decision:** RBI is a distinct SSE criterion — do not collapse it into SWG.
-**Placement:** Added to the Benchmark (`sase_benchmark.html`) under the SSE pillar. Scored as its own criterion in `sase_sse.html`.
-**Two rendering models to cover:** (1) pixel-push (server renders, streams pixels to client — high fidelity, higher latency) and (2) DOM reconstruction (server fetches, client reconstructs sanitized DOM — lower latency, some fidelity trade-offs).
-**Benchmark criteria:** rendering fidelity, latency overhead, unmanaged device / clientless support, integration with SWG policy engine.
-**Vendor split:** Zscaler (native), Cloudflare (native), Menlo Security (RBI-first vendor, not in Big Five), Palo Alto (via third-party integration — confirm current state). Cato and Netskope TBD — research before scoring.
-
-### Emerging Vendors in Pillar Docs
-**Decision:** Emerging vendors get a brief callout in relevant pillar docs (not a full scored row) with a pointer to `sase_emerging.html` for full analysis.
+Zero Trust NaaS for campus/LAN edge. Every wired and wireless port is a ZTNA enforcement point. $175M Series C. Gartner Visionary 2025 LAN MQ. Not a WAN or cloud security play — complements Big Five SASE.
 
 ---
 
 ## Styling & Branding
 
-- All HTML documents use Edge Solutions brand (skill: `/mnt/skills/user/edge-documents/SKILL.md`) — **v0.2 kit** as of 2026-04-17 refactor
-- **Brand tokens live in `assets/css/main.css` only.** Per-file `<style>` blocks are for page-specific layout only (e.g., scorecard JS-rendered components). Do not redefine brand tokens inline.
-- **Fonts:** Atkinson Hyperlegible Next (body + display) via Google Fonts `@import` in `main.css`. Inter for dense UI chrome. Do NOT use Heebo or Roboto.
-- **`--font` / `--font-ui`** — CSS variables for Atkinson and Inter respectively. Never hardcode `font-family` values.
-- **Ambient layer:** `body::before` radial gradients + `body::after` grain overlay defined in `main.css`. Do not duplicate in per-page styles.
-- **Content z-index:** All structural elements (`header`, `nav`, `main`, `footer`, `.page-body`) carry `position: relative; z-index: 2` to render above grain.
-- Score badges: CRITICAL = `var(--error)` `#C44536`, HIGH = `var(--warning)` `#E6A817`, MEDIUM = `#F1C40F`
-- **Website mode — files are NOT self-contained.** CSS lives in `assets/css/`, JS in `assets/js/`. HTML pages link to shared assets.
-- Google Fonts loaded via `@import` in `main.css` — HTML `<head>` needs no font `<link>` tags.
-- `scores.json` fetched by all pillar pages from root
-- **Left-side TOC:** Every page includes a fixed sidebar TOC. Implementation lives in `assets/js/toc.js` + `assets/css/toc.css`. TOC auto-generates from `<h2>`/`<h3>` headings via JS — no manual per-page markup. Active section highlighted via IntersectionObserver. Collapsible on mobile.
+All pages use Edge Solutions brand (Edge Documents v0.2).
 
-### Core Brand Tokens (v0.2 — use these, never invent others)
+### Core Brand Tokens (in `assets/css/main.css` — never redefine inline)
 
 | Token | Value | Role |
 |---|---|---|
-| `--edge-blue` | `#486D87` | Primary — headers, nav, dominant backgrounds |
-| `--edge-green` | `#C6D219` | Accent — rules, pills, CTAs. Punctuation only, never dominant |
+| `--edge-blue` | `#486D87` | Primary — headers, dominant backgrounds |
+| `--edge-green` | `#C6D219` | Accent — pills, rules, CTAs. Punctuation only |
 | `--edge-dark` | `#4C5351` | Body text on light surfaces |
-| `--edge-muted` | `#7B7D72` | Secondary text, labels, meta |
-| `--edge-light` | `#F2F3F4` | Page canvas, light surfaces |
+| `--edge-muted` | `#7B7D72` | Secondary text, labels |
+| `--edge-light` | `#F2F3F4` | Page canvas |
 | `--edge-moss` | `#9DA03C` | Supporting accent |
 | `--warning` | `#E6A817` | Caution states |
 | `--error` | `#C44536` | Error / destructive |
 | `--white` | `#FFFFFF` | — |
 
-**Dark-section background:** `#2d4a5c` (dark tint of edge-blue — used for BLUF boxes, doc-nav, pillar-hero, dark sub-panels). No separate CSS variable — use the literal value.
+**Dark-section background:** `#2d4a5c` — used for BLUF boxes, doc-nav, pillar-hero. Literal value, no variable.
 
 **Glass card pattern:** `background: rgba(255,255,255,0.72–0.82); backdrop-filter: blur(16px); border: 0.5px solid rgba(72,109,135,0.25);`
 
-### Radar Chart Sizing (sase_scorecard.html)
-Do NOT use Chart.js `responsive`/`maintainAspectRatio`/`aspectRatio` options to control chart dimensions — they are unreliable when the chart renders after a `fetch()` resolves.
+**Vendor color vars:** `--v-palo: #E74C3C · --v-cato: #2E86AB · --v-netskope: #8E44AD · --v-cloudflare: #E67E22 · --v-zscaler: #1A7A4A`
 
-The correct approach:
-- Canvas lives inside `.radar-canvas-wrapper` (position:relative, height:0, padding-bottom:%)
-- Canvas is `position:absolute; width:100%; height:100%` inside that wrapper
-- Chart.js runs `responsive:true, maintainAspectRatio:false` and fills whatever CSS gives it
-- Aspect ratio is controlled entirely by `padding-bottom` percentages in CSS media queries
-- Current ratios: ≥1200px → 55% · 900–1199px → 58% · 600–899px → 62% · <600px → 70%
-- Do NOT add `layout.padding` to the Chart.js config — it shrinks the radar web without shrinking the canvas, making the chart look tiny.
-All pages use the `sase_ztna.html` header as the reference implementation. Do not deviate.
+**Pillar bar colors:** `--pb-ztna: #1A7A4A · --pb-sse: #2E86AB · --pb-sdwan: #E67E22 · --pb-aiops: #8E44AD · --pb-sovereignty: #C0392B`
 
-**Structure (top row — right-aligned pills):**
+### Header Pattern (canonical)
 ```html
-<span class="edge-pill">DOCUMENT TYPE</span>
-<span class="edge-pill edge-pill--muted">DESCRIPTOR LABEL</span>
-<span class="edge-pill edge-pill--phase">2026</span>
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">VENDOR DEEP DIVE</span>
+      <span class="edge-pill edge-pill--muted">VENDOR NAME</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Page Title</h1>
+    <p class="edge-header__subtitle">Subtitle text</p>
+  </div>
+</header>
 ```
-- **Pill 1 (lime/green):** Document type — `BENCHMARK`, `ZTNA`, `SSE`, `SD-WAN`, `AIOPS`, `SOVEREIGNTY`, `EMERGING`, `SCORECARD`
-- **Pill 2 (gray/muted):** Page type — `COMPONENT ANALYSIS`, `TECHNICAL DEEP DIVE`, `MASTER SCORECARD`, `EMERGING VENDORS`, etc.
-- **Pill 3 (dark + green border):** Always `2026`. Class: `edge-pill edge-pill--phase`.
 
-**Brand string:** `EDGE SOLUTIONS` — all caps, always.
-
-**Title font-size:** `26px` on all pages.
-
-**Header padding:** `18px 40px 20px`.
-
-**No `edge-header__bottom` wrapper div in benchmark only — all other pages use the wrapper.** *(This file previously said the opposite — corrected 2026-04-17 after discovering benchmark was the outlier.)* Canonical structure for pillar and scorecard pages is:
+### Nav Pattern (canonical for `components/`)
 ```html
-<div class="edge-header__bottom">
-  <h1 class="edge-header__title">...</h1>
-  <p class="edge-header__subtitle">...</p>
-</div>
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="sase_ztna.html" class="active">ZTNA</a><span class="doc-nav__sep">›</span>
+  ...
+  <a href="sase_scorecard.html">Scorecard</a>
+</nav>
 ```
-The CSS defines `.edge-header__bottom { margin-top: 4px; }` so the wrapper is intentional for spacing.
 
-**Pill class definitions (canonical — v0.2):**
+### Pill Classes (canonical v0.2)
 ```css
-.edge-pill          { background: var(--edge-green); color: var(--edge-dark); }
-.edge-pill--muted   { background: var(--edge-muted); color: var(--white); }
-.edge-pill--moss    { background: var(--edge-moss);  color: var(--white); }
-.edge-pill--phase   { background: #2d4a5c; color: var(--edge-green); border: 1px solid var(--edge-green); }
+.edge-pill          /* lime green bg / dark text */
+.edge-pill--muted   /* gray bg / white text */
+.edge-pill--moss    /* moss green bg / white text */
+.edge-pill--phase   /* dark bg / green text + green border */
 ```
-**Note:** `edge-pill--secondary` is a legacy alias mapped to `--muted` in main.css for backward compatibility. Use `edge-pill--muted` in all new and edited markup.
+`edge-pill--secondary` is a legacy alias for `--muted`. Use `--muted` in all new markup.
+
+### Score Badge Classes
+```
+weight-critical  →  var(--error) #C44536
+weight-high      →  var(--warning) #E6A817
+weight-medium    →  #ccc / #444
+```
+
+### Radar Chart (scorecard only)
+Use `responsive:true, maintainAspectRatio:false`. Control aspect ratio via CSS `padding-bottom` on `.radar-canvas-wrapper`. Current breakpoints: ≥1200px → 55% · 900–1199px → 58% · 600–899px → 62% · <600px → 70%. Do NOT use `layout.padding` in Chart.js config.
 
 ---
 
-## Cloudflare Pages Deployment Notes
+## Content & Writing Conventions
 
-**Live URL:** `https://tytonest.xyz/SASE_Codex/`  
-**Repo:** `discerningowl/tytonest` (GitHub) · Production branch: `main` · No build command · No output directory
-
-### What works and what doesn't
-- **Clean URLs:** Cloudflare Pages natively strips `.html` and serves `sase_scorecard` from `sase_scorecard.html`. No `_redirects` file needed — it causes redirect loops.
-- **`_headers` subdirectory rules:** `/SASE_Codex/*` overrides do NOT reliably apply. Use a single global `/*` rule for everything.
-- **`scores.json` fetch path:** Use `window.location.pathname` to derive the path — NOT script `src` attribute detection. Cloudflare Rocket Loader rewrites `<script>` tags, breaking src-based detection.
-- **Cache:** After any `_headers` change, manually purge via Cloudflare dashboard → Caching → Configuration → Purge Everything.
-
-### Current `_headers` (repo root)
-```
-/*
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; img-src 'self' data:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'
-```
+- **BLUF first:** Lead with the answer, follow with supporting detail.
+- **Feynman intro:** Plain-language intuition before technical depth. No need to label it.
+- **Precision:** No confident vendor claims without source or verification note.
+- **DLP framing:** Describe philosophy and fit, not a ranked hierarchy. Netskope = data-centric. Zscaler = proxy-enforced. Palo Alto = threat-first. Cato/Cloudflare = operational/compliance. No universal "best."
+- **Caution boxes:** Use `edge-callout edge-callout--warning` for Gartner-sourced vendor cautions (Cato sovereignty gap, Fortinet customer experience, Zscaler ZIA/ZPA separation). These are not opinions — they are documented.
+- **Null scores:** `null` means out-of-scope, not zero performance. Always include a note explaining the null.
+- **"Pending" scores:** Fortinet and Versa scores are null pending a full scoring research pass. The `note` field in each criterion states what to verify.
 
 ---
 
-## Writing Style
+## Cloudflare Pages Deployment
 
-- **BLUF:** Lead with the answer, follow with supporting detail
-- **Feynman Technique:** Plain-language intuition before going technical. No need to state that it is a Feynman.
-- **Precision:** No filler, no hedging without cause, no confident claims about any vendor without verification
-- **DLP hierarchy language:** Avoid ranking vendors 1/2/3 — describe philosophy and fit instead
-- Working documents are for internal use and client distribution — technical depth is appropriate
+**Live URL:** `https://tytonest.xyz/SASE_Codex/`
+**Repo:** `discerningowl/tytonest` · Production branch: `main` · No build command · No output directory
+
+**scores.json fetch path:** Derived from `window.location.pathname` in `main.js` — NOT `document.currentScript.src`. Cloudflare Rocket Loader rewrites `<script>` tags, breaking src-based detection.
+
+**Clean URLs:** Cloudflare Pages natively serves `sase_scorecard` from `sase_scorecard.html`. No `_redirects` file — it causes redirect loops.
+
+**`_headers`:** Single global `/*` rule only. `/SASE_Codex/*` subdirectory overrides do NOT reliably apply.
+
+**Cache:** After any `_headers` change, purge via Cloudflare dashboard → Caching → Configuration → Purge Everything.
+
+**v2.0 deployment note:** The v2.0 restructure moves component files to `components/` subdirectory. Cloudflare Pages will serve `components/sase_benchmark` without `.html` extension automatically. Verify `../scores.json` fetch path resolves correctly after deployment (path is relative to the component file's URL, not the server root).
+
+---
+
+## Pending Work (as of 2026-04-19)
+
+1. **Fortinet + Versa full scoring pass** — all null scores in `scores.json` need research and values
+2. **Fortinet + Versa sovereignty certifications** — BSI C5, IRAP, BYOK status to verify directly with vendors
+3. **Spin-off documents** — `spin-offs/` directories exist but are empty
+4. **scores.json Fortinet/Versa sovereignty certifications** — currently null pending verification

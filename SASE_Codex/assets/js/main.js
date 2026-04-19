@@ -126,7 +126,7 @@ function renderScoringTable(pillar, vendors, containerId) {
   // of how scripts are loaded (Cloudflare Rocket Loader, async, defer, etc.)
   var pathname  = window.location.pathname;
   var dir       = pathname.substring(0, pathname.lastIndexOf('/') + 1);
-  var scoresUrl = dir + 'scores.json';
+  var scoresUrl = dir + '../assets/data/scores.json';
 
   function showError(msg) {
     var banner = document.createElement('div');

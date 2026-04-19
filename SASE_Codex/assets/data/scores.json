@@ -1,11 +1,12 @@
 {
   "meta": {
-    "version": "1.4",
-    "last_updated": "2026-04-17",
+    "version": "1.7",
+    "last_updated": "2026-04-19",
     "scale_description": "1=Poor/Missing · 2=Below Average · 3=Adequate · 4=Strong · 5=Best-in-Class",
     "weight_multipliers": { "critical": 3, "high": 2, "medium": 1 },
     "note_convention": "1-2 sentences. State what the vendor specifically does or does not do to justify the score.",
-    "last_verified_convention": "ISO date on criteria where scores reference PoP counts, certifications, or other time-sensitive facts. Verify quarterly or on vendor announcement."
+    "last_verified_convention": "ISO date on criteria where scores reference PoP counts, certifications, or other time-sensitive facts. Verify quarterly or on vendor announcement.",
+    "changelog": "v1.7 (2026-04-19): Completed full scoring pass for Fortinet and Versa Networks across all 30 criteria (ZTNA, SSE, SD-WAN, AIOps, Sovereignty). Scores grounded in working-docs/fortinet.html and working-docs/versa-networks.html research. Items flagged in notes as 'verify directly with vendor' (BYOK GA, BSI C5, IRAP, ML data isolation contracts) retain conservative scores pending vendor confirmation. v1.6 (2026-04-19): Removed Graphiant vendor and all associated scores. v1.5 (2026-04-19): Added Fortinet and Versa Networks vendor entries. Updated Island scope_note to ZTNA+SSE following March 2026 full SASE stack launch."
   },
 
   "vendors": [
@@ -18,12 +19,15 @@
 
     { "id": "aryaka",    "name": "Aryaka",    "product": "Aryaka SASE / SmartConnect",  "tier": "emerging", "arch_type": "managed_service",
       "scope_note": "Scored on SD-WAN and AIOps pillars only. SSE and ZTNA scores are null — Aryaka's SSE is co-packaged (PA Prisma Access option) not proprietary, and ZTNA is not a pillar Aryaka competes on independently." },
-    { "id": "graphiant", "name": "Graphiant", "product": "Graphiant Network Edge",        "tier": "emerging", "arch_type": "naas_layer3",
-      "scope_note": "Scored on SD-WAN pillar only (connectivity criteria). No SSE, ZTNA, AIOps, or Sovereignty product — null scores in all other pillars by design." },
+    { "id": "fortinet",  "name": "Fortinet",  "product": "Fortinet Unified SASE (FortiSASE + FortiGate SD-WAN)", "tier": "emerging", "arch_type": "unified_os",
+      "scope_note": "New in v2.0 Codex. Gartner MQ Leader 2025 (SASE Platforms). #1 Secure Branch Network Modernization use case (Gartner Critical Capabilities). Only vendor in four concurrent Gartner MQ reports (SD-WAN, SSE, LAN, SASE Platforms). Customer experience rated below average per Gartner Peer Insights — support quality and update stability are noted concerns. Fully scored v1.7 (2026-04-19).",
+      "caution": "Customer experience caution from Gartner Peer Insights: support quality, update-induced software instability, and operational complexity are recurring complaints. Validate support SLA commitment carefully before positioning." },
+    { "id": "island",    "name": "Island",    "product": "Island Enterprise Browser + SASE Stack",     "tier": "emerging", "arch_type": "enterprise_browser",
+      "scope_note": "Updated v1.5: Island launched a full SASE stack in March 2026 — SWG, ZTNA, CASB, RBI, DLP through the browser layer. Scope expanded from ZTNA-only to ZTNA + SSE. SSE scores reflect browser-scope enforcement (pre-encryption visibility; no network-layer threat inspection). SD-WAN, AIOps, and Sovereignty remain null by design." },
     { "id": "nile",      "name": "Nile",      "product": "Nile Access Service",           "tier": "emerging", "arch_type": "zero_trust_naas",
       "scope_note": "Scored on ZTNA pillar only (campus/LAN-applicable criteria). SD-WAN, SSE, AIOps, and Sovereignty scores are null — Nile does not compete in those domains." },
-    { "id": "island",    "name": "Island",    "product": "Island Enterprise Browser",     "tier": "emerging", "arch_type": "enterprise_browser",
-      "scope_note": "Scored on ZTNA pillar only (browser-applicable criteria). global_latency, dem, and legacy_app_support scores reflect browser-scope limitations. All other pillars null by design." }
+    { "id": "versa",     "name": "Versa Networks", "product": "VersaONE Universal SASE", "tier": "emerging", "arch_type": "software_defined",
+      "scope_note": "New in v2.0 Codex. Gartner SASE Challenger 2025 (third consecutive year). One of only three vendors recognized in Gartner MQ for SD-WAN, SSE, and SASE Platforms. #1 Network Starter Kit use case (Gartner Critical Capabilities). FedRAMP Ready (High Impact). Strong partner ecosystem and service provider channel. Fully scored v1.7 (2026-04-19)." }
   ],
 
   "pillars": {
@@ -43,8 +47,10 @@
             "netskope":   { "score": 4, "note": "Netskope Client enforces posture checks via Device Classification and integrates with Intune, JAMF, and CrowdStrike. Continuous re-validation on policy change is supported; real-time EDR event-triggered session kill is newer." },
             "cloudflare": { "score": 4, "note": "WARP client enforces posture checks via Cloudflare Gateway device posture rules; supports CrowdStrike, Intune, Tanium, and custom file/registry checks. Session re-evaluation on posture change is available." },
             "zscaler":    { "score": 4, "note": "ZPA enforces device posture using Zscaler Client Connector and integrates with CrowdStrike ZTA score, Intune compliance, and SentinelOne. Continuous posture re-check interval is configurable but not fully event-driven." },
+            "fortinet":   { "score": 3, "note": "FortiClient enforces posture checks at connection time and periodically during sessions with FortiEDR and third-party EDR integration. Event-driven session termination on posture failure is supported, but continuous behavioral anomaly detection equivalent to PA AI-RT is not a documented FortiSASE capability as of Q2 2026 — enforcement is primarily compliance-check-based." },
             "nile":       { "score": 5, "note": "Nile Access Service enforces continuous device posture at the physical port — every wired and wireless connection triggers an identity + posture check before any access is granted. Posture change disconnects the session immediately." },
-            "island":     { "score": 4, "note": "Island integrates with CrowdStrike, SentinelOne, and Intune for posture signals before and during browser sessions. Posture-based policy enforcement per application is available; continuous EDR session-kill is less granular than campus-native solutions." }
+            "island":     { "score": 4, "note": "Island integrates with CrowdStrike, SentinelOne, and Intune for posture signals before and during browser sessions. Posture-based policy enforcement per application is available; continuous EDR session-kill is less granular than campus-native solutions." },
+            "versa":      { "score": 3, "note": "Versa ZTNA enforces posture at connection time and periodically during sessions with CrowdStrike and SentinelOne integration. Continuous behavioral anomaly detection equivalent to PA AI-RT is not a documented differentiated capability as of Q2 2026." }
           }
         },
         {
@@ -58,8 +64,10 @@
             "netskope":   { "score": 4, "note": "Netskope integrates with Okta, Azure AD, and other IdPs for conditional access. User risk can be fed into adaptive policy; full dynamic risk scoring is available but requires additional configuration." },
             "cloudflare": { "score": 5, "note": "Cloudflare Access integrates with 20+ IdPs natively and supports short-lived certificate issuance (SCIM), risk-based posture signals, and Access Groups for conditional access without requiring VPN client." },
             "zscaler":    { "score": 5, "note": "ZPA identity integration is a design center — deep Okta, Azure AD, and CrowdStrike ZTA score integration. AI-powered user risk scoring in ZPA Private Access portal adjusts access policy dynamically." },
+            "fortinet":   { "score": 4, "note": "FortiSASE integrates with major IdPs (Okta, Azure AD) via SAML/OIDC with conditional access. FortiOS policy plane coordinates identity across FortiGate NGFW estate via FortiManager — a meaningful advantage for Fortinet-ecosystem customers. User risk scoring not at PA AI Access Security depth." },
             "nile":       { "score": 4, "note": "Nile integrates with the customer's existing IdP (Okta, Entra ID, Ping) for identity-based port access. The same IdP that feeds the Big Five SASE stack feeds Nile — unified identity policy across campus and cloud. No user risk scoring layer native to Nile." },
-            "island":     { "score": 4, "note": "Island integrates with Okta, Azure AD, and Ping for per-application access policy. Identity-driven policy controls clipboard, download, upload, and session recording per app. No native user risk scoring; relies on IdP signals." }
+            "island":     { "score": 4, "note": "Island integrates with Okta, Azure AD, and Ping for per-application access policy. Identity-driven policy controls clipboard, download, upload, and session recording per app. No native user risk scoring; relies on IdP signals." },
+            "versa":      { "score": 3, "note": "VersaONE integrates with major IdPs (Okta, Azure AD) via SAML/OIDC for MFA and conditional access. User risk scoring is policy-integrable but not a deeply embedded dynamic risk engine comparable to PA or Zscaler." }
           }
         },
         {
@@ -73,8 +81,10 @@
             "netskope":   { "score": 4, "note": "Netskope Private Access (NPA) delivers per-app ZTNA with inline traffic inspection. API-level visibility is available but requires SaaS connectors; inline API layer inspection is not yet unified with NPA." },
             "cloudflare": { "score": 4, "note": "Cloudflare Access enforces per-app policies with identity-aware proxy. Inline inspection via Cloudflare Gateway DLP applies to web-based apps; thick-client/non-HTTP segmentation is more limited." },
             "zscaler":    { "score": 5, "note": "ZPA enforces per-app access at the application level with no implicit lateral movement. App Connector model isolates apps individually on-prem. Zscaler Secure Private Access extends this to unmanaged endpoints." },
+            "fortinet":   { "score": 4, "note": "FortiSASE enforces per-app ZTNA via FortiClient and agentless browser access with app connector model for private app isolation. Inline inspection is part of the FortiOS policy path. App-level depth is strong; not at Zscaler ZPA's reference maturity for private app isolation." },
             "nile":       { "score": 5, "note": "Nile enforces micro-segmentation at the physical port level — every switch port and AP is an identity enforcement point. Devices cannot reach other segments unless policy explicitly permits it, regardless of VLAN or physical proximity. Best-in-class for campus lateral movement prevention." },
-            "island":     { "score": 4, "note": "Island enforces per-application session policies — clipboard, upload, download, screenshot controls differ per app in the same browser session. Lateral movement in the traditional network sense is not in scope, but SaaS-layer data segmentation by application is strong." }
+            "island":     { "score": 4, "note": "Island enforces per-application session policies — clipboard, upload, download, screenshot controls differ per app in the same browser session. Lateral movement in the traditional network sense is not in scope, but SaaS-layer data segmentation by application is strong." },
+            "versa":      { "score": 4, "note": "VersaONE provides per-app ZTNA with policy enforcement at the VOS layer. SD-LAN campus extension adds software-defined port-level segmentation — architecturally distinct from pure cloud SASE peers. Depth trails Zscaler ZPA for private app isolation and Nile for hardware-enforced campus segmentation." }
           }
         },
         {
@@ -82,15 +92,17 @@
           "label": "Global PoP Latency",
           "weight": "high",
           "scale": "1=>300ms typical · 3=<200ms · 5=<150ms with private backbone SLA",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma Access uses 100+ cloud-delivered PoPs across AWS, Azure, and GCP infrastructure globally. No private backbone between PoPs — relies on cloud provider backbone quality. Typical RTT <150ms in tier-1 markets." },
             "cato":       { "score": 5, "note": "Cato's private SDP backbone interconnects 85+ PoPs with SLA-backed latency. Traffic between branches and PoPs stays on Cato's backbone, not the public internet. Measured median latency is <50ms for most tier-1 regions." },
-            "netskope":   { "score": 4, "note": "NewEdge is Netskope-owned infrastructure: 120+ data centers in 75+ regions (Netskope datasheet, 2025) with direct peering at major IXPs. Avoids backhaul through hyperscaler infrastructure. Sub-150ms achievable in covered regions." },
+            "netskope":   { "score": 4, "note": "NewEdge is Netskope-owned infrastructure: 120+ data centers in 75+ regions with direct peering at major IXPs. Avoids backhaul through hyperscaler infrastructure. Sub-150ms achievable in covered regions." },
             "cloudflare": { "score": 5, "note": "330+ PoPs connected by Cloudflare's private Argo network; users connect to nearest PoP within milliseconds by design. Best-in-class global PoP density — median single-digit ms RTT to PoP in most urban markets." },
             "zscaler":    { "score": 4, "note": "150+ cloud security enforcement nodes globally via partner peering agreements and hyperscaler regions. ZDX provides real-time path visibility. Latency competitive in tier-1 markets; PoP-to-origin traverses public internet." },
+            "fortinet":   { "score": 3, "note": "FortiSASE PoP network provides global coverage but with no SLA-backed private backbone between PoPs. Latency is competitive in tier-1 markets but infrastructure maturity trails Cato (85+ PoPs, private backbone) and Cloudflare (330+ PoPs). Verify current PoP count and regional coverage for target geographies." },
             "nile":       { "score": null, "note": "Not applicable — Nile is a campus/LAN product. Global PoP latency is not a relevant criterion for physical port-level access enforcement." },
-            "island":     { "score": null, "note": "Not applicable — Island enforces policy at the browser process layer. There is no PoP network; all enforcement is local to the endpoint running the browser." }
+            "island":     { "score": null, "note": "Not applicable — Island enforces policy at the browser process layer. There is no PoP network; all enforcement is local to the endpoint running the browser." },
+            "versa":      { "score": 3, "note": "VersaONE PoP network offers major-market coverage without a private SLA-backed backbone between PoPs. Service provider ecosystem may add PoP density for managed deployments. Latency is competitive in tier-1 markets but trails Cato and Cloudflare at global scale." }
           }
         },
         {
@@ -104,8 +116,10 @@
             "netskope":   { "score": 4, "note": "Netskope supports clientless access via a browser-based portal for web apps and published apps. Agentless RDP/SSH via Netskope Private Access clientless mode is supported; some features require the Netskope Client." },
             "cloudflare": { "score": 5, "note": "Cloudflare Access enables fully agentless access for HTTP/HTTPS apps, SSH, RDP, and VNC via browser-rendered sessions. No agent install required for unmanaged or contractor devices — WARP client optional." },
             "zscaler":    { "score": 5, "note": "Zscaler Secure Private Access (formerly ZPA Browser Access) supports agentless access for web and SSH/RDP apps from any browser. No agent required for supported app types — designed for unmanaged device support." },
+            "fortinet":   { "score": 3, "note": "FortiSASE supports agentless ZTNA for web-delivered applications via browser-based access. Thick-client agentless access (RDP/SSH in browser) is narrower than Cloudflare's server-side rendering approach — FortiClient is typically required for full non-web app functionality." },
             "nile":       { "score": 4, "note": "Nile supports agent-free enrollment for wired and wireless devices via 802.1X and certificate-based authentication. No endpoint agent required for campus access; BYOD and unmanaged devices onboard via the Nile portal. Browser-rendered or SSH agentless access is not in scope." },
-            "island":     { "score": 5, "note": "Island delivers a fully managed browser to contractor and BYOD devices with zero endpoint agent. The browser itself is the enforcement layer — no SASE client, no proxy agent required. Best agentless SaaS governance story for unmanaged devices in the Big Five + emerging comparison." }
+            "island":     { "score": 5, "note": "Island delivers a fully managed browser to contractor and BYOD devices with zero endpoint agent. The browser itself is the enforcement layer — no SASE client, no proxy agent required. Best agentless SaaS governance story for unmanaged devices in the Big Five + emerging comparison." },
+            "versa":      { "score": 3, "note": "VersaONE supports agentless browser-based access for web applications. Thick-client agentless coverage (RDP/SSH via browser rendering) is less mature than Cloudflare or Zscaler agentless models — Versa Client is typically required for non-web app access." }
           }
         },
         {
@@ -119,8 +133,10 @@
             "netskope":   { "score": 4, "note": "Netskope has a validated integration with Island Browser and supports browser extension-based enforcement for managed browsers. Policy shared between NPA and browser context is available." },
             "cloudflare": { "score": 4, "note": "Cloudflare Browser Rendering and WARP-in-browser approaches allow policy enforcement without a native browser agent. Integrations with Island and Chrome Enterprise are available at the partner level." },
             "zscaler":    { "score": 3, "note": "Zscaler does not have a native enterprise browser. Browser isolation (ZIA) covers unmanaged endpoints via pixel-rendering RBI. Direct enterprise browser partnerships exist but policy unification with ZPA is not native." },
+            "fortinet":   { "score": 2, "note": "No native Fortinet enterprise browser. Integration with Island or Chrome Enterprise via extension is possible but not a documented FortiSASE policy-unified capability. This is an architectural gap vs. Palo Alto Prisma Access Browser." },
             "nile":       { "score": null, "note": "Not applicable — Nile is a campus network product. Enterprise browser is not a Nile capability or competitive criterion." },
-            "island":     { "score": 5, "note": "Island is the enterprise browser — this criterion is the product definition. Full Chromium fork with IT-managed policy, per-app session controls, clipboard/download/upload/screenshot enforcement at the browser process layer. No other entrant in this comparison is purpose-built for this criterion." }
+            "island":     { "score": 5, "note": "Island is the enterprise browser — this criterion is the product definition. Full Chromium fork with IT-managed policy, per-app session controls, clipboard/download/upload/screenshot enforcement at the browser process layer." },
+            "versa":      { "score": 2, "note": "No native Versa enterprise browser. Partner integrations with Island or Chrome Enterprise may exist via extension, but policy unification with VersaONE is not a documented capability. Architectural gap vs. Palo Alto Prisma Access Browser." }
           }
         },
         {
@@ -134,8 +150,10 @@
             "netskope":   { "score": 5, "note": "Netskope Client supports Windows, macOS, iOS, Android, Linux (including Ubuntu, RHEL, CentOS), and ChromeOS. Feature parity across platforms is strong with unified policy enforcement from NPA." },
             "cloudflare": { "score": 5, "note": "WARP client supports Windows, macOS, iOS, Android, Linux, and ChromeOS. Cross-platform feature parity is excellent — all clients receive same Gateway policy enforcement with consistent DEM telemetry." },
             "zscaler":    { "score": 4, "note": "Zscaler Client Connector supports Windows, macOS, iOS, Android, and Linux. ChromeOS is supported via app-based enrollment. Linux feature completeness trails Windows/macOS for some posture checks." },
-            "nile":       { "score": 4, "note": "Nile supports all wired and wireless device types that support 802.1X or certificate enrollment — Windows, macOS, Linux, iOS, Android, ChromeOS, and IoT. Coverage is hardware-layer, not OS-specific. Headless IoT devices with non-standard auth methods require additional onboarding steps." },
-            "island":     { "score": 4, "note": "Island runs on any OS that supports Chromium: Windows, macOS, Linux, and ChromeOS. iOS and Android are not supported (mobile browser policy requires MDM-based control, not a fork). Feature parity is consistent across desktop platforms." }
+            "fortinet":   { "score": 4, "note": "FortiClient supports Windows, macOS, iOS, Android, and Linux (with more limited feature parity on Linux for some posture checks). ChromeOS support is available but narrower than Windows/macOS feature set." },
+            "nile":       { "score": 4, "note": "Nile supports all wired and wireless device types that support 802.1X or certificate enrollment. Coverage is hardware-layer, not OS-specific. Headless IoT devices with non-standard auth methods require additional onboarding steps." },
+            "island":     { "score": 4, "note": "Island runs on any OS that supports Chromium: Windows, macOS, Linux, and ChromeOS. iOS and Android are not supported (mobile browser policy requires MDM-based control). Feature parity is consistent across desktop platforms." },
+            "versa":      { "score": 4, "note": "Versa Client supports Windows, macOS, iOS, Android, and Linux. Feature parity is strong on Windows/macOS; some posture integrations are more limited on Linux. ChromeOS coverage to be verified for target deployments." }
           }
         },
         {
@@ -149,8 +167,10 @@
             "netskope":   { "score": 3, "note": "Netskope DEM provides endpoint-to-app path scoring and synthetic monitoring for key SaaS apps. ISP fault attribution is developing; proactive alerting breadth is narrower than ZDX or ADEM." },
             "cloudflare": { "score": 3, "note": "Cloudflare DEM provides per-device, per-app latency metrics and synthetic probes. ISP fault attribution and hop-level path tracing are in active development; less mature than ZDX." },
             "zscaler":    { "score": 5, "note": "ZDX is a dedicated DEM platform with per-session path hop analysis, ISP fault attribution, device health scoring, and cross-correlation with Zscaler PoP events. Best-in-class DEM capability in the Big Five." },
-            "nile":       { "score": 3, "note": "Nile provides port-level telemetry and device health visibility within the campus — link quality, authentication events, device uptime. Path-level DEM from campus device to cloud application is not a native Nile capability; pairs with Big Five SASE DEM for end-to-end visibility." },
-            "island":     { "score": 2, "note": "Island provides session-level telemetry (which apps are accessed, policy enforcement events, session recording where enabled) but no network path visibility. ISP fault attribution and hop-level DEM are outside the browser scope." }
+            "fortinet":   { "score": 3, "note": "FortiSASE includes DEM with per-session path visibility and application performance monitoring. Automated fault domain classification and sub-60-second RCA are ZDX capabilities not matched at the same depth by FortiSASE DEM as of Q2 2026." },
+            "nile":       { "score": 3, "note": "Nile provides port-level telemetry and device health visibility within the campus. Path-level DEM from campus device to cloud application is not a native Nile capability; pairs with Big Five SASE DEM for end-to-end visibility." },
+            "island":     { "score": 2, "note": "Island provides session-level telemetry (which apps are accessed, policy enforcement events) but no network path visibility. ISP fault attribution and hop-level DEM are outside the browser scope." },
+            "versa":      { "score": 3, "note": "VersaONE includes network analytics with path quality visibility and SaaS SLA monitoring. ISP fault attribution and sub-60-second RCA diagnosis trail ZDX's depth at enterprise scale." }
           }
         },
         {
@@ -164,8 +184,10 @@
             "netskope":   { "score": 4, "note": "Netskope Private Access supports TCP-based non-HTTP apps and UDP is in extended beta. Full legacy protocol support is near-complete; some UDP app types require additional publisher configuration." },
             "cloudflare": { "score": 4, "note": "Cloudflare Tunnel supports TCP and UDP (via QUIC tunneling). RDP, SSH, SMB, and common non-HTTP protocols are supported. Some complex legacy protocols may require routing via Magic WAN." },
             "zscaler":    { "score": 4, "note": "ZPA Private Service Edge and App Connector support TCP and UDP apps (UDP added 2023). Legacy non-HTTP apps are generally supported; some complex multi-port applications require additional connector configuration." },
+            "fortinet":   { "score": 4, "note": "FortiSASE + FortiClient tunnel mode supports TCP, UDP, and ICMP for legacy apps. FortiGate SD-WAN extends this to branch traffic. Full legacy protocol coverage is mature; for the deepest custom protocol coverage GlobalProtect and Cato remain the references." },
             "nile":       { "score": 5, "note": "Nile operates at Layer 2/3 — all protocols, all port numbers, all device types are supported natively. Legacy apps on non-HTTP ports, IoT protocols, building automation, and industrial control traffic are all supported without any app-side changes." },
-            "island":     { "score": 1, "note": "Island is a browser — legacy thick-client apps, SSH, RDP, UDP protocols, and non-browser workloads are explicitly out of scope. This is a design boundary, not a gap; Island's scope is browser-based SaaS and web applications only." }
+            "island":     { "score": 1, "note": "Island is a browser — legacy thick-client apps, SSH, RDP, UDP protocols, and non-browser workloads are explicitly out of scope. This is a design boundary, not a gap; Island's scope is browser-based SaaS and web applications only." },
+            "versa":      { "score": 4, "note": "VersaONE tunnel mode supports TCP and UDP for legacy non-HTTP apps. On-premises deployment option adds direct Layer 3 reachability for legacy enterprise apps. Full protocol coverage is competitive with Cloudflare and Zscaler." }
           }
         }
       ]
@@ -185,7 +207,10 @@
             "cato":       { "score": 4, "note": "Cato's single-pass architecture applies DLP rules in one inspection pass across SWG, CASB inline, and SD-WAN traffic. CASB API-mode is newer and uses a shared policy store but separate enforcement engine." },
             "netskope":   { "score": 5, "note": "Netskope's Unified DLP engine enforces consistent policies across SWG (inline), CASB (inline + API), and email in a single-pass architecture. Same classification engine applies regardless of channel — no policy drift." },
             "cloudflare": { "score": 3, "note": "Cloudflare Gateway DLP covers SWG and CASB inline channels with unified rules. CASB API mode uses a separate scanning engine with partial policy synchronization. Full single-pass unification is on the roadmap." },
-            "zscaler":    { "score": 4, "note": "ZIA provides a unified DLP policy across SWG and CASB inline channels via single-pass proxy. CASB API-mode shares policy definitions but is enforced separately. Not all channels share a single enforcement engine." }
+            "zscaler":    { "score": 4, "note": "ZIA provides a unified DLP policy across SWG and CASB inline channels via single-pass proxy. CASB API-mode shares policy definitions but is enforced separately. Not all channels share a single enforcement engine." },
+            "fortinet":   { "score": 4, "note": "FortiSASE provides DLP across SWG and CASB via FortiOS unified policy plane. Cross-channel policy unification is native via FortiOS — a meaningful advantage over API-integrated SSE peers. Not true single-pass like Netskope's reference unified engine." },
+            "island":     { "score": 4, "note": "Island's DLP operates at the browser layer on plaintext before encryption — no network-layer policy engine. DLP rules apply consistently across all SaaS apps accessed via Island. Pre-encryption DLP eliminates TLS inspection overhead; same DLP rules apply to upload, clipboard, and typed input within any application." },
+            "versa":      { "score": 3, "note": "VersaONE DLP applies across SWG and CASB inline via the VOS policy plane with shared rule definitions. API-mode CASB depth and full single-pass unification trail Netskope. Netskope integration partnership provides a path to industry-reference DLP alongside Versa SD-WAN for regulated deployments." }
           }
         },
         {
@@ -198,7 +223,10 @@
             "cato":       { "score": 3, "note": "Cato DLP supports regex-based patterns and some predefined ML classifiers for common data types (PCI, PII, HIPAA). EDM and document fingerprinting are not yet available; ML classification breadth is narrower than Netskope or PA." },
             "netskope":   { "score": 5, "note": "Netskope's ML classification engine covers 1,000+ pre-built classifiers, EDM, OCR, document fingerprinting, and file sequence detection. Industry reference point for ML-based DLP sophistication." },
             "cloudflare": { "score": 3, "note": "Cloudflare Gateway DLP supports regex patterns and a growing set of pre-built ML detection profiles (PII, PCI, credentials). EDM and document fingerprinting are not currently available." },
-            "zscaler":    { "score": 4, "note": "ZIA DLP includes ML classifiers, EDM, and indexed document matching (IDM). OCR-based DLP is available. Classification breadth is strong but ML model sophistication trails Netskope's purpose-built DLP platform." }
+            "zscaler":    { "score": 4, "note": "ZIA DLP includes ML classifiers, EDM, and indexed document matching (IDM). OCR-based DLP is available. Classification breadth is strong but ML model sophistication trails Netskope's purpose-built DLP platform." },
+            "fortinet":   { "score": 3, "note": "FortiSASE DLP includes pre-defined classifiers for common regulated data types (PII, PCI, HIPAA patterns) and some ML-based classification. EDM, OCR, and document fingerprinting are not at Netskope's depth. Adequate for standard compliance; trails Netskope and Zscaler for sophisticated classification programs." },
+            "island":     { "score": 3, "note": "Island's DLP classification covers regex patterns and pre-built classifiers for common data types. ML classification depth is functional for standard compliance use cases; EDM and document fingerprinting capabilities are not as deep as Netskope. Pre-encryption enforcement compensates for classification depth with action coverage." },
+            "versa":      { "score": 3, "note": "VersaONE DLP covers standard data classification (PII, PCI, HIPAA pattern matching, ML-based classification). Depth trails Netskope for sophisticated classification programs — EDM and document fingerprinting are not documented Versa capabilities. Functional for standard enterprise compliance use cases." }
           }
         },
         {
@@ -211,7 +239,10 @@
             "cato":       { "score": 5, "note": "Cato performs full TLS 1.3 inspection inline on its private backbone PoPs. Single-pass architecture means TLS decryption is bundled with all security engines — no re-encryption overhead between modules." },
             "netskope":   { "score": 5, "note": "Netskope performs full TLS 1.3 decryption at all NewEdge PoPs. Purpose-built inline proxy infrastructure designed for TLS at scale with no throughput degradation observed at enterprise volumes." },
             "cloudflare": { "score": 5, "note": "Cloudflare Gateway performs TLS 1.3 decryption at all 330+ PoPs. Built on Cloudflare's core proxy infrastructure which handles internet-scale TLS termination — enterprise SSE TLS load is a small fraction of platform capacity." },
-            "zscaler":    { "score": 5, "note": "ZIA was designed from inception as a TLS inspection proxy. Full TLS 1.3 support with per-policy bypass controls and certificate pinning exemptions. TLS inspection is the core ZIA use case with no throughput cliff at scale." }
+            "zscaler":    { "score": 5, "note": "ZIA was designed from inception as a TLS inspection proxy. Full TLS 1.3 support with per-policy bypass controls and certificate pinning exemptions. TLS inspection is the core ZIA use case with no throughput cliff at scale." },
+            "fortinet":   { "score": 4, "note": "FortiSASE performs full TLS 1.3 decryption at FortiSASE PoPs with per-policy bypass controls. Scale performance is competitive for deployed FortiSASE workloads; purpose-built TLS inspection infrastructure does not match Zscaler's reference scale or Cloudflare's internet-scale capacity." },
+            "island":     { "score": 5, "note": "Island does not require TLS inspection — the browser layer sees plaintext before encryption. This is a structural advantage: Island eliminates TLS break-and-inspect overhead entirely for browser-based sessions, which represent ~90% of enterprise traffic. No TLS inspection capacity constraint applies." },
+            "versa":      { "score": 4, "note": "VersaONE performs full TLS 1.3 decryption at SSE PoPs with per-policy bypass. Scale performance is competitive for deployed Versa workloads; infrastructure maturity at high throughput trails Cloudflare and Zscaler at internet scale." }
           }
         },
         {
@@ -224,7 +255,10 @@
             "cato":       { "score": 5, "note": "TLS inspection happens at the nearest Cato PoP with no cross-region backhaul. CA tooling, bypass rules, and per-policy controls are available in the Cato Management Application (CMA)." },
             "netskope":   { "score": 5, "note": "SSL decryption is PoP-local on NewEdge infrastructure. Full CA management, per-domain bypass, compliance mode exceptions, and an audit trail of decrypted session metadata are available in Netskope's console." },
             "cloudflare": { "score": 5, "note": "Gateway performs SSL decryption at the nearest Cloudflare PoP. Full CA certificate management, per-app bypass rules, and audit logging are available. Root CA deployment via MDM is standard practice." },
-            "zscaler":    { "score": 5, "note": "ZIA performs SSL inspection at the nearest ZEN globally. Per-policy decryption controls, bypass lists, custom CA management, and full audit logging are core ZIA capabilities." }
+            "zscaler":    { "score": 5, "note": "ZIA performs SSL inspection at the nearest ZEN globally. Per-policy decryption controls, bypass lists, custom CA management, and full audit logging are core ZIA capabilities." },
+            "fortinet":   { "score": 4, "note": "FortiSASE performs SSL decryption at the nearest FortiSASE PoP with full CA certificate management, per-policy bypass rules, and audit logging via FortiSASE portal. PoP-local architecture is established; Big Five peer audit trail granularity varies." },
+            "island":     { "score": 5, "note": "Island's pre-encryption browser-layer enforcement makes SSL decryption architecture a non-issue for covered sessions. For browser-based traffic, Island inspects plaintext natively — no PoP, no CA deployment, no certificate chain complexity. Score reflects architectural superiority for browser scope; network-layer SSL inspection (for non-browser traffic) is out of Island's scope." },
+            "versa":      { "score": 4, "note": "VersaONE performs SSL decryption at PoPs with CA tooling and policy controls. PoP-local architecture is established for cloud-delivered deployments; on-premises deployment option allows fully customer-controlled decryption infrastructure. Audit trail granularity to be verified for enterprise-scale deployments." }
           }
         },
         {
@@ -237,7 +271,10 @@
             "cato":       { "score": 4, "note": "Cato supports inline CASB via single-pass proxy and API-mode CASB for sanctioned SaaS (M365, Google, Salesforce). Shared policy store between modes; API CASB module is newer with narrower app coverage than Netskope." },
             "netskope":   { "score": 5, "note": "Netskope CASB supports both inline (real-time) and API (out-of-band) modes with a unified policy engine. Same DLP rules and policy definitions apply to both channels — no separate policy authoring per mode. Industry reference for dual-mode CASB." },
             "cloudflare": { "score": 3, "note": "Cloudflare CASB is primarily API-mode (posture and file scanning for M365, Google, GitHub). Inline CASB via Gateway handles real-time app control. Unified policy across both modes is not yet achieved." },
-            "zscaler":    { "score": 4, "note": "ZIA provides inline CASB for SaaS app control. CASB for SaaS provides API-mode scanning. Policy definitions are shared at the rule level in admin console but enforcement engines are separate." }
+            "zscaler":    { "score": 4, "note": "ZIA provides inline CASB for SaaS app control. CASB for SaaS provides API-mode scanning. Policy definitions are shared at the rule level in admin console but enforcement engines are separate." },
+            "fortinet":   { "score": 4, "note": "FortiSASE includes inline and API-mode CASB via FortiOS with shared policy definitions. Inline CASB covers Shadow IT discovery and per-app access controls. Depth of API-mode CASB (SaaS posture scanning) trails Netskope's industry-reference dual-mode depth." },
+            "island":     { "score": 3, "note": "Island provides inline CASB enforcement at the browser session layer for all SaaS apps accessed via Island. API-mode CASB (scanning data at rest in SharePoint, OneDrive, Salesforce) is outside Island's browser scope — requires a separate CASB platform for data-at-rest coverage. Inline CASB breadth is comprehensive for browser sessions." },
+            "versa":      { "score": 3, "note": "VersaONE CASB covers inline enforcement via VOS and basic API-mode scanning. Full dual-mode parity with unified policy across both channels is less mature than Netskope. The Netskope integration partnership is the path for customers needing best-in-class dual-mode CASB alongside Versa SD-WAN." }
           }
         },
         {
@@ -250,7 +287,10 @@
             "cato":       { "score": 3, "note": "Cato RBI is available as an add-on capability. Integration within the CMA console is available, but the RBI engine is not as deeply native to the Cato single-pass architecture as other SSE capabilities." },
             "netskope":   { "score": 4, "note": "Netskope RBI is a native capability supporting pixel-rendering isolation for risky categories and custom URL lists. Integrated with Netskope's CASB and DLP policies for consistent posture enforcement." },
             "cloudflare": { "score": 5, "note": "Cloudflare Browser Isolation (NVR — Network Vector Rendering) is a native Cloudflare service with no pixel streaming and no latency cliff. Integrated with Gateway policies for inline RBI triggering." },
-            "zscaler":    { "score": 4, "note": "Zscaler Cloud Browser Isolation (ZCBI) is a native ZIA capability using pixel-streaming isolation. Integrated with ZIA policy for risk-based isolation triggering; available in Business/Transformation bundles." }
+            "zscaler":    { "score": 4, "note": "Zscaler Cloud Browser Isolation (ZCBI) is a native ZIA capability using pixel-streaming isolation. Integrated with ZIA policy for risk-based isolation triggering; available in Business/Transformation bundles." },
+            "fortinet":   { "score": 4, "note": "FortiSASE includes RBI as a native capability within the SSE stack, integrated with FortiSASE SWG policy for SWG-triggered isolation. Native integration depth is competitive with Palo Alto Prisma RBI and Zscaler ZCBI; not at Cloudflare NVR's latency-free rendering class." },
+            "island":     { "score": 5, "note": "Island's architecture makes traditional RBI unnecessary for covered sessions — the browser already enforces session isolation natively at a deeper layer than pixel-push or DOM reconstruction. For external untrusted sites, Island applies additional isolation modes that restrict interaction beyond what traditional RBI provides. Score reflects architectural equivalence-or-better for browser-initiated sessions." },
+            "versa":      { "score": 3, "note": "VersaONE RBI is available as part of the VersaONE SSE stack. Integration with SWG policy is present; native engine maturity and pixel-rendering performance at scale are less documented than Palo Alto or Cloudflare RBI implementations." }
           }
         },
         {
@@ -260,10 +300,13 @@
           "scale": "1=None · 3=Block by app category (e.g. block ChatGPT) · 5=Inline prompt inspection with DLP classification",
           "scores": {
             "palo_alto":  { "score": 5, "note": "AI Access Security in Prisma Access provides inline inspection of GenAI prompts and responses with DLP classification. Granular allow/block/coach per AI app, with response scanning — not just category-level blocking." },
-            "cato":       { "score": 5, "note": "Cato AI Security (Aim Security acquisition, Q3 2025; GA March 2026) provides inline GenAI prompt/response inspection, AI-SPM for model supply chain, private AI firewall for homegrown apps/agents, and MCP server governance. Broader scope than inline-only DLP approaches — covers public AI, private AI, and agentic AI development lifecycle in one policy engine." },
+            "cato":       { "score": 5, "note": "Cato AI Security (Aim Security acquisition, Q3 2025; GA March 2026) provides inline GenAI prompt/response inspection, AI-SPM for model supply chain, private AI firewall for homegrown apps/agents, and MCP server governance." },
             "netskope":   { "score": 5, "note": "Netskope's inline DLP engine applies to GenAI app traffic with prompt-level classification and response scanning. AI app catalog of 500+ GenAI tools with per-app policies and user coaching — industry-leading GenAI protection depth." },
             "cloudflare": { "score": 3, "note": "Cloudflare Gateway allows blocking GenAI app categories. Inline prompt inspection with DLP classification is in early availability; current capability is largely app-level allow/block without semantic content analysis." },
-            "zscaler":    { "score": 4, "note": "ZIA includes AI/ML App Control as part of its app catalog. Inline DLP applies to GenAI sessions; prompt-level analysis with user feedback is available. Breadth of coverage across GenAI apps catalogued is strong." }
+            "zscaler":    { "score": 4, "note": "ZIA includes AI/ML App Control as part of its app catalog. Inline DLP applies to GenAI sessions; prompt-level analysis with user feedback is available. Breadth of coverage across GenAI apps catalogued is strong." },
+            "fortinet":   { "score": 3, "note": "FortiSASE GenAI app governance provides shadow AI discovery, per-app access controls, and FortiGuard-feed threat detection for GenAI apps. Inline prompt/response inspection with DLP classification is less developed than Netskope One AI Security or Palo Alto AI Access Security — functional for standard enterprise governance, not agentic AI depth." },
+            "island":     { "score": 5, "note": "Island's pre-encryption visibility provides native GenAI governance at the highest inspection fidelity available. AI tool prompts are plaintext in the browser before encryption — Island inspects, classifies, blocks, or redacts sensitive content in prompts without TLS decryption. The same DLP engine governing file uploads and clipboard operations applies to AI prompt inputs. Structural advantage over all proxy-based approaches for browser-based AI tool access." },
+            "versa":      { "score": 3, "note": "VersaONE provides GenAI app discovery and access controls via VOS policy. Inline prompt inspection depth trails Netskope and Palo Alto for sophisticated AI governance programs. Adequate for standard enterprise governance and app-category controls." }
           }
         },
         {
@@ -274,9 +317,12 @@
           "scores": {
             "palo_alto":  { "score": 4, "note": "App-ID in Prisma Access identifies thousands of applications. SSPM adds managed app visibility. Shadow IT catalog is strong (~5,000+ apps) but the one-click-from-discovery to policy workflow is less streamlined than ZIA." },
             "cato":       { "score": 4, "note": "Cato's application catalog covers ~5,000 apps with risk scoring, category classification, and one-click app control from the discovery view in CMA. Good operationally but catalog breadth trails Zscaler." },
-            "netskope":   { "score": 4, "note": "Netskope Cloud Confidence Index covers 50,000+ cloud apps (per third-party reference) with rich risk attributes. App discovery is excellent; policy creation from discovery is available but slightly more steps than ZIA's one-click workflow." },
+            "netskope":   { "score": 4, "note": "Netskope Cloud Confidence Index covers 50,000+ cloud apps with rich risk attributes. App discovery is excellent; policy creation from discovery is available but slightly more steps than ZIA's one-click workflow." },
             "cloudflare": { "score": 3, "note": "Cloudflare Gateway provides application visibility via App Control with categories and risk scoring. App catalog is smaller (~2,000 apps) than Zscaler or Netskope; Shadow IT workflow is less developed." },
-            "zscaler":    { "score": 5, "note": "Zscaler Cloud App Catalog covers 30,000+ applications with risk scoring (1-100), data sensitivity flags, and one-click policy creation from the Shadow IT discovery view. Best-in-class Shadow IT tooling." }
+            "zscaler":    { "score": 5, "note": "Zscaler Cloud App Catalog covers 30,000+ applications with risk scoring (1-100), data sensitivity flags, and one-click policy creation from the Shadow IT discovery view. Best-in-class Shadow IT tooling." },
+            "fortinet":   { "score": 3, "note": "FortiSASE CASB provides Shadow IT discovery with risk scoring and category classification. App catalog breadth trails Zscaler (30,000+) and Netskope (50,000+). One-click policy from discovery view is available; overall workflow less streamlined than Zscaler's reference Shadow IT tooling." },
+            "island":     { "score": 3, "note": "Island provides visibility into all SaaS apps accessed via the Island browser with risk scoring. App catalog depth is developing; discovery covers all browser-accessed apps but catalog classification breadth trails Zscaler and Netskope for comprehensive enterprise shadow IT programs." },
+            "versa":      { "score": 3, "note": "VersaONE CASB covers Shadow IT discovery with risk scoring. App catalog breadth trails Zscaler and Netskope for comprehensive enterprise shadow IT programs. Functional for standard use cases; the Netskope integration partnership provides a path to best-in-class Shadow IT coverage." }
           }
         },
         {
@@ -289,7 +335,10 @@
             "cato":       { "score": 4, "note": "Cato's threat research team provides curated IPS signatures and IOCs updated in near-real-time. Cross-customer telemetry sharing is built into the platform. MITRE ATT&CK tagging is available in the threat log view." },
             "netskope":   { "score": 4, "note": "Netskope Threat Intel integrates with CrowdStrike, Cisco Talos, and other external feeds. Threat Research team provides cloud-native IOCs. MITRE ATT&CK mapping is available; update cadence is competitive but less granular than PA WildFire." },
             "cloudflare": { "score": 4, "note": "Cloudflare Gateway IPS draws from Cloudflare's passive DNS and internet-scale traffic visibility. MITRE ATT&CK integration is available. Cross-customer anonymized threat sharing is inherent in the platform architecture." },
-            "zscaler":    { "score": 4, "note": "Zscaler ThreatLabZ research team provides signature updates with MITRE ATT&CK tagging. Real-time cross-customer threat sharing via the Zscaler cloud. Update cadence is strong; WildFire-equivalent intelligence depth is the comparison benchmark." }
+            "zscaler":    { "score": 4, "note": "Zscaler ThreatLabZ research team provides signature updates with MITRE ATT&CK tagging. Real-time cross-customer threat sharing via the Zscaler cloud. Update cadence is strong; WildFire-equivalent intelligence depth is the comparison benchmark." },
+            "fortinet":   { "score": 5, "note": "FortiGuard is one of the largest threat intelligence databases in the industry — real-time IOC updates, MITRE ATT&CK integration, and cross-customer threat sharing are core capabilities. FortiSASE IPS inherits FortiGuard feeds directly. Intelligence breadth is a genuine Fortinet differentiator, matching or exceeding WildFire for some categories." },
+            "island":     { "score": 2, "note": "Island does not provide network-layer IPS threat intelligence. Browser-level threat protection (anti-phishing, malicious URL blocking) is available, but deep IPS signature matching and cross-customer threat sharing at the network layer are outside the browser scope." },
+            "versa":      { "score": 3, "note": "VersaONE IPS draws from Versa's own AI-powered security research and multiple external threat feeds. MITRE ATT&CK mapping is available. Update cadence and cross-customer sharing depth trail FortiGuard and Unit 42 at industry-reference scale." }
           }
         },
         {
@@ -302,7 +351,10 @@
             "cato":       { "score": 4, "note": "Cato's FWaaS provides L7 application awareness for ~3,500 applications with category-based and custom app policies. Custom signature creation is available. Slightly narrower coverage than PA App-ID." },
             "netskope":   { "score": 3, "note": "Netskope FWaaS provides L7 app awareness primarily via its SWG/proxy layer. Port/protocol-based enforcement is also available. Custom signatures are limited; FWaaS is not Netskope's design center." },
             "cloudflare": { "score": 4, "note": "Cloudflare Gateway provides L7 application control with DNS, HTTP, and network-layer policies. Application category and custom application policies are supported. Custom signature depth is growing." },
-            "zscaler":    { "score": 4, "note": "ZIA includes cloud-native FWaaS with L7 application awareness for thousands of apps. Custom app policies and evasion detection are functional. Not as deep as PA App-ID but sufficient for most FWaaS use cases." }
+            "zscaler":    { "score": 4, "note": "ZIA includes cloud-native FWaaS with L7 application awareness for thousands of apps. Custom app policies and evasion detection are functional. Not as deep as PA App-ID but sufficient for most FWaaS use cases." },
+            "fortinet":   { "score": 5, "note": "FortiOS App-ID on FortiGate is one of the deepest L7 application identification engines in the industry, with evasion-resistant signatures, custom App-ID creation, and streaming inspection. FortiSASE cloud FWaaS inherits this capability directly — a genuine Fortinet differentiator alongside FortiGuard threat intelligence." },
+            "island":     { "score": 1, "note": "Island is a browser — FWaaS network application identification is outside scope. Island governs application access at the session layer, not the network packet layer. This criterion is not applicable to Island's architecture." },
+            "versa":      { "score": 4, "note": "VersaONE FWaaS provides L7 application awareness with category-based and custom app policies. VOS policy unification gives consistent L7 enforcement across cloud SSE and on-premises deployments. Not as deep as Palo Alto App-ID or Fortinet App-ID for custom signature coverage." }
           }
         }
       ]
@@ -317,15 +369,16 @@
           "label": "Private Global Backbone",
           "weight": "critical",
           "scale": "1=Public internet only · 3=Partial private backbone · 5=Full private backbone, SLA-backed, no public internet between PoPs",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
             "palo_alto":  { "score": 3, "note": "Prisma SD-WAN (formerly CloudGenix) provides SD-WAN overlay but relies on customer-provided internet links. No private backbone between PoPs — Prisma Access PoPs use hyperscaler backbone." },
             "cato":       { "score": 5, "note": "Cato operates a fully private SDP backbone connecting 85+ PoPs globally with SLA-backed latency guarantees. No public internet is traversed between Cato PoPs — the backbone is Cato's primary competitive moat for SD-WAN." },
             "netskope":   { "score": 4, "note": "Netskope's NewEdge private network interconnects all PoPs via owned infrastructure with direct IXP peering. Not marketed as a traditional SD-WAN backbone per se, but NewEdge avoids hyperscaler transit." },
             "cloudflare": { "score": 3, "note": "Magic WAN uses Cloudflare's Argo Smart Routing across its own network infrastructure between PoPs. Cloudflare's backbone is extensive but Magic WAN is a network overlay, not traditional CPE SD-WAN." },
             "zscaler":    { "score": 2, "note": "Zscaler is not a traditional SD-WAN vendor. ZIA/ZPA provide internet and private app access but there is no Zscaler-owned WAN backbone or SD-WAN CPE product. This criterion is not applicable by design." },
-            "aryaka":     { "score": 4, "note": "Aryaka's SmartConnect private backbone connects 40+ PoPs globally with SLA-backed latency, FEC, and WAN optimization. Strong APAC and emerging market coverage. Smaller network than Cato (85+ PoPs) but SLA guarantees are operationally stronger for managed customers who want backbone performance without operating it themselves." },
-            "graphiant":  { "score": 4, "note": "Graphiant operates a private Layer 3 network fabric — sites connect via standard internet to Graphiant edge nodes, and Graphiant handles private routing internally without tunnels. Delivers equivalent SLA guarantees for deterministic-performance use cases without traditional CPE overlay complexity." }
+            "aryaka":     { "score": 4, "note": "Aryaka's SmartConnect private backbone connects 40+ PoPs globally with SLA-backed latency, FEC, and WAN optimization. Strong APAC and emerging market coverage. Smaller network than Cato (85+ PoPs) but SLA guarantees are operationally strong for managed customers." },
+            "fortinet":   { "score": 3, "note": "Fortinet Secure SD-WAN operates as an internet-based SD-WAN overlay — no private backbone between PoPs. FortiSASE cloud SSE PoPs use internet routing. Comparable to Palo Alto's public internet-based model." },
+            "versa":      { "score": 3, "note": "VersaONE SD-WAN operates as a software-defined overlay without a private backbone between PoPs. Internet-based routing with Argo-style optimization is not a Versa design. Service provider ecosystem may deliver more deterministic paths for managed deployments." }
           }
         },
         {
@@ -337,10 +390,11 @@
             "palo_alto":  { "score": 4, "note": "Prisma SD-WAN (CloudGenix ION devices) provides application-aware path steering with sub-second failover via link quality measurement. Predictive steering uses historical path analytics to anticipate degradation." },
             "cato":       { "score": 5, "note": "Cato's SD-WAN performs continuous per-app path evaluation across all WAN links, predictively steering traffic before SLA breach. Sub-second failover is supported with automatic path selection based on app QoS requirements." },
             "netskope":   { "score": 3, "note": "Netskope NSG provides per-app steering with reactive failover. NSG is a newer product; predictive steering and deep path analytics are less mature than Cato or PA CloudGenix." },
-            "cloudflare": { "score": 3, "note": "Magic WAN supports policy-based routing and Argo Smart Routing for path optimization. Cloudflare One Appliance adds per-WAN priority and health-based circuit failover, but per-app SLA-triggered steering with sub-second failover is not the model — Cloudflare optimizes in-network after ingress rather than at the branch." },
+            "cloudflare": { "score": 3, "note": "Magic WAN supports policy-based routing and Argo Smart Routing for path optimization. Per-app SLA-triggered steering with sub-second failover is not the primary Cloudflare SD-WAN model." },
             "zscaler":    { "score": 2, "note": "No native SD-WAN path steering capability. ZDX monitors app experience but does not control path selection at the branch level." },
-            "aryaka":     { "score": 4, "note": "Application-aware path steering is performed by Aryaka's NOC on behalf of the customer — not customer-configured. NOC monitors all WAN paths and steers traffic proactively. Sub-second failover is SLA-backed; the managed model means predictive steering is operationally native without requiring a customer-side engineering effort." },
-            "graphiant":  { "score": 3, "note": "Graphiant performs routing optimization within its own network fabric but does not offer customer-configured per-app policy steering. Traffic is admitted to the Graphiant network and Graphiant handles internal routing; application-specific steering granularity is limited compared to traditional SD-WAN." }
+            "aryaka":     { "score": 4, "note": "Application-aware path steering is performed by Aryaka's NOC — NOC monitors all WAN paths and steers traffic proactively. Sub-second failover is SLA-backed. Managed model means predictive steering is operationally native without requiring customer engineering effort." },
+            "fortinet":   { "score": 4, "note": "FortiGate SD-WAN provides application-aware path steering with performance SLA monitoring, reactive and predictive path switching, and sub-second failover. Fifth consecutive Gartner SD-WAN MQ Leader validates steering maturity." },
+            "versa":      { "score": 4, "note": "VersaONE provides AI-powered per-app path steering with reactive and predictive failover. Highest Gartner Critical Capabilities score in Network Starter Kit use case reflects SD-WAN steering maturity for complex multi-site environments." }
           }
         },
         {
@@ -352,10 +406,11 @@
             "palo_alto":  { "score": 4, "note": "Prisma SD-WAN ION devices support active/active multi-link with per-flow and per-packet load balancing across MPLS, broadband, and LTE. Link bonding and packet duplication for lossy links are available." },
             "cato":       { "score": 5, "note": "Cato Socket appliances support active/active multi-link with per-packet load balancing, MPLS+broadband+LTE bonding, and last-mile quality monitoring. This is a core SD-WAN differentiator for Cato." },
             "netskope":   { "score": 3, "note": "Netskope NSG supports multi-link with active/standby and basic active/active configurations. Per-packet load balancing and deep bonding across diverse link types are developing capabilities." },
-            "cloudflare": { "score": 3, "note": "Cloudflare One Appliance supports multiple WAN uplinks with one IPsec tunnel per WAN port and ECMP load-balancing across equal-priority tunnels, plus active/standby HA across paired appliances. Lacks per-packet active/active bonding across mixed MPLS+broadband+LTE that Cato Socket and PA ION provide." },
+            "cloudflare": { "score": 3, "note": "Cloudflare One Appliance supports multiple WAN uplinks with ECMP load-balancing and active/standby HA. Lacks per-packet active/active bonding across mixed MPLS+broadband+LTE that Cato Socket and PA ION provide." },
             "zscaler":    { "score": 1, "note": "No SD-WAN multi-link aggregation capability. Zscaler does not supply branch edge hardware. Not applicable by design." },
-            "aryaka":     { "score": 4, "note": "Aryaka SmartEdge appliances support active/active multi-link with MPLS, broadband, and LTE bonding. Per-packet and per-flow load balancing across uplinks are supported. Link bonding management is handled by Aryaka's NOC, not the customer team." },
-            "graphiant":  { "score": 2, "note": "Graphiant does not supply CPE hardware with native multi-link bonding. Sites connect to Graphiant edge nodes via a single internet uplink; multi-link failover at the branch requires the customer's existing router. Not a Graphiant design focus." }
+            "aryaka":     { "score": 4, "note": "Aryaka SmartEdge appliances support active/active multi-link with MPLS, broadband, and LTE bonding. Per-packet and per-flow load balancing are supported; managed by Aryaka's NOC." },
+            "fortinet":   { "score": 5, "note": "FortiGate SD-WAN supports active/active multi-link with per-packet load balancing, MPLS+broadband+LTE+5G bonding, FEC, and packet duplication. Feature-mature implementation backed by five consecutive Gartner MQ Leader recognition." },
+            "versa":      { "score": 4, "note": "VersaONE supports active/active multi-link bonding with per-flow and per-packet load balancing across diverse link types. Software-defined architecture allows deployment on commodity hardware with full multi-link capability." }
           }
         },
         {
@@ -363,15 +418,16 @@
           "label": "Cloud On-Ramp Quality",
           "weight": "high",
           "scale": "1=Backhaul to DC · 3=Direct internet breakout · 5=Direct peering with AWS/Azure/GCP + SaaS SLA monitoring",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma Access PoPs are deployed on AWS, Azure, and GCP with direct peering to cloud providers. Prisma SD-WAN integrates with Prisma Access for optimized cloud on-ramp with SaaS monitoring via ADEM." },
             "cato":       { "score": 5, "note": "Cato PoPs are co-located with major cloud regions and have direct peering to AWS, Azure, GCP, and top SaaS providers. App-level SLA monitoring for O365, Salesforce, and other apps is built into the backbone." },
             "netskope":   { "score": 4, "note": "Netskope NewEdge PoPs peer directly with major cloud providers and SaaS networks. Cloud on-ramp quality is excellent; SaaS SLA monitoring is available via Digital Experience Management." },
             "cloudflare": { "score": 4, "note": "Cloudflare's global network peers with AWS, Azure, GCP, and thousands of SaaS providers at IXPs globally. Magic WAN routes branch traffic via Cloudflare's network for optimal cloud access." },
             "zscaler":    { "score": 3, "note": "ZIA provides direct internet breakout from the nearest ZEN. No dedicated cloud on-ramp hardware, but ZDX monitors SaaS performance and ZIA PoPs are deployed near cloud regions." },
-            "aryaka":     { "score": 4, "note": "Aryaka PoPs peer with major cloud regions and SaaS providers. Cloud on-ramp is managed as part of the Aryaka service — Aryaka's NOC manages SaaS performance optimization and path selection to cloud destinations without customer configuration." },
-            "graphiant":  { "score": 3, "note": "Graphiant edge nodes provide internet breakout for cloud connectivity. Direct peering with AWS/Azure/GCP at Graphiant PoP level is developing; current model is optimized internet routing to cloud regions, not dedicated cloud on-ramp with SaaS SLA monitoring." }
+            "aryaka":     { "score": 4, "note": "Aryaka PoPs peer with major cloud regions and SaaS providers. Cloud on-ramp is managed as part of the Aryaka service — NOC manages SaaS performance optimization and path selection to cloud destinations." },
+            "fortinet":   { "score": 4, "note": "FortiGate SD-WAN supports direct internet breakout for SaaS with application steering to Prisma Access PoPs or direct to cloud regions. ADEM-equivalent SaaS monitoring via FortiSASE. Direct cloud peering depth to be verified vs. Cato." },
+            "versa":      { "score": 4, "note": "VersaONE supports direct cloud on-ramp to major IaaS providers with application-aware steering. SaaS SLA monitoring via VersaONE analytics. Direct peering depth vs. Cato to be verified." }
           }
         },
         {
@@ -379,15 +435,16 @@
           "label": "Zero-Touch Provisioning (ZTP)",
           "weight": "high",
           "scale": "1=Manual config required · 3=Partial ZTP · 5=Ships pre-configured, auto-registers, <30min to full operation",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma SD-WAN ION devices support ZTP via SCM — devices ship pre-configured, auto-register on first WAN contact, and receive policy from SCM. Typical deployment time <60 minutes for a standard branch." },
             "cato":       { "score": 5, "note": "Cato Socket is the reference implementation of ZTP in SASE. Ships pre-configured, auto-registers to Cato Cloud on first internet contact. Sites are typically operational in under 30 minutes including WAN uplink testing." },
             "netskope":   { "score": 3, "note": "Netskope NSG supports ZTP for initial registration but the provisioning experience requires more manual configuration steps than Cato. ZTP maturity reflects the newer NSG product." },
-            "cloudflare": { "score": 4, "note": "Cloudflare One Appliance (formerly Magic WAN Connector, GA 2023) ships pre-installed on Cloudflare-certified hardware via partner network (e.g. TD SYNNEX, Dell VEP). Registers automatically to Cloudflare dashboard on first internet contact. Virtual Appliance also available for hypervisor deployment." },
+            "cloudflare": { "score": 4, "note": "Cloudflare One Appliance ships pre-installed on Cloudflare-certified hardware via partner network. Registers automatically to Cloudflare dashboard on first internet contact." },
             "zscaler":    { "score": 2, "note": "No SD-WAN CPE product — ZTP is not applicable. Zscaler Client Connector deployment is automated via MDM/GPO but this is endpoint agent deployment, not branch edge ZTP." },
-            "aryaka":     { "score": 4, "note": "Aryaka SmartEdge appliances ship pre-configured and auto-register on first WAN contact. ZTP is managed by Aryaka's NOC — Aryaka engineers activate the site remotely and validate connectivity, meaning on-site work is cable-plug-in only. Typical activation under 60 minutes." },
-            "graphiant":  { "score": 3, "note": "Graphiant edge node onboarding requires configuring the local router to point to the Graphiant edge node. No CPE appliance ships; ZTP applies to software configuration, not hardware provisioning. Requires more steps than Cato or Aryaka appliance ZTP." }
+            "aryaka":     { "score": 4, "note": "Aryaka SmartEdge appliances ship pre-configured and auto-register on first WAN contact. ZTP is managed by Aryaka's NOC — activation under 60 minutes with Aryaka engineers validating remotely." },
+            "fortinet":   { "score": 5, "note": "FortiGate SD-WAN supports ZTP via FortiManager and FortiZTP service — devices ship pre-configured, auto-register via the FortiZTP cloud, and pull policy from FortiManager. Maturity backed by large-scale SD-WAN deployments." },
+            "versa":      { "score": 4, "note": "VersaONE supports ZTP for branch CPE deployment via Versa Director. Software-defined architecture enables flexible ZTP across commodity hardware, virtual appliances, and cloud. Deployment time competitive with PA ION." }
           }
         },
         {
@@ -401,8 +458,9 @@
             "netskope":   { "score": 4, "note": "Netskope Borderless SD-WAN (NSG) and Netskope One SSE share the same management console with coordinated policies. Full single-pass convergence is close but NSG's newer architecture means some SSE policies require separate configuration." },
             "cloudflare": { "score": 4, "note": "Magic WAN and Cloudflare One share the Cloudflare Zero Trust dashboard with unified policy. Network-level routing and identity-based access are in the same console but use different policy paradigms." },
             "zscaler":    { "score": 3, "note": "ZIA and ZPA share the ZIA admin portal for policy coordination, but there is no native SD-WAN product. SSE convergence in the traditional sense does not apply; Zscaler partners with third-party SD-WAN vendors." },
-            "aryaka":     { "score": 3, "note": "Aryaka SASE bundles SSE (co-packaged with PA Prisma Access or Aryaka-native SSE) with SD-WAN in one managed service contract. Policy coordination between SD-WAN and SSE is handled by Aryaka's NOC rather than a native single-pass engine — functionally converged via managed ops, not architecturally single-pass." },
-            "graphiant":  { "score": 1, "note": "Graphiant has no SSE capability. Security is explicitly out of scope — organizations must bring their own SSE via service chaining at the Graphiant edge node. Not applicable by design." }
+            "aryaka":     { "score": 3, "note": "Aryaka SASE bundles SSE with SD-WAN in one managed service contract. Policy coordination is handled by Aryaka's NOC rather than a native single-pass engine — functionally converged via managed ops, not architecturally single-pass." },
+            "fortinet":   { "score": 5, "note": "FortiOS unification on a single OS means FortiGate SD-WAN and FortiSASE cloud SSE share FortiManager/FortiSASE portal management and native FortiOS policy coordination. Not true single-pass like Cato, but tighter native convergence than API-based integrations." },
+            "versa":      { "score": 4, "note": "VersaONE provides SD-WAN and SSE convergence on a single VOS policy plane. Native policy unification without separate product integration. Not a true single-pass architecture like Cato, but substantially converged via VOS." }
           }
         },
         {
@@ -414,10 +472,11 @@
             "palo_alto":  { "score": 4, "note": "Prisma SD-WAN ION devices include integrated LTE (select models) and support 5G via external USB/PCIe modem. Failover time is sub-10 seconds. Usage controls are configurable in SCM." },
             "cato":       { "score": 5, "note": "Cato Socket appliances include native LTE/5G integration (select models) with sub-10-second failover. SIM usage controls, carrier selection, and cellular link quality monitoring are native in CMA." },
             "netskope":   { "score": 3, "note": "Netskope NSG supports LTE failover via integrated or external modems. 5G integration is in development. Failover functionality is available but cellular management depth is less mature than Cato." },
-            "cloudflare": { "score": 1, "note": "Cloudflare One Appliance hardware spec is Ethernet-only: 2× SFP+ (10G) + 6× RJ45 (1G), no native LTE/5G modem. Cellular failover requires an upstream router with cellular WAN. Not a Cloudflare design focus for the appliance." },
+            "cloudflare": { "score": 1, "note": "Cloudflare One Appliance hardware is Ethernet-only — no native LTE/5G modem. Cellular failover requires an upstream router with cellular WAN. Not a Cloudflare design focus for the appliance." },
             "zscaler":    { "score": 1, "note": "Not applicable — no SD-WAN CPE product. Cellular failover at the branch is the responsibility of the customer's networking hardware." },
-            "aryaka":     { "score": 3, "note": "Aryaka SmartEdge appliances support LTE failover via integrated or USB-attached modems. 5G integration is in development. Failover is managed by Aryaka's NOC; carrier selection and usage controls are part of the managed service." },
-            "graphiant":  { "score": 1, "note": "No CPE appliance product — LTE/5G failover at the branch is the responsibility of the customer's existing router hardware. Not applicable to Graphiant's NaaS model." }
+            "aryaka":     { "score": 3, "note": "Aryaka SmartEdge appliances support LTE failover via integrated or USB-attached modems. 5G integration is in development. Failover is managed by Aryaka's NOC." },
+            "fortinet":   { "score": 5, "note": "FortiGate SD-WAN appliances include native LTE/5G integration across multiple hardware models (FortiGate 40F-5G, 100F-5G, etc.) with sub-10-second failover, SIM management, and usage controls in FortiManager. One of the strongest 5G CPE lineups in the SD-WAN market." },
+            "versa":      { "score": 4, "note": "VersaONE supports LTE/5G failover via integrated cellular in select hardware and external modem support. Sub-10-second failover with usage controls available. Verify current 5G hardware model lineup." }
           }
         },
         {
@@ -429,10 +488,11 @@
             "palo_alto":  { "score": 4, "note": "Prisma SD-WAN provides TCP optimization, forward error correction (FEC), and packet duplication for lossy links. Deduplication is available for data-intensive traffic patterns." },
             "cato":       { "score": 5, "note": "Cato's WAN optimization includes TCP acceleration, FEC, packet duplication, deduplication, and per-flow QoS across the private backbone. Optimization is applied both at the edge (Socket) and within the Cato backbone." },
             "netskope":   { "score": 3, "note": "Netskope NSG provides TCP-level optimization and basic WAN acceleration. FEC and deep packet deduplication are in development. WAN optimization is not a feature area of focus for Netskope's SD-WAN." },
-            "cloudflare": { "score": 2, "note": "Argo Smart Routing reduces RTT via optimal in-network path selection across Cloudflare's backbone. Cloudflare One Appliance handles branch ingress but does not perform FEC, packet duplication, or TCP acceleration at the edge. Optimization is network-side, not CPE-side." },
+            "cloudflare": { "score": 2, "note": "Argo Smart Routing reduces RTT via optimal in-network path selection across Cloudflare's backbone. Cloudflare One Appliance does not perform FEC, packet duplication, or TCP acceleration at the edge. Optimization is network-side, not CPE-side." },
             "zscaler":    { "score": 1, "note": "No WAN optimization capability. Zscaler does not supply branch connectivity hardware or perform WAN transport optimization." },
-            "aryaka":     { "score": 5, "note": "WAN optimization is a core Aryaka backbone design objective: FEC, packet deduplication, TCP acceleration, and per-flow QoS are all built into SmartConnect. Optimization is applied both at the SmartEdge appliance and within the Aryaka backbone — directly competitive with Cato on this criterion." },
-            "graphiant":  { "score": 3, "note": "Graphiant provides network-level routing optimization within its fabric (avoiding congested internet segments) but does not perform appliance-layer FEC, packet deduplication, or TCP optimization. WAN optimization is lower priority for the tunnel-free NaaS architecture." }
+            "aryaka":     { "score": 5, "note": "WAN optimization is a core Aryaka backbone design objective: FEC, packet deduplication, TCP acceleration, and per-flow QoS are all built into SmartConnect. Optimization is applied both at the SmartEdge appliance and within the Aryaka backbone." },
+            "fortinet":   { "score": 4, "note": "FortiGate SD-WAN provides TCP acceleration, FEC, and packet duplication for lossy links. WAN optimization depth is competitive with Palo Alto. No private backbone means optimization is CPE-local rather than backbone-wide like Cato or Aryaka." },
+            "versa":      { "score": 4, "note": "VersaONE provides TCP acceleration, FEC, and packet duplication. Software-defined architecture enables optimization across commodity hardware. Comparable to Palo Alto ION in WAN optimization depth." }
           }
         }
       ]
@@ -449,11 +509,13 @@
           "scale": "1=No UEBA · 3=Rule-based anomaly detection · 5=ML UEBA, multi-dimensional baselines, automated risk escalation",
           "scores": {
             "palo_alto":  { "score": 5, "note": "Cortex XDR (integrated with Prisma Access) delivers ML-based UEBA with peer-group baselining, multi-dimensional behavioral scoring, and automated incident creation on anomaly. Tight Prisma Access + Cortex integration makes this a leading SSE + UEBA story." },
-            "cato":       { "score": 5, "note": "Cato XDR UEBA plus Cato Dynamic Prevention (GA March 2026) — auto-adaptive threat prevention correlating months of inline sensor and network signals (DLP, IPS, NGAM) to identify behavior-based threats that appear benign in isolation. Automated risk escalation and adaptive rule enforcement without SOC intervention." },
+            "cato":       { "score": 5, "note": "Cato XDR UEBA plus Cato Dynamic Prevention (GA March 2026) — auto-adaptive threat prevention correlating months of inline sensor and network signals to identify behavior-based threats. Automated risk escalation and adaptive rule enforcement without SOC intervention." },
             "netskope":   { "score": 4, "note": "Netskope UEBA provides ML-based user risk scoring, insider threat detection, and automated policy response. Tight integration with DLP events gives UEBA strong data movement context." },
             "cloudflare": { "score": 2, "note": "Cloudflare does not currently offer a mature UEBA solution. Basic anomaly detection is available in Cloudflare One logs; structured ML-based user behavior analytics with automated risk escalation is not a current product capability." },
             "zscaler":    { "score": 5, "note": "Zscaler UEBA (via ZIA + ZPA telemetry) provides ML behavioral analytics with risk scoring per user. Tight integration with ZDX adds network-path context to user behavior. Strong autonomous risk escalation workflow." },
-            "aryaka":     { "score": 3, "note": "Aryaka's NOC/SOC uses ML-based anomaly detection and behavioral analytics internally to manage the network proactively, but this is an operator-facing capability, not a customer-facing UEBA console. Customer-accessible UEBA dashboards are limited; the AIOps value is in managed ops outcomes, not self-service analytics." }
+            "aryaka":     { "score": 3, "note": "Aryaka's NOC/SOC uses ML-based anomaly detection internally to manage the network proactively, but this is an operator-facing capability. Customer-accessible UEBA dashboards are limited; the AIOps value is in managed ops outcomes." },
+            "fortinet":   { "score": 3, "note": "FortiSASE's standalone UEBA is rule-based anomaly detection with FortiAnalyzer aggregation. Full ML-based UEBA requires FortiSIEM deployment as a separate product. Without FortiSIEM, depth is well below Palo Alto Cortex XDR or Zscaler UEBA." },
+            "versa":      { "score": 3, "note": "VersaAI provides behavioral analytics and anomaly detection across VersaONE telemetry. ML-based user risk scoring is available; depth at enterprise scale and automated risk escalation trail Palo Alto Cortex XDR and Zscaler UEBA." }
           }
         },
         {
@@ -467,7 +529,9 @@
             "netskope":   { "score": 3, "note": "Netskope provides policy templates and a guided wizard for common use cases. AI-driven natural language policy authoring is in preview; current tooling is template-based rather than conversational." },
             "cloudflare": { "score": 3, "note": "Cloudflare Zero Trust provides policy templates and a step-by-step wizard for common policies. AI-assisted natural language policy authoring is not currently available." },
             "zscaler":    { "score": 4, "note": "Zscaler's AI-powered admin features in ZIA/ZPA include policy recommendations based on observed traffic and natural language query of logs. Full natural language to committed policy with simulation is in roadmap stage." },
-            "aryaka":     { "score": null, "note": "Not applicable — Aryaka does not expose a customer-facing policy authoring interface; policy is authored and managed by Aryaka's NOC on the customer's behalf. GenAI policy authoring as a customer self-service capability is outside the managed SASE model." }
+            "aryaka":     { "score": null, "note": "Not applicable — Aryaka does not expose a customer-facing policy authoring interface; policy is managed by Aryaka's NOC on the customer's behalf." },
+            "fortinet":   { "score": 3, "note": "FortiOS GenAI-powered policy automation is shipping in stages through 2025-2026 with policy recommendations and NL query of logs. Direct NL-to-committed-policy with simulation preview (Strata Copilot equivalent) is not yet fully GA — current tooling is template-and-recommendation-based." },
+            "versa":      { "score": 3, "note": "VersaONE provides policy templates and guided wizards. VersaAI supports policy recommendations and anomaly explanations. Full natural language to committed policy with simulation preview is not yet documented at Big Five GA levels." }
           }
         },
         {
@@ -476,12 +540,14 @@
           "weight": "high",
           "scale": "1=Manual path management · 3=Reactive ML steering · 5=Predictive rerouting 30-90s before SLA breach",
           "scores": {
-            "palo_alto":  { "score": 4, "note": "Prisma SD-WAN uses ML-based path analytics with proactive rerouting based on predicted link degradation. ADEM provides the telemetry data feeding path decisions. Predictive window is 30-60s in documented performance benchmarks." },
+            "palo_alto":  { "score": 4, "note": "Prisma SD-WAN uses ML-based path analytics with proactive rerouting based on predicted link degradation. ADEM provides the telemetry data feeding path decisions." },
             "cato":       { "score": 5, "note": "Cato's autonomous path optimization continuously evaluates link quality for all WAN paths and predictively steers traffic before SLA degradation. The private backbone gives Cato full-path visibility for predictive decisions that ISP-dependent vendors cannot achieve." },
-            "netskope":   { "score": 3, "note": "Netskope NSG provides reactive path steering based on real-time link quality measurement. Predictive path optimization drawing on historical ML baselines is developing; current optimization is primarily reactive." },
+            "netskope":   { "score": 3, "note": "Netskope NSG provides reactive path steering based on real-time link quality measurement. Predictive path optimization is developing; current optimization is primarily reactive." },
             "cloudflare": { "score": 3, "note": "Argo Smart Routing provides real-time optimal path selection across Cloudflare's network. Predictive rerouting ahead of SLA breach is not a documented Magic WAN capability; steering is reactive to observed conditions." },
-            "zscaler":    { "score": 3, "note": "ZDX provides path visibility but Zscaler does not control WAN transport infrastructure. Path optimization is advisory (recommendations to network team) rather than autonomous." },
-            "aryaka":     { "score": 5, "note": "Aryaka's NOC performs autonomous path optimization across the SmartConnect backbone — proactive rerouting before SLA breach is a managed service commitment, not a customer-configured capability. Full backbone visibility enables predictive decisions that self-operated SD-WAN vendors cannot match without dedicated NOC staff." }
+            "zscaler":    { "score": 3, "note": "ZDX provides path visibility but Zscaler does not control WAN transport infrastructure. Path optimization is advisory rather than autonomous." },
+            "aryaka":     { "score": 5, "note": "Aryaka's NOC performs autonomous path optimization across the SmartConnect backbone — proactive rerouting before SLA breach is a managed service commitment. Full backbone visibility enables predictive decisions that self-operated SD-WAN vendors cannot match without dedicated NOC staff." },
+            "fortinet":   { "score": 4, "note": "FortiGate SD-WAN uses ML-powered path analytics with SLA-triggered predictive steering. Performance comparable to PA Prisma SD-WAN. No private backbone means optimization cannot be predictive across the full path — limited to branch-side link quality signals." },
+            "versa":      { "score": 4, "note": "VersaONE provides AI-powered autonomous path optimization. Reactive and predictive steering based on telemetry across all SD-WAN links. Without private backbone, full-path predictive optimization is limited vs. Cato or Aryaka." }
           }
         },
         {
@@ -495,7 +561,9 @@
             "netskope":   { "score": 3, "note": "Netskope DEM provides hop-level path visibility for endpoint-to-app paths. Automated RCA with ISP fault attribution is available for covered paths; synthesis of network + security event context is less mature than PA or Zscaler." },
             "cloudflare": { "score": 3, "note": "Cloudflare's network analytics and DEM tools provide visibility into path quality and PoP health. Automated RCA with sub-60-second diagnosis is not consistently documented for branch-to-app scenarios." },
             "zscaler":    { "score": 5, "note": "ZDX's automated RCA is best-in-class: per-session hop analysis, ISP fault attribution, device health correlation, and <60s diagnosis for user-reported issues. Single-click RCA from a ticket to identified fault location is a core ZDX selling point." },
-            "aryaka":     { "score": 5, "note": "Aryaka's NOC initiates RCA proactively — Aryaka engineers contact customers when issues are detected before users report them. Full-path visibility across the SmartConnect backbone means Aryaka can attribute faults to specific backbone segments, last-mile links, or ISP hops. No other vendor in this comparison offers proactive NOC-initiated RCA as a standard service." }
+            "aryaka":     { "score": 5, "note": "Aryaka's NOC initiates RCA proactively — Aryaka engineers contact customers when issues are detected before users report them. Full-path visibility across the SmartConnect backbone enables specific fault attribution to backbone segments, last-mile links, or ISP hops." },
+            "fortinet":   { "score": 3, "note": "FortiSASE DEM provides automated RCA with path visibility. Without a private backbone, RCA is limited to branch-side signals and ISP traversal — cannot match ZDX's full per-session hop analysis and sub-60-second ISP fault attribution at enterprise scale." },
+            "versa":      { "score": 3, "note": "VersaONE network analytics provide path visibility and RCA workflows. ISP fault attribution and automated sub-60-second diagnosis trail ZDX; without private backbone, full-path RCA is limited to observable link signals." }
           }
         },
         {
@@ -509,7 +577,9 @@
             "netskope":   { "score": 4, "note": "Netskope Intelligent SSE correlates DLP, CASB, UEBA, and threat events across the Netskope platform. Cross-correlation with non-Netskope endpoint telemetry requires SIEM integration; within-platform correlation is strong." },
             "cloudflare": { "score": 3, "note": "Cloudflare One dashboard provides a unified view of Gateway, Access, and CASB events. ML-driven incident grouping across pillars is in development; current correlation is primarily log aggregation with manual analyst-driven triage." },
             "zscaler":    { "score": 4, "note": "Zscaler's Unified Platform dashboard correlates ZIA, ZPA, and ZDX events. AI-powered incident grouping surfaces threat chains across products. Cross-product correlation with non-Zscaler endpoint data requires SIEM/SOAR integration." },
-            "aryaka":     { "score": 3, "note": "Aryaka's NOC correlates SD-WAN, SSE, and connectivity events internally across the managed platform. Customer-facing cross-product event correlation dashboards are basic; advanced correlation occurs within Aryaka's NOC tooling rather than a self-service console the customer operates." }
+            "aryaka":     { "score": 3, "note": "Aryaka's NOC correlates SD-WAN, SSE, and connectivity events internally across the managed platform. Customer-facing cross-product event correlation dashboards are basic; advanced correlation occurs within Aryaka's NOC tooling." },
+            "fortinet":   { "score": 4, "note": "FortiAnalyzer aggregates logs and provides correlation across FortiGate, FortiSASE, FortiEDR, and other FortiOS products — native cross-product correlation for Fortinet-ecosystem deployments. FortiSIEM adds ML incident grouping when deployed. Cross-vendor correlation requires external SIEM. Broader-ecosystem depth trails Palo Alto Cortex XDR." },
+            "versa":      { "score": 3, "note": "VersaONE unified analytics correlates SD-WAN, SSE, and ZTNA events across the platform. Cross-pillar incident grouping is available; ML-based correlation depth trails Palo Alto Cortex XDR and Zscaler at enterprise scale." }
           }
         },
         {
@@ -523,7 +593,9 @@
             "netskope":   { "score": 4, "note": "Netskope ships native connectors for Splunk, Microsoft Sentinel, IBM QRadar, and others. SOAR playbook triggers via webhook and Splunk SOAR connector are supported. Bidirectional enrichment requires custom integration work." },
             "cloudflare": { "score": 3, "note": "Cloudflare One logs export to SIEM via Logpush (streaming to Splunk, Datadog, S3, etc.). SOAR integration requires custom webhook configuration; no native bidirectional SOAR connectors ship out-of-box." },
             "zscaler":    { "score": 4, "note": "ZIA/ZPA ship with native Splunk, Sentinel, and QRadar connectors. Streaming log export via Nanolog Streaming Service (NSS) is the standard integration method. Bidirectional SOAR playbook triggering requires partner SOAR configuration." },
-            "aryaka":     { "score": 3, "note": "Aryaka supports log export to major SIEMs (Splunk, Sentinel) via syslog and API. Bidirectional SOAR integration requires custom configuration; no native SOAR playbook connectors ship out-of-box. SIEM integration is available but is not a primary Aryaka differentiator — the managed NOC/SOC is the operational model, not self-service SOAR." }
+            "aryaka":     { "score": 3, "note": "Aryaka supports log export to major SIEMs (Splunk, Sentinel) via syslog and API. Bidirectional SOAR integration requires custom configuration. SIEM integration is available but is not a primary Aryaka differentiator — the managed NOC/SOC is the operational model." },
+            "fortinet":   { "score": 4, "note": "FortiSIEM and FortiSOAR provide native bidirectional SIEM/SOAR integration across FortiOS products. External cross-vendor connector breadth is competitive; not at Palo Alto XSOAR's 1,000+-connector reference level for cross-ecosystem integration." },
+            "versa":      { "score": 3, "note": "VersaONE supports log export to major SIEMs (Splunk, Sentinel) via syslog and API. Native bidirectional SOAR connectors are more limited than Palo Alto XSOAR or native Fortinet FortiSOAR. Integration depth is functional for standard SIEM workflows." }
           }
         }
       ]
@@ -538,13 +610,15 @@
           "label": "Regional Data Plane Isolation",
           "weight": "critical",
           "scale": "1=No residency controls · 3=Tenant-level isolation · 5=PoP-level isolation, no cross-region metadata replication, auditable",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
-            "palo_alto":  { "score": 4, "note": "Prisma Access supports regional data plane pinning — tenants can restrict processing to specified regions (e.g., EU-only). Cross-region metadata replication controls are available but require explicit configuration; not isolation-by-default." },
-            "cato":       { "score": 3, "note": "Cato supports regional data residency options for log storage and some processing components. Full PoP-level isolation with auditable metadata boundaries is not yet a shipped capability; data plane processing may traverse multiple PoPs." },
+            "palo_alto":  { "score": 4, "note": "Prisma Access supports regional data plane pinning — tenants can restrict processing to specified regions. Cross-region metadata replication controls are available but require explicit configuration; not isolation-by-default." },
+            "cato":       { "score": 3, "note": "Cato supports regional data residency options for log storage and some processing components. Full PoP-level isolation with auditable metadata boundaries is not yet a shipped capability." },
             "netskope":   { "score": 5, "note": "Netskope NewEdge supports PoP-level tenant isolation — each tenant's traffic can be restricted to a specific geographic region with contractual prohibitions on cross-region metadata replication. Auditable via compliance dashboards. Sovereignty-by-design is a Netskope design center." },
-            "cloudflare": { "score": 4, "note": "Cloudflare Regional Services and Data Localization Suite allow customers to restrict data processing to specific regions (EU, US, etc.). Cross-region metadata replication is contractually controlled. Strong regulatory posture for GDPR." },
-            "zscaler":    { "score": 4, "note": "Zscaler supports data residency controls via regional cloud selection and Private Cloud options. Metadata processing isolation is available via Zscaler Private Cloud (ZPC) and specific contractual commitments for regulated industries." }
+            "cloudflare": { "score": 4, "note": "Cloudflare Regional Services and Data Localization Suite allow customers to restrict data processing to specific regions. Cross-region metadata replication is contractually controlled. Strong regulatory posture for GDPR." },
+            "zscaler":    { "score": 4, "note": "Zscaler supports data residency controls via regional cloud selection and Private Cloud options. Metadata processing isolation is available via Zscaler Private Cloud (ZPC) and specific contractual commitments for regulated industries." },
+            "fortinet":   { "score": 3, "note": "FortiSASE supports regional cloud deployment — customers can configure data processing to stay within US, EU, or APAC regions. Full PoP-level data plane isolation with auditable metadata boundaries (Netskope-equivalent) is not a documented FortiSASE capability as of Q2 2026." },
+            "versa":      { "score": 3, "note": "VersaONE on-premises deployment provides maximum customer-controlled data residency — a distinct architectural path vs. cloud-native SASE. Cloud-delivered PoP data plane isolation is tenant-configurable; full auditable PoP-level isolation matching Netskope is not a documented cloud-side capability." }
           }
         },
         {
@@ -552,13 +626,15 @@
           "label": "Sovereign Cloud PoP Options",
           "weight": "critical",
           "scale": "1=US/EU regions only · 3=Major regulated markets · 5=All regulated markets + private/dedicated PoP option",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
-            "palo_alto":  { "score": 4, "note": "Prisma Access is available in US, EU, Asia-Pacific, and key regulated markets (Saudi Arabia, UAE, India). Dedicated tenant cloud deployments are available for FedRAMP and specific regulated verticals." },
-            "cato":       { "score": 3, "note": "Cato has PoPs in most major markets but dedicated sovereign or private PoP options are limited compared to larger vendors. Key regulated markets in Middle East and APAC are covered; private PoP deployment requires a custom engagement." },
+            "palo_alto":  { "score": 4, "note": "Prisma Access is available in US, EU, Asia-Pacific, and key regulated markets. Dedicated tenant cloud deployments are available for FedRAMP and specific regulated verticals." },
+            "cato":       { "score": 3, "note": "Cato has PoPs in most major markets but dedicated sovereign or private PoP options are limited. Private/dedicated PoP deployment requires a custom engagement." },
             "netskope":   { "score": 5, "note": "Netskope's NewEdge network covers all major regulated markets including EU, US GovCloud, Australia, Japan, UAE, India, and Brazil with dedicated sovereign PoP options for each. Private/dedicated PoP deployments are available for large regulated enterprises." },
             "cloudflare": { "score": 4, "note": "Cloudflare's 330+ PoP network covers nearly every regulated market globally. Cloudflare for Government and EU-specific data localization are available. Dedicated private PoP options are more limited compared to Netskope." },
-            "zscaler":    { "score": 4, "note": "Zscaler has ZEN nodes in all major regulated markets and offers Zscaler Private Cloud (ZPC) for highly regulated customers requiring dedicated infrastructure. FedRAMP authorized. UAE, India, and APAC regulated markets are covered." }
+            "zscaler":    { "score": 4, "note": "Zscaler has ZEN nodes in all major regulated markets and offers Zscaler Private Cloud (ZPC) for highly regulated customers requiring dedicated infrastructure. FedRAMP authorized. UAE, India, and APAC regulated markets are covered." },
+            "fortinet":   { "score": 3, "note": "FortiSASE PoPs cover major regulated markets (US, EU, APAC). Dedicated sovereign or private PoP options for highly regulated deployments are less mature than Netskope's Australian, UAE, India, and sovereign NewEdge offerings. Verify current regional PoP availability for target deployments." },
+            "versa":      { "score": 4, "note": "VersaONE's on-premises deployment option allows fully customer-controlled sovereign deployment — a genuine differentiator for air-gapped, defense, or fully sovereign cloud requirements. Cloud-delivered PoP coverage is more limited than Netskope for dedicated sovereign options." }
           }
         },
         {
@@ -566,13 +642,15 @@
           "label": "Regulatory Certifications",
           "weight": "high",
           "scale": "1=SOC2 only · 3=SOC2 + ISO27001 + one regional cert · 5=SOC2, ISO27001, FedRAMP, C5, IRAP, CSA STAR — current",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
-            "palo_alto":  { "score": 5, "note": "Prisma Access holds SOC2 Type II, ISO 27001, FedRAMP Moderate (Prisma Access for Government), BSI C5 (Germany), IRAP (Australia), CSA STAR Level 2, and StateRAMP. Broadest certification portfolio in the Big Five." },
-            "cato":       { "score": 3, "note": "Cato holds SOC2 Type II and ISO 27001. FedRAMP High authorization initiated March 2026 with Coalfire (pending, not yet authorized). BSI C5 and IRAP are not currently certified. Notable certification gap versus PA and Zscaler for government/regulated markets today." },
-            "netskope":   { "score": 5, "note": "Netskope holds SOC2 Type II, ISO 27001, FedRAMP High (NewEdge), BSI C5, IRAP (Protected), CSA STAR Level 2, and multiple financial services certifications. Strongest FedRAMP posture (High vs. others' Moderate)." },
-            "cloudflare": { "score": 5, "note": "Cloudflare holds SOC2 Type II, ISO 27001, FedRAMP Moderate (Cloudflare for Teams), BSI C5, IRAP, CSA STAR, and HIPAA BAA. Broad certification coverage reflecting Cloudflare's global infrastructure maturity." },
-            "zscaler":    { "score": 5, "note": "Zscaler holds SOC2 Type II, ISO 27001, FedRAMP High (ZIA + ZPA for Government), BSI C5, IRAP, CSA STAR Level 2, and PCI DSS. Strongest FedRAMP posture alongside Netskope." }
+            "palo_alto":  { "score": 5, "note": "Prisma Access holds SOC2 Type II, ISO 27001, FedRAMP Moderate, BSI C5, IRAP, CSA STAR Level 2, and StateRAMP. Broadest certification portfolio in the Big Five." },
+            "cato":       { "score": 3, "note": "Cato holds SOC2 Type II and ISO 27001. FedRAMP High authorization initiated March 2026 with Coalfire (pending, not yet authorized). BSI C5 and IRAP are not currently certified." },
+            "netskope":   { "score": 5, "note": "Netskope holds SOC2 Type II, ISO 27001, FedRAMP High, BSI C5, IRAP (Protected), CSA STAR Level 2, and multiple financial services certifications. Strongest FedRAMP posture (High)." },
+            "cloudflare": { "score": 5, "note": "Cloudflare holds SOC2 Type II, ISO 27001, FedRAMP Moderate, BSI C5, IRAP, CSA STAR, and HIPAA BAA. Broad certification coverage reflecting Cloudflare's global infrastructure maturity." },
+            "zscaler":    { "score": 5, "note": "Zscaler holds SOC2 Type II, ISO 27001, FedRAMP High (ZIA + ZPA for Government), BSI C5, IRAP, CSA STAR Level 2, and PCI DSS. Strongest FedRAMP posture alongside Netskope." },
+            "fortinet":   { "score": 3, "note": "Fortinet holds SOC2 Type II, ISO 27001, and PCI DSS. FedRAMP Ready (High Impact level) — a meaningful progression toward authorization, but Ready is not the same as Authorized. BSI C5 and IRAP status require direct verification with Fortinet. Certifications trail the Big Five at FedRAMP-authorized depth." },
+            "versa":      { "score": 3, "note": "Versa holds SOC2 Type II and ISO 27001. FedRAMP Ready (High Impact level) — same milestone as Fortinet, but Ready is not Authorized. BSI C5, IRAP, and CSA STAR status require direct verification with Versa. Trails the Big Five at full FedRAMP-authorized certification breadth." }
           }
         },
         {
@@ -580,13 +658,15 @@
           "label": "Customer-Controlled Encryption Keys",
           "weight": "high",
           "scale": "1=Vendor-managed only · 3=BYOK available · 5=BYOK + HYOK + on-demand key rotation + audit trail",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Prisma Access supports BYOK via integration with customer HSMs for data at rest. HYOK where the vendor cannot decrypt is available in select deployment models. Key rotation and audit trail are supported." },
             "cato":       { "score": 2, "note": "Cato uses Cato-managed encryption for all data at rest and in transit. BYOK is not currently a generally available capability. This is a notable gap for regulated industries requiring customer-controlled key management." },
             "netskope":   { "score": 5, "note": "Netskope supports BYOK and HYOK (via external key management with AWS KMS, Azure Key Vault, and HSM integration), on-demand key rotation, and a full key management audit trail. Best-in-class encryption key sovereignty." },
             "cloudflare": { "score": 4, "note": "Cloudflare supports Keyless SSL and BYOK for data-at-rest encryption in Cloudflare R2 and Zero Trust. HYOK is not fully available for all Zero Trust components. Key rotation and audit logging are standard Cloudflare capabilities." },
-            "zscaler":    { "score": 4, "note": "Zscaler supports BYOK for data-at-rest encryption of log data and configuration via integration with HSMs. HYOK is available in Private Cloud deployments. Key rotation with audit trail is available in ZIA for regulated customers." }
+            "zscaler":    { "score": 4, "note": "Zscaler supports BYOK for data-at-rest encryption of log data and configuration via integration with HSMs. HYOK is available in Private Cloud deployments. Key rotation with audit trail is available in ZIA for regulated customers." },
+            "fortinet":   { "score": 3, "note": "BYOK availability for FortiSASE data-at-rest encryption requires direct verification with Fortinet. FortiOS supports customer-managed keys for on-premises FortiGate and FortiGate VM deployments; cloud SSE BYOK is the specific item to verify. HYOK is not a documented FortiSASE capability." },
+            "versa":      { "score": 4, "note": "VersaONE on-premises deployment inherently supports customer-controlled encryption via customer-managed HSMs — a structural advantage for sovereignty. Cloud-delivered BYOK/HYOK availability requires direct verification with Versa; architectural flexibility scores here even if cloud BYOK is less documented." }
           }
         },
         {
@@ -594,13 +674,15 @@
           "label": "Log Residency Controls",
           "weight": "high",
           "scale": "1=No log residency control · 3=Regional log storage option · 5=Granular per-tenant, per-log-type residency controls",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Cortex Data Lake and Prisma Access support regional log storage with EU, US, and APAC options. Per-log-type residency controls are available in SCM. Cross-region log replication can be disabled per tenant." },
-            "cato":       { "score": 3, "note": "Cato supports regional log storage choices (EU vs. US data centers). Per-log-type granular residency controls are more limited than Netskope or Zscaler; regulatory compliance customers may require additional contractual commitments." },
-            "netskope":   { "score": 5, "note": "Netskope provides granular per-tenant log residency controls — customers can specify storage region per log type (web, CASB, DLP, ZTNA). Audit evidence of log residency is available in the Netskope console for compliance demonstrations." },
+            "cato":       { "score": 3, "note": "Cato supports regional log storage choices (EU vs. US data centers). Per-log-type granular residency controls are more limited than Netskope or Zscaler." },
+            "netskope":   { "score": 5, "note": "Netskope provides granular per-tenant log residency controls — customers can specify storage region per log type (web, CASB, DLP, ZTNA). Audit evidence of log residency is available in the Netskope console." },
             "cloudflare": { "score": 4, "note": "Cloudflare Logpush allows customers to route logs to customer-controlled storage in their preferred region. Regional Logpush destinations provide good log residency control, though per-log-type granularity requires multiple Logpush jobs." },
-            "zscaler":    { "score": 4, "note": "ZIA/ZPA log data residency is configurable by region (US, EU, APAC) for tenants. Zscaler Private Cloud allows fully dedicated log infrastructure in a customer-specified location. Per-log-type residency selection is available in regulated configurations." }
+            "zscaler":    { "score": 4, "note": "ZIA/ZPA log data residency is configurable by region (US, EU, APAC) for tenants. Zscaler Private Cloud allows fully dedicated log infrastructure in a customer-specified location." },
+            "fortinet":   { "score": 3, "note": "FortiSASE supports regional log storage choices (US, EU, APAC). Per-log-type granular residency controls are more limited than Netskope's reference granularity. Cross-region log replication controls require explicit configuration." },
+            "versa":      { "score": 4, "note": "VersaONE on-premises deployment provides full log residency control on customer-managed infrastructure — the strongest sovereignty posture for logs. Cloud-delivered log residency offers regional storage choices; per-log-type granularity less documented than Netskope." }
           }
         },
         {
@@ -608,13 +690,15 @@
           "label": "AI/ML Training Data Isolation",
           "weight": "medium",
           "scale": "1=No opt-out available · 3=Contractual opt-out · 5=Contractual prohibition + audit evidence available",
-          "last_verified": "2026-04-17",
+          "last_verified": "2026-04-19",
           "scores": {
             "palo_alto":  { "score": 4, "note": "Palo Alto contractually commits that customer security telemetry is not used to train shared AI models without consent. Prisma Access Enterprise agreements include ML data isolation clauses with audit rights." },
             "cato":       { "score": 4, "note": "Cato contractually prohibits use of customer traffic data for training shared ML models without opt-in consent. Audit evidence of model training data isolation is available on request for enterprise customers." },
             "netskope":   { "score": 5, "note": "Netskope provides contractual prohibition of customer data use for ML training, with audit evidence (SOC2 controls) documenting the isolation controls. Data submitted for DLP classification is explicitly excluded from shared model training." },
             "cloudflare": { "score": 4, "note": "Cloudflare contractually commits that customer data processed through Cloudflare One is not used to train AI/ML models. Audit documentation is available. Strong privacy-by-design ethos consistent with published Privacy Policy commitments." },
-            "zscaler":    { "score": 4, "note": "Zscaler's customer agreements include ML training data isolation commitments. Audit evidence is available in the ZIA Trust Center. Customer traffic is not used for cross-customer ML model training without explicit opt-in." }
+            "zscaler":    { "score": 4, "note": "Zscaler's customer agreements include ML training data isolation commitments. Audit evidence is available in the ZIA Trust Center. Customer traffic is not used for cross-customer ML model training without explicit opt-in." },
+            "fortinet":   { "score": 4, "note": "Fortinet contractually commits that customer security telemetry is not used to train shared AI/ML models without consent. FortiGuard model training is on aggregate threat telemetry, not customer policy data. Audit evidence is available in Fortinet Trust Center documentation. Posture is competitive with Big Five for standard ML data isolation." },
+            "versa":      { "score": 3, "note": "Versa ML training data isolation commitments should be verified directly with Versa — specific audit evidence for ML data isolation is less prominently documented than Big Five peers. Enterprise contracts typically include ML training data opt-out language but verify current contractual position." }
           }
         }
       ]

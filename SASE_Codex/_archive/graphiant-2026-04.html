@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graphiant — Vendor Deep Dive — Edge Solutions SASE Codex</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/toc.css">
+</head>
+<body class="has-toc">
+
+<header class="edge-header">
+  <div class="edge-header__top">
+    <span class="edge-header__brand">EDGE SOLUTIONS</span>
+    <div class="edge-header__pills">
+      <span class="edge-pill">VENDOR DEEP DIVE</span>
+      <span class="edge-pill edge-pill--muted">GRAPHIANT</span>
+      <span class="edge-pill edge-pill--phase">2026</span>
+    </div>
+  </div>
+  <div class="edge-header__bottom">
+    <h1 class="edge-header__title">Graphiant — Network Edge</h1>
+    <p class="edge-header__subtitle">Tunnel-Free Private Connectivity · Layer 3 WAN Service · SD-WAN Scope Only · SASE Codex Working Document — Edge Solutions</p>
+  </div>
+</header>
+
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_scorecard.html">Scorecard</a>
+</nav>
+
+<div class="page-body">
+<main>
+
+<div class="edge-section">
+  <div class="bluf-box">
+    <div class="bluf-box__label">Bottom Line Up Front</div>
+    <p>Graphiant's architectural premise is that SD-WAN tunnel overlays (IPsec, GRE) introduce unnecessary complexity and latency — what Graphiant calls the "tunnel tax." Graphiant operates as a Network-as-a-Service provider with its own global MPLS-like private network. Sites connect to Graphiant edge nodes via standard internet, and Graphiant handles private routing, SLA guarantees, and path steering within its own network fabric — without the enterprise operating any tunnel infrastructure.</p>
+    <p><strong>Pillar scope:</strong> SD-WAN connectivity criteria only. Graphiant does not include SSE, ZTNA, AIOps, or Sovereignty. It is evaluated as a WAN underlay solution, not a SASE platform. All other pillar scores are null by design.</p>
+    <p><strong>Confidence note:</strong> Graphiant is the lowest-confidence entry in the Codex emerging vendor list. Retain for architectural interest; reassess at Q3 2026 quarterly review. Production validation at enterprise scale is still developing.</p>
+  </div>
+
+  <div class="edge-grid-4 mt-20">
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Tunnel-Free</div>
+      <div class="edge-stat__label">ARCHITECTURE</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Layer 3</div>
+      <div class="edge-stat__label">SERVICE MODEL</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">SD-WAN</div>
+      <div class="edge-stat__label">SCOPE ONLY</div>
+    </div>
+    <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
+      <div class="edge-stat__number">Q3 2026</div>
+      <div class="edge-stat__label">REASSESS DATE</div>
+    </div>
+  </div>
+
+  <div class="edge-callout edge-callout--warning" style="margin-top:20px;">
+    <div class="edge-callout__accent"></div>
+    <div><strong>Low Confidence Flag:</strong> Graphiant is retained in the Codex for architectural interest — the tunnel-free private connectivity model is genuinely distinct and addresses a real problem. However, enterprise deployment scale and third-party validation are limited as of Q2 2026. Do not position to clients without verifying current production deployments and reference customers. Scheduled for reassessment at Q3 2026 quarterly review.</div>
+  </div>
+</div>
+
+<!-- Architecture -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="architecture" class="pillar-hero">
+    <div class="pillar-hero__icon">🏗</div>
+    <div>
+      <div class="pillar-hero__title">Architecture: Layer 3 Private Network Without Tunnels</div>
+      <div class="pillar-hero__sub">The "tunnel tax" problem and why Graphiant's model is architecturally distinct</div>
+    </div>
+  </div>
+  <h2 class="section-heading">The Tunnel Tax Problem</h2>
+  <hr class="edge-rule">
+  <p>Traditional SD-WAN builds IPsec tunnels between branch appliances and cloud PoPs. This adds overhead: IPsec key negotiation latency on startup, encryption/decryption processing on every packet, and management complexity from maintaining tunnel state across hundreds of sites. For most enterprise WAN use cases, this overhead is acceptable. For latency-deterministic workloads — financial trading, industrial control systems, real-time unified communications — the tunnel overhead and jitter introduce measurable performance problems.</p>
+  <p>Graphiant's model eliminates tunnels entirely. The customer's existing edge router sends traffic to the nearest Graphiant edge node via standard internet. From there, Graphiant's private network fabric routes traffic internally to the destination site's Graphiant edge node. The enterprise sees a private Layer 3 connection; Graphiant's network handles routing and transport. No tunnels to configure, no IPsec state to maintain, no rekeying events to manage.</p>
+  <div class="edge-grid-2 mt-20">
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">THE TUNNEL-FREE MODEL</span><p style="margin-top:10px; font-size:13px;">Customer edge router → internet → Graphiant edge node → Graphiant private fabric → destination Graphiant edge node → customer edge router. The customer's infrastructure sees a private routed connection. Graphiant's fabric handles SLA enforcement, path steering, and transport optimization internally.</p></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">WHAT GRAPHIANT IS NOT</span><ul style="margin-top:10px; font-size:13px;"><li>Not a full SASE platform — no SSE, no ZTNA, no AIOps</li><li>Not a security service — no DLP, no SWG, no threat inspection</li><li>Not replacing a customer's edge firewall or router</li><li>Not competing with Cato, Netskope, or Cloudflare on security</li><li>Competing on the WAN underlay layer with MPLS and SD-WAN overlays</li></ul></div></div>
+  </div>
+</div>
+
+<!-- SD-WAN -->
+<div class="edge-section" style="padding-top:0;">
+  <div id="sdwan" class="pillar-hero">
+    <div class="pillar-hero__icon">🌐</div>
+    <div>
+      <div class="pillar-hero__title">Pillar 3 — SD-WAN (Connectivity Scope)</div>
+      <div class="pillar-hero__sub">Layer 3 private connectivity · SLA-backed latency · no tunnel overhead</div>
+    </div>
+  </div>
+  <h2 class="section-heading">SD-WAN Analysis</h2>
+  <hr class="edge-rule">
+  <p>Graphiant is evaluated on SD-WAN connectivity criteria where its tunnel-free model is directly relevant. It does not score on security convergence, SSE integration, or CPE WAN optimization features (FEC, packet duplication) because these are outside its architectural scope.</p>
+  <div class="vendor-subhead">Private Connectivity</div>
+  <p>Graphiant's network fabric provides private Layer 3 connectivity with SLA-backed latency guarantees. Traffic between sites never traverses public internet routing once it enters the Graphiant fabric — routing decisions are made within Graphiant's network, not by BGP path selection on the public internet. This provides more deterministic latency than internet-based SD-WAN overlays and comparable predictability to MPLS for latency-sensitive workloads.</p>
+  <div class="vendor-subhead">Target Use Cases</div>
+  <p>Graphiant targets organizations with specific deterministic performance requirements: financial trading (sub-millisecond latency variance), industrial control systems (deterministic control loop timing), healthcare real-time imaging (PACS/DICOM transfer performance), and unified communications (voice and video jitter sensitivity). These are workloads where IPsec tunnel overhead and BGP path variability are measurable problems, and where MPLS retirement requires a replacement that maintains deterministic behavior.</p>
+  <div class="vendor-subhead">Security Stack Integration</div>
+  <p>Graphiant does not provide a security stack. Organizations deploying Graphiant must bring their own security via service chaining at the Graphiant edge node — the Graphiant edge node can forward traffic to a co-located Big Five security service for inspection before delivery. The integration model requires network architecture planning; it is not a plug-and-play security replacement.</p>
+  <div class="vendor-grid">
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Eliminates tunnel management overhead and IPsec complexity. SLA-backed Layer 3 latency guarantees — closer to MPLS predictability than internet SD-WAN. Consumption-based pricing model. Simpler operations than SD-WAN overlay architectures. Right for MPLS retirement in performance-sensitive verticals.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No SSE, no ZTNA, no security stack — must be paired with a separate security vendor. Limited PoP coverage vs. mature SD-WAN vendors. Production validation at enterprise scale limited as of Q2 2026. Not suitable for greenfield SASE deployments where security convergence is a requirement. Reassess Q3 2026.</p></div>
+  </div>
+  <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sdwan.html" style="color:var(--edge-blue);">SD-WAN pillar comparison — all vendors</a></p>
+</div>
+
+<!-- PAIRING -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="pairing">Big Five Pairing Recommendations</h2>
+  <hr class="edge-rule">
+  <p>Graphiant as WAN underlay requires a separate security vendor for SSE and ZTNA. The recommended pairing depends on the primary security requirement:</p>
+  <table class="edge-table" style="margin-top:16px;">
+    <thead><tr><th>Security Need</th><th>Recommended Pairing</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Internet security + private app access</td><td>Graphiant WAN + Zscaler ZIA/ZPA</td><td>ZIA handles internet breakout security at the Graphiant edge node; ZPA handles private app ZTNA independently of the WAN underlay. Cleanest separation of concerns.</td></tr>
+      <tr><td>Data-centric compliance (DLP required at branch)</td><td>Graphiant WAN + Netskope (NSG)</td><td>Netskope NSG can be service-chained at the Graphiant edge node, providing ML DLP and CASB inspection on traffic transiting the private fabric.</td></tr>
+      <tr><td>Existing Palo Alto NGFW estate</td><td>Graphiant WAN + Palo Alto Prisma Access</td><td>Prisma Access handles SSE/ZTNA; Graphiant handles the WAN underlay. SCM manages the Palo Alto policy plane without needing to manage SD-WAN CPE.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CHANGELOG -->
+<div class="edge-section" style="padding-top:0;">
+  <h2 class="section-heading" id="changelog">Changelog</h2>
+  <hr class="edge-rule">
+  <table class="edge-table" style="font-size:13px;">
+    <thead><tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>2026-04-19</td><td>v1.0</td><td>Initial working document created under v2.0 Codex structure. Content extracted and expanded from sase_emerging.html. Graphiant scored on SD-WAN pillar (connectivity criteria only); all other pillars null by design. Low-confidence flag maintained; Q3 2026 reassessment scheduled.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</main>
+</div>
+
+<footer class="edge-footer">
+  <span class="edge-footer__brand">EDGE SOLUTIONS</span>
+  <span class="edge-footer__meta">SASE Codex · Working Document · Graphiant · Last Reviewed: 2026-04-19</span>
+  <span class="edge-footer__url">www.edgesolutions.com</span>
+</footer>
+<script src="../assets/js/toc.js"></script>
+</body>
+</html>
