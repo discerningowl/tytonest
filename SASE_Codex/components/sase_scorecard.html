@@ -23,24 +23,14 @@
     <p class="edge-header__subtitle">Consolidated Vendor Scoring · All Five Pillars · Architectural Fit Analysis · SASE Vendor Research Series — Prepared by Edge Solutions</p>
   </div>
 </header>
-<nav class="doc-nav">
-  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
-  <a href="sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
-  <a href="sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
-  <a href="sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
-  <a href="sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
-  <a href="sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
-  <a href="sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
-  <a href="sase_emerging.html">Emerging</a><span class="doc-nav__sep">›</span>
-  <a href="sase_scorecard.html" class="active">Scorecard</a>
-</nav>
+<nav class="doc-nav"></nav>
 <div class="page-body">
 <main>
 
 <div class="edge-section">
   <div class="bluf-box">
     <div class="bluf-box__label">Bottom Line Up Front — Synthesis</div>
-    <p><strong style="color:var(--edge-green);">No single vendor dominates all five pillars.</strong> This is the central finding of the 2026 SASE Big Five analysis. The right vendor is determined by which pillars are critical to a given organization's architecture and which operational model — single-vendor convergence vs. best-of-breed integration — the team can actually sustain.</p>
+    <p><strong style="color:var(--edge-green);">No single vendor dominates all five pillars.</strong> This is the central finding of the 2026 SASE Big Six analysis. The right vendor is determined by which pillars are critical to a given organization's architecture and which operational model — single-vendor convergence vs. best-of-breed integration — the team can actually sustain.</p>
     <p><strong style="color:var(--edge-green);">Pillar leaders:</strong> Cato owns SD-WAN. Netskope owns SSE + Sovereignty. Palo Alto leads ZTNA and AIOps. Zscaler is the most balanced ZTNA + SSE platform for enterprises that can absorb ZIA/ZPA complexity. Cloudflare wins on global performance and GenAI protection but trails on SD-WAN and AIOps maturity.</p>
     <p><strong style="color:var(--edge-green);">Architecture type still matters most.</strong> Single-pass vendors (Cato, Netskope, Cloudflare) have an inherent operational simplicity advantage. Stitched/integrated vendors (Palo Alto, Zscaler) trade integration tax for depth and ecosystem breadth. The correct choice depends on team size, existing investments, and whether security depth or operational simplicity is the governing constraint.</p>
   </div>
@@ -70,14 +60,14 @@
       <span class="v-chip v-cloudflare"><span class="v-dot"></span>Cloudflare</span>
       <span class="v-chip v-zscaler"><span class="v-dot"></span>Zscaler</span>
     </div>
-    <p style="font-size:11px;color:var(--edge-muted);text-align:center;margin-top:8px;">Big Five only · Scores = pillar weighted % · Source: assets/data/scores.json</p>
+    <p style="font-size:11px;color:var(--edge-muted);text-align:center;margin-top:8px;">Big Six only · Scores = pillar weighted % · Source: assets/data/scores.json</p>
   </div>
 </div>
 
 <div class="edge-section" style="padding-top:0;">
   <h2 class="section-heading">Consolidated Weighted Score Table</h2>
   <hr class="edge-rule">
-  <p style="margin-bottom:16px;font-size:13px;">Big Five across all pillars. Weight: Critical ×3 · High ×2 · Medium ×1. Pillar score = vendor weighted points ÷ max possible × 100. Emerging vendors shown in-scope only.</p>
+  <p style="margin-bottom:16px;font-size:13px;">Big Six across all pillars. Weight: Critical ×3 · High ×2 · Medium ×1. Pillar score = vendor weighted points ÷ max possible × 100. Emerging vendors shown in-scope only.</p>
   <div id="master-table-container" style="overflow-x:auto;">
     <p style="color:var(--edge-muted);padding:20px;text-align:center;">Loading scores…</p>
   </div>
@@ -158,7 +148,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Emerging vendor complement:</strong> None of the Big Five address campus/LAN Zero Trust (Nile), managed SASE for global connectivity (Aryaka), tunnel-free private WAN (Graphiant), or browser-layer enforcement without TLS decryption (Island). For organizations with requirements in these areas, emerging vendor deployment alongside a Big Five platform is the recommended architecture. See <a href="sase_emerging.html" style="color:var(--edge-green);">Emerging Vendors</a>.</div></div>
+  <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>Emerging vendor complement:</strong> None of the Big Six address campus/LAN Zero Trust (Nile), managed SASE for global connectivity (Aryaka), tunnel-free private WAN (Graphiant), or browser-layer enforcement without TLS decryption (Island). For organizations with requirements in these areas, emerging vendor deployment alongside a Big Six platform is the recommended architecture. See <a href="sase_emerging.html" style="color:var(--edge-green);">Emerging Vendors</a>.</div></div>
 </div>
 
 <div class="edge-section" style="padding-top:0;">
@@ -185,8 +175,8 @@
     <h2>2026 SASE Market: Four Macro Conclusions</h2>
     <p><strong style="color:var(--edge-green);">1. The "single-vendor SASE" narrative is maturing, not converging.</strong> Cato proves the single-vendor model works operationally. But Palo Alto and Zscaler's integrated platforms continue to win large enterprises because depth matters more than simplicity at scale. The market will remain bifurcated between simplicity buyers and depth buyers through at least 2028.</p>
     <p><strong style="color:var(--edge-green);">2. GenAI data protection is the new DLP frontier and is already a purchasing criterion.</strong> Organizations that deployed SASE in 2022–2024 are discovering their DLP policies don't cover AI prompt data. In 2026, GenAI app protection has become a first-round RFP question.</p>
-    <p><strong style="color:var(--edge-green);">3. Sovereignty-by-design is the 2026 enterprise procurement gate for EMEA and APAC.</strong> Data residency and PoP-level isolation are no longer optional for EU-regulated industries. Netskope's sovereign PoP architecture and Cloudflare's regional data plane isolation are the most advanced. Cato's sovereignty story is the weakest in the Big Five — a material gap for EMEA-heavy organizations.</p>
-    <p><strong style="color:var(--edge-green);">4. The campus edge is the gap no Big Five vendor fills.</strong> As Zero Trust matures, the physical campus network is the last perimeter still operating on implicit trust. Nile's Zero Trust NaaS fills this gap. For organizations with ZT as a strategic program, Nile + any Big Five SASE is the 2026 architectural answer.</p>
+    <p><strong style="color:var(--edge-green);">3. Sovereignty-by-design is the 2026 enterprise procurement gate for EMEA and APAC.</strong> Data residency and PoP-level isolation are no longer optional for EU-regulated industries. Netskope's sovereign PoP architecture and Cloudflare's regional data plane isolation are the most advanced. Cato's sovereignty story is the weakest in the Big Six — a material gap for EMEA-heavy organizations.</p>
+    <p><strong style="color:var(--edge-green);">4. The campus edge is the gap no Big Six vendor fills.</strong> As Zero Trust matures, the physical campus network is the last perimeter still operating on implicit trust. Nile's Zero Trust NaaS fills this gap. For organizations with ZT as a strategic program, Nile + any Big Six SASE is the 2026 architectural answer.</p>
   </div>
 </div>
 
@@ -198,6 +188,7 @@
   <span class="edge-footer__url">www.edgesolutions.com</span>
 </footer>
 
+<script src="../assets/js/nav.js"></script>
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script>
@@ -268,7 +259,7 @@ function renderPillarBars(data,allVendors) {
   var html='';
   pillarKeys.forEach(function(pk){
     var pillar=data.pillars[pk]; var color=PILLAR_COLORS[pk]||'#44546A';
-    var pillarVendors=allVendors.filter(function(v){if(v.tier==='big_five')return true; var scope=emergingScope[v.id]||[]; return scope.indexOf(pk)!==-1;});
+    var pillarVendors=allVendors.filter(function(v){if(v.tier==='big_six')return true; var scope=emergingScope[v.id]||[]; return scope.indexOf(pk)!==-1;});
     var rows=pillarVendors.map(function(v){var r=computePillarScore(pillar,v.id); return{vendor:v,pct:r.pct};}).filter(function(r){return r.pct!==null;}).sort(function(a,b){return b.pct-a.pct;});
     html+='<div class="pillar-rank-block"><div class="pillar-rank-header"><span class="pillar-badge" style="background:'+color+';">'+pk.toUpperCase()+'</span><span class="pillar-rank-title">'+pillar.label+'</span></div>';
     rows.forEach(function(r){var isEmerging=r.vendor.tier==='emerging'; var vcolor=isEmerging?'#7B7D72':(V_COLORS[r.vendor.id]||'#7B7D72'); var displayName=r.vendor.name.replace('Palo Alto Networks','Palo Alto'); if(isEmerging)displayName+=' ✦'; html+='<div class="vendor-rank-row"><span class="v-label">'+displayName+'</span><div class="bar-bg"><div class="bar-fill" style="width:'+r.pct+'%;background:'+vcolor+';"></div></div><span class="pct-label">'+r.pct+'%</span></div>';});
@@ -280,7 +271,7 @@ function renderVendorCards(data,bigFiveVendors) {
   var el=document.getElementById('vendor-cards-container');
   var pillarKeys=Object.keys(data.pillars);
   var archLabels={single_pass:'Single-Pass Native',stitched:'Stitched / Integrated',integrated:'Integrated (ZIA + ZPA)'};
-  var blurbs={palo_alto:'Best-in-class App-ID + WildFire threat intel. SCM unifies on-prem NGFW and cloud SASE in one policy plane. The only Big Five vendor managing physical firewall estate and cloud SSE together.',cato:'Reference implementation of single-vendor SASE. Private backbone, ZTP, and a single CMA console for SD-WAN + SSE + ZTNA + AIOps. Best operational simplicity and SD-WAN performance.',netskope:'Data-centric architecture. Industry-leading DLP (ML + EDM + OCR), best-in-class dual-mode CASB, and sovereign PoP design. Built for regulated industries and data-first security programs.',cloudflare:'330+ PoPs — best global latency and agentless ZTNA. Developer-native, Terraform-deployable. Best GenAI data protection story in the Big Five. SD-WAN and AIOps are the relative gaps.',zscaler:'Most mature inside-out ZTNA (ZPA). Best DEM (ZDX). Strongest ZT transformation story for VPN-replacement programs. ZIA/ZPA complexity requires dedicated ops team.'};
+  var blurbs={palo_alto:'Best-in-class App-ID + WildFire threat intel. SCM unifies on-prem NGFW and cloud SASE in one policy plane. The only Big Six vendor managing physical firewall estate and cloud SSE together.',cato:'Reference implementation of single-vendor SASE. Private backbone, ZTP, and a single CMA console for SD-WAN + SSE + ZTNA + AIOps. Best operational simplicity and SD-WAN performance.',netskope:'Data-centric architecture. Industry-leading DLP (ML + EDM + OCR), best-in-class dual-mode CASB, and sovereign PoP design. Built for regulated industries and data-first security programs.',cloudflare:'330+ PoPs — best global latency and agentless ZTNA. Developer-native, Terraform-deployable. Best GenAI data protection story in the Big Six. SD-WAN and AIOps are the relative gaps.',zscaler:'Most mature inside-out ZTNA (ZPA). Best DEM (ZDX). Strongest ZT transformation story for VPN-replacement programs. ZIA/ZPA complexity requires dedicated ops team.'};
   var html='';
   bigFiveVendors.forEach(function(v){
     var vcolor=V_COLORS[v.id]||'#44546A';
@@ -291,12 +282,12 @@ function renderVendorCards(data,bigFiveVendors) {
   el.innerHTML=html;
 }
 window.renderPage=function(data){
-  var bigFive=(data.vendors||[]).filter(function(v){return v.tier==='big_five';});
+  var bigSix=(data.vendors||[]).filter(function(v){return v.tier==='big_six';});
   var allVendors=data.vendors||[];
-  requestAnimationFrame(function(){renderRadar(data,bigFive);});
-  renderMasterTable(data,bigFive);
+  requestAnimationFrame(function(){renderRadar(data,bigSix);});
+  renderMasterTable(data,bigSix);
   renderPillarBars(data,allVendors);
-  renderVendorCards(data,bigFive);
+  renderVendorCards(data,bigSix);
 };
 </script>
 <script src="../assets/js/back-to-top.js"></script>

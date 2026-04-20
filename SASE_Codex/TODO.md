@@ -42,10 +42,10 @@ Several scores in v1.7 carry conservative values pending direct vendor confirmat
 ## PRIORITY 3 — Optional Enhancements (Judgment Calls)
 
 ### Consider Adding Fortinet + Versa to Radar Chart
-`components/sase_scorecard.html` currently shows radar chart for Big Five only. With v1.7 scores now populated, Fortinet and Versa could be added. Trade-off: visual readability of 7 overlapping radar traces vs. analytical completeness. Recommend keeping Big Five radar primary and adding a separate Fortinet/Versa overlay chart if needed.
+`components/sase_scorecard.html` currently shows radar chart for Big Six only. With v1.7 scores now populated, Fortinet and Versa could be added. Trade-off: visual readability of 7 overlapping radar traces vs. analytical completeness. Recommend keeping Big Six radar primary and adding a separate Fortinet/Versa overlay chart if needed.
 
 ### Consider Promoting Fortinet + Versa to Full Vendor Cards in Pillar Docs
-Each pillar doc (`sase_ztna.html`, `sase_sse.html`, `sase_sdwan.html`, `sase_aiops.html`, `sase_sovereignty.html`) currently references Fortinet and Versa in callout form rather than as full summary cards like the Big Five. Strongest case for promotion is in `sase_sdwan.html` (both vendors are SD-WAN MQ Leaders/Challengers). Judgment call — additive but not required.
+Each pillar doc (`sase_ztna.html`, `sase_sse.html`, `sase_sdwan.html`, `sase_aiops.html`, `sase_sovereignty.html`) currently references Fortinet and Versa in callout form rather than as full summary cards like the Big Six. Strongest case for promotion is in `sase_sdwan.html` (both vendors are SD-WAN MQ Leaders/Challengers). Judgment call — additive but not required.
 
 ### Consider Adding Fortinet + Versa as Full Vendor Sections in `sase_emerging.html`
 The emerging overview page currently has full vendor cards only for Aryaka, Nile, and Island. Fortinet and Versa are referenced in the BLUF and the synthesis dark-section but lack dedicated vendor sections with strengths/watch-areas cards. Their full working-docs serve this purpose; adding sections here would make the overview page more comprehensive but would partially duplicate the working-docs.
@@ -61,7 +61,7 @@ If Fortinet earns a primary or alt recommendation for Platform/Network Architect
 - ✅ Scores.json v1.6 archived to `_archive/scores-2026-04.json` (metadata snapshot with pre-scoring vendor/criterion status).
 - ✅ Scores.json meta version bumped to v1.7, changelog updated, vendor `scope_note` fields for Fortinet and Versa updated from "pending full scoring pass" to "Fully scored v1.7".
 - ✅ Island SSE scores verified against `working-docs/island.html` language — `casb_dual_mode: 3`, `shadow_it: 3`, `ips_threat_intel: 2` all internally consistent, no change required.
-- ✅ `_index.html` verified clean — no PENDING badges on Fortinet/Versa rows, meta-bar correctly reads "All 10 complete" (Big Five + Aryaka, Fortinet, Versa, Island, Nile = 10 after Graphiant removal).
+- ✅ `_index.html` verified clean — no PENDING badges on Fortinet/Versa rows, meta-bar correctly reads "All 10 complete" (Big Six + Aryaka, Fortinet, Versa, Island, Nile = 10 after Graphiant removal).
 - ✅ `components/sase_emerging.html` — removed three stale `(pending)` annotations next to Aryaka, Nile, and Island working-doc links (those working-docs are complete per prior DONE list). Updated Island vendor-body callout language from "Full working document will reflect the expanded scope when built" to "The full working document reflects the expanded scope." Pre-cleanup snapshot archived to `_archive/sase_emerging-2026-04.html`.
 
 ## DONE (prior session — 2026-04-19)

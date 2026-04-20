@@ -24,16 +24,7 @@
   </div>
 </header>
 
-<nav class="doc-nav">
-  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
-  <a href="sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
-  <a href="sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
-  <a href="sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
-  <a href="sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
-  <a href="sase_aiops.html" class="active">AIOps</a><span class="doc-nav__sep">›</span>
-  <a href="sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
-  <a href="sase_scorecard.html">Scorecard</a>
-</nav>
+<nav class="doc-nav"></nav>
 
 <div class="page-body">
 <main>
@@ -42,7 +33,7 @@
 <div class="edge-section">
   <div class="bluf-box">
     <div class="bluf-box__label">Bottom Line Up Front</div>
-    <p>Palo Alto Networks leads AIOps through Cortex XDR's cross-product event correlation and Strata Copilot's simulation-before-commit policy authoring — the only vendor with a native SOAR product (XSOAR) deeply integrated with its SASE stack. Zscaler leads on DEM/RCA maturity via ZDX — per-session diagnostic depth and sub-60-second fault attribution are unmatched for enterprise IT operations. Cato Networks delivers the best autonomous path optimization by virtue of owning the full network path, and in March 2026 closed the UEBA depth gap with Cato Dynamic Prevention — an auto-adaptive threat prevention engine that correlates months of signals across all inline sensors. Cloudflare is the weakest AIOps vendor in the Big Five — no mature UEBA, no native SOAR, no GenAI policy authoring as of Q2 2026. Netskope's AIOps is strong within the SSE domain (DLP + UEBA correlation) but is not the answer for network diagnostics or cross-platform incident correlation.</p>
+    <p>Palo Alto Networks leads AIOps through Cortex XDR's cross-product event correlation and Strata Copilot's simulation-before-commit policy authoring — the only vendor with a native SOAR product (XSOAR) deeply integrated with its SASE stack. Zscaler leads on DEM/RCA maturity via ZDX — per-session diagnostic depth and sub-60-second fault attribution are unmatched for enterprise IT operations. Cato Networks delivers the best autonomous path optimization by virtue of owning the full network path, and in March 2026 closed the UEBA depth gap with Cato Dynamic Prevention — an auto-adaptive threat prevention engine that correlates months of signals across all inline sensors. Cloudflare is the weakest AIOps vendor in the Big Six — no mature UEBA, no native SOAR, no GenAI policy authoring as of Q2 2026. Netskope's AIOps is strong within the SSE domain (DLP + UEBA correlation) but is not the answer for network diagnostics or cross-platform incident correlation.</p>
   </div>
 
   <div class="feynman-box">
@@ -74,7 +65,7 @@
   <div class="vendor-section">
     <div class="vendor-header"><h2>Palo Alto Networks — Cortex XDR + Strata Copilot + XSOAR</h2><span class="arch-tag">CORTEX PLATFORM + SCM COPILOT</span></div>
     <div class="vendor-body">
-      <p>The most integrated AIOps stack in the Big Five. Cortex XDR performs ML-based behavioral baselining with peer-group comparison — a user's activity measured against their own historical baseline AND role peers simultaneously. When a UEBA anomaly fires, Cortex XDR auto-correlates it across Prisma Access network events and endpoint telemetry, producing a unified incident with MITRE ATT&CK mapping and a written narrative explanation. Strata Copilot in SCM writes policy rules from plain-English descriptions, simulates the effect on current live traffic before commit, and identifies potential unintended side effects — the simulation-before-commit capability is the key differentiator. Cortex XSOAR is the only native SOAR among Big Five SASE vendors: detections to automated response without middleware.</p>
+      <p>The most integrated AIOps stack in the Big Six. Cortex XDR performs ML-based behavioral baselining with peer-group comparison — a user's activity measured against their own historical baseline AND role peers simultaneously. When a UEBA anomaly fires, Cortex XDR auto-correlates it across Prisma Access network events and endpoint telemetry, producing a unified incident with MITRE ATT&CK mapping and a written narrative explanation. Strata Copilot in SCM writes policy rules from plain-English descriptions, simulates the effect on current live traffic before commit, and identifies potential unintended side effects — the simulation-before-commit capability is the key differentiator. Cortex XSOAR is the only native SOAR among Big Six SASE vendors: detections to automated response without middleware.</p>
       <div class="vendor-grid">
         <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best cross-product event correlation (Prisma Access + NGFW + endpoint). Strata Copilot — NL policy authoring with simulation-before-commit. Native XSOAR SOAR — no middleware. WildFire enriches UEBA with threat context. Best for existing Palo Alto + Cortex footprints.</p></div>
         <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Cortex XDR is a separate license — not included in base Prisma Access. Full AIOps spans 3+ products (SCM + Cortex XDR + XSOAR). Path optimization is advisory for ISP-managed WAN segments.</p></div>
@@ -88,9 +79,9 @@
     <div class="vendor-header"><h2>Zscaler — UEBA + ZDX + AI Admin</h2><span class="arch-tag">ZDX DIAGNOSTICS + UEBA + AI ADMIN</span></div>
     <div class="vendor-body">
       <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>Research Note:</strong> Zscaler's AIOps features span ZIA, ZPA, and ZDX — three separately licensed products. Feature availability varies by bundle. Verify scope before positioning.</div></div>
-      <p>Two standout capabilities: ZDX for the best network diagnostics in the market, and UEBA with native risk-to-ZPA-policy integration. ZDX provides per-hop path latency, automated fault domain classification (device / ISP / Zscaler / application) in under 60 seconds, and written diagnosis summaries for helpdesk staff — the fastest and most specific fault attribution in the Big Five. UEBA correlates ZIA, ZPA, and ZDX telemetry into compound per-user risk scores; elevated scores adjust ZPA access policy dynamically without requiring a SOAR chain.</p>
+      <p>Two standout capabilities: ZDX for the best network diagnostics in the market, and UEBA with native risk-to-ZPA-policy integration. ZDX provides per-hop path latency, automated fault domain classification (device / ISP / Zscaler / application) in under 60 seconds, and written diagnosis summaries for helpdesk staff — the fastest and most specific fault attribution in the Big Six. UEBA correlates ZIA, ZPA, and ZDX telemetry into compound per-user risk scores; elevated scores adjust ZPA access policy dynamically without requiring a SOAR chain.</p>
       <div class="vendor-grid">
-        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best RCA/DEM via ZDX — fastest fault identification in the Big Five. Strong UEBA with multi-source risk scoring. Native risk-to-ZPA-policy loop without SOAR requirement. Largest enterprise installed base = most validated AIOps at scale.</p></div>
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best RCA/DEM via ZDX — fastest fault identification in the Big Six. Strong UEBA with multi-source risk scoring. Native risk-to-ZPA-policy loop without SOAR requirement. Largest enterprise installed base = most validated AIOps at scale.</p></div>
         <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>ZDX separately licensed — always include in TCO. GenAI policy authoring not GA. Full AIOps requires ZIA + ZPA + ZDX bundle. No native SOAR product.</p></div>
       </div>
       <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/zscaler.html#aiops" style="color:var(--edge-blue);">Full AIOps analysis — zscaler.html</a></p>
@@ -101,7 +92,7 @@
   <div class="vendor-section">
     <div class="vendor-header"><h2>Cato Networks — Cato XDR + Dynamic Prevention + AI Assistant</h2><span class="arch-tag">SINGLE-VENDOR PLATFORM + PRIVATE BACKBONE ADVANTAGE</span></div>
     <div class="vendor-body">
-      <p>Cato's AIOps advantage is structural: owning the complete network path enables predictive path optimization — backbone telemetry collected every second at every PoP, rerouting traffic 30–90 seconds before SLA breach becomes user-visible. No other Big Five vendor can act preemptively because they don't own the infrastructure. Cato XDR is included in the platform license (not separately billed), with UEBA and network telemetry sharing the same data store by design — no integration overhead. Dynamic Prevention (March 2026) auto-correlates months of behavioral signals across inline sensors and applies adaptive access restrictions without SOC intervention, closing the historical UEBA depth gap against Palo Alto and Zscaler.</p>
+      <p>Cato's AIOps advantage is structural: owning the complete network path enables predictive path optimization — backbone telemetry collected every second at every PoP, rerouting traffic 30–90 seconds before SLA breach becomes user-visible. No other Big Six vendor can act preemptively because they don't own the infrastructure. Cato XDR is included in the platform license (not separately billed), with UEBA and network telemetry sharing the same data store by design — no integration overhead. Dynamic Prevention (March 2026) auto-correlates months of behavioral signals across inline sensors and applies adaptive access restrictions without SOC intervention, closing the historical UEBA depth gap against Palo Alto and Zscaler.</p>
       <div class="vendor-grid">
         <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Structural path optimization advantage — predictive, not reactive, from private backbone ownership. Single-platform XDR included in license. Dynamic Prevention (March 2026) — auto-adaptive behavioral blocking. Best AIOps for lean IT teams needing mature UEBA without a dedicated SecOps team.</p></div>
         <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Endpoint UEBA requires Cato EDR for cross-EDR correlation. AI Assistant NL-to-policy not yet GA. Cross-product correlation breadth narrower than Palo Alto Cortex. Dynamic Prevention is new — validate in PoC before treating as equivalent to Cortex XDR's track record.</p></div>
@@ -127,8 +118,8 @@
   <div class="vendor-section">
     <div class="vendor-header"><h2>Cloudflare — Cloudflare One Analytics + DEX</h2><span class="arch-tag">EDGE ANALYTICS / DEVELOPING CAPABILITIES</span></div>
     <div class="vendor-body">
-      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>AIOps Assessment:</strong> Cloudflare is the weakest AIOps vendor in the Big Five as of Q2 2026 — no mature UEBA, no native SOAR, no GenAI policy authoring with simulation. Strong trajectory and unique internet-scale telemetry depth, but not enterprise-ready for active UEBA or SOAR requirements today. Reassess Q4 2026.</div></div>
-      <p>Cloudflare's AIOps strength is raw telemetry breadth from ~20% global internet traffic visibility — unique threat intelligence that no other Big Five vendor can replicate. The gap is that this telemetry is not yet surfaced as enterprise-ready AIOps products. DEX provides per-device application latency metrics and synthetic monitoring; ISP fault attribution and automated fault domain classification are in active development. Policy deployment speed is the one AIOps-adjacent area where Cloudflare leads: API-native policy changes propagate globally in under 30 seconds.</p>
+      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>AIOps Assessment:</strong> Cloudflare is the weakest AIOps vendor in the Big Six as of Q2 2026 — no mature UEBA, no native SOAR, no GenAI policy authoring with simulation. Strong trajectory and unique internet-scale telemetry depth, but not enterprise-ready for active UEBA or SOAR requirements today. Reassess Q4 2026.</div></div>
+      <p>Cloudflare's AIOps strength is raw telemetry breadth from ~20% global internet traffic visibility — unique threat intelligence that no other Big Six vendor can replicate. The gap is that this telemetry is not yet surfaced as enterprise-ready AIOps products. DEX provides per-device application latency metrics and synthetic monitoring; ISP fault attribution and automated fault domain classification are in active development. Policy deployment speed is the one AIOps-adjacent area where Cloudflare leads: API-native policy changes propagate globally in under 30 seconds.</p>
       <div class="vendor-grid">
         <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Internet-scale passive telemetry — unique threat intelligence breadth from ~20% internet traffic visibility. DEX improving rapidly. Sub-30-second global policy propagation. API-native for DevOps-oriented security teams.</p></div>
         <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No mature UEBA. No GenAI policy authoring. DEX lags ZDX for enterprise fault attribution. No native SOAR. Not recommended for enterprise security ops teams with active UEBA or SOAR requirements in 2026.</p></div>
@@ -137,10 +128,25 @@
     </div>
   </div>
 
+  <!-- FORTINET -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Fortinet — FortiAIOps + FortiAnalyzer + FortiSIEM</h2><span class="arch-tag">UNIFIED OS / FORTIGUARD-ENRICHED ANALYTICS</span></div>
+    <div class="vendor-body">
+      <p>Fortinet's AIOps stack is delivered through FortiAIOps (network operations and guided remediation), FortiAnalyzer (log analytics and correlation), and FortiSIEM (full UEBA, if deployed separately). FortiAIOps provides AI-driven network health monitoring, anomaly detection, and guided remediation for FortiGate and FortiSASE deployments. FortiGuard threat intelligence enriches security event correlation across the FortiOS-native stack. Cross-product correlation across FortiGate SD-WAN, FortiSASE cloud SSE, FortiEDR, and FortiSIEM is available for Fortinet-ecosystem deployments — broader cross-vendor correlation requires an external SIEM. DEM capabilities in FortiSASE provide per-session path visibility and application performance monitoring, though automated fault domain classification trails Zscaler ZDX in depth. NL policy authoring is on the roadmap; GenAI-powered automation is shipping in stages through 2025–2026. Full UEBA requires FortiSIEM deployment (separate product).</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>FortiGuard threat intelligence enriches event correlation. FortiAIOps AI-driven network health and guided remediation. Native cross-product correlation for Fortinet-ecosystem deployments. FortiSIEM available for full UEBA if required. GenAI policy automation shipping in stages. Competitive pricing.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Full UEBA requires FortiSIEM deployment (separate product). NL policy authoring not fully GA. DEM trails Zscaler ZDX for enterprise fault attribution depth. Cross-vendor correlation requires external SIEM. AIOps maturity below Palo Alto Cortex XDR + XSOAR combination. Customer experience (support, update stability) applies to AIOps tooling as with the broader platform.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/fortinet.html#aiops" style="color:var(--edge-blue);">Full AIOps analysis — fortinet.html</a></p>
+    </div>
+  </div>
+
+  
   <!-- EMERGING -->
   <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Aryaka</strong> — Aryaka's managed SASE model is the most relevant emerging player for AIOps. Its 24×7 NOC/SOC managed service operationalizes AIOps through human expertise rather than autonomous ML — a different answer to the same operational problem. Full analysis: <a href="../working-docs/aryaka.html" style="color:var(--edge-blue);">aryaka.html</a>.</div></div>
-</div>
 
+  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Versa Networks (AIOps)</strong> — VersaAI provides cross-platform analytics across SD-WAN + SSE + ZTNA; scored alongside Aryaka as an emerging vendor. Full analysis: <a href="sase_emerging.html#scoring-aiops" style="color:var(--edge-blue);">Emerging Vendors → AIOps scoring</a>.</div></div>
+</div>
 <!-- SCORING -->
 <div class="edge-section" style="padding-top:0;">
   <h2 class="section-heading" id="scores">Vendor Scoring — AIOps Pillar</h2>
@@ -159,7 +165,7 @@
       <tr><td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td><td>Small team, wants platform to do the heavy AIOps lifting automatically</td><td>Autonomous operations reducing ticket volume without requiring a SIEM engineer</td><td><span class="winner-tag winner-primary">CATO</span></td><td>Single-platform XDR + UEBA included in license. Backbone path optimization is autonomous. Dynamic Prevention adds auto-adaptive blocking. No integration work — one product.</td></tr>
       <tr><td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td><td>Dedicated SOC, existing SIEM/SOAR investment, insider threat program</td><td>Best UEBA, best RCA, SOAR integration depth, cross-product incident correlation</td><td><span class="winner-tag winner-primary">PALO ALTO</span></td><td>Cortex XDR deepest UEBA + cross-product correlation. Strata Copilot most mature policy authoring. Native XSOAR eliminates SOAR integration layer. WildFire enriches UEBA with threat context.</td></tr>
       <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td>Insider threat is primary risk; data movement anomaly detection required alongside behavioral analytics</td><td>UEBA that understands data sensitivity, not just network behavior</td><td><span class="winner-tag winner-primary">NETSKOPE</span></td><td>Only vendor where UEBA risk scores incorporate DLP signal — data access anomalies and behavioral anomalies are correlated natively. Best for compliance-driven AIOps and insider threat programs in financial services or healthcare.</td></tr>
-      <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td>Large remote/hybrid workforce, helpdesk ticket volume is the operational pain, rapid fault attribution across distributed sites is the priority</td><td>Best-in-class network diagnostics and automated fault attribution</td><td><span class="winner-tag winner-primary">ZSCALER</span></td><td>ZDX is the reference DEM: per-session hop analysis, sub-60-second automated fault attribution across device/ISP/Zscaler/application domains, direct helpdesk workflow integration. No other Big Five vendor matches ZDX diagnostic speed for distributed user-reported issues.</td></tr>
+      <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td>Large remote/hybrid workforce, helpdesk ticket volume is the operational pain, rapid fault attribution across distributed sites is the priority</td><td>Best-in-class network diagnostics and automated fault attribution</td><td><span class="winner-tag winner-primary">ZSCALER</span></td><td>ZDX is the reference DEM: per-session hop analysis, sub-60-second automated fault attribution across device/ISP/Zscaler/application domains, direct helpdesk workflow integration. No other Big Six vendor matches ZDX diagnostic speed for distributed user-reported issues.</td></tr>
     </tbody>
   </table>
   <div class="edge-callout" style="margin-top:16px;"><div class="edge-callout__accent"></div><div><strong>AIOps note on Cloudflare:</strong> Not recommended as primary SASE for enterprise security ops teams with active UEBA requirements as of Q2 2026. Strong trajectory — reassess at Q4 2026. Consider Cloudflare alongside a dedicated UEBA/SOAR stack if its performance and developer advantages outweigh the AIOps limitations for a specific buyer.</div></div>
@@ -189,10 +195,13 @@ window.renderPage = function(data) {
     document.getElementById('score-container').innerHTML = '<div class="edge-callout edge-callout--warning" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Local server required.</strong> Run <code>python3 -m http.server 8000</code> from the project root. See <code>README.md</code>.</div></div>';
     return;
   }
-  var vendors = data.vendors.filter(function(v) { return v.tier === 'big_five'; });
+  // AIOps scope: Big Six only. Emerging vendor scores (Aryaka, Versa) are on sase_emerging.html.
+  var aiopsScope = ['palo_alto','cato','netskope','cloudflare','zscaler','fortinet'];
+  var vendors = data.vendors.filter(function(v) { return aiopsScope.indexOf(v.id) >= 0; });
   renderScoringTable(data.pillars.aiops, vendors, 'score-container');
 };
 </script>
+<script src="../assets/js/nav.js"></script>
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/back-to-top.js"></script>

@@ -79,10 +79,10 @@
   <div class="vendor-section">
     <div class="vendor-header"><h2>Cato Networks — Cato SDP</h2><span class="arch-tag">NATIVE SINGLE-PASS</span></div>
     <div class="vendor-body">
-      <p>The cleanest single-vendor ZTNA story. Cato SDP runs on the same single-pass engine as FWaaS, SWG, and CASB — no product integration between ZTNA and security, just one stack. Private backbone (85+ PoPs, SLA-backed fiber) means ZTNA transit delivers sub-150ms globally with a contractual latency commitment. EDR integration with event-driven session teardown. ZTP deployment lets branches and ZTNA roll out as a single program. UEBA risk scoring feeds access policy without external tooling. On April 20, 2026, Cato launched the Cato Enterprise Browser as a new Universal ZTNA access method — extending zero trust enforcement to unmanaged devices through a managed browser, sharing the same policy engine as the Cato Client and Browser Extension (September 2025). Included under the existing UZTNA license.</p>
+      <p>The cleanest single-vendor ZTNA story. Cato SDP runs on the same single-pass engine as FWaaS, SWG, and CASB — no product integration between ZTNA and security, just one stack. Private backbone (85+ PoPs, SLA-backed fiber) means ZTNA transit delivers sub-150ms globally with a contractual latency commitment. EDR integration with event-driven session teardown. ZTP deployment lets branches and ZTNA roll out as a single program. UEBA risk scoring feeds access policy without external tooling.</p>
       <div class="vendor-grid">
-        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Cleanest ZTNA + SD-WAN + SSE single-vendor story. One console, one policy engine. Private backbone SLA for ZTNA transit. Best for lean IT. ZTP simplifies joint branch + ZTNA rollout. Enterprise Browser (April 2026) closes unmanaged device gap — same policy plane, no separate SKU.</p></div>
-        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Enterprise Browser is new (April 2026) — validate production maturity vs. Island (4-year track record) and Palo Alto PAB before final positioning. L7 signatures less extensive than Palo Alto App-ID. Agentless thick-client narrower than Cloudflare. Behavioral posture detection behind Palo Alto AI-RT.</p></div>
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Cleanest ZTNA + SD-WAN + SSE single-vendor story. One console, one policy engine. Private backbone SLA for ZTNA transit. Best for lean IT. ZTP simplifies joint branch + ZTNA rollout.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No native enterprise browser. L7 signatures less extensive than Palo Alto App-ID. Agentless thick-client narrower than Cloudflare. Behavioral posture detection behind Palo Alto AI-RT.</p></div>
       </div>
       <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/cato-networks.html#ztna" style="color:var(--edge-blue);">Full ZTNA analysis — cato-networks.html</a></p>
     </div>
@@ -142,13 +142,24 @@
     </div>
   </div>
 
-  
+  <!-- VERSA -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Versa Networks — ZTNA via VersaONE + Secure Enterprise Browser</h2><span class="arch-tag">VOS PLATFORM / SD-WAN-LED CHALLENGER</span></div>
+    <div class="vendor-body">
+      <p>Versa ZTNA is delivered as part of the VersaONE platform — identity-based, per-application access governed by VOS policy. The same policy engine managing SD-WAN path steering enforces ZTNA access decisions, which is Versa's architectural differentiator over vendors with separate ZTNA and SD-WAN products. Agent-based (Versa Client) and agentless browser-based access are both supported. Versa launched a Secure Enterprise Browser in March 2026, integrated with the VersaONE policy plane, providing native browser-layer ZTNA enforcement. Notably, Versa's SD-LAN extension pushes ZTNA enforcement to the campus LAN through software-defined segmentation — a software-overlay campus ZT story without hardware replacement. Gartner Challenger in SASE Platforms MQ (2025, third consecutive year).</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>ZTNA integrated with SD-WAN in one VOS policy plane. SD-LAN campus extension — software-defined campus ZT without hardware replacement. Versa Secure Enterprise Browser (March 2026) adds browser-layer enforcement. Agent and agentless access modes. Strong service provider ecosystem for managed ZTNA delivery.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DEM maturity trails Zscaler ZDX. No behavioral posture equivalent to Palo Alto AI-RT. SD-LAN software overlay has deployment complexity dependencies on underlying campus hardware. Less market recognition than Big Six in pure ZTNA-led evaluations.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/versa-networks.html#ztna" style="color:var(--edge-blue);">Full ZTNA analysis — versa-networks.html</a></p>
+    </div>
+  </div>
+
   <!-- EMERGING CALLOUTS -->
   <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Island (Enterprise Browser)</strong> — A Chromium fork enforcing Zero Trust at the browser layer — session isolation, DLP without a proxy, clipboard control, per-application access governance. Architecturally distinct from proxy-side CASB. March 2026: Island launched a full SASE stack (SWG, ZTNA, CASB, RBI, DLP) through the browser. Full analysis: <a href="../working-docs/island.html" style="color:var(--edge-blue);">island.html</a>.</div></div>
   <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Nile (Zero Trust NaaS)</strong> — Extends ZTNA to the campus/LAN edge. Every wired and wireless port is a ZTNA enforcement point with identity-based micro-segmentation at Layer 2. Not a WAN or cloud security play — complements Big Six SASE for fully zero-trust branch environments. Full analysis: <a href="../working-docs/nile.html" style="color:var(--edge-blue);">nile.html</a>.</div></div>
-
-  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Versa Networks (ZTNA)</strong> — VersaONE delivers ZTNA integrated with SD-WAN on a single VOS policy engine — scored as an emerging vendor. Full analysis and scoring: <a href="sase_emerging.html#scoring-ztna" style="color:var(--edge-blue);">Emerging Vendors → ZTNA scoring</a>.</div></div>
 </div>
+
 <!-- SCORING -->
 <div class="edge-section" style="padding-top:0;">
   <h2 class="section-heading" id="scores">Vendor Scoring — ZTNA Pillar</h2>
@@ -179,7 +190,7 @@
     <h2>ZTNA in 2026: Three Defining Shifts</h2>
     <p><strong style="color:var(--edge-green);">1. Continuous posture has replaced static posture as table stakes.</strong> Any vendor without real-time EDR integration and session teardown on posture failure is now below the enterprise minimum. Palo Alto's AI-RT behavioral anomaly layer is extending this further — detecting session-level threats independent of whether an EDR alert fires. Expect others to match this capability by late 2026.</p>
     <p><strong style="color:var(--edge-green);">2. Agentless access is no longer an edge case.</strong> Cloudflare's browser-rendered thick-client access — RDP/SSH/VNC in a browser with zero endpoint install — is setting a new minimum bar. Contractors, BYOD devices, and non-managed endpoints are now primary deployment targets. Vendors without a credible agentless story for non-web apps will lose deals in these segments.</p>
-    <p><strong style="color:var(--edge-green);">3. The enterprise browser is becoming a ZTNA enforcement layer — and it's now a three-vendor race.</strong> Palo Alto Prisma Access Browser (PAB), Island, and Cato Enterprise Browser (all active in 2026) are evolving the browser from an access onramp into a full ZTNA control plane — handling identity attestation, copy/paste policy, DLP, and watermarking at the browser layer independent of network path. Cato's April 2026 launch brings single-policy-engine simplicity to the category. Island's architectural differentiator remains pre-encryption visibility — no SSL break-and-inspect required. Monitor Palo Alto's SCM + PAB integration depth, Island's full SASE stack maturity, and Cato Enterprise Browser production deployment track record through H2 2026.</p>
+    <p><strong style="color:var(--edge-green);">3. The enterprise browser is becoming a ZTNA enforcement layer.</strong> Palo Alto Prisma Access Browser, Island, and Chrome Enterprise are evolving into ZTNA control plane extensions — handling identity attestation, copy/paste policy, and watermarking at the browser layer independent of network path. Monitor Palo Alto's SCM + PAB integration roadmap and Island's full SASE stack maturity through H2 2026.</p>
   </div>
 </div>
 
@@ -188,7 +199,7 @@
 
 <footer class="edge-footer">
   <span class="edge-footer__brand">EDGE SOLUTIONS</span>
-  <span class="edge-footer__meta">SASE Codex · ZTNA Component Benchmark · Last Reviewed: 2026-04-20</span>
+  <span class="edge-footer__meta">SASE Codex · ZTNA Component Benchmark · Last Reviewed: 2026-04-19</span>
   <span class="edge-footer__url">www.edgesolutions.com</span>
 </footer>
 <script>

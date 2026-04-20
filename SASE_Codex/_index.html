@@ -23,6 +23,7 @@
     .index-row__meta { font-family: var(--font-ui); font-size: 11px; color: var(--edge-muted); white-space: nowrap; flex-shrink: 0; }
     .tier-badge { font-family: var(--font-ui); font-size: 10px; font-weight: 600; letter-spacing: 0.5px; padding: 2px 7px; border-radius: var(--r-full); white-space: nowrap; flex-shrink: 0; }
     .tier-badge--bigfive { background: rgba(72,109,135,0.12); color: var(--edge-blue); }
+    .tier-badge--bigsix  { background: rgba(26,122,74,0.12); color: var(--pb-ztna); border: 0.5px solid rgba(26,122,74,0.3); }
     .tier-badge--emerging { background: rgba(157,160,60,0.15); color: var(--edge-moss); }
     .tier-badge--new { background: rgba(198,210,25,0.2); color: #6b7a00; border: 0.5px solid rgba(198,210,25,0.6); }
     .tier-badge--component { background: rgba(72,109,135,0.08); color: var(--edge-muted); }
@@ -62,7 +63,7 @@
   </div>
   <div class="edge-header__bottom">
     <h1 class="edge-header__title">SASE Codex — Research Index</h1>
-    <p class="edge-header__subtitle">Big Five + Emerging Vendors · Five Evaluation Pillars · Living Research Repository — Edge Solutions</p>
+    <p class="edge-header__subtitle">Big Six + Emerging Vendors · Five Evaluation Pillars · Living Research Repository — Edge Solutions</p>
   </div>
 </header>
 
@@ -77,13 +78,13 @@
       <span class="index-quicklink__icon">📊</span>
       <span>Master Scorecard<span class="index-quicklink__sub" style="display:block;">All vendors · all pillars · radar chart</span></span>
     </a>
-    <a href="working-docs/fortinet.html" class="index-quicklink" style="border-color:rgba(198,210,25,0.5);">
-      <span class="index-quicklink__icon">🆕</span>
-      <span>Fortinet<span class="index-quicklink__sub" style="display:block;">New in v2.0 — MQ Leader 2025</span></span>
+    <a href="working-docs/fortinet.html" class="index-quicklink">
+      <span class="index-quicklink__icon">🛡</span>
+      <span>Fortinet<span class="index-quicklink__sub" style="display:block;">Big Six · MQ Leader 2025 · FortiOS SASE</span></span>
     </a>
-    <a href="working-docs/versa-networks.html" class="index-quicklink" style="border-color:rgba(198,210,25,0.5);">
-      <span class="index-quicklink__icon">🆕</span>
-      <span>Versa Networks<span class="index-quicklink__sub" style="display:block;">New in v2.0 — Gartner Challenger</span></span>
+    <a href="components/sase_emerging.html" class="index-quicklink" style="border-color:rgba(157,160,60,0.4);">
+      <span class="index-quicklink__icon">🔬</span>
+      <span>Emerging Vendors<span class="index-quicklink__sub" style="display:block;">Aryaka · Island · Nile · Versa — scoring + analysis</span></span>
     </a>
   </div>
 
@@ -100,7 +101,7 @@
         <div class="index-section-label">Framework — Complete</div>
         <a href="components/sase_benchmark.html" class="index-row"><div><div class="index-row__name">Component Benchmark Overview</div><div class="index-row__sub">Rubric · criteria weightings · architectural framing</div></div><span class="tier-badge tier-badge--component">FRAMEWORK</span><span class="index-row__meta">2026-04-19</span></a>
         <a href="components/sase_scorecard.html" class="index-row"><div><div class="index-row__name">Master Scorecard</div><div class="index-row__sub">All vendors · all pillars · radar chart · persona matrix</div></div><span class="tier-badge tier-badge--component">SYNTHESIS</span><span class="index-row__meta">2026-04-19</span></a>
-        <a href="components/sase_emerging.html" class="index-row"><div><div class="index-row__name">Emerging Vendors Overview</div><div class="index-row__sub">Aryaka · Fortinet · Island · Nile · Versa Networks — contextual analysis</div></div><span class="tier-badge tier-badge--component">OVERVIEW</span><span class="index-row__meta">2026-04-19</span></a>
+        <a href="components/sase_emerging.html" class="index-row"><div><div class="index-row__name">Emerging Vendors Overview</div><div class="index-row__sub">Aryaka · Island · Nile · Versa Networks — contextual analysis &amp; scoring</div></div><span class="tier-badge tier-badge--component">OVERVIEW</span><span class="index-row__meta">2026-04-20</span></a>
         <div class="index-section-label">Pillar Deep Dives — Complete</div>
         <a href="components/sase_ztna.html" class="index-row index-row--ztna"><div><div class="index-row__name">ZTNA — Remote Access</div><div class="index-row__sub">Device posture · identity · per-app segmentation · agentless</div></div><span class="tier-badge tier-badge--component">PILLAR</span><span class="index-row__meta">2026-04-19</span></a>
         <a href="components/sase_sse.html" class="index-row index-row--sse"><div><div class="index-row__name">SSE — Security Service Edge</div><div class="index-row__sub">SWG · CASB · DLP · TLS · RBI · GenAI protection</div></div><span class="tier-badge tier-badge--component">PILLAR</span><span class="index-row__meta">2026-04-19</span></a>
@@ -118,18 +119,18 @@
         <span class="index-panel__count">10 VENDORS</span>
       </div>
       <div class="index-panel__body">
-        <div class="index-section-label">Big Five — Complete</div>
-        <a href="working-docs/cato-networks.html" class="index-row"><div><div class="index-row__name">Cato Networks</div><div class="index-row__sub">Cato SASE Cloud · Single-pass · Private backbone</div></div><span class="tier-badge tier-badge--bigfive">BIG FIVE</span><span class="index-row__meta">2026-04-19</span></a>
-        <a href="working-docs/cloudflare.html" class="index-row"><div><div class="index-row__name">Cloudflare</div><div class="index-row__sub">Cloudflare One · Edge-native · 330+ PoPs</div></div><span class="tier-badge tier-badge--bigfive">BIG FIVE</span><span class="index-row__meta">2026-04-19</span></a>
-        <a href="working-docs/netskope.html" class="index-row"><div><div class="index-row__name">Netskope</div><div class="index-row__sub">Netskope One · Data-centric · Industry-reference DLP</div></div><span class="tier-badge tier-badge--bigfive">BIG FIVE</span><span class="index-row__meta">2026-04-19</span></a>
-        <a href="working-docs/palo-alto-networks.html" class="index-row"><div><div class="index-row__name">Palo Alto Networks</div><div class="index-row__sub">Prisma Access + SCM · Threat-first · Stitched architecture</div></div><span class="tier-badge tier-badge--bigfive">BIG FIVE</span><span class="index-row__meta">2026-04-19</span></a>
-        <a href="working-docs/zscaler.html" class="index-row"><div><div class="index-row__name">Zscaler</div><div class="index-row__sub">ZIA + ZPA + ZDX · Identity-first proxy · Best DEM</div></div><span class="tier-badge tier-badge--bigfive">BIG FIVE</span><span class="index-row__meta">2026-04-19</span></a>
-        <div class="index-section-label">Emerging — Complete</div>
+        <div class="index-section-label">Big Six — All 5 Pillars — Complete</div>
+        <a href="working-docs/cato-networks.html" class="index-row"><div><div class="index-row__name">Cato Networks</div><div class="index-row__sub">Cato SASE Cloud · Single-pass · Private backbone</div></div><span class="tier-badge tier-badge--bigfive">BIG SIX</span><span class="index-row__meta">2026-04-19</span></a>
+        <a href="working-docs/cloudflare.html" class="index-row"><div><div class="index-row__name">Cloudflare</div><div class="index-row__sub">Cloudflare One · Edge-native · 330+ PoPs</div></div><span class="tier-badge tier-badge--bigfive">BIG SIX</span><span class="index-row__meta">2026-04-19</span></a>
+        <a href="working-docs/fortinet.html" class="index-row"><div><div class="index-row__name">Fortinet</div><div class="index-row__sub">FortiOS unified SASE · Gartner MQ Leader 2025 · SD-WAN incumbent</div></div><span class="tier-badge tier-badge--bigsix">BIG SIX</span><span class="index-row__meta">2026-04-20</span></a>
+        <a href="working-docs/netskope.html" class="index-row"><div><div class="index-row__name">Netskope</div><div class="index-row__sub">Netskope One · Data-centric · Industry-reference DLP</div></div><span class="tier-badge tier-badge--bigfive">BIG SIX</span><span class="index-row__meta">2026-04-19</span></a>
+        <a href="working-docs/palo-alto-networks.html" class="index-row"><div><div class="index-row__name">Palo Alto Networks</div><div class="index-row__sub">Prisma Access + SCM · Threat-first · Stitched architecture</div></div><span class="tier-badge tier-badge--bigfive">BIG SIX</span><span class="index-row__meta">2026-04-19</span></a>
+        <a href="working-docs/zscaler.html" class="index-row"><div><div class="index-row__name">Zscaler</div><div class="index-row__sub">ZIA + ZPA + ZDX · Identity-first proxy · Best DEM</div></div><span class="tier-badge tier-badge--bigfive">BIG SIX</span><span class="index-row__meta">2026-04-19</span></a>
+        <div class="index-section-label">Emerging — Pillar-Scoped — Complete</div>
         <a href="working-docs/aryaka.html" class="index-row"><div><div class="index-row__name">Aryaka</div><div class="index-row__sub">Managed SASE · Private backbone · SD-WAN + AIOps scope</div></div><span class="tier-badge tier-badge--emerging">EMERGING</span><span class="index-row__meta">2026-04-19</span></a>
-        <a href="working-docs/fortinet.html" class="index-row"><div><div class="index-row__name">Fortinet</div><div class="index-row__sub">FortiOS unified SASE · MQ Leader 2025 · SD-WAN incumbent</div></div><span class="tier-badge tier-badge--new">NEW v2.0</span><span class="index-row__meta">2026-04-19</span></a>
         <a href="working-docs/island.html" class="index-row"><div><div class="index-row__name">Island</div><div class="index-row__sub">Enterprise Browser · Full SASE stack Mar 2026 · $4.8B</div></div><span class="tier-badge tier-badge--emerging">EMERGING</span><span class="index-row__meta">2026-04-19</span></a>
         <a href="working-docs/nile.html" class="index-row"><div><div class="index-row__name">Nile</div><div class="index-row__sub">Zero Trust NaaS · Campus LAN edge · Gartner Visionary</div></div><span class="tier-badge tier-badge--emerging">EMERGING</span><span class="index-row__meta">2026-04-19</span></a>
-        <a href="working-docs/versa-networks.html" class="index-row"><div><div class="index-row__name">Versa Networks</div><div class="index-row__sub">SD-WAN-led SASE · Gartner Challenger 2025</div></div><span class="tier-badge tier-badge--new">NEW v2.0</span><span class="index-row__meta">2026-04-19</span></a>
+        <a href="working-docs/versa-networks.html" class="index-row"><div><div class="index-row__name">Versa Networks</div><div class="index-row__sub">SD-WAN-led SASE · Gartner Challenger 2025 · All 5 pillars</div></div><span class="tier-badge tier-badge--emerging">EMERGING</span><span class="index-row__meta">2026-04-19</span></a>
       </div>
     </div>
 
@@ -151,11 +152,13 @@
   </div>
 
   <div class="index-meta-bar">
-    <span><strong>SASE Codex</strong> v2.0</span>
+    <span><strong>SASE Codex</strong> v2.1</span>
     <span class="index-meta-bar__sep"></span>
-    <span>Last updated: <strong>2026-04-19</strong></span>
+    <span>Last updated: <strong>2026-04-20</strong></span>
     <span class="index-meta-bar__sep"></span>
-    <span>Working docs: <strong>All 10 complete</strong></span>
+    <span>Big Six: <strong>6 vendors · all 5 pillars</strong></span>
+    <span class="index-meta-bar__sep"></span>
+    <span>Emerging: <strong>4 vendors · pillar-scoped</strong></span>
     <span class="index-meta-bar__sep"></span>
     <span>Components: <strong>All 8 complete</strong></span>
     <span class="index-meta-bar__sep"></span>
@@ -166,7 +169,7 @@
 
 <footer class="edge-footer">
   <span class="edge-footer__brand">EDGE SOLUTIONS</span>
-  <span class="edge-footer__meta">SASE Codex · Master Index · v2.0 · 2026</span>
+  <span class="edge-footer__meta">SASE Codex · Master Index · v2.1 · 2026</span>
   <span class="edge-footer__url">www.edgesolutions.com</span>
 </footer>
 

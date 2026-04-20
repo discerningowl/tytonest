@@ -24,7 +24,16 @@
   </div>
 </header>
 
-<nav class="doc-nav"></nav>
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_scorecard.html">Scorecard</a>
+</nav>
 
 <div class="page-body">
 <main>
@@ -33,8 +42,8 @@
 <div class="edge-section">
   <div class="bluf-box">
     <div class="bluf-box__label">Bottom Line Up Front</div>
-    <p>Zscaler is the SASE choice for organizations where per-app ZTNA maturity and digital experience monitoring are the governing requirements. ZPA's inside-out connector model is the most mature implementation of network-agnostic per-app segmentation in the market — Zscaler itself claims it as the world's most deployed ZTNA solution. ZDX is the reference DEM platform — per-session hop analysis, sub-60-second automated fault attribution, and direct helpdesk workflow integration that no other Big Six vendor matches. FedRAMP High + GovRAMP/StateRAMP authorization (ZIA + ZPA for Government) and the Zscaler Private Cloud (ZPC) option make Zscaler the second choice behind Netskope for US government and defense-adjacent buyers. The February 2026 SquareX acquisition adds browser-native threat detection (BDR), closing the enterprise browser gap that has historically been a watch area.</p>
-    <p><strong>Critical architecture note:</strong> ZIA (internet access) and ZPA (private access) are distinct products sharing policy via platform integration — not a native single-pass engine. All pillar analyses reflect this product split. Verify current scope of ZIA/ZPA unification before positioning to clients. <strong>Primary limitations:</strong> SD-WAN is not Zscaler's domain — no native CPE, no private backbone, no WAN optimization. Gartner classifies Zscaler as a <strong>Visionary in the 2025 SASE MQ</strong> (not Leader — due to immature SD-WAN) but a <strong>Leader in the 2025 SSE MQ</strong> (4th consecutive year). ZDX differentiation vs. Cato/Palo Alto AIOps is the key watch item.</p>
+    <p>Zscaler is the SASE choice for organizations where per-app ZTNA maturity and digital experience monitoring are the governing requirements. ZPA's inside-out connector model is the most mature implementation of network-agnostic per-app segmentation in the market, with the largest enterprise installed base of any Big Five vendor. ZDX is the reference DEM platform — per-session hop analysis, sub-60-second automated fault attribution, and direct helpdesk workflow integration that no other Big Five vendor matches. FedRAMP High (ZIA + ZPA for Government) and the Zscaler Private Cloud (ZPC) option make Zscaler the second choice behind Netskope for US government and defense-adjacent buyers.</p>
+    <p><strong>Critical architecture note:</strong> ZIA (internet access) and ZPA (private access) are distinct products sharing policy via platform integration — not a native single-pass engine. All pillar analyses reflect this product split. Verify current scope of ZIA/ZPA unification before positioning to clients. <strong>Primary limitations:</strong> SD-WAN is not Zscaler's domain — no native CPE, no private backbone, no WAN optimization. Gartner classifies Zscaler as Visionary (not Leader) in the 2025 SASE MQ; ZDX differentiation vs. Cato/Palo Alto AIOps is the key watch item.</p>
   </div>
 
   <div class="edge-callout edge-callout--warning">
@@ -56,8 +65,8 @@
       <div class="edge-stat__label">HIGH (ZIA + ZPA Gov)</div>
     </div>
     <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
-      <div class="edge-stat__number">SASE Visionary</div>
-      <div class="edge-stat__label">SSE LEADER — 4TH YEAR</div>
+      <div class="edge-stat__number">Gartner MQ</div>
+      <div class="edge-stat__label">VISIONARY 2025</div>
     </div>
   </div>
 </div>
@@ -76,8 +85,8 @@
   <p>Zscaler's architecture is identity-first and proxy-based. Every internet-bound connection routes through a ZIA PoP for inspection. Every private app connection uses ZPA's inside-out connector model — the app-side connector calls out to Zscaler's cloud, meaning no inbound ports are exposed and there is no network adjacency between users and the private network. ZIA and ZPA are separate products that share policy configuration and identity context through the Zero Trust Exchange platform. They are not a single-pass engine — inspection of internet traffic (ZIA) and private app access (ZPA) happens in separate processing planes.</p>
   <p>ZDX (Zscaler Digital Experience) is a third separately licensed product. Full Zscaler AIOps capability requires all three. This product-split architecture is the primary operational challenge in Zscaler deployments and the most important factor to surface in TCO conversations.</p>
   <div class="edge-grid-2 mt-20">
-    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL STRENGTHS</span><ul style="margin-top:12px;"><li>Most mature per-app ZTNA segmentation via inside-out connector model</li><li>Best DEM in the Big Six — ZDX sub-60-second automated fault attribution</li><li>30,000+ app catalog — unmatched Shadow IT discovery and SaaS per-activity control</li><li>FedRAMP High (ZIA + ZPA) — battle-tested US government SASE deployment</li><li>ZPC option provides dedicated, tenant-isolated infrastructure for strictest sovereignty</li></ul></div></div>
-    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL LIMITATIONS</span><ul style="margin-top:12px;"><li>ZIA + ZPA + ZDX are three separate products — licensing complexity and operational seams</li><li>No native SD-WAN CPE, no private backbone, no WAN optimization</li><li>No single-pass engine — DLP across private apps requires ZIA/ZPA chaining</li><li>Gartner Visionary (SASE MQ), not Leader — lead with SSE Leader position (4th year); verify SASE MQ positioning vs. Cato/Palo Alto before each engagement</li><li>SquareX BDR acquisition (Feb 2026) adds browser security — not yet a native enterprise browser; integration depth with ZIA/ZPA is the watch item</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL STRENGTHS</span><ul style="margin-top:12px;"><li>Most mature per-app ZTNA segmentation via inside-out connector model</li><li>Best DEM in the Big Five — ZDX sub-60-second automated fault attribution</li><li>30,000+ app catalog — unmatched Shadow IT discovery and SaaS per-activity control</li><li>FedRAMP High (ZIA + ZPA) — battle-tested US government SASE deployment</li><li>ZPC option provides dedicated, tenant-isolated infrastructure for strictest sovereignty</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL LIMITATIONS</span><ul style="margin-top:12px;"><li>ZIA + ZPA + ZDX are three separate products — licensing complexity and operational seams</li><li>No native SD-WAN CPE, no private backbone, no WAN optimization</li><li>No single-pass engine — DLP across private apps requires ZIA/ZPA chaining</li><li>Gartner Visionary, not Leader — verify positioning justification vs. Cato/Palo Alto before leading with SASE MQ position</li><li>GenAI policy authoring not GA as of Q1 2026</li></ul></div></div>
   </div>
 </div>
 
@@ -89,17 +98,17 @@
   </div>
   <h2 class="section-heading">ZTNA Analysis</h2>
   <hr class="edge-rule">
-  <p>ZPA's inside-out connectivity model is its defining architectural feature: the app-side connector initiates the outbound connection to Zscaler's cloud — no inbound firewall ports, no exposed attack surface, and no network adjacency between users and the private subnet. Users receive application-specific encrypted tunnels only. A compromised connector cannot enable lateral movement because each connector sees only its own defined application segment. This is the most mature implementation of network-agnostic per-app ZTNA in the market, with the largest enterprise installed base of any Big Six vendor.</p>
+  <p>ZPA's inside-out connectivity model is its defining architectural feature: the app-side connector initiates the outbound connection to Zscaler's cloud — no inbound firewall ports, no exposed attack surface, and no network adjacency between users and the private subnet. Users receive application-specific encrypted tunnels only. A compromised connector cannot enable lateral movement because each connector sees only its own defined application segment. This is the most mature implementation of network-agnostic per-app ZTNA in the market, with the largest enterprise installed base of any Big Five vendor.</p>
 
   <div class="vendor-subhead">Identity + ZDX Risk Integration</div>
-  <p>Deepest identity integration in the Big Six. SAML, OIDC, and direct Okta/Microsoft Entra integrations with conditional access. User Risk scores derived from ZDX telemetry feed into ZPA access policy dynamically — elevated anomaly scores trigger step-up MFA or session throttling natively within the platform, without a UEBA → SIEM → SOAR chain. This native risk-to-policy loop is a material operational advantage over vendors that require external SOAR to close this loop. Verify current scope of ZIA/ZPA policy unification before positioning — this is an actively evolving area.</p>
+  <p>Deepest identity integration in the Big Five. SAML, OIDC, and direct Okta/Microsoft Entra integrations with conditional access. User Risk scores derived from ZDX telemetry feed into ZPA access policy dynamically — elevated anomaly scores trigger step-up MFA or session throttling natively within the platform, without a UEBA → SIEM → SOAR chain. This native risk-to-policy loop is a material operational advantage over vendors that require external SOAR to close this loop. Verify current scope of ZIA/ZPA policy unification before positioning — this is an actively evolving area.</p>
 
   <div class="vendor-subhead">Per-App Segmentation</div>
-  <p>ZPA application segments are the reference implementation for per-app ZTNA: each segment has its own connector group, access policy, and inspection rule. Segment isolation is enforced at the connector layer — connector A cannot reach connector B's application segment under any policy configuration. ZDX (separately licensed) provides the most mature DEM in the Big Six: per-session path visibility, ISP hop attribution, SaaS performance scoring, and automated fault domain classification (device / ISP / Zscaler / application) in under 60 seconds.</p>
+  <p>ZPA application segments are the reference implementation for per-app ZTNA: each segment has its own connector group, access policy, and inspection rule. Segment isolation is enforced at the connector layer — connector A cannot reach connector B's application segment under any policy configuration. ZDX (separately licensed) provides the most mature DEM in the Big Five: per-session path visibility, ISP hop attribution, SaaS performance scoring, and automated fault domain classification (device / ISP / Zscaler / application) in under 60 seconds.</p>
 
   <div class="vendor-grid">
-    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Most mature per-app segmentation — inside-out model is the reference implementation. Best DEM/ZDX for enterprise helpdesk workflows and proactive incident detection. Deepest identity + risk integration in the Big Six. Zero exposed inbound ports on private apps. Largest enterprise ZTNA installed base.</p></div>
-    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>ZIA/ZPA are separate products — verify scope of policy unification claims before client presentations. Agentless ZTNA breadth narrower than Cloudflare — no browser-rendered thick-client access. No native enterprise browser — SquareX acquisition (Feb 2026) adds BDR capabilities via lightweight extension, but this is not the same as Island's full browser SASE model. ZDX is separately licensed — include in TCO. Architecture claims require verification at each engagement.</p></div>
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Most mature per-app segmentation — inside-out model is the reference implementation. Best DEM/ZDX for enterprise helpdesk workflows and proactive incident detection. Deepest identity + risk integration in the Big Five. Zero exposed inbound ports on private apps. Largest enterprise ZTNA installed base.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>ZIA/ZPA are separate products — verify scope of policy unification claims before client presentations. Agentless ZTNA breadth narrower than Cloudflare — no browser-rendered thick-client access. No native enterprise browser (Island partnership available). ZDX is separately licensed — include in TCO. Architecture claims require verification at each engagement.</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_ztna.html" style="color:var(--edge-blue);">ZTNA pillar comparison — all vendors</a></p>
 </div>
@@ -112,16 +121,16 @@
   </div>
   <h2 class="section-heading">SSE Analysis</h2>
   <hr class="edge-rule">
-  <p>ZIA is a cloud-native proxy designed for internet security. Every internet-bound connection routes through a ZIA PoP where it is decrypted, inspected, and allowed or blocked. Cloud App Control covers 30,000+ applications with per-activity controls (allow upload to Box, block download from personal OneDrive, allow read-only access to GitHub) — the most granular SaaS per-activity control in the Big Six and unmatched for Shadow IT governance programs.</p>
+  <p>ZIA is a cloud-native proxy designed for internet security. Every internet-bound connection routes through a ZIA PoP where it is decrypted, inspected, and allowed or blocked. Cloud App Control covers 30,000+ applications with per-activity controls (allow upload to Box, block download from personal OneDrive, allow read-only access to GitHub) — the most granular SaaS per-activity control in the Big Five and unmatched for Shadow IT governance programs.</p>
 
   <div class="vendor-subhead">DLP</div>
   <p>Zscaler DLP covers ML classification, EDM, OCR, and pre-built classifiers. The Cloud DLP engine is operationally solid for most compliance use cases. For organizations running sophisticated ML-based classification programs across complex multi-format regulated content (clinical notes, financial contracts, complex IP), Netskope's engine is more mature. Integration between ZIA DLP and ZPA for private app traffic requires chaining — they share policy configuration but inspection happens in separate planes, which creates potential gaps for DLP programs covering both internet and private app traffic.</p>
 
   <div class="vendor-subhead">GenAI &amp; Agentic AI — AI Security Suite</div>
-  <p>Zscaler carries the deepest published AI threat telemetry of any vendor in this comparison: 989.3 billion AI/ML transactions analyzed across ~9,000 organizations (Jan–Dec 2025), representing a 91% YoY surge in AI activity. The ThreatLabz 2026 AI Security Report found critical flaws in 100% of enterprise AI systems analyzed in red team testing, a median time-to-compromise of 16 minutes, and 90% of systems compromised within 90 minutes. The Zscaler AI Security Suite (January 2026) materially expands scope beyond prompt-level DLP: a comprehensive AI footprint inventory mapping GenAI services, embedded AI in SaaS, development environments, MCP servers, agents, models, and infrastructure in a unified dependency graph; an MCP gateway governing agent-to-resource connections without per-server configuration overhead; and AI Deception — decoy resources designed to misdirect and neutralize model-based attacks against internal AI systems. Zscaler is also in OpenAI's Trusted Access for Cyber (TAC) program.</p>
+  <p>Zscaler carries the deepest published AI threat telemetry of any vendor in this comparison: approximately one trillion AI/ML transactions analyzed on the Zero Trust Exchange, with ThreatLabz 2026 AI Security Report finding critical flaws in 100% of enterprise AI systems analyzed and a median time-to-compromise under 16 minutes. The Zscaler AI Security Suite (January 2026) materially expands scope beyond prompt-level DLP: a comprehensive AI footprint inventory mapping GenAI services, embedded AI in SaaS, development environments, MCP servers, agents, models, and infrastructure in a unified dependency graph; an MCP gateway governing agent-to-resource connections without per-server configuration overhead; and AI Deception — decoy resources designed to misdirect and neutralize model-based attacks against internal AI systems. Zscaler is also in OpenAI's Trusted Access for Cyber (TAC) program.</p>
 
   <div class="vendor-grid">
-    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>30,000+ app catalog — largest Shadow IT discovery in the Big Six. Per-activity SaaS controls — most granular app governance. ZIA inline TLS 1.3 at massive scale. AI Security Suite (January 2026) — MCP gateway, AI inventory, AI Deception. 10+ year operational track record as cloud proxy.</p></div>
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>30,000+ app catalog — largest Shadow IT discovery in the Big Five. Per-activity SaaS controls — most granular app governance. ZIA inline TLS 1.3 at massive scale. AI Security Suite (January 2026) — MCP gateway, AI inventory, AI Deception. 10+ year operational track record as cloud proxy.</p></div>
     <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>ZIA + ZPA separate products — DLP across private apps requires chaining. DLP classification depth below Netskope for complex ML programs. No private backbone — full public internet dependency. CASB API mode less integrated than Netskope. GenAI policy authoring not GA as of Q1 2026.</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sse.html" style="color:var(--edge-blue);">SSE pillar comparison — all vendors</a></p>
@@ -164,13 +173,13 @@
   <p>Zscaler UEBA correlates ZIA (web/SaaS access), ZPA (private app access), and ZDX (network path telemetry) into per-user risk scores. A user accessing an unusual private app at an unusual hour from an unusual location with degraded ZDX scores generates a compound risk signal that single-source UEBA cannot produce. Automated risk escalation adjusts ZPA access policy dynamically — a high-risk user can be stepped down to read-only or blocked from sensitive app segments without a human in the loop. This native risk-to-policy loop without SOAR is a genuine operational advantage.</p>
 
   <div class="vendor-subhead">ZDX — Root Cause Analysis, Best-in-Class</div>
-  <p>ZDX's RCA capability is the best in the Big Six for enterprise IT operations. When a user reports "my app is slow," ZDX provides: per-hop path latency, identification of whether degradation is in "device / ISP / Zscaler cloud / application," comparison against historical baseline and peer-group baseline, and a written diagnosis summary for helpdesk staff. Target diagnosis time is under 60 seconds from ticket open to fault identification — a documented operational metric that significantly reduces MTTR for remote worker issues. No other Big Six vendor matches this diagnostic speed and specificity.</p>
+  <p>ZDX's RCA capability is the best in the Big Five for enterprise IT operations. When a user reports "my app is slow," ZDX provides: per-hop path latency, identification of whether degradation is in "device / ISP / Zscaler cloud / application," comparison against historical baseline and peer-group baseline, and a written diagnosis summary for helpdesk staff. Target diagnosis time is under 60 seconds from ticket open to fault identification — a documented operational metric that significantly reduces MTTR for remote worker issues. No other Big Five vendor matches this diagnostic speed and specificity.</p>
 
   <div class="vendor-subhead">AI Admin</div>
   <p>Natural language log queries and policy recommendations are available in the Zscaler admin console. Full natural language-to-committed-policy with pre-commit traffic simulation (Palo Alto Strata Copilot's defining capability) is not GA as of Q1 2026 — roadmap item to monitor through H2 2026.</p>
 
   <div class="vendor-grid">
-    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best RCA/DEM via ZDX — fastest and most specific fault identification in the Big Six. Strong UEBA with multi-source risk scoring across ZIA + ZPA + ZDX. Native risk-to-ZPA-policy loop without SOAR requirement. Large enterprise installed base = most validated AIOps at scale.</p></div>
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best RCA/DEM via ZDX — fastest and most specific fault identification in the Big Five. Strong UEBA with multi-source risk scoring across ZIA + ZPA + ZDX. Native risk-to-ZPA-policy loop without SOAR requirement. Large enterprise installed base = most validated AIOps at scale.</p></div>
     <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>ZDX is separately licensed — include in every TCO calculation for DEM-requiring clients. GenAI policy authoring not GA. Full AIOps requires ZIA + ZPA + ZDX license bundle. No native SOAR product. Cross-product correlation breadth narrower than Palo Alto Cortex (which spans endpoint + cloud + network).</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_aiops.html" style="color:var(--edge-blue);">AIOps pillar comparison — all vendors</a></p>
@@ -184,7 +193,7 @@
   </div>
   <h2 class="section-heading">Sovereignty Analysis</h2>
   <hr class="edge-rule">
-  <p>Zscaler's sovereignty story is anchored by FedRAMP High (ZIA + ZPA for Government), GovRAMP authorization (formerly StateRAMP, rebranded March 2025 — Zscaler was the first cloud-based SaaS security company to achieve StateRAMP Ready status), and the Zscaler Private Cloud (ZPC) option for customers requiring fully dedicated, tenant-isolated infrastructure. ZPC is the clearest "sovereignty-by-architecture" option in the Zscaler portfolio: a dedicated cloud instance with no shared infrastructure. For US federal agencies, state governments, and defense contractors, Zscaler's combined FedRAMP High + GovRAMP authorization is the broadest public-sector coverage in the Big Six.</p>
+  <p>Zscaler's sovereignty story is anchored by FedRAMP High (ZIA + ZPA for Government) and the Zscaler Private Cloud (ZPC) option for customers requiring fully dedicated, tenant-isolated infrastructure. ZPC is the clearest "sovereignty-by-architecture" option in the Zscaler portfolio: a dedicated cloud instance with no shared infrastructure. For US federal agencies and defense contractors, Zscaler's FedRAMP High deployment history is the most battle-tested in the Big Five — more production government deployments than any other vendor in this comparison.</p>
 
   <div class="vendor-subhead">Regional Isolation + BYOK</div>
   <p>Tenants can pin processing to US, EU, or APAC regional clouds. For the strictest residency requirements, ZPC provides fully isolated infrastructure at significant cost premium. Standard multi-tenant ZEN nodes process traffic from multiple tenants on shared infrastructure with policy-and-segmentation isolation — ZPC resolves this at the physical layer. BYOK via HSM integration is supported. HYOK (vendor cannot decrypt) is available in ZPC deployments but less granular outside ZPC compared to Netskope's HYOK, which is available in standard configurations. Log residency is configurable by region; per-log-type granularity is available in regulated configurations.</p>
@@ -193,8 +202,8 @@
   <p>ZIA and ZPA as separate products complicates sovereignty attestation — a compliance audit covering both internet traffic (ZIA) and private app access (ZPA) must address two separate product architectures, potentially two separate regional cloud configurations, and two separate data retention policies. This is a meaningful operational overhead for compliance-intensive procurement processes that Netskope's unified architecture avoids.</p>
 
   <div class="vendor-grid">
-    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>FedRAMP High (ZIA + ZPA) — most battle-tested US government SASE authorization in the Big Six. GovRAMP (formerly StateRAMP) authorized — ZIA + ZPA. ZPC provides dedicated infrastructure for the strictest physical isolation requirements. Strong regulated-market PoP coverage. BSI C5, IRAP, CSA STAR Level 2. BYOK with audit trail. HYOK available in ZPC.</p></div>
-    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Standard multi-tenant architecture uses shared ZEN nodes — ZPC required for physical isolation at significant cost premium. HYOK outside ZPC is more limited than Netskope's standard HYOK. Log residency granularity less detailed than Netskope. ZIA/ZPA as separate products complicates unified sovereignty attestation.</p></div>
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>FedRAMP High (ZIA + ZPA) — most battle-tested US government SASE authorization in the Big Five. ZPC provides dedicated infrastructure for the strictest physical isolation requirements. Strong regulated-market PoP coverage. BSI C5, IRAP, CSA STAR Level 2. BYOK with audit trail. HYOK available in ZPC.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Standard multi-tenant architecture uses shared ZEN nodes — ZPC required for physical isolation at significant cost premium. HYOK outside ZPC is more limited than Netskope's standard HYOK. Log residency granularity less detailed than Netskope. ZIA/ZPA as separate products complicates unified sovereignty attestation. No StateRAMP.</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sovereignty.html" style="color:var(--edge-blue);">Sovereignty pillar comparison — all vendors</a></p>
 </div>
@@ -241,7 +250,6 @@
   <table class="edge-table" style="font-size:13px;">
     <thead><tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr></thead>
     <tbody>
-      <tr><td>2026-04-20</td><td>v1.1</td><td>Expert research pass against live sources. Corrections: (1) StateRAMP "No StateRAMP" error fixed — Zscaler holds GovRAMP (formerly StateRAMP) authorization for ZIA + ZPA, first cloud SaaS security company to achieve StateRAMP Ready; (2) ThreatLabz stat corrected from "approximately one trillion" to 989.3 billion transactions (91% YoY surge, ~9,000 orgs, Jan–Dec 2025); (3) Gartner positioning clarified — Visionary in SASE MQ but Leader in SSE MQ (4th consecutive year); (4) SquareX acquisition (Feb 5, 2026) added — BDR capabilities via browser extension, closes enterprise browser gap partially. Stats strip updated: SASE Visionary / SSE Leader 4th Year.</td></tr>
       <tr><td>2026-04-19</td><td>v1.0</td><td>Initial working document created under v2.0 Codex structure. Content consolidated from all five pillar docs. Reflects AI Security Suite (January 2026), MCP gateway, AI Deception, AI inventory dependency graph, OpenAI TAC program membership, and Gartner Visionary classification (2025 MQ). Standing research caution from CLAUDE.md carried forward.</td></tr>
     </tbody>
   </table>
@@ -252,10 +260,9 @@
 
 <footer class="edge-footer">
   <span class="edge-footer__brand">EDGE SOLUTIONS</span>
-  <span class="edge-footer__meta">SASE Codex · Working Document · Zscaler · Last Reviewed: 2026-04-20</span>
+  <span class="edge-footer__meta">SASE Codex · Working Document · Zscaler · Last Reviewed: 2026-04-19</span>
   <span class="edge-footer__url">www.edgesolutions.com</span>
 </footer>
-<script src="../assets/js/nav.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/back-to-top.js"></script>
 </body>

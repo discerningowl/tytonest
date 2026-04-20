@@ -24,7 +24,16 @@
   </div>
 </header>
 
-<nav class="doc-nav"></nav>
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_scorecard.html">Scorecard</a>
+</nav>
 
 <div class="page-body">
 <main>
@@ -32,7 +41,7 @@
 <div class="edge-section">
   <div class="bluf-box">
     <div class="bluf-box__label">Bottom Line Up Front</div>
-    <p>Netskope is the SASE choice for organizations where data is the primary threat surface. Netskope One's single-pass NewEdge engine is the industry reference for ML-based DLP — 3,000+ classifiers, EDM, OCR, document fingerprinting, and a UEBA engine that incorporates data sensitivity signals alongside behavioral signals. Dual-mode CASB (inline + API, shared policy plane and DLP fingerprint database) is the best integrated CASB in the Big Six. Netskope One AI Security (March 2026) closes the agentic AI gap with Agentic Broker (MCP governance), AI Gateway (private AI app protection), AI Guardrails, and AI Red Teaming. The sovereignty posture — FedRAMP High, IRAP Protected, BYOK with on-prem HSM key custody, and architectural (not contractual) PoP-level isolation — is the strongest in the Big Six for regulated and government buyers.</p>
+    <p>Netskope is the SASE choice for organizations where data is the primary threat surface. Netskope One's single-pass NewEdge engine is the industry reference for ML-based DLP — 3,000+ classifiers, EDM, OCR, document fingerprinting, and a UEBA engine that incorporates data sensitivity signals alongside behavioral signals. Dual-mode CASB (inline + API, shared policy plane and DLP fingerprint database) is the best integrated CASB in the Big Five. Netskope One AI Security (March 2026) closes the agentic AI gap with Agentic Broker (MCP governance), AI Gateway (private AI app protection), AI Guardrails, and AI Red Teaming. The sovereignty posture — FedRAMP High, IRAP Protected, BYOK + HYOK, and architectural (not contractual) PoP-level isolation — is the strongest in the Big Five for regulated and government buyers.</p>
     <p><strong>Primary fit:</strong> Data-First / Regulated (finance, healthcare, legal, EU regulated). <strong>Primary limitations:</strong> SD-WAN (NSG appliances) is a newer and less mature product line than Cato or Prisma SD-WAN. No native enterprise browser. Threat intelligence depth trails Palo Alto Unit 42/WildFire for APT-focused programs.</p>
   </div>
 
@@ -42,15 +51,15 @@
       <div class="edge-stat__label">DLP CLASSIFIERS</div>
     </div>
     <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
-      <div class="edge-stat__number">85,000+</div>
-      <div class="edge-stat__label">CLOUD APP INDEX (1,800+ GENAI)</div>
+      <div class="edge-stat__number">82,000+</div>
+      <div class="edge-stat__label">CLOUD APP INDEX</div>
     </div>
     <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">FedRAMP</div>
       <div class="edge-stat__label">HIGH + IRAP PROTECTED</div>
     </div>
     <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
-      <div class="edge-stat__number">BYOK + HSM</div>
+      <div class="edge-stat__number">BYOK + HYOK</div>
       <div class="edge-stat__label">KEY SOVEREIGNTY</div>
     </div>
   </div>
@@ -66,7 +75,7 @@
   <hr class="edge-rule">
   <p>Netskope was architected from the start around data, not threats. NewEdge is a purpose-built security network — not a CDN repurposed for SASE. The single-pass inspection engine decrypts traffic once and applies DLP, CASB, threat detection, and ZTNA policy simultaneously to the same decrypted stream. This means there are no inspection gaps between functions, and DLP and CASB share the same fingerprint database and policy engine — a file flagged by inline DLP is also flagged when found at rest via CASB API scan.</p>
   <div class="edge-grid-2 mt-20">
-    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL STRENGTHS</span><ul style="margin-top:12px;"><li>Industry reference for ML-based DLP depth and accuracy</li><li>Best-integrated DLP classification with ZTNA access grants (NPA) — deepest DLP+ZTNA fusion in the Big Six</li><li>Dual-mode CASB: inline + API with shared policy engine and DLP fingerprints</li><li>Strongest sovereignty posture in the Big Six — BYOK with on-prem HSM key custody, FedRAMP High, IRAP Protected</li><li>UEBA incorporates data sensitivity signals alongside behavioral signals</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL STRENGTHS</span><ul style="margin-top:12px;"><li>Industry reference for ML-based DLP depth and accuracy</li><li>Only vendor fusing DLP classification with ZTNA access grants (NPA)</li><li>Dual-mode CASB: inline + API with shared policy engine and DLP fingerprints</li><li>Strongest sovereignty posture in the Big Five — BYOK + HYOK, FedRAMP High, IRAP Protected</li><li>UEBA incorporates data sensitivity signals alongside behavioral signals</li></ul></div></div>
     <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL LIMITATIONS</span><ul style="margin-top:12px;"><li>SD-WAN (NSG appliances) is newer and less mature than Cato or Prisma SD-WAN</li><li>No native enterprise browser</li><li>Threat intelligence depth (no equivalent to WildFire/Unit 42) trails Palo Alto for APT programs</li><li>Network diagnostics (DEM) less mature than Zscaler ZDX</li><li>Licensing complexity for full platform access</li></ul></div></div>
   </div>
 </div>
@@ -81,13 +90,11 @@
   <hr class="edge-rule">
   <p>Netskope Private Access (NPA) is architecturally distinctive: access decisions are informed by data sensitivity, not just identity. Where Zscaler and Palo Alto ask "who are you and where are you going," Netskope also asks "what data might you touch." A user accessing an app containing PII gets a tighter policy than the same user accessing a non-sensitive app — same identity, same device posture, different data classification. This is the natural choice for regulated industries where data governs access decisions.</p>
   <div class="vendor-subhead">Device Posture + DLP Policy Fusion</div>
-  <p>Netskope's Unified Client combines ZTNA, SWG, and CASB enforcement in a single agent. EDR integration with CrowdStrike, SentinelOne, Microsoft Defender. The unique element: Netskope applies DLP policy at the access grant layer — access can be blocked or step-up authenticated based on posture state AND the data classification of the target application. No other Big Six vendor offers this fusion at the same depth. User Risk Scoring aggregates behavioral, UEBA, and DLP signals into a per-user risk score driving dynamic policy changes mid-session.</p>
+  <p>Netskope's Unified Client combines ZTNA, SWG, and CASB enforcement in a single agent. EDR integration with CrowdStrike, SentinelOne, Microsoft Defender. The unique element: Netskope applies DLP policy at the access grant layer — access can be blocked or step-up authenticated based on posture state AND the data classification of the target application. No other Big Five vendor offers this fusion at the same depth. User Risk Scoring aggregates behavioral, UEBA, and DLP signals into a per-user risk score driving dynamic policy changes mid-session.</p>
   <div class="vendor-subhead">Agentless Access</div>
   <p>Robust clientless reverse-proxy agentless ZTNA for browser-delivered web applications. For non-web thick-client apps (RDP, SSH), Netskope provides an SSH/RDP gateway requiring no full endpoint agent but requiring per-protocol configuration. Full parity for web apps; some operational overhead for non-HTTP legacy apps compared to Cloudflare's browser-rendered approach.</p>
-  <div class="vendor-subhead">Universal ZTNA — Campus + LAN Extension</div>
-  <p>Netskope extended NPA to campus and LAN environments in October 2025, making every wired and wireless access point a ZTNA enforcement boundary. AI Copilot for ZTNA (launched concurrently) automates policy creation, refinement, and audit — reducing manual configuration overhead for large policy sets. Gartner Critical Capabilities for SSE 2025 ranked Netskope highest in the Private Application Access and Coffee Shop use cases.</p>
   <div class="vendor-grid">
-    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best-integrated DLP classification with ZTNA access grants — deepest DLP+ZTNA fusion in the Big Six. Best inline + API CASB — shared policy engine with ZTNA. NewEdge is a purpose-built security network. Universal ZTNA now covers campus/LAN (Oct 2025). User risk score integrates data signals alongside behavioral signals.</p></div>
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Only vendor fusing DLP classification with ZTNA access grants. Best inline + API CASB in the Big Five — shared policy engine with ZTNA. NewEdge is a purpose-built security network. Natural choice for regulated industries. User risk score integrates data signals alongside behavioral signals.</p></div>
     <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DEM less mature than Zscaler ZDX or Palo Alto ADEM. SD-WAN (NSG appliances) newer and not competitive for SD-WAN-primary buyers. No native enterprise browser. Non-HTTP agentless requires more configuration than Cloudflare's browser-rendering approach.</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_ztna.html" style="color:var(--edge-blue);">ZTNA pillar comparison — all vendors</a></p>
@@ -104,10 +111,8 @@
   <p>Netskope's SSE is data-centric by design. The NewEdge single-pass engine applies DLP, CASB, threat detection, and access policy to the same decrypted stream simultaneously. DLP depth is the market reference: 3,000+ classifiers, ML-based classification that understands document context, EDM for exact record matching, OCR for images and screenshots, and document fingerprinting that persists across format conversion. Inline and API-mode CASB share the same policy engine and DLP fingerprint database — a file flagged inline is also flagged when found at rest via API scan.</p>
   <div class="vendor-subhead">GenAI &amp; Agentic AI — Netskope One AI Security</div>
   <p>Netskope's 2026 Cloud and Threat Report documents the core problem: GenAI-related DLP violations doubled year-over-year, data volume flowing into AI prompts increased more than 30× over two years, and shadow AI still accounts for over half of all enterprise AI activity. The telemetry base is Netskope's structural advantage — no other vendor has comparable inline visibility into what employees are sending to AI tools. Netskope One AI Security (March 2026) adds four new products: <strong>Agentic Broker</strong> (visibility and control over MCP transactions, sanctioned or unsanctioned), <strong>AI Gateway</strong> (policy enforcement for private AI apps and internal LLMs), <strong>AI Guardrails</strong> (blocks prompt injection, jailbreaking, discriminatory outputs, maps to MITRE ATLAS and OWASP Top 10 for LLMs), and <strong>AI Red Teaming</strong> (adversarial simulation against internal AI). The suite integrates with Netskope One DLP and Threat Protection for a unified alert view. NewEdge AI Fast Path provides latency-optimized routing to AI destinations so inspection doesn't add meaningful delay to AI inference workflows.</p>
-  <div class="vendor-subhead">Gartner Critical Capabilities — SSE 2025</div>
-  <p>Netskope is the only vendor ranked top-2 in all six Critical Capabilities use cases for SSE (2025 report) — #1 in three use cases and #2 in the remaining three. Four consecutive years as a Gartner SSE MQ Leader, with furthest Completeness of Vision in the 2025 MQ. This is the broadest Gartner validation in the SSE market and reflects the depth of the platform across DLP, CASB, SWG, RBI, and ZTNA.</p>
   <div class="vendor-grid">
-    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best-in-class ML DLP — EDM, OCR, fingerprinting, 3,000+ classifiers. Unified inline + API CASB with shared policy engine. 85,000+ app Cloud Confidence Index including 1,800+ GenAI tools. Netskope One AI Security (March 2026) — Agentic Broker, AI Gateway, AI Guardrails, AI Red Teaming. Native RBI with DLP inline. UEBA integrated with data access policies. Gartner Critical Capabilities #1 in 3 of 6 SSE use cases (2025).</p></div>
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best-in-class ML DLP — EDM, OCR, fingerprinting, 3,000+ classifiers. Unified inline + API CASB with shared policy engine. 82,000+ app Cloud Confidence Index including 370+ GenAI tools. Netskope One AI Security (March 2026) — Agentic Broker, AI Gateway, AI Guardrails, AI Red Teaming. Native RBI with DLP inline. UEBA integrated with data access policies.</p></div>
     <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Threat intelligence less deep than Palo Alto Unit 42/WildFire. SD-WAN (NSG) maturity still evolving. IPS depth trails Palo Alto. Licensing complexity for full platform access. Agentic AI suite is March 2026 GA — evaluate production maturity vs. Cato's Aim Security head start in private AI firewall workloads.</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sse.html" style="color:var(--edge-blue);">SSE pillar comparison — all vendors</a></p>
@@ -152,19 +157,19 @@
 <div class="edge-section" style="padding-top:0;">
   <div id="sovereignty" class="pillar-hero">
     <div class="pillar-hero__icon">🏛</div>
-    <div><div class="pillar-hero__title">Pillar 5 — Sovereignty by Design</div><div class="pillar-hero__sub">Strongest sovereignty posture in the Big Six · BYOK · On-Prem HSM Key Custody · FedRAMP High · IRAP Protected</div></div>
+    <div><div class="pillar-hero__title">Pillar 5 — Sovereignty by Design</div><div class="pillar-hero__sub">Strongest sovereignty posture in the Big Five · BYOK + HYOK · FedRAMP High · IRAP Protected</div></div>
   </div>
   <h2 class="section-heading">Sovereignty Analysis</h2>
   <hr class="edge-rule">
   <p>Netskope leads Sovereignty across all six criteria. NewEdge was designed for PoP-level tenant isolation from the beginning — not retrofitted onto a global CDN. Netskope can offer contractual plus architectural data residency: not just a promise that data stays in the EU, but a network topology that makes cross-border processing architecturally impossible for tenants with regional pinning enabled.</p>
-  <div class="vendor-subhead">Key Management — BYOK and On-Prem HSM Custody</div>
-  <p>Netskope BYOK is GA: pre-built integrations with CSP key management services (AWS KMS, Azure Key Vault) using AES-256 encryption and a FIPS 140-2 Level 3-certified KMS. For organizations requiring stronger key custody, Netskope supports an on-premises HSM option across all three encryption feature types (structured data, BYOK-structured, unstructured data) — when the customer manages their own on-prem HSM, Netskope never holds the key material, providing HYOK-equivalent protection in practice. This is not a separately marketed "HYOK" product, but the architectural outcome is the same: vendor access to decrypted data is architecturally prevented. This is what German BaFin, French ACPR, and Dutch DNB guidance increasingly expects for cloud security tooling processing sensitive financial data.</p>
+  <div class="vendor-subhead">BYOK + HYOK — Gold Standard</div>
+  <p>Netskope is the only Big Five vendor offering both BYOK and HYOK as generally available capabilities. HYOK means the vendor cannot decrypt customer data even during a law enforcement request — the gold standard for sovereignty-sensitive deployments. This is what German BaFin, French ACPR, and Dutch DNB guidance increasingly expects for cloud security tooling processing sensitive financial data. BYOK alone (available from Zscaler and others) does not satisfy regulators who require that the vendor itself cannot access the data.</p>
   <div class="vendor-subhead">FedRAMP High + IRAP Protected</div>
-  <p>FedRAMP High covers DOD and intelligence community workloads — the highest US government authorization level. IRAP Protected covers Australian government classified workloads. These are the two hardest authorizations to obtain and the most meaningful for government and government-adjacent enterprise buyers. Combined with BSI C5 and CSA STAR Level 2, Netskope holds the strongest regulated-market certification portfolio in the Big Six after Palo Alto for overall breadth, but with higher authorization levels (High vs. Moderate for FedRAMP).</p>
+  <p>FedRAMP High covers DOD and intelligence community workloads — the highest US government authorization level. IRAP Protected covers Australian government classified workloads. These are the two hardest authorizations to obtain and the most meaningful for government and government-adjacent enterprise buyers. Combined with BSI C5 and CSA STAR Level 2, Netskope holds the strongest regulated-market certification portfolio in the Big Five after Palo Alto for overall breadth, but with higher authorization levels (High vs. Moderate for FedRAMP).</p>
   <div class="vendor-subhead">DPDPA + APAC Expansion</div>
-  <p>Netskope announced a NewEdge management plane in Mumbai on April 14, 2026 — joining eight existing Indian data centers — to deliver a fully sovereign SASE platform for India's Digital Personal Data Protection Act (DPDPA) compliance, including sensitive metadata and logs. This is the first Big Six vendor to proactively address DPDPA at the infrastructure layer.</p>
+  <p>Netskope announced a NewEdge management plane in Mumbai on April 14, 2026 — joining eight existing Indian data centers — to deliver a fully sovereign SASE platform for India's Digital Personal Data Protection Act (DPDPA) compliance, including sensitive metadata and logs. This is the first Big Five vendor to proactively address DPDPA at the infrastructure layer.</p>
   <div class="vendor-grid">
-    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>BYOK GA via CSP integrations (FIPS 140-2 L3 KMS). On-prem HSM option delivers HYOK-equivalent key custody across all encryption feature types. PoP-level isolation is architectural, not contractual-only. FedRAMP High + IRAP Protected (only Big Six vendor with both). Best log residency granularity (per-log-type, per-tenant). Mumbai management plane (April 2026) — first Big Six vendor with in-country DPDPA orchestration. SOC2-audited ML training data isolation (EU AI Act Article 10 evidence).</p></div>
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Only vendor with BYOK + HYOK generally available. PoP-level isolation is architectural, not contractual-only. FedRAMP High + IRAP Protected. Best log residency granularity (per-log-type, per-tenant). SOC2-audited ML training data isolation (EU AI Act Article 10 evidence). Best for EU regulated and US government buyers.</p></div>
     <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>NewEdge footprint (120+ data centers in 75+ regions) smaller than Cloudflare (330+ PoPs) — emerging market coverage less dense. Dedicated private PoP for small regulated entities requires custom engagement. FedRAMP High configurations are premium-priced relative to standard Netskope licensing.</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sovereignty.html" style="color:var(--edge-blue);">Sovereignty pillar comparison — all vendors</a></p>
@@ -179,7 +184,7 @@
     <tbody>
       <tr><td><strong>Lean IT</strong><br><span style="font-size:11px;color:var(--edge-muted);">SMB–Mid-market</span></td><td><span style="background:#eee; color:#555; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600;">NOT RECOMMENDED</span></td><td>Licensing complexity, DLP sophistication requirements, and SD-WAN immaturity make Netskope a poor fit for lean teams without dedicated DLP specialists. Cato serves this persona far better.</td><td>—</td></tr>
       <tr><td><strong>Global Security Ops</strong><br><span style="font-size:11px;color:var(--edge-muted);">Large Enterprise</span></td><td><span class="winner-tag winner-alt">ALTERNATIVE</span></td><td>Inline + API CASB integration and DLP-informed UEBA are relevant for large security teams with data exfiltration programs. Primary fit remains Palo Alto for threat-centric programs with existing Cortex investment.</td><td>Threat depth (WildFire/Unit 42) and cross-product SOAR integration trail Palo Alto for pure threat operations.</td></tr>
-      <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td><span class="winner-tag winner-primary">PRIMARY</span></td><td>ML DLP depth, BYOK with on-prem HSM key custody, FedRAMP High + IRAP Protected, and DLP-fused ZTNA access grants are purpose-built for this buyer. The only vendor where sovereignty is architectural, not contractual, and where ZTNA access policy is driven by data classification.</td><td>SD-WAN immaturity — if SD-WAN convergence is also required, pair Netskope SSE/ZTNA with a separate SD-WAN decision or evaluate Cato for the SD-WAN layer.</td></tr>
+      <tr><td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td><td><span class="winner-tag winner-primary">PRIMARY</span></td><td>ML DLP depth, BYOK + HYOK, FedRAMP High + IRAP Protected, and DLP-fused ZTNA access grants are purpose-built for this buyer. The only vendor where sovereignty is architectural, not contractual, and where ZTNA access policy is driven by data classification.</td><td>SD-WAN immaturity — if SD-WAN convergence is also required, pair Netskope SSE/ZTNA with a separate SD-WAN decision or evaluate Cato for the SD-WAN layer.</td></tr>
       <tr><td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td><td><span style="background:#eee; color:#555; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600;">NOT RECOMMENDED</span></td><td>SD-WAN is not competitive for SD-WAN-primary buyers. Cato or Cloudflare serve this persona better. Netskope is viable as the SSE/ZTNA component alongside a dedicated SD-WAN vendor for regulated environments.</td><td>—</td></tr>
     </tbody>
   </table>
@@ -192,7 +197,6 @@
   <table class="edge-table" style="font-size:13px;">
     <thead><tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr></thead>
     <tbody>
-      <tr><td>2026-04-20</td><td>v1.1</td><td>Expert review pass. Five corrections applied: (1) Cloud App Index updated to 85,000+ SaaS / 1,800+ GenAI (from verified March 2026 AI Security announcement); (2) "only vendor fusing DLP+ZTNA" softened to "best-integrated" — Palo Alto also claims this capability; (3) Gartner Critical Capabilities framing corrected to #1 in 3 of 6 use cases, top-2 in all 6; (4) BYOK+HYOK claim corrected — BYOK is GA (CSP integrations, FIPS 140-2 L3 KMS, on-prem HSM option), HYOK-equivalent protection via on-prem HSM but not a separately marketed product (verified via Netskope docs); (5) Universal ZTNA campus/LAN extension (Oct 2025) and Gartner Critical Capabilities section added to ZTNA pillar. ZTNA Global Latency score raised 4→5 in scores.json (NewEdge AI Fast Path, 11,000+ adjacencies). Source: Netskope docs.netskope.com/en/encryption-and-tokenization-features.</td></tr>
       <tr><td>2026-04-19</td><td>v1.0</td><td>Initial working document created under v2.0 Codex structure. Content consolidated from all five pillar docs. Reflects Netskope One AI Security (March 2026 GA), Agentic Broker, AI Gateway, AI Guardrails, AI Red Teaming, NewEdge AI Fast Path, and Mumbai management plane announcement (April 14, 2026).</td></tr>
     </tbody>
   </table>
@@ -203,10 +207,9 @@
 
 <footer class="edge-footer">
   <span class="edge-footer__brand">EDGE SOLUTIONS</span>
-  <span class="edge-footer__meta">SASE Codex · Working Document · Netskope · Last Reviewed: 2026-04-20</span>
+  <span class="edge-footer__meta">SASE Codex · Working Document · Netskope · Last Reviewed: 2026-04-19</span>
   <span class="edge-footer__url">www.edgesolutions.com</span>
 </footer>
-<script src="../assets/js/nav.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/back-to-top.js"></script>
 </body>

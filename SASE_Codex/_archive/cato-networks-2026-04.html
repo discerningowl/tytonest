@@ -36,7 +36,7 @@
   <div class="bluf-box">
     <div class="bluf-box__label">Bottom Line Up Front</div>
     <p>Cato Networks is the reference implementation of single-vendor SASE — the only platform in the Big Six where SD-WAN, ZTNA, SSE, and AIOps share a genuine single-pass engine on a private global backbone, managed through one console. Its structural advantages are operational simplicity (best-in-class for Lean IT), predictive path optimization (backbone ownership lets Cato reroute 30–90 seconds before a user-visible SLA breach), and the cleanest convergence story (ZTNA and security are not integrated — they are the same stack). The material development in 2026: Cato AI Security (Aim Security acquisition, GA March 2026) extends the platform from inline GenAI governance to private AI firewall, AI-SPM, and MCP governance on Cato Neural Edge GPU infrastructure. Cato Dynamic Prevention (March 2026) closes the UEBA depth gap that has historically been its primary AIOps weakness against Palo Alto and Zscaler.</p>
-    <p><strong>Primary fit:</strong> Lean IT (SMB–mid-market), Platform/Network Architects doing SD-WAN + ZTNA convergence. <strong>Primary limitations:</strong> Sovereignty (no FedRAMP, no BSI C5, no BYOK as of Q2 2026 — disqualifying for regulated and government buyers). DLP depth for sophisticated data classification programs trails Netskope. Enterprise Browser launched April 2026 as part of Universal ZTNA — closes the gap against Palo Alto PAB and Island, but deployment maturity is new relative to both competitors.</p>
+    <p><strong>Primary fit:</strong> Lean IT (SMB–mid-market), Platform/Network Architects doing SD-WAN + ZTNA convergence. <strong>Primary limitations:</strong> Sovereignty (no FedRAMP, no BSI C5, no BYOK as of Q2 2026 — disqualifying for regulated and government buyers). DLP depth for sophisticated data classification programs trails Netskope. No native enterprise browser.</p>
   </div>
 
   <div class="edge-grid-4 mt-20">
@@ -97,7 +97,7 @@
           <li>~85 PoPs vs. Cloudflare's 330+ — coverage thinner in emerging markets</li>
           <li>DLP depth trades off against simplicity — adequate for compliance, not for sophisticated classification programs</li>
           <li>Sovereignty posture significantly weaker than Netskope/Zscaler</li>
-          <li>Enterprise Browser launched April 2026 — closes the PAB/Island gap, but implementation maturity is new; validate before final positioning</li>
+          <li>No native enterprise browser — no equivalent to Palo Alto PAB</li>
         </ul>
       </div>
     </div>
@@ -128,16 +128,11 @@
   <p>Full SAML 2.0 / OIDC with Okta, Microsoft Entra ID, Google Workspace, and Ping Identity. MFA is standard. Cato's UEBA module correlates identity signals with network behavior for per-user risk scoring, and those scores feed dynamically into access policy. Less DEM granularity than Zscaler ZDX, but the UEBA data shares the same data store as all other Cato security telemetry — no integration overhead to get risk scores into policy.</p>
 
   <div class="vendor-subhead">Agentless Access</div>
-  <p>Cato supports clientless ZTNA for web-delivered applications via browser-based access. For thick-client applications (RDP, SSH), Cato requires the Cato Client agent. Agentless coverage for non-web apps is narrower than Cloudflare's browser-rendered approach, which renders RDP/SSH sessions directly in a browser window with zero endpoint install. For BYOD-heavy environments with non-web app requirements, this is the primary ZTNA gap to evaluate — though the Enterprise Browser (below) materially changes the unmanaged device story.</p>
-
-  <div class="vendor-subhead">Enterprise Browser — Universal ZTNA, Launched April 20, 2026</div>
-  <p>Cato announced the Cato Enterprise Browser on April 20, 2026 as a new access method within Universal ZTNA (UZTNA). It extends zero trust enforcement across managed and unmanaged devices through a native browser environment, delivering inline threat prevention, data and application protection, and AI security controls directly within the browsing session. This is distinct from the Cato Browser Extension (September 2025), which is a Chrome extension that enforces ZTNA without requiring a new browser interface — the Extension is a lightweight BYOD onramp, while the Enterprise Browser is a full managed browser deployment.</p>
-  <p>The architectural coherence is the key claim: both the Browser Extension and the Enterprise Browser share the same policy engine as the Cato Client and clientless access methods. IT does not create separate policy domains for browser-based sessions — Universal ZTNA policy applies uniformly regardless of how the user connects. Included under the existing UZTNA license at no additional SKU cost.</p>
-  <p><strong>Competitive context:</strong> This directly challenges Palo Alto Prisma Access Browser (PAB, acquired via Talon) and Island, which launched a full SASE stack in March 2026. Cato's differentiator is operational simplicity — one policy engine, one license, no separate browser management plane. Island's differentiator is pre-encryption visibility (no SSL break-and-inspect required) and a longer enterprise browser track record (four years of production deployment, zero customer churn). Palo Alto PAB integrates more deeply with Cortex XDR and the broader Prisma Access ecosystem. Validate production maturity of Cato Enterprise Browser in a PoC before positioning as equivalent to either established competitor.</p>
+  <p>Cato supports clientless ZTNA for web-delivered applications via browser-based access. For thick-client applications (RDP, SSH), Cato requires the Cato Client agent. Agentless coverage for non-web apps is narrower than Cloudflare's browser-rendered approach, which renders RDP/SSH sessions directly in a browser window with zero endpoint install. For BYOD-heavy environments with non-web app requirements, this is the primary ZTNA gap to evaluate.</p>
 
   <div class="vendor-grid">
     <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Cleanest ZTNA + SD-WAN + SSE single-vendor story. One console, one policy engine — no integration tax. Private backbone SLA for ZTNA transit — measurable latency commitment. ZTP simplifies branch + ZTNA rollout as one operation. Best for lean IT teams.</p></div>
-    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>Enterprise Browser now GA (April 2026) but new — validate maturity vs. Island (4-year track record) and Palo Alto PAB (deep Prisma integration) before final positioning. L7 app signatures less extensive than Palo Alto App-ID. Agentless thick-client (RDP/SSH) narrower than Cloudflare. Behavioral posture detection behind Palo Alto AI-RT. UEBA functional but not as deep as Netskope's DLP-informed scoring.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No native enterprise browser. L7 app signatures less extensive than Palo Alto App-ID. Agentless thick-client (RDP/SSH) narrower than Cloudflare. Behavioral posture detection behind Palo Alto AI-RT. UEBA functional but not as deep as Netskope's DLP-informed scoring.</p></div>
   </div>
 
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_ztna.html#cato" style="color:var(--edge-blue);">ZTNA pillar comparison — all vendors</a></p>
@@ -339,11 +334,6 @@
       <tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td>2026-04-20</td>
-        <td>v1.2</td>
-        <td>Enterprise Browser launch (April 20, 2026). Updated BLUF, Architecture limitations, and ZTNA section to reflect Cato Enterprise Browser GA as part of Universal ZTNA. Added new Enterprise Browser subsection with full competitive context vs. Island and Palo Alto PAB. Archived v1.1 to _archive/cato-networks-2026-04.html.</td>
-      </tr>
       <tr>
         <td>2026-04-20</td>
         <td>v1.1</td>

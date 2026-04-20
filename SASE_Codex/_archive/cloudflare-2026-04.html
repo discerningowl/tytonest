@@ -24,7 +24,16 @@
   </div>
 </header>
 
-<nav class="doc-nav"></nav>
+<nav class="doc-nav">
+  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sdwan.html">SD-WAN</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
+  <a href="../components/sase_scorecard.html">Scorecard</a>
+</nav>
 
 <div class="page-body">
 <main>
@@ -33,8 +42,8 @@
 <div class="edge-section">
   <div class="bluf-box">
     <div class="bluf-box__label">Bottom Line Up Front</div>
-    <p>Cloudflare is the performance-first and developer-first SASE in the Big Six. Its 330+ PoP network — the densest of any SASE vendor — means most global users connect to a Cloudflare enforcement point within 20–50ms. Agentless ZTNA via browser-rendered RDP/SSH/VNC (zero endpoint install) is architecturally unmatched in the Big Six. The 2026 AI security story is uniquely dual-surface: Cloudflare protects both the employees using AI tools and the developers building AI applications on the same platform — no other Big Six vendor spans both. Gartner classifies Cloudflare as a Visionary in the 2025 SASE MQ; the watch item for 2026 is whether positioning shifts toward Leader.</p>
-    <p><strong>Primary fit:</strong> Platform/Network Architects (cloud-first, BYOD-heavy, flexible on-ramp), Global Performance buyers (APAC-heavy, distributed). <strong>Primary limitations:</strong> AIOps is the weakest in the Big Six — no mature UEBA, no native SOAR, no GenAI policy authoring as of Q2 2026. DLP depth has improved materially (EDM and document fingerprinting both in production as of mid-2025), but still trails Netskope for the most complex regulated content programs. FedRAMP Moderate authorized; High in progress targeting end of 2026.</p>
+    <p>Cloudflare is the performance-first and developer-first SASE in the Big Five. Its 330+ PoP network — the densest of any SASE vendor — means most global users connect to a Cloudflare enforcement point within 20–50ms. Agentless ZTNA via browser-rendered RDP/SSH/VNC (zero endpoint install) is architecturally unmatched in the Big Five. The 2026 AI security story is uniquely dual-surface: Cloudflare protects both the employees using AI tools and the developers building AI applications on the same platform — no other Big Five vendor spans both. Gartner classifies Cloudflare as a Visionary in the 2025 SASE MQ; the watch item for 2026 is whether positioning shifts toward Leader.</p>
+    <p><strong>Primary fit:</strong> Platform/Network Architects (cloud-first, BYOD-heavy, flexible on-ramp), Global Performance buyers (APAC-heavy, distributed). <strong>Primary limitations:</strong> AIOps is the weakest in the Big Five — no mature UEBA, no native SOAR, no GenAI policy authoring as of Q2 2026. DLP classification depth trails top three vendors for complex regulated content. FedRAMP Moderate only.</p>
   </div>
 
   <div class="edge-grid-4 mt-20">
@@ -48,7 +57,7 @@
     </div>
     <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">FedRAMP</div>
-      <div class="edge-stat__label">MODERATE (HIGH IN PROGRESS) + BSI C5 + IRAP</div>
+      <div class="edge-stat__label">MODERATE + BSI C5 + IRAP</div>
     </div>
     <div class="edge-stat edge-stat--light" style="background:rgba(255,255,255,0.72); border:0.5px solid rgba(72,109,135,0.25); border-radius:var(--r-md);">
       <div class="edge-stat__number">Gartner MQ</div>
@@ -68,12 +77,11 @@
   </div>
   <h2 class="section-heading">The Edge-Native Advantage</h2>
   <hr class="edge-rule">
-  <p>Cloudflare One is SASE built on top of Cloudflare's global CDN and network infrastructure — the same network that handles DNS, CDN, DDoS protection, and routing for a significant fraction of internet traffic. Every security enforcement decision (ZTNA access check, SWG inspection, DLP scan) happens at the PoP nearest to the user, not at a regional security hub. This edge-local enforcement is why Cloudflare's inspection latency is the lowest in the Big Six: the security hop is already the path the traffic would take to reach the internet.</p>
+  <p>Cloudflare One is SASE built on top of Cloudflare's global CDN and network infrastructure — the same network that handles DNS, CDN, DDoS protection, and routing for a significant fraction of internet traffic. Every security enforcement decision (ZTNA access check, SWG inspection, DLP scan) happens at the PoP nearest to the user, not at a regional security hub. This edge-local enforcement is why Cloudflare's inspection latency is the lowest in the Big Five: the security hop is already the path the traffic would take to reach the internet.</p>
   <p>The developer-native DNA runs deep. Cloudflare One is managed via API-first, Terraform-compatible tooling. Policy-as-code is not a secondary feature — it is the primary workflow. This makes Cloudflare the strongest SASE choice for organizations with a DevOps or platform engineering culture, and the weakest for organizations whose security teams prefer GUI-driven policy management.</p>
-  <p>In February 2026, Cloudflare became the first SASE platform to ship post-quantum encryption across its entire stack — hybrid ML-KEM (X25519MLKEM768) via TLS 1.3 across the control plane, extended to WAN (IPSec) and all Zero Trust components. One Appliance firmware v2026.2.0+ includes post-quantum protection at the WAN tunnel layer. No other Big Six SASE vendor has achieved full-stack post-quantum deployment.</p>
   <div class="edge-grid-2 mt-20">
-    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL STRENGTHS</span><ul style="margin-top:12px;"><li>330+ PoPs — lowest inspection latency of any Big Six vendor globally</li><li>Best agentless ZTNA — browser-rendered RDP/SSH/VNC, zero endpoint install</li><li>Dual AI security surface: workforce governance + AI builder/developer protection</li><li>Native agentic MCP governance (April 2026 reference architecture)</li><li>First SASE platform with post-quantum encryption across full stack (February 2026)</li><li>Developer-first: API-native, Terraform-managed, fastest policy deployment cycle</li></ul></div></div>
-    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL LIMITATIONS</span><ul style="margin-top:12px;"><li>AIOps weakest in Big Six — no mature UEBA, no GenAI policy authoring</li><li>DLP depth improved (EDM + document fingerprinting in production) but still trails Netskope for highly complex programs</li><li>No native enterprise browser — integrates with Island/Chrome Enterprise</li><li>One Appliance is thin-edge — no active/active multi-link bonding or local WAN optimization</li><li>FedRAMP Moderate authorized; High in progress — DOD/IC workloads require Netskope or Zscaler today</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL STRENGTHS</span><ul style="margin-top:12px;"><li>330+ PoPs — lowest inspection latency of any Big Five vendor globally</li><li>Best agentless ZTNA — browser-rendered RDP/SSH/VNC, zero endpoint install</li><li>Dual AI security surface: workforce governance + AI builder/developer protection</li><li>Native agentic MCP governance (April 2026 reference architecture)</li><li>Developer-first: API-native, Terraform-managed, fastest policy deployment cycle</li></ul></div></div>
+    <div class="edge-card"><div class="edge-card__accent"></div><div class="edge-card__body"><span class="arch-tag">STRUCTURAL LIMITATIONS</span><ul style="margin-top:12px;"><li>AIOps weakest in Big Five — no mature UEBA, no GenAI policy authoring</li><li>DLP classification depth below Netskope and Palo Alto for complex programs</li><li>No native enterprise browser — integrates with Island/Chrome Enterprise</li><li>One Appliance is thin-edge — no active/active multi-link bonding or local WAN optimization</li><li>FedRAMP Moderate only — DOD/IC workloads require Netskope or Zscaler</li></ul></div></div>
   </div>
 </div>
 
@@ -85,16 +93,16 @@
   </div>
   <h2 class="section-heading">ZTNA Analysis</h2>
   <hr class="edge-rule">
-  <p>Cloudflare Access is the performance-first ZTNA in the Big Six. With 330+ PoP cities globally, most users connect within 20–50ms. The ZTNA broker decision happens at the edge PoP locally — not a regional hub — making Cloudflare's ZTNA faster for more of the global user population than any other vendor, including Cato's private backbone (which has 85+ PoPs vs. Cloudflare's 330+).</p>
+  <p>Cloudflare Access is the performance-first ZTNA in the Big Five. With 330+ PoP cities globally, most users connect within 20–50ms. The ZTNA broker decision happens at the edge PoP locally — not a regional hub — making Cloudflare's ZTNA faster for more of the global user population than any other vendor, including Cato's private backbone (which has 85+ PoPs vs. Cloudflare's 330+).</p>
 
   <div class="vendor-subhead">Agentless Access — Best-in-Class</div>
-  <p>Cloudflare leads the industry on agentless ZTNA breadth. Browser Rendering renders RDP, SSH, SMB, and VNC sessions directly in a browser window via server-side rendering — no endpoint client, no plugin, no download. A contractor with a personal laptop or Chromebook accesses the same RDP desktop as a managed Windows device. This is architecturally superior to proxy-based agentless for thick-client apps: other vendors proxy the protocol and present it in a browser wrapper; Cloudflare renders the session server-side and streams pixels, eliminating any protocol compatibility constraints. For BYOD-heavy programs, high contractor populations, and organizations with strict no-agent policies, Cloudflare is the only credible choice in the Big Six.</p>
+  <p>Cloudflare leads the industry on agentless ZTNA breadth. Browser Rendering renders RDP, SSH, SMB, and VNC sessions directly in a browser window via server-side rendering — no endpoint client, no plugin, no download. A contractor with a personal laptop or Chromebook accesses the same RDP desktop as a managed Windows device. This is architecturally superior to proxy-based agentless for thick-client apps: other vendors proxy the protocol and present it in a browser wrapper; Cloudflare renders the session server-side and streams pixels, eliminating any protocol compatibility constraints. For BYOD-heavy programs, high contractor populations, and organizations with strict no-agent policies, Cloudflare is the only credible choice in the Big Five.</p>
 
   <div class="vendor-subhead">Device Posture</div>
   <p>WARP client integrates with CrowdStrike, SentinelOne, Microsoft Defender, Carbon Black, and Kolide for compliance-check posture and session revocation. Continuous re-evaluation on posture change is supported. The approach is compliance-based rather than behavioral — no anomaly detection independent of EDR signals, trailing Palo Alto's AI-RT behavioral layer on the continuous posture dimension. For organizations requiring behavioral anomaly detection independent of EDR, Palo Alto is ahead.</p>
 
   <div class="vendor-subhead">Developer-Native Deployment</div>
-  <p>Cloudflare Access is the fastest ZTNA to deploy in the Big Six. API-native configuration, Terraform provider, and Workers-based extensibility allow a platform engineering team to deploy per-application access policies in hours rather than days. Access policies can be version-controlled, code-reviewed, and rolled back like any infrastructure change — a workflow that no other Big Six vendor matches natively.</p>
+  <p>Cloudflare Access is the fastest ZTNA to deploy in the Big Five. API-native configuration, Terraform provider, and Workers-based extensibility allow a platform engineering team to deploy per-application access policies in hours rather than days. Access policies can be version-controlled, code-reviewed, and rolled back like any infrastructure change — a workflow that no other Big Five vendor matches natively.</p>
 
   <div class="vendor-grid">
     <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best agentless access — browser-rendered RDP/SSH/VNC with zero install, the only vendor doing true server-side rendering. Largest PoP density, best global latency profile. Fastest time-to-deploy — API-native, Terraform-managed. Best for BYOD-heavy, multi-cloud, or high contractor populations.</p></div>
@@ -111,22 +119,16 @@
   </div>
   <h2 class="section-heading">SSE Analysis</h2>
   <hr class="edge-rule">
-  <p>Cloudflare Gateway is SSE built on the world's most distributed network. TLS inspection, DNS filtering, and HTTP policies execute at the nearest of 330+ PoPs — the inspection hop adds near-zero latency in most geographies. DLP capabilities have materially improved in 2025–2026: Exact Data Match (EDM) and document fingerprinting are both in production, closing the gap with Zscaler and substantially narrowing it with Netskope. CASB has evolved from detection-only to remediation-enabled, with AI-powered summaries and webhook integrations. Native RBI (Browser Isolation) remains a genuine differentiator — built on the edge network with minimal latency impact and integrated with Cloudflare Access so isolation triggers from access policy, not just SWG category rules.</p>
-
-  <div class="vendor-subhead">DLP — Materially Improved in 2025–2026</div>
-  <p>Cloudflare's DLP posture has changed significantly since 2024. <strong>Exact Data Match (EDM)</strong> is now in production — customers upload encrypted datasets and Gateway detects matches using hash-based comparison, with configurable payload masking for log output. <strong>Document fingerprinting</strong> launched in July 2025: .docx and .txt files up to 10 MB can be fingerprinted and detected in-flight with configurable similarity thresholds (0–100%), covering both exact copies and partial excerpt leaks. Combined with the existing regex and ML pattern detection library, Cloudflare DLP now competes on feature parity with Zscaler for most enterprise programs. The gap to Netskope for the most complex data classification requirements (1,000+ ML classifiers, optical character recognition in images, EDM at multi-million-record scale) persists but is narrowing.</p>
-
-  <div class="vendor-subhead">CASB — Remediation-Enabled in 2026</div>
-  <p>Cloudflare CASB has evolved beyond detection-only posture scanning. As of Q1 2026, CASB supports one-click remediation for misconfiguration findings, AI-powered summaries ("Cloudy") that explain findings in plain language for faster analyst triage, and webhook integrations (April 2026) that push findings to chat, ticketing, SIEM, and SOAR tools. Microsoft 365 Copilot scanning via API CASB is available, covering AI-generated content exposure in SharePoint and OneDrive. SaaS coverage spans 12+ apps including M365, Google Workspace, Slack, Salesforce, Box, GitHub, Jira, Confluence, ChatGPT, Claude, and Gemini. Unified policy across API-mode and inline (Gateway) detection is still in progress — the main remaining architectural gap versus Netskope's fully unified policy engine.</p>
+  <p>Cloudflare Gateway is SSE built on the world's most distributed network. TLS inspection, DNS filtering, and HTTP policies execute at the nearest of 330+ PoPs — the inspection hop adds near-zero latency in most geographies. DLP and CASB depth trail the top three vendors in 2026, but capabilities are improving rapidly and the trajectory is strong. Native RBI (Browser Isolation) is a genuine differentiator — built on the edge network with minimal latency impact and integrated with Cloudflare Access so isolation triggers from access policy, not just SWG category rules.</p>
 
   <div class="vendor-subhead">GenAI &amp; Agentic AI — Dual-Surface Protection</div>
-  <p>Cloudflare's AI security story is unique in the Big Six: it is the only vendor protecting both the workforce using AI tools and the developers building AI applications on the same platform.</p>
-  <p>On the <strong>workforce side</strong>, the Cloudflare AI Security Suite covers shadow AI discovery with transparent risk scoring, identity-based access controls for sanctioned AI tools, AI-powered prompt protection (blocking inputs based on sensitive data detection and intent, including jailbreak attempts), and AI-SPM via direct API integration with ChatGPT, Claude, and Gemini scanning sanctioned tools for misconfigurations. On the <strong>builder/developer side</strong>, the AI Gateway sits inline in the inference path for applications developers build on Cloudflare — inspecting prompts and responses without requiring separate Gateway HTTP filtering or TLS decryption. This is the only Big Six vendor where the same security platform protects both the employee using an AI tool and the developer building one.</p>
-  <p>The <strong>agentic AI coverage</strong> is substantive, not roadmap. Cloudflare published its enterprise MCP governance reference architecture in April 2026 — combining Cloudflare Access, AI Gateway, and MCP server portals for authenticated, audited, least-privilege access for agentic workflows. Shadow MCP detection rules are available in Cloudflare Gateway. Agents Week (April 2026) added Cloudflare Mesh for secure private network access scoped to AI agents, managed OAuth for agents navigating internal applications, and sandboxed execution environments for agentic code. This developer-native agentic governance is Cloudflare's differentiated position: the other Big Six vendors are extending SASE policies to cover agents; Cloudflare is building the network primitives that agents run on.</p>
+  <p>Cloudflare's AI security story is unique in the Big Five: it is the only vendor protecting both the workforce using AI tools and the developers building AI applications on the same platform.</p>
+  <p>On the <strong>workforce side</strong>, the Cloudflare AI Security Suite covers shadow AI discovery with transparent risk scoring, identity-based access controls for sanctioned AI tools, AI-powered prompt protection (blocking inputs based on sensitive data detection and intent, including jailbreak attempts), and AI-SPM via direct API integration with ChatGPT, Claude, and Gemini scanning sanctioned tools for misconfigurations. On the <strong>builder/developer side</strong>, the AI Gateway sits inline in the inference path for applications developers build on Cloudflare — inspecting prompts and responses without requiring separate Gateway HTTP filtering or TLS decryption. This is the only Big Five vendor where the same security platform protects both the employee using an AI tool and the developer building one.</p>
+  <p>The <strong>agentic AI coverage</strong> is substantive, not roadmap. Cloudflare published its enterprise MCP governance reference architecture in April 2026 — combining Cloudflare Access, AI Gateway, and MCP server portals for authenticated, audited, least-privilege access for agentic workflows. Shadow MCP detection rules are available in Cloudflare Gateway. Agents Week (April 2026) added Cloudflare Mesh for secure private network access scoped to AI agents, managed OAuth for agents navigating internal applications, and sandboxed execution environments for agentic code. This developer-native agentic governance is Cloudflare's differentiated position: the other Big Five vendors are extending SASE policies to cover agents; Cloudflare is building the network primitives that agents run on.</p>
 
   <div class="vendor-grid">
-    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>330+ PoP SSE inspection — lowest latency globally. Native RBI with minimal latency impact. Full TLS 1.3 at CDN-grade scale. EDM + document fingerprinting now in production — DLP competitive with Zscaler for most programs. CASB remediation-enabled with AI summaries and webhooks. Dual AI coverage: workforce governance + developer/AI builder protection in one platform. Native agentic MCP governance (April 2026). Network-derived threat intelligence from ~20% internet traffic visibility.</p></div>
-    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DLP still trails Netskope for the most complex programs (ML classifier depth, OCR). Unified API-mode + inline CASB policy engine still in progress. FWaaS custom signature support limited. Shadow IT app catalog smaller than Zscaler/Netskope for broad SaaS governance (~2,000 apps).</p></div>
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>330+ PoP SSE inspection — lowest latency globally. Native RBI with minimal latency impact. Full TLS 1.3 at CDN-grade scale. Dual AI coverage: workforce governance + developer/AI builder protection in one platform. Native agentic MCP governance (April 2026). Network-derived threat intelligence from ~20% internet traffic visibility.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>DLP classification depth below Netskope and Palo Alto for complex regulated content — no EDM or document fingerprinting. CASB API mode earlier stage than Netskope. FWaaS custom signature support limited. Shadow IT app catalog smaller than Zscaler/Netskope for broad SaaS governance.</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sse.html" style="color:var(--edge-blue);">SSE pillar comparison — all vendors</a></p>
 </div>
@@ -165,19 +167,19 @@
 
   <div class="edge-callout edge-callout--warning">
     <div class="edge-callout__accent"></div>
-    <div><strong>AIOps Assessment:</strong> Cloudflare is the weakest AIOps vendor in the Big Six as of Q2 2026. No mature UEBA, no native SOAR, no GenAI policy authoring with simulation. Cloudflare's AIOps strength is its raw telemetry depth from internet-scale traffic, but this advantage is not yet translated into enterprise-ready AIOps products. Strong trajectory — evaluate again at Q4 2026.</div>
+    <div><strong>AIOps Assessment:</strong> Cloudflare is the weakest AIOps vendor in the Big Five as of Q2 2026. No mature UEBA, no native SOAR, no GenAI policy authoring with simulation. Cloudflare's AIOps strength is its raw telemetry depth from internet-scale traffic, but this advantage is not yet translated into enterprise-ready AIOps products. Strong trajectory — evaluate again at Q4 2026.</div>
   </div>
 
-  <p>Cloudflare's AIOps story rests on two assets: internet-scale passive telemetry (DNS, traffic patterns, threat signals from ~20% of global internet traffic) and Cloudflare DEX for endpoint-to-application experience monitoring. The telemetry depth is genuinely unique — no other Big Six vendor has this breadth of internet visibility feeding its threat intelligence. The gap is that this telemetry is not yet surfaced as enterprise AIOps products: ML-based behavioral baselining, automated incident grouping, and GenAI policy authoring with pre-commit simulation are all absent or early-stage.</p>
+  <p>Cloudflare's AIOps story rests on two assets: internet-scale passive telemetry (DNS, traffic patterns, threat signals from ~20% of global internet traffic) and Cloudflare DEX for endpoint-to-application experience monitoring. The telemetry depth is genuinely unique — no other Big Five vendor has this breadth of internet visibility feeding its threat intelligence. The gap is that this telemetry is not yet surfaced as enterprise AIOps products: ML-based behavioral baselining, automated incident grouping, and GenAI policy authoring with pre-commit simulation are all absent or early-stage.</p>
 
   <div class="vendor-subhead">DEX — Digital Experience Monitoring</div>
   <p>Cloudflare DEX provides per-device, per-application latency metrics, synthetic monitoring probes, and basic path tracing. ISP fault attribution and hop-level analysis are in active development. For enterprise IT operations teams needing sub-60-second automated fault attribution across device/ISP/cloud/application domains, Zscaler ZDX is materially better today. DEX is functional for cloud-native environments where most user sessions are short-lived and latency debugging is less operationally critical.</p>
 
   <div class="vendor-subhead">Policy Deployment Advantage</div>
-  <p>The one AIOps-adjacent area where Cloudflare leads the Big Six: policy deployment speed. API-first architecture means a policy change can go from authored to enforced globally in under 30 seconds — no propagation delay, no regional rollout. For organizations that need rapid policy iteration (incident response, blocking emerging threats), this is a material operational advantage that partially compensates for the absence of GenAI policy authoring.</p>
+  <p>The one AIOps-adjacent area where Cloudflare leads the Big Five: policy deployment speed. API-first architecture means a policy change can go from authored to enforced globally in under 30 seconds — no propagation delay, no regional rollout. For organizations that need rapid policy iteration (incident response, blocking emerging threats), this is a material operational advantage that partially compensates for the absence of GenAI policy authoring.</p>
 
   <div class="vendor-grid">
-    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Internet-scale passive DNS and traffic telemetry — unique threat intelligence breadth. DEX improving rapidly — strong trajectory for cloud-native environments. Fastest policy deployment cycle in the Big Six (sub-30-second global propagation). API-native operations for DevOps-oriented security teams.</p></div>
+    <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Internet-scale passive DNS and traffic telemetry — unique threat intelligence breadth. DEX improving rapidly — strong trajectory for cloud-native environments. Fastest policy deployment cycle in the Big Five (sub-30-second global propagation). API-native operations for DevOps-oriented security teams.</p></div>
     <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No mature UEBA. No GenAI policy authoring with simulation preview. DEX lags ZDX for enterprise fault attribution. No native SOAR. Event correlation is log aggregation, not ML-driven incident grouping. Not recommended as primary SASE for enterprise security ops teams with active UEBA or SOAR requirements in 2026.</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_aiops.html" style="color:var(--edge-blue);">AIOps pillar comparison — all vendors</a></p>
@@ -197,11 +199,11 @@
   <p>Customers designate a Customer Metadata Boundary that prevents request metadata, log data, and traffic analytics from leaving the specified region — architecturally enforced via regional PoP routing. The mechanism is regional pinning at the network layer, not just a contractual commitment. This satisfies GDPR Chapter V transfer restriction requirements for most use cases and is operationally simpler than Netskope's PoP-level isolation configuration for multi-country EU deployments.</p>
 
   <div class="vendor-subhead">Certifications</div>
-  <p>FedRAMP Moderate authorized; FedRAMP High is actively in progress for Cloudflare One and AI services (Workers AI, AI Gateway, Vectorize) with a stated target of end-2026 — when achieved, this removes the DOD/IC exclusion. Current certifications: BSI C5, IRAP, SOC2 Type II, ISO 27001, HIPAA BAA, PCI DSS. BYOK for data-at-rest encryption is available. HYOK (vendor cannot decrypt) is not fully available across all Zero Trust components as of Q1 2026 — the gap that limits Cloudflare for the strictest EU financial services sovereignty requirements where HYOK is becoming a regulatory expectation.</p>
+  <p>FedRAMP Moderate (not High — excludes DOD/IC), BSI C5, IRAP, SOC2 Type II, ISO 27001, HIPAA BAA, PCI DSS. BYOK for data-at-rest encryption is available. HYOK (vendor cannot decrypt) is not fully available across all Zero Trust components as of Q1 2026 — the gap that limits Cloudflare for the strictest EU financial services sovereignty requirements where HYOK is becoming a regulatory expectation.</p>
 
   <div class="vendor-grid">
     <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Best PoP density in regulated markets — regional isolation doesn't create performance penalty. Data Localization Suite is architecturally enforced for GDPR. BSI C5 + IRAP. Best for EU-regulated multi-national organizations with strict GDPR requirements who need low-latency enforcement. Developer-controlled residency policy via API.</p></div>
-    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>FedRAMP High in progress (target end-2026) — DOD/IC workloads require Netskope or Zscaler today. HYOK not fully available across all Zero Trust components. Dedicated sovereign PoP options narrower than Netskope or Zscaler Private Cloud. Log residency per-log-type granularity requires multiple Logpush configuration sets. No StateRAMP as of Q2 2026. Post-quantum encryption is full-stack, but key custody (HYOK) remains incomplete — two different concerns for regulated buyers.</p></div>
+    <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>FedRAMP Moderate only (not High) — DOD/IC workloads require Netskope or Zscaler. HYOK not fully available. Dedicated sovereign PoP options narrower than Netskope or Zscaler Private Cloud. Log residency per-log-type granularity requires multiple Logpush configuration sets. No StateRAMP as of Q2 2026.</p></div>
   </div>
   <p style="margin-top:16px; font-size:13px;">→ <a href="../components/sase_sovereignty.html" style="color:var(--edge-blue);">Sovereignty pillar comparison — all vendors</a></p>
 </div>
@@ -228,8 +230,8 @@
       <tr>
         <td><strong>Data-First / Regulated</strong><br><span style="font-size:11px;color:var(--edge-muted);">Finance · Healthcare · Legal</span></td>
         <td><span class="winner-tag winner-alt">ALTERNATIVE</span></td>
-        <td>Data Localization Suite and PoP density make Cloudflare viable for GDPR-primary EU buyers where low-latency regional enforcement matters. DLP has improved (EDM + document fingerprinting in production). For buyers requiring HYOK, FedRAMP High (today), or the deepest ML DLP programs, Netskope is the right choice.</td>
-        <td>No HYOK. FedRAMP Moderate today (High targeted end-2026). DLP ML classifier depth still below Netskope for the most complex programs.</td>
+        <td>Data Localization Suite and PoP density make Cloudflare viable for GDPR-primary EU buyers where low-latency regional enforcement matters. For buyers requiring HYOK, FedRAMP High, or deep ML DLP, Netskope is the right choice.</td>
+        <td>No HYOK. FedRAMP Moderate only. DLP classification depth below Netskope for complex programs.</td>
       </tr>
       <tr>
         <td><strong>Platform / Network Architect</strong><br><span style="font-size:11px;color:var(--edge-muted);">500–5,000 employees</span></td>
@@ -248,7 +250,6 @@
   <table class="edge-table" style="font-size:13px;">
     <thead><tr><th style="min-width:110px;">Date</th><th style="min-width:100px;">Version</th><th>Change</th></tr></thead>
     <tbody>
-      <tr><td>2026-04-20</td><td>v1.1</td><td>Accuracy review pass against Cloudflare product documentation and changelogs. Key corrections: (1) DLP updated — EDM and document fingerprinting both in production as of mid-2025; (2) CASB updated — remediation-enabled, AI summaries, webhooks, M365 Copilot scanning now available; (3) GenAI app control updated to reflect mature AI Security Suite; (4) Post-quantum encryption added — Cloudflare first SASE with full-stack PQC (February 2026); (5) FedRAMP High updated to "in progress, target end-2026"; (6) BLUF and persona fit tables updated accordingly.</td></tr>
       <tr><td>2026-04-19</td><td>v1.0</td><td>Initial working document created under v2.0 Codex structure. Content consolidated from all five pillar docs. Reflects Cloudflare AI Security Suite, Agents Week (April 2026) MCP governance reference architecture, Cloudflare Mesh, One Appliance GA, and Gartner Visionary classification (2025 MQ).</td></tr>
     </tbody>
   </table>
@@ -259,10 +260,9 @@
 
 <footer class="edge-footer">
   <span class="edge-footer__brand">EDGE SOLUTIONS</span>
-  <span class="edge-footer__meta">SASE Codex · Working Document · Cloudflare · Last Reviewed: 2026-04-20</span>
+  <span class="edge-footer__meta">SASE Codex · Working Document · Cloudflare · Last Reviewed: 2026-04-19</span>
   <span class="edge-footer__url">www.edgesolutions.com</span>
 </footer>
-<script src="../assets/js/nav.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/back-to-top.js"></script>
 </body>

@@ -1,6 +1,6 @@
 # CLAUDE.md — SASE Codex
 ## Architecture Reference & Decision Log
-*Last updated: 2026-04-19 — v2.0 restructure complete. All component benchmarks in `components/`, all vendor working-docs in `working-docs/`. 10 vendor files (5 Big Five + 5 emerging). scores.json v1.6 with Graphiant removed. Archive files date-suffixed.*
+*Last updated: 2026-04-20 — v2.1: Fortinet promoted to Big Six; nav.js shared component added; emerging vendor scores isolated to sase_emerging.html. All component benchmarks in `components/`, all vendor working-docs in `working-docs/`. 10 vendor files (5 Big Six + 5 emerging). scores.json v2.2 — Fortinet tier=big_six; nav.js added. Archive files date-suffixed.*
 
 ---
 
@@ -24,7 +24,8 @@ SASE_Codex/
 │   ├── css/main.css         ← Brand tokens, shared layout
 │   ├── css/toc.css          ← Left-sidebar TOC styles
 │   └── js/
-│       ├── main.js          ← scores.json fetch, renderScoringTable(), nav
+│       ├── nav.js           ← shared nav component (code-once, inject everywhere)
+│       ├── main.js          ← scores.json fetch, renderScoringTable()
 │       └── toc.js           ← Auto-generated TOC from headings
 ├── components/              ← Component benchmark documents (all 8 complete)
 │   ├── sase_benchmark.html  ← Evaluation rubric, criteria, personas
@@ -73,8 +74,8 @@ SASE_Codex/
 ```
 scores.json
   └── fetched by assets/js/main.js at page load
-        ├── components/sase_ztna.html        ← renderScoringTable(pillars.ztna, big_five)
-        ├── components/sase_sse.html         ← renderScoringTable(pillars.sse, big_five)
+        ├── components/sase_ztna.html        ← renderScoringTable(pillars.ztna, big_six)
+        ├── components/sase_sse.html         ← renderScoringTable(pillars.sse, big_six)
         ├── components/sase_sdwan.html       ← renderScoringTable(pillars.sdwan, all_vendors)
         ├── components/sase_aiops.html       ← renderScoringTable(pillars.aiops, scoped_vendors)
         ├── components/sase_sovereignty.html ← renderScoringTable(pillars.sovereignty, scoped_vendors)
@@ -100,13 +101,13 @@ assets/js/toc.js
 
 | Vendor | ZTNA | SSE | SD-WAN | AIOps | Sovereignty | Notes |
 |---|---|---|---|---|---|---|
-| Palo Alto | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 |
-| Cato | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 |
-| Netskope | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 |
-| Cloudflare | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 |
-| Zscaler | ✓ | ✓ | ✓ | ✓ | ✓ | All 5; no native SD-WAN CPE (scores reflect null for CPE criteria) |
-| Fortinet | ✓ | ✓ | ✓ | ✓ | ✓ | All 5; all scores currently null pending research pass |
-| Versa | ✓ | ✓ | ✓ | ✓ | ✓ | All 5; all scores currently null pending research pass |
+| Palo Alto | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 · Big Six |
+| Cato | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 · Big Six |
+| Netskope | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 · Big Six |
+| Cloudflare | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 · Big Six |
+| Zscaler | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 · Big Six; no native SD-WAN CPE |
+| Fortinet | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 · Big Six (promoted from Emerging in v2.1) |
+| Versa | ✓ | ✓ | ✓ | ✓ | ✓ | All 5 · Emerging; scores in sase_emerging.html only |
 | Aryaka | — | — | ✓ | ✓ | — | SD-WAN + AIOps only |
 | Island | ✓ | ✓ | — | — | — | ZTNA + SSE only (browser scope) |
 | Nile | ✓ | — | — | — | — | ZTNA only (campus/LAN scope) |
@@ -168,7 +169,7 @@ assets/js/toc.js
 2. Add vendor entry to `scores.json` vendors array (with scope_note and null scores)
 3. Add null score blocks for all relevant criteria in `scores.json`
 4. Add row to `_index.html` working-docs panel; increment vendor count
-5. Add section to `components/sase_emerging.html` (if emerging) or update Big Five count
+5. Add section to `components/sase_emerging.html` (if emerging) or update Big Six count
 6. Add row to emerging comparison table in `sase_emerging.html` (if emerging)
 7. Update `CLAUDE.md`: vendor roster table, directory structure, key vendor decisions
 8. Update `README.md`: directory tree, URL table
@@ -181,7 +182,7 @@ assets/js/toc.js
 4. Remove row from `_index.html`; decrement vendor count
 5. Remove section from `components/sase_emerging.html` (if emerging)
 6. Remove row from emerging comparison table in `sase_emerging.html`
-7. Update `CLAUDE.md`: vendor roster, directory structure, Big Five vs. Emerging note, key vendor decisions
+7. Update `CLAUDE.md`: vendor roster, directory structure, Big Six vs. Emerging note, key vendor decisions
 8. Update `README.md`: directory tree, URL table
 9. Update `TODO.md`: remove vendor-specific tasks
 10. Bump `scores.json` meta.version and changelog
@@ -285,7 +286,7 @@ scores.json is not directly fetched by working-docs — they link to the compone
 
 ## Vendor Roster
 
-### Big Five (complete, all 5 pillars)
+### Big Six (complete, all 5 pillars)
 
 | ID in scores.json | Name | Product | Arch type |
 |---|---|---|---|
@@ -294,16 +295,16 @@ scores.json is not directly fetched by working-docs — they link to the compone
 | `netskope` | Netskope | Netskope One | `single_pass` |
 | `cloudflare` | Cloudflare | Cloudflare One | `single_pass` |
 | `zscaler` | Zscaler | ZIA + ZPA + ZDX | `integrated` |
+| `fortinet` | Fortinet | FortiSASE + FortiOS | `unified_os` |
 
 ### Emerging (pillar-scoped)
 
 | ID | Name | Scope | Notes |
 |---|---|---|---|
 | `aryaka` | Aryaka | SD-WAN + AIOps | Managed SASE; SSE co-packaged (PA Prisma option) |
-| `fortinet` | Fortinet | All 5 pillars | MQ Leader 2025; scores pending full pass; customer experience caution |
 | `island` | Island | ZTNA + SSE | Enterprise Browser; March 2026 full SASE stack launch |
 | `nile` | Nile | ZTNA (campus) | Zero Trust NaaS; $175M Series C; Gartner Visionary 2025 LAN MQ |
-| `versa` | Versa Networks | All 5 pillars | Gartner Challenger 2025 (3rd year); FedRAMP Ready High; scores pending |
+| `versa` | Versa Networks | All 5 pillars | Gartner Challenger 2025 (3rd year); FedRAMP Ready High; all scores complete |
 
 ---
 
@@ -311,9 +312,9 @@ scores.json is not directly fetched by working-docs — they link to the compone
 
 ```json
 {
-  "meta": { "version": "1.5", "last_updated": "2026-04-19", ... },
+  "meta": { "version": "2.2", "last_updated": "2026-04-19", ... },
   "vendors": [
-    { "id": "palo_alto", "name": "...", "product": "...", "tier": "big_five", "arch_type": "stitched" },
+    { "id": "palo_alto", "name": "...", "product": "...", "tier": "big_six", "arch_type": "stitched" },
     { "id": "island", "name": "...", "tier": "emerging", "arch_type": "enterprise_browser",
       "scope_note": "Scored on ZTNA + SSE pillars. SD-WAN, AIOps, Sovereignty null by design." }
   ],
@@ -425,7 +426,7 @@ window.renderPage = function(data) {
     document.getElementById('score-container').innerHTML = '<div class="edge-callout...">Local server required...</div>';
     return;
   }
-  var vendors = data.vendors.filter(function(v) { return v.tier === 'big_five'; });
+  var vendors = data.vendors.filter(function(v) { return v.tier === 'big_six'; });
   renderScoringTable(data.pillars.ztna, vendors, 'score-container');
 };
 ```
@@ -441,8 +442,8 @@ The scorecard uses a more complex `window.renderPage` that calls `renderRadar()`
 ### Pillar-First Navigation
 Documents organized by pillar (ZTNA, SSE, SD-WAN, AIOps, Sovereignty), not by vendor. Readers asking "who wins on DLP" get a direct answer. Vendor working-docs exist for full vendor context.
 
-### Big Five vs. Emerging
-Big Five are the primary subjects of all pillar comparison docs. Emerging vendors (Aryaka, Fortinet, Island, Nile, Versa) each have working-docs with scoped pillar analysis. Emerging vendors appear in pillar docs as callout boxes with links to their working-docs.
+### Big Six vs. Emerging
+Big Six are the primary subjects of all pillar comparison docs. Emerging vendors (Aryaka, Fortinet, Island, Nile, Versa) each have working-docs with scoped pillar analysis. Emerging vendors appear in pillar docs as callout boxes with links to their working-docs.
 
 ### scores.json as Single Source of Truth
 All scores live in `scores.json`. A score change propagates automatically to all pillar tables and the Master Scorecard. Do not hardcode scores in HTML.
@@ -461,7 +462,7 @@ Scope: Prisma Access + SCM. SCM ties cloud SASE and physical NGFW estate togethe
 Single-pass, private backbone (85+ PoPs). Reference implementation of true single-vendor SASE. Cato Dynamic Prevention (March 2026) — auto-adaptive behavioral blocking. Aim Security acquisition closes the AI security gap.
 
 ### Netskope
-Data-centric design. Industry reference for ML DLP (1,000+ classifiers, EDM, OCR). NewEdge sovereign PoP architecture. FedRAMP High + IRAP Protected. Strongest sovereignty posture in Big Five. Mumbai management plane announced April 2026 for DPDPA.
+Data-centric design. Industry reference for ML DLP (1,000+ classifiers, EDM, OCR). NewEdge sovereign PoP architecture. FedRAMP High + IRAP Protected. Strongest sovereignty posture in Big Six. Mumbai management plane announced April 2026 for DPDPA.
 
 ### Cloudflare
 330+ PoPs, best global latency. Developer-native. Strongest GenAI protection dual-side story (workforce + builders). MCP server governance (April 2026).
@@ -479,7 +480,7 @@ March 2026: Full SASE stack launched — SWG, ZTNA, CASB, RBI, DLP through the b
 Managed SASE. SmartConnect private backbone (40+ PoPs). 24×7 NOC/SOC included. SD-WAN + AIOps scope only (SSE is co-packaged PA Prisma Access option).
 
 ### Nile
-Zero Trust NaaS for campus/LAN edge. Every wired and wireless port is a ZTNA enforcement point. $175M Series C. Gartner Visionary 2025 LAN MQ. Not a WAN or cloud security play — complements Big Five SASE.
+Zero Trust NaaS for campus/LAN edge. Every wired and wireless port is a ZTNA enforcement point. $175M Series C. Gartner Visionary 2025 LAN MQ. Not a WAN or cloud security play — complements Big Six SASE.
 
 ---
 

@@ -1,30 +1,16 @@
 /**
  * SASE Codex — Edge Solutions
- * main.js — Score renderer + nav active state
+ * main.js — Score renderer + scores.json loader
  *
  * Responsibilities:
- *   1. Mark the correct doc-nav link as .active based on current page filename
- *   2. Provide scoreBadge(), weightBadge(), renderScoringTable() used by all pillar pages
- *   3. Fetch scores.json and call each page's renderPage(data) hook if defined
+ *   1. Provide scoreBadge(), weightBadge(), renderScoringTable() used by all pillar pages
+ *   2. Fetch scores.json and call each page's renderPage(data) hook if defined
+ *
+ * Nav active state is handled by nav.js (shared nav component).
  */
 
 /* ============================================================
-   1. NAV ACTIVE STATE
-   ============================================================ */
-(function setNavActive() {
-  const filename = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.doc-nav a').forEach(function(a) {
-    const href = a.getAttribute('href') || '';
-    if (href === filename || href.split('/').pop() === filename) {
-      a.classList.add('active');
-    } else {
-      a.classList.remove('active');
-    }
-  });
-})();
-
-/* ============================================================
-   2. SCORE RENDERING UTILITIES
+   1. SCORE RENDERING UTILITIES
    ============================================================ */
 
 /**

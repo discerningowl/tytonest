@@ -24,16 +24,7 @@
   </div>
 </header>
 
-<nav class="doc-nav">
-  <a href="../_index.html">Index</a><span class="doc-nav__sep">›</span>
-  <a href="sase_benchmark.html">Benchmark</a><span class="doc-nav__sep">›</span>
-  <a href="sase_ztna.html">ZTNA</a><span class="doc-nav__sep">›</span>
-  <a href="sase_sse.html">SSE</a><span class="doc-nav__sep">›</span>
-  <a href="sase_sdwan.html" class="active">SD-WAN</a><span class="doc-nav__sep">›</span>
-  <a href="sase_aiops.html">AIOps</a><span class="doc-nav__sep">›</span>
-  <a href="sase_sovereignty.html">Sovereignty</a><span class="doc-nav__sep">›</span>
-  <a href="sase_scorecard.html">Scorecard</a>
-</nav>
+<nav class="doc-nav"></nav>
 
 <div class="page-body">
 <main>
@@ -76,7 +67,7 @@
     <div class="vendor-body">
       <p>SD-WAN leadership built on three structural advantages: a private SLA-backed backbone between all PoPs, native SSE convergence (WAN policy and security policy are genuinely one system), and Cato Socket ZTP that deploys branches in under 15 minutes. Predictive AI path steering detects degradation 30–90 seconds before SLA breach and pre-emptively reroutes — competing vendors performing path optimization on customer-ISP links can only react to observed degradation. Active/active multi-link bonding, FEC, and packet duplication handle lossy link conditions including 4G/5G failover.</p>
       <div class="vendor-grid">
-        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Private SLA-backed backbone — only Big Five vendor owning the complete inter-PoP path. Predictive path steering (30–90s pre-breach reroute). Active/active multi-link bonding + FEC. Sub-15min ZTP. Single policy plane for SD-WAN + SSE + ZTNA.</p></div>
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>Private SLA-backed backbone — only Big Six vendor owning the complete inter-PoP path. Predictive path steering (30–90s pre-breach reroute). Active/active multi-link bonding + FEC. Sub-15min ZTP. Single policy plane for SD-WAN + SSE + ZTNA.</p></div>
         <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>~85 PoPs vs. Cloudflare 330+ — thinner coverage in emerging markets. CPE ecosystem smaller than legacy vendors. No vCPE option for virtual branch deployments.</p></div>
       </div>
       <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/cato-networks.html#sdwan" style="color:var(--edge-blue);">Full SD-WAN analysis — cato-networks.html</a></p>
@@ -137,12 +128,26 @@
     </div>
   </div>
 
-  <!-- EMERGING -->
-  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Aryaka (Managed SASE)</strong> — Managed SD-WAN with a proprietary global private backbone. Strong for global enterprises wanting managed SD-WAN without internal expertise. Competes directly on the managed delivery model rather than platform depth. Full analysis: <a href="../working-docs/aryaka.html" style="color:var(--edge-blue);">aryaka.html</a>.</div></div>
-  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Graphiant (Tunnel-Free Connectivity)</strong> — Private connectivity without IPSec tunnels — targets the WAN underlay complexity problem rather than the security overlay. Architecturally distinct for latency-deterministic workloads. Lowest confidence in emerging list — reassess Q3 2026. Full analysis: <a href="../working-docs/graphiant.html" style="color:var(--edge-blue);">graphiant.html</a>.</div></div>
-  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Versa Networks (SD-WAN-Led SASE Challenger)</strong> — Gartner SASE Challenger (2025). Deep SD-WAN heritage with converging SSE capabilities. Strong partner ecosystem including Netskope integration. Full analysis: <a href="../working-docs/versa-networks.html" style="color:var(--edge-blue);">versa-networks.html</a>.</div></div>
-</div>
+  <!-- FORTINET -->
+  <div class="vendor-section">
+    <div class="vendor-header"><h2>Fortinet — Fortinet Secure SD-WAN (FortiGate CPE)</h2><span class="arch-tag">5TH CONSECUTIVE GARTNER SD-WAN MQ LEADER</span></div>
+    <div class="vendor-body">
+      <div class="edge-callout edge-callout--warning"><div class="edge-callout__accent"></div><div><strong>Customer experience: validate SLAs.</strong> Gartner Peer Insights data shows improvement to 4.8–4.9/5.0. Confirm TAC SLA tiers and FortiOS upgrade protocols before production deployment, particularly for high-availability SD-WAN environments.</div></div>
+      <p>SD-WAN is Fortinet's strongest pillar and the primary reason it belongs in a 2026 SASE evaluation. Fortinet held the highest Ability to Execute position in the Gartner SD-WAN MQ for the fifth consecutive year (2024), and ranked #1 in the Secure Branch Network Modernization use case in the 2025 Gartner Critical Capabilities for SASE Platforms. The FortiGate product line is feature-mature: active/active multi-link bonding, FEC, packet duplication, predictive path analytics, ZTP, and native 5G CPE support across the full appliance range. The competitive motion is the installed base — organizations running FortiGate branch firewalls can enable SD-WAN features with a license change and manage the combined SD-WAN + FortiSASE cloud SSE through FortiManager, without hardware replacement or retraining. FortiOS coordination between FortiGate SD-WAN and FortiSASE is native, sitting architecturally tighter than Zscaler's partner integration while trailing Cato's true single-pass convergence.</p>
+      <div class="vendor-grid">
+        <div class="mini-card"><h4><span class="strength-dot">▲</span> Strengths</h4><p>5th consecutive Gartner SD-WAN MQ Leader. #1 Secure Branch Network Modernization use case (Gartner Critical Capabilities 2025). Feature-mature CPE: active/active, FEC, packet duplication, 5G native. Upgrade-in-place for existing FortiGate customers. ZTP deployment. Competitive pricing. Native FortiOS coordination with FortiSASE cloud SSE.</p></div>
+        <div class="mini-card"><h4><span class="watch-dot">▼</span> Watch Areas</h4><p>No private backbone — public internet SD-WAN routing between PoPs (no SLA-backed fiber equivalent to Cato). SD-WAN + SSE convergence is FortiOS-native but not true single-pass like Cato. FortiSASE cloud infrastructure maturity trails Cato for PoP-to-PoP performance SLAs. Customer support quality issues affect SD-WAN operations as with the broader platform.</p></div>
+      </div>
+      <p style="margin-top:14px; font-size:13px;">→ <a href="../working-docs/fortinet.html#sdwan" style="color:var(--edge-blue);">Full SD-WAN analysis — fortinet.html</a></p>
+    </div>
+  </div>
 
+  
+  <!-- EMERGING -->
+  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Aryaka (Managed SASE)</strong> — Managed SD-WAN with a proprietary global private backbone (40+ PoPs) and 24×7 NOC/SOC included. Strong for global enterprises wanting managed SD-WAN without internal expertise. Competes on managed delivery model rather than platform depth. Full analysis: <a href="../working-docs/aryaka.html" style="color:var(--edge-blue);">aryaka.html</a>.</div></div>
+
+  <div class="edge-callout" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Emerging: Versa Networks (SD-WAN)</strong> — Versa Secure SD-WAN is Gartner MQ-recognized and is Versa's primary pillar; scored alongside Aryaka as an emerging vendor. Full analysis: <a href="sase_emerging.html#scoring-sdwan" style="color:var(--edge-blue);">Emerging Vendors → SD-WAN scoring</a>.</div></div>
+</div>
 <!-- SCORING -->
 <div class="edge-section" style="padding-top:0;">
   <h2 class="section-heading" id="scores">Vendor Scoring — SD-WAN Pillar</h2>
@@ -191,10 +196,13 @@ window.renderPage = function(data) {
     document.getElementById('score-container').innerHTML = '<div class="edge-callout edge-callout--warning" style="margin-top:8px;"><div class="edge-callout__accent"></div><div><strong>Local server required.</strong> Run <code>python3 -m http.server 8000</code> from the project root. See <code>README.md</code>.</div></div>';
     return;
   }
-  var vendors = data.vendors.filter(function(v) { return v.tier === 'big_five'; });
+  // SD-WAN scope: Big Six only. Emerging vendor scores (Aryaka, Versa) are on sase_emerging.html.
+  var sdwanScope = ['palo_alto','cato','netskope','cloudflare','zscaler','fortinet'];
+  var vendors = data.vendors.filter(function(v) { return sdwanScope.indexOf(v.id) >= 0; });
   renderScoringTable(data.pillars.sdwan, vendors, 'score-container');
 };
 </script>
+<script src="../assets/js/nav.js"></script>
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/back-to-top.js"></script>

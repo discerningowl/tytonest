@@ -213,6 +213,21 @@ body.has-toc main {
   font-size: 13px;
   color: var(--white);
 }
+
+/* Score dot — compact variant used by scorecard master table.
+   Color is set inline by JS; this class provides the circle geometry. */
+.score-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--white);
+  flex-shrink: 0;
+}
 .score-5    { background: #1A7A4A; }
 .score-4    { background: #2E86AB; }
 .score-3    { background: var(--warning); }
